@@ -1,0 +1,19 @@
+environment: flowcore
+platform: flowcore
+imageRepository: 305363105399.dkr.ecr.eu-west-1.amazonaws.com
+
+deployments: {}
+#  APIKeyCommands:
+#    enabled: true
+#    component: api
+#    source: node
+#    deployment:
+#      image: "auth-api-key-commands"
+#      tag: "latest"
+#    service:
+#      enabled: true
+#    ingress:
+#      enabled: true
+#    env:
+#      HELLO:
+#        value: World

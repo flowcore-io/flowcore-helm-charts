@@ -1,0 +1,155 @@
+{{- range $microservice, $spec := .Values.deployments }}
+{{- if $spec.enabled }}
+{{- $serviceName := cat $microservice | kebabcase }}
+{{- $component := "service" }}
+{{- if $spec.component }}
+{{ $component = $spec.component }}
+{{- end }}
+{{- $env := $.Values.environment | default "flowcore" }}
+{{- $platform := $.Values.platform | default "flowcore" }}
+{{- $source := "node" }}
+{{- if $spec.source }}
+{{- $source = $spec.source }}
+{{- end }}
+{{- $repoBase := $.Values.imageRepository -}}
+{{- $replicas := $spec.deployment.replicas | default 1 }}
+{{- $grpcPort := 5000 }}
+{{- $httpPort := 3000 }}
+{{- if $spec.service }}
+{{- if $spec.service.grpcPort }}
+{{- $servicePort = $spec.service.grpcPort }}
+{{- if $spec.service.httpPort }}
+{{- $metaPort = $spec.service.httpPort }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- $baseUrl := $.Values.baseUrl | default "flowcore.io" }}
+{{- $tlsSecretName := "api-flowcore-io-wildcard-tls" }}
+{{- if $spec.ingress }}
+{{- if $spec.ingress.tlsSecret }}
+{{- $tlsSecretName = $spec.ingress.tlsSecret }}
+{{- end }}
+{{- end }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $serviceName }}
+  labels: &common_labels
+    app: {{ $serviceName }}
+    app.kubernetes.io/name: {{ $serviceName }}
+    app.kubernetes.io/version: {{ $spec.deployment.tag }}
+    app.kubernetes.io/component: {{ $component }}
+    app.kubernetes.io/part-of: {{ $platform }}
+    tags.datadoghq.com/env: {{ $env }}
+    tags.datadoghq.com/service: {{ $serviceName }}
+    tags.datadoghq.com/version: {{ $spec.deployment.tag }}
+spec:
+  replicas: {{ $replicas }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 2
+  selector:
+    matchLabels:
+      app: {{ $serviceName }}
+  template:
+    metadata:
+      labels: *common_labels
+      annotations:
+        ad.datadoghq.com/{{ $serviceName }}.logs: '[{"source":"node","service":"{{ $serviceName }}"}]'
+    spec:
+      containers:
+        - name: {{ $serviceName }}
+          image: "{{ $repoBase }}/{{ $spec.deployment.image }}:{{ $spec.deployment.tag }}"
+          env:
+            {{- range $envKey, $envValue := $spec.env }}
+            - name: {{ $envKey }}
+              {{- $envValue | toYaml | nindent 14 }}
+            {{- end }}
+            - name: DD_ENV
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/env']
+            - name: DD_SERVICE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/service']
+            - name: DD_VERSION
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/version']
+            - name: DD_AGENT_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: DD_APM_ENABLED
+              value: "true"
+          ports:
+            - name: http
+              containerPort: {{ $httpPort }}
+            - name: grpc
+              containerPort: {{ $grpcPort }}
+          livenessProbe:
+            httpGet:
+            path: /health
+            port: 3000
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+            failureThreshold: 10
+{{- if $spec.service }}
+{{- if $spec.service.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $serviceName }}
+spec:
+  selector:
+    app: {{ $serviceName }}
+  ports:
+    - name: "http"
+      protocol: TCP
+      port: {{ $httpPort }}
+      targetPort: {{ $httpPort }}
+    - name: "grpc"
+      protocol: TCP
+      port: {{ $grpcPort }}
+      targetPort: {{ $grpcPort }}
+{{ end }}
+{{ end }}
+{{- if $spec.ingress.enabled }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ $serviceName }}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: "{{ $serviceName | kebabcase }}.api.{{ $baseUrl }}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $serviceName }}
+                port:
+                  number: {{ $httpPort }}
+  tls:
+    - hosts:
+        - "{{ $serviceName | kebabcase }}.api.{{ $baseUrl }}"
+      secretName: {{ $tlsSecretName }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+
+
+
+
+
+
