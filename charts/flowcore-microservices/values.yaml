@@ -1,19 +1,50 @@
+## @section Global
+## @param environment Environment name
+## @default "flowcore"
 environment: flowcore
+## @param platform Platform that these microservices are part of
 platform: flowcore
+## @param imageRepository The image repository to use for all microservices in this chart
 imageRepository: 305363105399.dkr.ecr.eu-west-1.amazonaws.com
 
+## @section Deployments
+## @param deployments [object] List of microservices to deploy
 deployments: {}
+## @extra deployments.<microservice> Configuration entry for a microservice
 #  APIKeyCommands:
+## @extra deployments.<microservice>.enabled Whether to deploy this microservice [boolean]
 #    enabled: true
+## @extra deployments.<microservice>.component What type of microservice this is [api, adapter, ...]
 #    component: api
+## @extra deployments.<microservice>.source What type of source this microservice uses [node, go, rust, ...]
 #    source: node
+## @extra deployments.<microservice>.deployment Configuration for the deployment
 #    deployment:
+## @extra deployments.<microservice>.deployment.image The image name to use for this microservice, excluding the repository [string]
 #      image: "auth-api-key-commands"
+## @extra deployments.<microservice>.deployment.tag The image tag to use for this microservice [string]
 #      tag: "latest"
+## @extra deployments.<microservice>.deployment.replicas The number of replicas to deploy [integer]
+#      replicas: 1
+## @extra deployments.<microservice>.service Service configuration for this microservice if needed
 #    service:
+## @extra deployments.<microservice>.service.enabled Whether to deploy a service for this microservice [boolean]
 #      enabled: true
+## @extra deployments.<microservice>.service.httpPort The http port to expose for this microservice [integer]
+#      httpPort: 3000
+## @extra deployments.<microservice>.service.grpcPort The grpc port to expose for this microservice [integer]
+#      grpcPort: 5000
+## @extra deployments.<microservice>.ingress Ingress configuration for this microservice if needed
 #    ingress:
+## @extra deployments.<microservice>.ingress.enabled Whether to deploy an ingress for this microservice [boolean]
 #      enabled: true
+## @extra deployments.<microservice>.ingress.host The host to use for this microservice [string]
+#      host: "auth-api-key-commands.flowcore.com"
+## @extra deployments.<microservice>.ingress.tlsSecret The tls secret to use for this microservice [string]
+#      tlsSecret: "tls-secret"
+## @extra deployments.<microservice>.env Environment variables to set for this microservice
 #    env:
+## @extra deployments.<microservice>.env.<variable> Configuration for an environment variable
 #      HELLO:
+## @extra deployments.<microservice>.env.<variable>.value The value to set for this environment variable, use valueFrom if you want to use a secret [string]
 #        value: World
