@@ -3,4 +3,4 @@
 A collection of Helm charts used by Flowcore.
 
 charts:
-- [flowcore-microservice](charts/flowcore-microservice/README.md)
+- [flowcore-microservices](charts/flowcore-microservices/README.md)
