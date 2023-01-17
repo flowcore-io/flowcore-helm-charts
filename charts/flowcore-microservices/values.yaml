@@ -73,3 +73,15 @@ deployments: {}
 #          NATS_QUEUE:
 ## @extra deployments.<microservice>.useTransport.<name>.overrides.<variable>.value The value to set for this environment variable, use valueFrom if you want to use a secret [string]
 #            value: user-service
+## @extra deployments.<microservice>.sidecars list of sidecars to deploy
+#    sidecars:
+## @extra deployments.<microservice>.sidecars.<name> Configuration for a sidecar
+#      sideCarA:
+## @extra deployments.<microservice>.sidecars.<name>.enabled Whether to deploy this sidecar [boolean]
+## @extra deployments.<microservice>.sidecars.<name>.repo The image repository to use for this sidecar, optional [string]
+## @extra deployments.<microservice>.sidecars.<name>.image The image name to use for this sidecar, excluding the repository [string]
+## @extra deployments.<microservice>.sidecars.<name>.tag The image tag to use for this sidecar [string]
+## @extra deployments.<microservice>.sidecars.<name>.env Environment variables to set for this sidecar
+## @extra deployments.<microservice>.sidecars.<name>.env.<variable> Configuration for an environment variable
+## @extra deployments.<microservice>.sidecars.<name>.env.<variable>.value The value to set for this environment variable, use valueFrom if you want to use a secret [string]
+## @extra deployments.<microservice>.sidecars.<name>.httpPort The http port for this sidecar, used for health checks [integer]

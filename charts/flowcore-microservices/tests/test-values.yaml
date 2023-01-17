@@ -51,7 +51,20 @@ deployments:
               secretKeyRef:
                 name: some-secret
                 key: some-key
+        httpPort: 8080
       sideCarB:
+        enabled: true
+        image: some-test-image2
+        tag: "0.1.0"
+        env:
+          SOME_VARIABLE:
+            value: someValue
+          SOME_FROM_VARIABLE:
+            valueFrom:
+              secretKeyRef:
+                name: some-secret
+                key: some-key
+      sideCarC:
         enabled: true
         image: some-test-image2
         tag: "0.1.0"

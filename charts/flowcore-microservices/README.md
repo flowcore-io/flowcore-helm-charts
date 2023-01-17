@@ -68,4 +68,14 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `deployments.<microservice>.useTransport.<name>.overrides`                  | Overrides for the transport service                                                                |       |
 | `deployments.<microservice>.useTransport.<name>.overrides.<variable>`       | Configuration for an environment variable                                                          |       |
 | `deployments.<microservice>.useTransport.<name>.overrides.<variable>.value` | The value to set for this environment variable, use valueFrom if you want to use a secret [string] |       |
+| `deployments.<microservice>.sidecars`                                       | list of sidecars to deploy                                                                         |       |
+| `deployments.<microservice>.sidecars.<name>`                                | Configuration for a sidecar                                                                        |       |
+| `deployments.<microservice>.sidecars.<name>.enabled`                        | Whether to deploy this sidecar [boolean]                                                           |       |
+| `deployments.<microservice>.sidecars.<name>.repo`                           | The image repository to use for this sidecar, optional [string]                                    |       |
+| `deployments.<microservice>.sidecars.<name>.image`                          | The image name to use for this sidecar, excluding the repository [string]                          |       |
+| `deployments.<microservice>.sidecars.<name>.tag`                            | The image tag to use for this sidecar [string]                                                     |       |
+| `deployments.<microservice>.sidecars.<name>.env`                            | Environment variables to set for this sidecar                                                      |       |
+| `deployments.<microservice>.sidecars.<name>.env.<variable>`                 | Configuration for an environment variable                                                          |       |
+| `deployments.<microservice>.sidecars.<name>.env.<variable>.value`           | The value to set for this environment variable, use valueFrom if you want to use a secret [string] |       |
+| `deployments.<microservice>.sidecars.<name>.httpPort`                       | The http port for this sidecar, used for health checks [integer]                                   |       |
 

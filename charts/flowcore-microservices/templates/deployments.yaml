@@ -30,7 +30,8 @@
 {{- $tlsSecretName = $spec.ingress.tlsSecret }}
 {{- end }}
 {{- end }}
-{{ $wellKnownUrl := $.Values.oidcWellKnownUrl }}
+{{- $wellKnownUrl := $.Values.oidcWellKnownUrl }}
+{{- $sidecarHealthPort := add $httpPort 1 }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -188,6 +189,8 @@ spec:
             - name: {{ $envKey }}
               {{- $envValue | toYaml | nindent 14 }}
             {{- end }}
+            - name: PORT
+              value: {{ $sidecarSpec.httpPort | default $sidecarHealthPort | quote }}
             - name: OIDC_WELLKNOWN_URL
               value: {{ $wellKnownUrl }}
             - name: DD_ENV
@@ -211,10 +214,13 @@ spec:
           livenessProbe:
             httpGet:
               path: /health
-              port: {{ $httpPort }}
+              port: {{ $sidecarHealthPort }}
             initialDelaySeconds: 10
             timeoutSeconds: 1
             failureThreshold: 10
+        {{- if not $sidecarSpec.httpPort }}
+        {{- $sidecarHealthPort = add $sidecarHealthPort 1 }}
+        {{- end }}
         {{- end }}
         {{- end }}
 {{- if $spec.service }}
