@@ -142,6 +142,16 @@ spec:
                   fieldPath: status.hostIP
             - name: DD_APM_ENABLED
               value: "true"
+          {{- if $spec.configVolumes }}
+          volumeMounts:
+          {{- range $configMountName, $configSpec := $spec.configVolumes }}
+            - name: {{ cat $configMountName "config"| kebabcase }}
+              mountPath: {{ $configSpec.mountPath }}
+              {{- if $configSpec.subPath }}
+              subPath: {{ $configSpec.subPath }}
+              {{- end }}
+          {{- end }}
+          {{- end }}
           ports:
             - name: "http"
               containerPort: {{ $httpPort }}
@@ -223,6 +233,14 @@ spec:
         {{- end }}
         {{- end }}
         {{- end }}
+      {{- if $spec.configVolumes }}
+      volumes:
+      {{- range $configMountName, $configSpec := $spec.configVolumes }}
+        - name: {{ cat $configMountName "config"| kebabcase }}
+          configMap:
+            name: {{ $configSpec.config }}
+      {{- end }}
+      {{- end }}
 {{- if $spec.service }}
 {{- if $spec.service.enabled }}
 ---

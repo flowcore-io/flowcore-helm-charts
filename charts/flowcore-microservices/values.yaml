@@ -85,3 +85,8 @@ deployments: {}
 ## @extra deployments.<microservice>.sidecars.<name>.env.<variable> Configuration for an environment variable
 ## @extra deployments.<microservice>.sidecars.<name>.env.<variable>.value The value to set for this environment variable, use valueFrom if you want to use a secret [string]
 ## @extra deployments.<microservice>.sidecars.<name>.httpPort The http port for this sidecar, used for health checks [integer]
+## @extra deployments.<microservice>.configVolumes list of config volumes to deploy
+## @extra deployments.<microservice>.configVolumes.<name> Configuration for a config volume
+## @extra deployments.<microservice>.configVolumes.<name>.config Config Map name to use for this config volume
+## @extra deployments.<microservice>.configVolumes.<name>.mountPath The mount path to use for this config volume
+## @extra deployments.<microservice>.configVolumes.<name>.subPath The sub path to use for this config volume, optional

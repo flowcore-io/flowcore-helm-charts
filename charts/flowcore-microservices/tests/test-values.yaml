@@ -31,6 +31,11 @@ deployments:
           secretKeyRef:
             name: some-secret
             key: some-key
+    configVolumes:
+      subgraphs:
+        config: some-config-map
+        mountPath: /etc/config1
+        subPath: config1.txt
     useTransports:
       - nats
       - name: nats
