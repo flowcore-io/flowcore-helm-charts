@@ -12,15 +12,11 @@
 {{- $source = $spec.source }}
 {{- end }}
 {{- $repoBase := $.Values.imageRepository -}}
-{{- $replicas := $spec.deployment.replicas | default 1 }}
-{{- $grpcPort := 5000 }}
+{{- $replicas := $spec.deployment.replicas | default 1 }}}
 {{- $httpPort := 3000 }}
 {{- if $spec.service }}
-{{- if $spec.service.grpcPort }}
-{{- $grpcPort = $spec.service.grpcPort }}
 {{- if $spec.service.httpPort }}
-{{- $grpcPort = $spec.service.httpPort }}
-{{- end }}
+{{- $httpPort = $spec.service.httpPort }}
 {{- end }}
 {{- end }}
 {{- $baseUrl := $.Values.baseUrl | default "flowcore.io" }}
@@ -91,10 +87,14 @@ spec:
             - name: DD_APM_ENABLED
               value: "true"
           ports:
-            - name: http
+            - name: "http"
               containerPort: {{ $httpPort }}
-            - name: grpc
-              containerPort: {{ $grpcPort }}
+            {{- if $spec.service }}
+            {{- range $name, $portSpec := $spec.service.extraPorts }}
+            - name: {{ $name | kebabcase | quote }}
+              containerPort: {{ $portSpec.port }}
+            {{- end }}
+            {{- end }}
           livenessProbe:
             httpGet:
               path: /health
@@ -117,10 +117,12 @@ spec:
       protocol: TCP
       port: {{ $httpPort }}
       targetPort: {{ $httpPort }}
-    - name: "grpc"
-      protocol: TCP
-      port: {{ $grpcPort }}
-      targetPort: {{ $grpcPort }}
+    {{- range $name, $portSpec := $spec.service.extraPorts }}
+    - name: {{ $name | quote }}
+      protocol: {{ $portSpec.type | default "TCP" }}
+      port: {{ $portSpec.port }}
+      targetPort: {{ $portSpec.port }}
+    {{- end }}
 {{ end }}
 {{ end }}
 {{- if $spec.ingress.enabled }}

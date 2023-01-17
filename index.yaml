@@ -2,8 +2,19 @@ apiVersion: v1
 entries:
   flowcore-microservices:
   - apiVersion: v2
+    appVersion: 1.1.0
+    created: "2023-01-17T09:30:52.943518Z"
+    description: A helm chart template for deploying multiple flowcore microservices
+      in a domain
+    digest: e825d750833b72ab71ea43add8d4e8e584376fc06318460ee2ef0bb2f7ead9f2
+    name: flowcore-microservices
+    type: application
+    urls:
+    - https://flowcore-io.github.io/flowcore-helm-charts/flowcore-microservices-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v2
     appVersion: 1.0.1
-    created: "2022-12-28T13:25:42.495535Z"
+    created: "2023-01-17T09:30:52.943359Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: c451af30726d0a3849528e84299e7f443d131c9723ac74fd77bfa5e07075aef3
@@ -14,7 +25,7 @@ entries:
     version: 1.0.1
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-12-28T13:25:42.494939Z"
+    created: "2023-01-17T09:30:52.942944Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 3d9237932bfbd9d15bfa5cf11763b954969869d7d50101258309ec016933a5f0
@@ -23,4 +34,4 @@ entries:
     urls:
     - https://flowcore-io.github.io/flowcore-helm-charts/flowcore-microservices-1.0.0.tgz
     version: 1.0.0
-generated: "2022-12-28T13:25:42.494345Z"
+generated: "2023-01-17T09:30:52.942403Z"
