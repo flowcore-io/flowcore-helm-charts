@@ -2,8 +2,19 @@ apiVersion: v1
 entries:
   flowcore-microservices:
   - apiVersion: v2
+    appVersion: 1.1.2
+    created: "2023-01-17T11:05:47.987661Z"
+    description: A helm chart template for deploying multiple flowcore microservices
+      in a domain
+    digest: 29083eeebf525621ac4f310f97e60dba02bafb3d0f447723b795e8e96f5f3d2d
+    name: flowcore-microservices
+    type: application
+    urls:
+    - https://flowcore-io.github.io/flowcore-helm-charts/flowcore-microservices-1.1.2.tgz
+    version: 1.1.2
+  - apiVersion: v2
     appVersion: 1.1.1
-    created: "2023-01-17T10:21:36.118324Z"
+    created: "2023-01-17T11:05:47.986122Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 96a6de73ba6c230e525c7b0ea43c23a0c8dd4c3c9397128f6c1bce11308bd292
@@ -14,7 +25,7 @@ entries:
     version: 1.1.1
   - apiVersion: v2
     appVersion: 1.1.0
-    created: "2023-01-17T10:21:36.118147Z"
+    created: "2023-01-17T11:05:47.985849Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: e825d750833b72ab71ea43add8d4e8e584376fc06318460ee2ef0bb2f7ead9f2
@@ -25,7 +36,7 @@ entries:
     version: 1.1.0
   - apiVersion: v2
     appVersion: 1.0.1
-    created: "2023-01-17T10:21:36.117721Z"
+    created: "2023-01-17T11:05:47.985382Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: c451af30726d0a3849528e84299e7f443d131c9723ac74fd77bfa5e07075aef3
@@ -36,7 +47,7 @@ entries:
     version: 1.0.1
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2023-01-17T10:21:36.116018Z"
+    created: "2023-01-17T11:05:47.98487Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 3d9237932bfbd9d15bfa5cf11763b954969869d7d50101258309ec016933a5f0
@@ -45,4 +56,4 @@ entries:
     urls:
     - https://flowcore-io.github.io/flowcore-helm-charts/flowcore-microservices-1.0.0.tgz
     version: 1.0.0
-generated: "2023-01-17T10:21:36.115519Z"
+generated: "2023-01-17T11:05:47.984365Z"

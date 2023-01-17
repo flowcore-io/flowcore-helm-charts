@@ -1,0 +1,24 @@
+environment: flowcore
+platform: flowcore
+imageRepository: 305363105399.dkr.ecr.eu-west-1.amazonaws.com
+
+deployments:
+  testService:
+    enabled: true
+    deployment:
+      image: some-test-image
+      replicas: 1
+    service:
+      enabled: true
+      extraPorts:
+        grpc:
+          port: 5000
+          type: TCP
+    env:
+      SOME_VARIABLE:
+        value: someValue
+      SOME_FROM_VARIABLE:
+        valueFrom:
+          secretKeyRef:
+            name: some-secret
+            key: some-key
