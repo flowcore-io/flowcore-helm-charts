@@ -30,6 +30,7 @@
 {{- $tlsSecretName = $spec.ingress.tlsSecret }}
 {{- end }}
 {{- end }}
+{{ $wellKnownUrl := $.Values.oidcWellKnownUrl }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -120,6 +121,8 @@ spec:
             - name: {{ $envKey }}
               {{- $envValue | toYaml | nindent 14 }}
             {{- end }}
+            - name: OIDC_WELLKNOWN_URL
+              value: {{ $wellKnownUrl }}
             - name: DD_ENV
               valueFrom:
                 fieldRef:
@@ -185,6 +188,8 @@ spec:
             - name: {{ $envKey }}
               {{- $envValue | toYaml | nindent 14 }}
             {{- end }}
+            - name: OIDC_WELLKNOWN_URL
+              value: {{ $wellKnownUrl }}
             - name: DD_ENV
               valueFrom:
                 fieldRef:
