@@ -125,6 +125,7 @@ spec:
     {{- end }}
 {{ end }}
 {{ end }}
+{{- if $spec.ingress }}
 {{- if $spec.ingress.enabled }}
 ---
 apiVersion: networking.k8s.io/v1
@@ -149,6 +150,7 @@ spec:
     - hosts:
         - {{ $host }}
       secretName: {{ $tlsSecretName }}
+{{ end }}
 {{ end }}
 {{ end }}
 {{ end }}
