@@ -7,6 +7,13 @@ platform: flowcore
 ## @param imageRepository The image repository to use for all microservices in this chart
 imageRepository: 305363105399.dkr.ecr.eu-west-1.amazonaws.com
 
+## @section Domain Settings
+## @param transport Ingress settings for the transport domain
+transport: {}
+  ## @extra transport.<name> - Environment variables for the transport
+
+
+
 ## @section Deployments
 ## @param deployments [object] List of microservices to deploy
 deployments: {}
@@ -48,3 +55,4 @@ deployments: {}
 #      HELLO:
 ## @extra deployments.<microservice>.env.<variable>.value The value to set for this environment variable, use valueFrom if you want to use a secret [string]
 #        value: World
+## @extra deployments.<microservice>.useTransport Array of transport services to use for this microservice

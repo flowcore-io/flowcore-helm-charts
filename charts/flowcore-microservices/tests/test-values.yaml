@@ -2,11 +2,19 @@ environment: flowcore
 platform: flowcore
 imageRepository: 305363105399.dkr.ecr.eu-west-1.amazonaws.com
 
+transport:
+  nats:
+    NATS_SERVERS:
+      value: nats://localhost:4222
+    NATS_QUEUE:
+      value: user-queue
+
 deployments:
   testService:
     enabled: true
     deployment:
       image: some-test-image
+      tag: 0.0.1
       replicas: 1
     service:
       enabled: true
@@ -22,3 +30,35 @@ deployments:
           secretKeyRef:
             name: some-secret
             key: some-key
+    useTransports:
+      - nats
+      - name: nats
+        overrides:
+          NATS_QUEUE:
+            value: user-service
+    sidecars:
+      sideCarA:
+        enabled: true
+        repo: test-repo
+        image: some-test-image
+        tag: "0.1.0"
+        env:
+          SOME_VARIABLE:
+            value: someValue
+          SOME_FROM_VARIABLE:
+            valueFrom:
+              secretKeyRef:
+                name: some-secret
+                key: some-key
+      sideCarB:
+        enabled: true
+        image: some-test-image2
+        tag: "0.1.0"
+        env:
+          SOME_VARIABLE:
+            value: someValue
+          SOME_FROM_VARIABLE:
+            valueFrom:
+              secretKeyRef:
+                name: some-secret
+                key: some-key

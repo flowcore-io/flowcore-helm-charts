@@ -38,12 +38,12 @@ metadata:
   labels: &common_labels
     app: {{ $serviceName }}
     app.kubernetes.io/name: {{ $serviceName }}
-    app.kubernetes.io/version: {{ $spec.deployment.tag }}
+    app.kubernetes.io/version: {{ $spec.deployment.tag | quote }}
     app.kubernetes.io/component: {{ $component }}
     app.kubernetes.io/part-of: {{ $platform }}
     tags.datadoghq.com/env: {{ $env }}
     tags.datadoghq.com/service: {{ $serviceName }}
-    tags.datadoghq.com/version: {{ $spec.deployment.tag }}
+    tags.datadoghq.com/version: {{ $spec.deployment.tag | quote }}
 spec:
   replicas: {{ $replicas }}
   strategy:
@@ -59,11 +59,63 @@ spec:
       labels: *common_labels
       annotations:
         ad.datadoghq.com/{{ $serviceName }}.logs: '[{"source":"node","service":"{{ $serviceName }}"}]'
+        ad.datadoghq.com/{{ $serviceName }}.checks: |
+          {
+            "openmetrics": {
+              "instances": [
+                {
+                  "openmetrics_endpoint": "http://%%host%%:%%port%%/metrics",
+                  "namespace": "{{ $platform }}",
+                  "metrics": ["*"]
+                }
+              ]
+            }
+          }
+        {{- range $sidecarName, $sidecarSpec := $spec.sidecars }}
+        {{- if $sidecarSpec.enabled }}
+        {{- $sidecarSafeName := $sidecarName | kebabcase }}
+        ad.datadoghq.com/{{ $sidecarSafeName }}.logs: '[{"source":"node","service":"{{ $sidecarSafeName }}"}]'
+        ad.datadoghq.com/{{ $sidecarSafeName }}.checks: |
+          {
+            "openmetrics": {
+              "instances": [
+                {
+                  "openmetrics_endpoint": "http://%%host%%:%%port%%/metrics",
+                  "namespace": "{{ $platform }}",
+                  "metrics": ["*"]
+                }
+              ]
+            }
+          }
+        {{- end }}
+        {{- end }}
     spec:
       containers:
         - name: {{ $serviceName }}
           image: "{{ $repoBase }}/{{ $spec.deployment.image }}:{{ $spec.deployment.tag }}"
           env:
+            {{- range $index, $transportName := $spec.useTransports }}
+            {{- $transportTarget := "" }}
+            {{- if eq (kindOf $transportName) "string" }}
+            {{- $transportTarget = $transportName }}
+            {{- else }}
+            {{- $transportTarget = $transportName.name }}
+            {{- end }}
+            {{- range $transportKey, $transportValue := index $.Values.transport $transportTarget }}
+            - name: {{ $transportKey }}
+              {{- if eq (kindOf $transportName) "string" }}
+              {{- $transportValue | toYaml | nindent 14 }}
+              {{- else }}
+              {{- if $transportName.overrides }}
+              {{- range $overrideKey, $overrideValue := $transportName.overrides }}
+              {{- if eq $overrideKey $transportKey }}
+              {{- $overrideValue | toYaml | nindent 14 }}
+              {{- end }}
+              {{- end }}
+              {{- end }}
+              {{- end }}
+            {{- end }}
+            {{- end }}
             {{- range $envKey, $envValue := $spec.env }}
             - name: {{ $envKey }}
               {{- $envValue | toYaml | nindent 14 }}
@@ -102,6 +154,64 @@ spec:
             initialDelaySeconds: 10
             timeoutSeconds: 1
             failureThreshold: 10
+        {{- range $sidecarName, $sidecarSpec := $spec.sidecars }}
+        {{- if $sidecarSpec.enabled }}
+        - name: {{ $sidecarName | kebabcase }}
+          image: "{{ $sidecarSpec.repo | default $repoBase }}/{{ $sidecarSpec.image }}:{{ $sidecarSpec.tag }}"
+          env:
+            {{- range $index, $transportName := $spec.useTransports }}
+            {{- $transportTarget := "" }}
+            {{- if eq (kindOf $transportName) "string" }}
+            {{- $transportTarget = $transportName }}
+            {{- else }}
+            {{- $transportTarget = $transportName.name }}
+            {{- end }}
+            {{- range $transportKey, $transportValue := index $.Values.transport $transportTarget }}
+            - name: {{ $transportKey }}
+              {{- if eq (kindOf $transportName) "string" }}
+              {{- $transportValue | toYaml | nindent 14 }}
+              {{- else }}
+              {{- if $transportName.overrides }}
+              {{- range $overrideKey, $overrideValue := $transportName.overrides }}
+              {{- if eq $overrideKey $transportKey }}
+              {{- $overrideValue | toYaml | nindent 14 }}
+              {{- end }}
+              {{- end }}
+              {{- end }}
+              {{- end }}
+            {{- end }}
+            {{- end }}
+            {{- range $envKey, $envValue := $sidecarSpec.env }}
+            - name: {{ $envKey }}
+              {{- $envValue | toYaml | nindent 14 }}
+            {{- end }}
+            - name: DD_ENV
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/env']
+            - name: DD_SERVICE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/service']
+            - name: DD_VERSION
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/version']
+            - name: DD_AGENT_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: DD_APM_ENABLED
+              value: "true"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ $httpPort }}
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+            failureThreshold: 10
+        {{- end }}
+        {{- end }}
 {{- if $spec.service }}
 {{- if $spec.service.enabled }}
 ---
