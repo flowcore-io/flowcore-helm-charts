@@ -52,7 +52,7 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 1
-      maxSurge: 2
+      maxSurge: 50%
   selector:
     matchLabels:
       app: {{ $serviceName }}
@@ -162,6 +162,13 @@ spec:
             {{- end }}
             {{- end }}
           livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ $httpPort }}
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+            failureThreshold: 10
+          readinessProbe:
             httpGet:
               path: /health
               port: {{ $httpPort }}
