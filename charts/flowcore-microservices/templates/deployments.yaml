@@ -51,8 +51,8 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
+      maxSurge: {{ mul $replicas 0.25 | ceil | int64 }}
       maxUnavailable: 1
-      maxSurge: 50%
   selector:
     matchLabels:
       app: {{ $serviceName }}
