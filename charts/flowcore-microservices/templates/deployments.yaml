@@ -51,7 +51,7 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: {{ mul $replicas 0.25 | ceil | int64 }}
+      maxSurge: {{ mulf $replicas 0.25 | ceil | int64 }}
       maxUnavailable: 1
   selector:
     matchLabels:
