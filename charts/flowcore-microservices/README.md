@@ -46,6 +46,8 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `deployments.<microservice>.component`                                      | What type of microservice this is [api, adapter, ...]                                              |       |
 | `deployments.<microservice>.source`                                         | What type of source this microservice uses [node, go, rust, ...]                                   |       |
 | `deployments.<microservice>.deployment`                                     | Configuration for the deployment                                                                   |       |
+| `deployments.<microservice>.deployment.maxSurge`                            | The maximum number of pods that can be scheduled above the desired number of pods [integer]        |       |
+| `deployments.<microservice>.deployment.maxUnavailable`                      | The maximum number of pods that can be unavailable during the update process [integer]             |       |
 | `deployments.<microservice>.deployment.image`                               | The image name to use for this microservice, excluding the repository [string]                     |       |
 | `deployments.<microservice>.deployment.tag`                                 | The image tag to use for this microservice [string]                                                |       |
 | `deployments.<microservice>.deployment.replicas`                            | The number of replicas to deploy [integer]                                                         |       |

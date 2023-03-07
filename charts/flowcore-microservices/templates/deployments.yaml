@@ -32,6 +32,12 @@
 {{- end }}
 {{- $wellKnownUrl := $.Values.oidcWellKnownUrl }}
 {{- $sidecarHealthPort := add $httpPort 1 }}
+{{ $maxSurge := "25%" }}
+{{ $maxUnavailable := 0 }}
+{{- if $spec.deployment }}
+{{- $maxSurge = $spec.deployment.maxSurge }}
+{{- $maxUnavailable = $spec.deployment.maxUnavailable }}
+{{- end }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -51,8 +57,8 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: {{ mulf $replicas 0.25 | ceil | int64 }}
-      maxUnavailable: 1
+      maxSurge: {{ $maxSurge }}
+      maxUnavailable: {{ $maxUnavailable }}
   selector:
     matchLabels:
       app: {{ $serviceName }}

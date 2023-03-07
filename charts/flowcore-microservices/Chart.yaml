@@ -2,5 +2,5 @@ apiVersion: v2
 name: flowcore-microservices
 description: A helm chart template for deploying multiple flowcore microservices in a domain
 type: application
-version: 1.6.1
-appVersion: 1.6.1
+version: 1.6.3
+appVersion: 1.6.3

@@ -28,6 +28,10 @@ deployments: {}
 #    source: node
 ## @extra deployments.<microservice>.deployment Configuration for the deployment
 #    deployment:
+## @extra deployments.<microservice>.deployment.maxSurge The maximum number of pods that can be scheduled above the desired number of pods [integer]
+#      maxSurge: "25%"
+## @extra deployments.<microservice>.deployment.maxUnavailable The maximum number of pods that can be unavailable during the update process [integer]
+#      maxUnavailable: 0
 ## @extra deployments.<microservice>.deployment.image The image name to use for this microservice, excluding the repository [string]
 #      image: "auth-api-key-commands"
 ## @extra deployments.<microservice>.deployment.tag The image tag to use for this microservice [string]
