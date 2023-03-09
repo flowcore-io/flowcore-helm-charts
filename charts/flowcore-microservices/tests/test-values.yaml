@@ -31,11 +31,16 @@ deployments:
           secretKeyRef:
             name: some-secret
             key: some-key
-    configVolumes:
+    volumes:
       subgraphs:
         config: some-config-map
         mountPath: /etc/config1
         subPath: config1.txt
+        type: configMap
+      subSecret:
+        secret: some-secret
+        mountPath: /etc/secret
+        type: secret
     useTransports:
       - nats
       - name: nats

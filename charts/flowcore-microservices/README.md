@@ -80,9 +80,10 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `deployments.<microservice>.sidecars.<name>.env.<variable>`                 | Configuration for an environment variable                                                          |       |
 | `deployments.<microservice>.sidecars.<name>.env.<variable>.value`           | The value to set for this environment variable, use valueFrom if you want to use a secret [string] |       |
 | `deployments.<microservice>.sidecars.<name>.httpPort`                       | The http port for this sidecar, used for health checks [integer]                                   |       |
-| `deployments.<microservice>.configVolumes`                                  | list of config volumes to deploy                                                                   |       |
-| `deployments.<microservice>.configVolumes.<name>`                           | Configuration for a config volume                                                                  |       |
-| `deployments.<microservice>.configVolumes.<name>.config`                    | Config Map name to use for this config volume                                                      |       |
-| `deployments.<microservice>.configVolumes.<name>.mountPath`                 | The mount path to use for this config volume                                                       |       |
-| `deployments.<microservice>.configVolumes.<name>.subPath`                   | The sub path to use for this config volume, optional                                               |       |
+| `deployments.<microservice>.volumes`                                        | list of config volumes to deploy                                                                   |       |
+| `deployments.<microservice>.volumes.<name>`                                 | Configuration for a volume                                                                         |       |
+| `deployments.<microservice>.volumes.<name>.config`                          | Config Map to use for this volume                                                                  |       |
+| `deployments.<microservice>.volumes.<name>.secret`                          | Secret to use for this volume                                                                      |       |
+| `deployments.<microservice>.volumes.<name>.mountPath`                       | The mount path to use for this volume                                                              |       |
+| `deployments.<microservice>.volumes.<name>.subPath`                         | The sub path to use for this volume, optional                                                      |       |
 

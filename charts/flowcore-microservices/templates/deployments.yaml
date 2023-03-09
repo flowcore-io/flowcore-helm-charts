@@ -148,13 +148,13 @@ spec:
                   fieldPath: status.hostIP
             - name: DD_APM_ENABLED
               value: "true"
-          {{- if $spec.configVolumes }}
+          {{- if $spec.volumes }}
           volumeMounts:
-          {{- range $configMountName, $configSpec := $spec.configVolumes }}
-            - name: {{ cat $configMountName "config"| kebabcase }}
-              mountPath: {{ $configSpec.mountPath }}
-              {{- if $configSpec.subPath }}
-              subPath: {{ $configSpec.subPath }}
+          {{- range $volumeMountName, $volumeSpec := $spec.volumes }}
+            - name: {{ cat $volumeMountName "volume"| kebabcase }}
+              mountPath: {{ $volumeSpec.mountPath }}
+              {{- if $volumeSpec.subPath }}
+              subPath: {{ $volumeSpec.subPath }}
               {{- end }}
           {{- end }}
           {{- end }}
@@ -246,12 +246,18 @@ spec:
         {{- end }}
         {{- end }}
         {{- end }}
-      {{- if $spec.configVolumes }}
+      {{- if $spec.volumes }}
       volumes:
-      {{- range $configMountName, $configSpec := $spec.configVolumes }}
-        - name: {{ cat $configMountName "config"| kebabcase }}
+      {{- range $volumeMountName, $volumeSpec := $spec.volumes }}
+        - name: {{ cat $volumeMountName "volume"| kebabcase }}
+          {{- if $volumeSpec.secret }}
+          secret:
+              secretName: {{ $volumeSpec.secret }}
+          {{- end }}
+          {{- if $volumeSpec.configMap }}
           configMap:
-            name: {{ $configSpec.config }}
+            name: {{ $volumeSpec.name }}
+          {{- end }}
       {{- end }}
       {{- end }}
 {{- if $spec.service }}
