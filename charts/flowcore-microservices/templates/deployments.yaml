@@ -27,6 +27,7 @@
 {{- $maxSurge = $spec.deployment.maxSurge }}
 {{- $maxUnavailable = $spec.deployment.maxUnavailable }}
 {{- end }}
+{{- $defaultPullSecrets := $.Values.imagePullSecrets }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -236,6 +237,17 @@ spec:
         {{- end }}
         {{- end }}
         {{- end }}
+      {{- if $spec.imagePullSecrets }}
+      imagePullSecrets:
+      {{- range $pullSecret := $spec.imagePullSecrets }}
+        - name: {{ $pullSecret }}
+      {{- end }}
+      {{- else if $defaultPullSecrets }}
+      imagePullSecrets:
+      {{- range $pullSecret := $defaultPullSecrets }}
+        - name: {{ $pullSecret }}
+      {{- end }}
+      {{- end }}
       {{- if $spec.volumes }}
       volumes:
       {{- range $volumeMountName, $volumeSpec := $spec.volumes }}
