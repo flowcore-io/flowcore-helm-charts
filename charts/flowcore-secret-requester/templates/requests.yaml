@@ -1,0 +1,26 @@
+{{- range $sr, $srSpec := $.Values.requests }}
+{{- $destinationNamespace := $.Release.Namespace }}
+{{- if $srSpec.destination }}
+  {{- if $srSpec.destination.namespace }}
+    {{- $destinationNamespace = $srSpec.destination.namespace }}
+  {{- end }}
+{{- end }}
+{{- $destinationName := $srSpec.source.name }}
+{{- if $srSpec.destination }}
+  {{- if $srSpec.destination.name }}
+    {{- $destinationName = $srSpec.destination.name }}
+  {{- end }}
+{{- end }}
+---
+apiVersion: flowcore.io/v1
+kind: SecretRequest
+metadata:
+  name: {{ cat $sr "request" | kebabcase }}
+spec:
+  sourceSecret:
+    name: {{ $srSpec.source.name }}
+    namespace: {{ $srSpec.source.namespace }}
+  destinationSecret:
+    name: {{ $destinationName }}
+    namespace: {{ $destinationNamespace }}
+{{- end }}

@@ -1,0 +1,19 @@
+## @section Requests for secrets
+## @param requests [object] List of secrets to request
+requests: {}
+## @extra requests.<secret> Configuration of a secret request [object]
+#  someSecret:
+## @extra requests.<secret>.enabled Whether to request this secret [boolean]
+#   enabled: true
+## @extra requests.<secret>.source The source secret to copy from [object]
+#   source:
+## @extra requests.<secret>.source.name The name of the source secret [string]
+#     name: some-other-secret
+## @extra requests.<secret>.source.namespace The namespace of the source secret [string]
+#     namespace: some-other-namespace
+## @extra requests.<secret>.destination The destination secret to copy to [object]
+#   destination:
+## @extra requests.<secret>.destination The name of the destination secret [string] if not set, the name of the request will be used
+#     name: some-secret
+## @extra requests.<secret>.destination The namespace of the destination secret [string] if not set, the namespace of the release will be used
+#     namespace: some-namespace
