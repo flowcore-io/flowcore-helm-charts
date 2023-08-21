@@ -87,7 +87,7 @@ spec:
         {{- end }}
         {{- end }}
     spec:
-      restartPolicy: OnFailure
+      restartPolicy: {{ $spec.restartPolicy | default "Always" }}
       containers:
         - name: {{ $serviceName }}
           image: "{{ $repoBase }}/{{ $spec.deployment.image }}:{{ $spec.deployment.tag }}"

@@ -24,6 +24,8 @@ deployments: {}
 #    enabled: true
 ## @extra deployments.<microservice>.component What type of microservice this is [api, adapter, ...]
 #    component: api
+## @extra deployments.<microservice>.restartPolicy The restart policy to use for this microservice, defaults to Always [Always, OnFailure, Never]
+#    restartPolicy: Always
 ## @extra deployments.<microservice>.source What type of source this microservice uses [node, go, rust, ...]
 #    source: node
 ## @extra deployments.<microservice>.deployment Configuration for the deployment

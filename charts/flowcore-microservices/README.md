@@ -44,6 +44,7 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `deployments.<microservice>`                                                | Configuration entry for a microservice                                                             |       |
 | `deployments.<microservice>.enabled`                                        | Whether to deploy this microservice [boolean]                                                      |       |
 | `deployments.<microservice>.component`                                      | What type of microservice this is [api, adapter, ...]                                              |       |
+| `deployments.<microservice>.restartPolicy`                                  | The restart policy to use for this microservice, defaults to Always [Always, OnFailure, Never]     |       |
 | `deployments.<microservice>.source`                                         | What type of source this microservice uses [node, go, rust, ...]                                   |       |
 | `deployments.<microservice>.deployment`                                     | Configuration for the deployment                                                                   |       |
 | `deployments.<microservice>.deployment.maxSurge`                            | The maximum number of pods that can be scheduled above the desired number of pods [integer]        |       |
