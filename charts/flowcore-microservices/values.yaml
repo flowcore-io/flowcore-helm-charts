@@ -52,14 +52,13 @@ deployments: {}
 #          port: 5000
 ## @extra deployments.<microservice>.service.extraPorts.<name>.type The type of port to expose [TCP, UDP, ...]
 #          type: TCP
-## @extra deployments.<microservice>.ingress Ingress configuration for this microservice if needed
+## @extra deployments.<microservice>.ingress List of Ingress configurations for this microservice if needed [array]
 #    ingress:
-## @extra deployments.<microservice>.ingress.enabled Whether to deploy an ingress for this microservice [boolean]
-#      enabled: true
-## @extra deployments.<microservice>.ingress.host The host to use for this microservice [string]
-#      host: "auth-api-key-commands.flowcore.com"
+## @extra deployments.<microservice>.ingress.hosts The hosts to use for this microservice, list of strings [array]
+#      - hosts:
+#          - "auth.flowcore.io"
 ## @extra deployments.<microservice>.ingress.tlsSecret The tls secret to use for this microservice [string]
-#      tlsSecret: "tls-secret"
+#        tlsSecret: "tls-secret"
 ## @extra deployments.<microservice>.env Environment variables to set for this microservice
 #    env:
 ## @extra deployments.<microservice>.env.<variable> Configuration for an environment variable

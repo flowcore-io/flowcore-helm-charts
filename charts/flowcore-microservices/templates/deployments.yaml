@@ -19,17 +19,6 @@
 {{- $httpPort = $spec.service.httpPort }}
 {{- end }}
 {{- end }}
-{{- $baseUrl := $.Values.baseUrl | default "flowcore.io" }}
-{{- $host := cat ($serviceName | kebabcase) ".api." $baseUrl }}
-{{- $tlsSecretName := "api-flowcore-io-wildcard-tls" }}
-{{- if $spec.ingress }}
-{{- if $spec.ingress.host }}
-{{- $host = $spec.ingress.host }}
-{{- end }}
-{{- if $spec.ingress.tlsSecret }}
-{{- $tlsSecretName = $spec.ingress.tlsSecret }}
-{{- end }}
-{{- end }}
 {{- $wellKnownUrl := $.Values.oidcWellKnownUrl }}
 {{- $sidecarHealthPort := add $httpPort 1 }}
 {{ $maxSurge := "25%" }}
@@ -253,7 +242,7 @@ spec:
         - name: {{ cat $volumeMountName "volume"| kebabcase }}
           {{- if $volumeSpec.secret }}
           secret:
-              secretName: {{ $volumeSpec.secret }}
+            secretName: {{ $volumeSpec.secret }}
           {{- end }}
           {{- if $volumeSpec.configMap }}
           configMap:
@@ -285,7 +274,6 @@ spec:
 {{ end }}
 {{ end }}
 {{- if $spec.ingress }}
-{{- if $spec.ingress.enabled }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -295,7 +283,9 @@ metadata:
     kubernetes.io/ingress.class: nginx
 spec:
   rules:
-    - host: {{ $host }}
+  {{- range $route := $spec.ingress }}
+  {{- range $routeHost := $route.hosts }}
+    - host: {{ $routeHost }}
       http:
         paths:
           - path: /
@@ -305,11 +295,16 @@ spec:
                 name: {{ $serviceName }}
                 port:
                   number: {{ $httpPort }}
+  {{- end }}
+  {{- end }}
   tls:
+  {{- range $route := $spec.ingress }}
     - hosts:
-        - {{ $host }}
-      secretName: {{ $tlsSecretName }}
-{{ end }}
+    {{- range $routeHost := $route.hosts }}
+        - {{ $routeHost }}
+    {{- end }}
+      secretName: {{ $route.tlsSecret }}
+  {{- end }}
 {{ end }}
 {{ end }}
 {{ end }}

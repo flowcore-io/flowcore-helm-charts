@@ -31,6 +31,14 @@ deployments:
           secretKeyRef:
             name: some-secret
             key: some-key
+    ingress:
+      - hosts:
+          - somehost.com
+          - www.somehost.com
+        tlsSecret: some-tls-secret
+      - hosts:
+          - somehost2.com
+        tlsSecret: some-tls-secret
     volumes:
       subgraphs:
         config: some-config-map

@@ -58,9 +58,8 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `deployments.<microservice>.service.extraPorts.<name>`                      | Configuration for an extra port to expose                                                          |       |
 | `deployments.<microservice>.service.extraPorts.<name>.port`                 | The port to expose [integer]                                                                       |       |
 | `deployments.<microservice>.service.extraPorts.<name>.type`                 | The type of port to expose [TCP, UDP, ...]                                                         |       |
-| `deployments.<microservice>.ingress`                                        | Ingress configuration for this microservice if needed                                              |       |
-| `deployments.<microservice>.ingress.enabled`                                | Whether to deploy an ingress for this microservice [boolean]                                       |       |
-| `deployments.<microservice>.ingress.host`                                   | The host to use for this microservice [string]                                                     |       |
+| `deployments.<microservice>.ingress`                                        | List of Ingress configurations for this microservice if needed [array]                             |       |
+| `deployments.<microservice>.ingress.hosts`                                  | The hosts to use for this microservice, list of strings [array]                                    |       |
 | `deployments.<microservice>.ingress.tlsSecret`                              | The tls secret to use for this microservice [string]                                               |       |
 | `deployments.<microservice>.env`                                            | Environment variables to set for this microservice                                                 |       |
 | `deployments.<microservice>.env.<variable>`                                 | Configuration for an environment variable                                                          |       |
