@@ -1,4 +1,5 @@
 {{- range $sr, $srSpec := $.Values.requests }}
+{{ if $srSpec.enabled }}
 {{- $destinationNamespace := $.Release.Namespace }}
 {{- if $srSpec.destination }}
   {{- if $srSpec.destination.namespace }}
@@ -15,7 +16,7 @@
 apiVersion: flowcore.io/v1
 kind: SecretRequest
 metadata:
-  name: {{ cat $sr "request" | kebabcase }}
+  name: {{ cat $sr $.Release.Namespace | kebabcase }}
 spec:
   sourceSecret:
     name: {{ $srSpec.source.name }}
@@ -23,4 +24,5 @@ spec:
   destinationSecret:
     name: {{ $destinationName }}
     namespace: {{ $destinationNamespace }}
+{{- end }}
 {{- end }}
