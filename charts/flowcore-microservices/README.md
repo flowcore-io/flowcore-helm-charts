@@ -54,6 +54,7 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `deployments.<microservice>.deployment.image`                               | The image name to use for this microservice, excluding the repository [string]                     |       |
 | `deployments.<microservice>.deployment.tag`                                 | The image tag to use for this microservice [string]                                                |       |
 | `deployments.<microservice>.deployment.replicas`                            | The number of replicas to deploy [integer]                                                         |       |
+| `deployments.<microservice>.deployment.resources`                           | Resource configuration for this microservice                                                       |       |
 | `deployments.<microservice>.service`                                        | Service configuration for this microservice if needed                                              |       |
 | `deployments.<microservice>.service.enabled`                                | Whether to deploy a service for this microservice [boolean]                                        |       |
 | `deployments.<microservice>.service.httpPort`                               | The http port to expose for this microservice [integer]                                            |       |
@@ -82,6 +83,7 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `deployments.<microservice>.sidecars.<name>.env.<variable>`                 | Configuration for an environment variable                                                          |       |
 | `deployments.<microservice>.sidecars.<name>.env.<variable>.value`           | The value to set for this environment variable, use valueFrom if you want to use a secret [string] |       |
 | `deployments.<microservice>.sidecars.<name>.httpPort`                       | The http port for this sidecar, used for health checks [integer]                                   |       |
+| `deployments.<microservice>.sidecars.<name>.resources`                      | Resource configuration for this sidecar                                                            |       |
 | `deployments.<microservice>.volumes`                                        | list of config volumes to deploy                                                                   |       |
 | `deployments.<microservice>.volumes.<name>`                                 | Configuration for a volume                                                                         |       |
 | `deployments.<microservice>.volumes.<name>.config`                          | Config Map to use for this volume                                                                  |       |

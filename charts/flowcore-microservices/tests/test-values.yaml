@@ -19,6 +19,13 @@ deployments:
       image: some-test-image
       tag: 0.0.1
       replicas: 1
+      resources:
+        limits:
+          cpu: 100m
+          memory: 128Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
     service:
       enabled: true
       extraPorts:
@@ -65,6 +72,13 @@ deployments:
         repo: test-repo
         image: some-test-image
         tag: "0.1.0"
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
         env:
           SOME_VARIABLE:
             value: someValue

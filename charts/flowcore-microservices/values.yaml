@@ -43,6 +43,8 @@ deployments: {}
 #      tag: "latest"
 ## @extra deployments.<microservice>.deployment.replicas The number of replicas to deploy [integer]
 #      replicas: 1
+## @extra deployments.<microservice>.deployment.resources Resource configuration for this microservice
+#      resources: {}
 ## @extra deployments.<microservice>.service Service configuration for this microservice if needed
 #    service:
 ## @extra deployments.<microservice>.service.enabled Whether to deploy a service for this microservice [boolean]
@@ -93,6 +95,7 @@ deployments: {}
 ## @extra deployments.<microservice>.sidecars.<name>.env.<variable> Configuration for an environment variable
 ## @extra deployments.<microservice>.sidecars.<name>.env.<variable>.value The value to set for this environment variable, use valueFrom if you want to use a secret [string]
 ## @extra deployments.<microservice>.sidecars.<name>.httpPort The http port for this sidecar, used for health checks [integer]
+## @extra deployments.<microservice>.sidecars.<name>.resources Resource configuration for this sidecar
 ## @extra deployments.<microservice>.volumes list of config volumes to deploy
 ## @extra deployments.<microservice>.volumes.<name> Configuration for a volume
 ## @extra deployments.<microservice>.volumes.<name>.config Config Map to use for this volume

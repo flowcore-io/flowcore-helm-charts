@@ -172,6 +172,17 @@ spec:
             initialDelaySeconds: 10
             timeoutSeconds: 1
             failureThreshold: 10
+          {{- if $spec.deployment.resources }}
+          resources: {{ $spec.deployment.resources | toYaml | nindent 12 }}
+          {{- else }}
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+          {{- end }}
         {{- range $sidecarName, $sidecarSpec := $spec.sidecars }}
         {{- if $sidecarSpec.enabled }}
         - name: {{ $sidecarName | kebabcase }}
@@ -232,6 +243,17 @@ spec:
             initialDelaySeconds: 10
             timeoutSeconds: 1
             failureThreshold: 10
+          {{- if $sidecarSpec.resources }}
+          resources: {{ $spec.deployment.resources | toYaml | nindent 12 }}
+          {{- else }}
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+          {{- end }}
         {{- if not $sidecarSpec.httpPort }}
         {{- $sidecarHealthPort = add $sidecarHealthPort 1 }}
         {{- end }}
