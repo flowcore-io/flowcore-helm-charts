@@ -28,6 +28,7 @@
 {{- $maxUnavailable = $spec.deployment.maxUnavailable }}
 {{- end }}
 {{- $defaultPullSecrets := $.Values.imagePullSecrets }}
+{{- $defaultWebhookBaseUrl := $.Values.webhookBaseURL }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -121,6 +122,15 @@ spec:
             {{- end }}
             - name: OIDC_WELLKNOWN_URL
               value: {{ $wellKnownUrl }}
+            {{- if $spec.useFlowcoreWebhooks }}
+            - name: WEBHOOK_BASE_URL
+              value: {{ $defaultWebhookBaseUrl }}
+            - name: WEBHOOK_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $serviceName }}-credentials
+                  key: flowcore-webhook-api-key
+            {{- end }}
             - name: DD_ENV
               valueFrom:
                 fieldRef:

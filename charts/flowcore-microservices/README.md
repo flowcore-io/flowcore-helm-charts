@@ -73,6 +73,7 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `deployments.<microservice>.useTransport.<name>.overrides`                  | Overrides for the transport service                                                                |       |
 | `deployments.<microservice>.useTransport.<name>.overrides.<variable>`       | Configuration for an environment variable                                                          |       |
 | `deployments.<microservice>.useTransport.<name>.overrides.<variable>.value` | The value to set for this environment variable, use valueFrom if you want to use a secret [string] |       |
+| `deployments.<microservice>.useFlowcoreWebhooks`                            | Whether to use flowcore webhooks for this microservice [boolean]                                   |       |
 | `deployments.<microservice>.sidecars`                                       | list of sidecars to deploy                                                                         |       |
 | `deployments.<microservice>.sidecars.<name>`                                | Configuration for a sidecar                                                                        |       |
 | `deployments.<microservice>.sidecars.<name>.enabled`                        | Whether to deploy this sidecar [boolean]                                                           |       |

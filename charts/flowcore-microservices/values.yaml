@@ -83,6 +83,7 @@ deployments: {}
 #          NATS_QUEUE:
 ## @extra deployments.<microservice>.useTransport.<name>.overrides.<variable>.value The value to set for this environment variable, use valueFrom if you want to use a secret [string]
 #            value: user-service
+## @extra deployments.<microservice>.useFlowcoreWebhooks Whether to use flowcore webhooks for this microservice [boolean]
 ## @extra deployments.<microservice>.sidecars list of sidecars to deploy
 #    sidecars:
 ## @extra deployments.<microservice>.sidecars.<name> Configuration for a sidecar
