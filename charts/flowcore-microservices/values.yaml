@@ -9,11 +9,12 @@ imageRepository: 305363105399.dkr.ecr.eu-west-1.amazonaws.com
 ## @extra oidcWellKnownUrl The OIDC well known URL to use for all microservices in this chart
 ## @param imagePullSecrets List of image pull secrets to use for all microservices in this chart
 imagePullSecrets: []
+## @param webhookBaseURL The base URL to use for flowcore webhooks
+webhookBaseURL: https://webhook.api.staging.flowcore.io
 ## @section Domain Settings
 ## @param transport Ingress settings for the transport domain
 transport: {}
   ## @extra transport.<name> Environment variables for the transport in object format
-
 
 
 ## @section Deployments

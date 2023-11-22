@@ -27,6 +27,7 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `imageRepository`  | The image repository to use for all microservices in this chart       | `305363105399.dkr.ecr.eu-west-1.amazonaws.com` |
 | `oidcWellKnownUrl` | The OIDC well known URL to use for all microservices in this chart    |                                                |
 | `imagePullSecrets` | List of image pull secrets to use for all microservices in this chart | `[]`                                           |
+| `webhookBaseURL`   | The base URL to use for flowcore webhooks                             | `https://webhook.api.staging.flowcore.io`      |
 
 
 ### Domain Settings
