@@ -56,7 +56,7 @@ spec:
       annotations:
         {{- if $spec.metrics }}
         {{- if $spec.metrics.enabled }}
-        prometheus.io/scrape: {{ $spec.metrics.enabled | default "false" }}
+        prometheus.io/scrape: {{ $spec.metrics.enabled | default "false" | quote }}
         prometheus.io/port: {{ $spec.metrics.port | default 3000 | quote }}
         {{- if $spec.metrics.path }}
         prometheus.io/path: {{ $spec.metrics.path }}
