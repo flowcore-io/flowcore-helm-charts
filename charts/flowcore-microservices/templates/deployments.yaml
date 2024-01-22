@@ -40,9 +40,6 @@ metadata:
     app.kubernetes.io/version: {{ $spec.deployment.tag | quote }}
     app.kubernetes.io/component: {{ $component }}
     app.kubernetes.io/part-of: {{ $platform }}
-    tags.datadoghq.com/env: {{ $env }}
-    tags.datadoghq.com/service: {{ $serviceName }}
-    tags.datadoghq.com/version: {{ $spec.deployment.tag | quote }}
 spec:
   replicas: {{ $replicas }}
   strategy:
@@ -57,35 +54,13 @@ spec:
     metadata:
       labels: *common_labels
       annotations:
-        ad.datadoghq.com/{{ $serviceName }}.logs: '[{"source":"node","service":"{{ $serviceName }}"}]'
-        ad.datadoghq.com/{{ $serviceName }}.checks: |
-          {
-            "openmetrics": {
-              "instances": [
-                {
-                  "openmetrics_endpoint": "http://%%host%%:%%port%%/metrics",
-                  "namespace": "{{ $platform }}",
-                  "metrics": ["*"]
-                }
-              ]
-            }
-          }
-        {{- range $sidecarName, $sidecarSpec := $spec.sidecars }}
-        {{- if $sidecarSpec.enabled }}
-        {{- $sidecarSafeName := $sidecarName | kebabcase }}
-        ad.datadoghq.com/{{ $sidecarSafeName }}.logs: '[{"source":"node","service":"{{ $sidecarSafeName }}"}]'
-        ad.datadoghq.com/{{ $sidecarSafeName }}.checks: |
-          {
-            "openmetrics": {
-              "instances": [
-                {
-                  "openmetrics_endpoint": "http://%%host%%:%%port%%/metrics",
-                  "namespace": "{{ $platform }}",
-                  "metrics": ["*"]
-                }
-              ]
-            }
-          }
+        {{- if $spec.metrics }}
+        {{- if $spec.metrics.enabled }}
+        prometheus.io/scrape: {{ $spec.metrics.enabled | default "false" }}
+        prometheus.io/port: {{ $spec.metrics.port | default 3000 }}
+        {{- if $spec.metrics.path }}
+        prometheus.io/path: {{ $spec.metrics.path }}
+        {{- end }}
         {{- end }}
         {{- end }}
     spec:
@@ -131,24 +106,6 @@ spec:
                   name: {{ $serviceName }}-credentials
                   key: flowcore-webhook-api-key
             {{- end }}
-            - name: DD_ENV
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.labels['tags.datadoghq.com/env']
-            - name: DD_SERVICE
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.labels['tags.datadoghq.com/service']
-            - name: DD_VERSION
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.labels['tags.datadoghq.com/version']
-            - name: DD_AGENT_HOST
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
-            - name: DD_APM_ENABLED
-              value: "true"
           {{- if $spec.volumes }}
           volumeMounts:
           {{- range $volumeMountName, $volumeSpec := $spec.volumes }}
@@ -228,24 +185,6 @@ spec:
               value: {{ $sidecarSpec.httpPort | default $sidecarHealthPort | quote }}
             - name: OIDC_WELLKNOWN_URL
               value: {{ $wellKnownUrl }}
-            - name: DD_ENV
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.labels['tags.datadoghq.com/env']
-            - name: DD_SERVICE
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.labels['tags.datadoghq.com/service']
-            - name: DD_VERSION
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.labels['tags.datadoghq.com/version']
-            - name: DD_AGENT_HOST
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
-            - name: DD_APM_ENABLED
-              value: "true"
           livenessProbe:
             httpGet:
               path: /health

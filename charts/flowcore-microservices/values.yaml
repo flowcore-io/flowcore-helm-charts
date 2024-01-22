@@ -32,6 +32,14 @@ deployments: {}
 #    imagePullSecrets: []
 ## @extra deployments.<microservice>.source What type of source this microservice uses [node, go, rust, ...]
 #    source: node
+## @extra deployments.<microservice>.metrics: Whether to deploy metrics for this microservice
+##   metrics:
+## @extra deployments.<microservice>.metrics.enabled Whether to deploy metrics for this microservice [boolean]
+##     enabled: true
+## @extra deployments.<microservice>.metrics.port The optional port to expose for metrics [integer]
+##     port: 3000
+## @extra deployments.<microservice>.metrics.path The optional path to expose for metrics [string]
+##     path: /metrics
 ## @extra deployments.<microservice>.deployment Configuration for the deployment
 #    deployment:
 ## @extra deployments.<microservice>.deployment.maxSurge The maximum number of pods that can be scheduled above the desired number of pods [integer]

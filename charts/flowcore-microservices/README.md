@@ -29,14 +29,12 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `imagePullSecrets` | List of image pull secrets to use for all microservices in this chart | `[]`                                           |
 | `webhookBaseURL`   | The base URL to use for flowcore webhooks                             | `https://webhook.api.staging.flowcore.io`      |
 
-
 ### Domain Settings
 
 | Name               | Description                                              | Value |
 | ------------------ | -------------------------------------------------------- | ----- |
 | `transport`        | Ingress settings for the transport domain                | `{}`  |
 | `transport.<name>` | Environment variables for the transport in object format |       |
-
 
 ### Deployments
 
@@ -49,6 +47,10 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `deployments.<microservice>.restartPolicy`                                  | The restart policy to use for this microservice, defaults to Always [Always, OnFailure, Never]     |       |
 | `deployments.<microservice>.imagePullSecrets`                               | List of image pull secrets to use for this microservice [array]                                    |       |
 | `deployments.<microservice>.source`                                         | What type of source this microservice uses [node, go, rust, ...]                                   |       |
+| `deployments.<microservice>.metrics:`                                       | Whether to deploy metrics for this microservice                                                    |       |
+| `deployments.<microservice>.metrics.enabled`                                | Whether to deploy metrics for this microservice [boolean]                                          |       |
+| `deployments.<microservice>.metrics.port`                                   | The optional port to expose for metrics [integer]                                                  |       |
+| `deployments.<microservice>.metrics.path`                                   | The optional path to expose for metrics [string]                                                   |       |
 | `deployments.<microservice>.deployment`                                     | Configuration for the deployment                                                                   |       |
 | `deployments.<microservice>.deployment.maxSurge`                            | The maximum number of pods that can be scheduled above the desired number of pods [integer]        |       |
 | `deployments.<microservice>.deployment.maxUnavailable`                      | The maximum number of pods that can be unavailable during the update process [integer]             |       |

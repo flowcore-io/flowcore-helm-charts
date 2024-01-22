@@ -115,6 +115,8 @@ deployments:
                 key: some-key
   testService2:
     enabled: true
+    metrics:
+      enabled: true
     deployment:
       image: some-test-image
       tag: 0.0.1
