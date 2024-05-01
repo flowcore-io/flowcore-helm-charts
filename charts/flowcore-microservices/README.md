@@ -20,14 +20,14 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 
 ### Global
 
-| Name               | Description                                                           | Value                                          |
-| ------------------ | --------------------------------------------------------------------- | ---------------------------------------------- |
-| `environment`      | Environment name                                                      | `flowcore`                                     |
-| `platform`         | Platform that these microservices are part of                         | `flowcore`                                     |
-| `imageRepository`  | The image repository to use for all microservices in this chart       | `305363105399.dkr.ecr.eu-west-1.amazonaws.com` |
-| `oidcWellKnownUrl` | The OIDC well known URL to use for all microservices in this chart    |                                                |
-| `imagePullSecrets` | List of image pull secrets to use for all microservices in this chart | `[]`                                           |
-| `webhookBaseURL`   | The base URL to use for flowcore webhooks                             | `https://webhook.api.staging.flowcore.io`      |
+| Name               | Description                                                           | Value                                           |
+| ------------------ | --------------------------------------------------------------------- | ----------------------------------------------- |
+| `environment`      | Environment name                                                      | `flowcore`                                      |
+| `platform`         | Platform that these microservices are part of                         | `flowcore`                                      |
+| `imageRepository`  | The image repository to use for all microservices in this chart       | `305363105399.dkr.ecr.eu-west-1.amazonaws.com`  |
+| `oidcWellKnownUrl` | The OIDC well known URL to use for all microservices in this chart    | `https://auth.someurl.com/.wellknown/something` |
+| `imagePullSecrets` | List of image pull secrets to use for all microservices in this chart | `[]`                                            |
+| `webhookBaseURL`   | The base URL to use for flowcore webhooks                             | `https://webhook.api.staging.flowcore.io`       |
 
 ### Domain Settings
 
@@ -66,6 +66,9 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `deployments.<microservice>.service.extraPorts.<name>.port`                 | The port to expose [integer]                                                                       |       |
 | `deployments.<microservice>.service.extraPorts.<name>.type`                 | The type of port to expose [TCP, UDP, ...]                                                         |       |
 | `deployments.<microservice>.ingress`                                        | List of Ingress configurations for this microservice if needed [array]                             |       |
+| `deployments.<microservice>.ingress.enabled`                                | Whether to deploy an Ingress for this microservice [boolean]                                       |       |
+| `deployments.<microservice>.ingress.annotations`                            | Annotations to set for this Ingress                                                                |       |
+| `deployments.<microservice>.ingress.route`                                  | The route to use for this microservice [host, tlsSecret]                                           |       |
 | `deployments.<microservice>.ingress.hosts`                                  | The hosts to use for this microservice, list of strings [array]                                    |       |
 | `deployments.<microservice>.ingress.tlsSecret`                              | The tls secret to use for this microservice [string]                                               |       |
 | `deployments.<microservice>.env`                                            | Environment variables to set for this microservice                                                 |       |

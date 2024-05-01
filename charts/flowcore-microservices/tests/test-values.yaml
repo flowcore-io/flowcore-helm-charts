@@ -41,13 +41,15 @@ deployments:
             name: some-secret
             key: some-key
     ingress:
-      - hosts:
-          - somehost.com
-          - www.somehost.com
-        tlsSecret: some-tls-secret
-      - hosts:
-          - somehost2.com
-        tlsSecret: some-tls-secret
+      enabled: true
+      route:
+        - hosts:
+            - somehost.com
+            - www.somehost.com
+          tlsSecret: some-tls-secret
+        - hosts:
+            - somehost2.com
+          tlsSecret: some-tls-secret
     volumes:
       subgraphs:
         config: some-config-map
@@ -136,6 +138,11 @@ deployments:
             name: some-secret
             key: some-key
     ingress:
+      enabled: true
+      annotations:
+        nginx.ingress.kubernetes.io/rewrite-target: /
+        nginx.org/rule: something
+      route:
       - hosts:
           - somehost.com
           - www.somehost.com
