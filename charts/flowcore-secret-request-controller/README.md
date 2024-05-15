@@ -24,6 +24,14 @@ helm install my-release flowcore/flowcore-secret-requester -f values.yaml
 
 ## Parameters
 
+### Global configuration
+
+| Name                             | Description                               | Value  |
+| -------------------------------- | ----------------------------------------- | ------ |
+| `global`                         | Global configuration options              | `{}`   |
+| `global.flowcore`                | Global configuration options for flowcore | `{}`   |
+| `global.flowcore.metacontroller` | Enable or disable the metacontroller      | `true` |
+
 ### Controller configuration
 
 | Name                        | Description                                                                                                                                                     | Value                                  |
@@ -31,7 +39,7 @@ helm install my-release flowcore/flowcore-secret-requester -f values.yaml
 | `controllerImage`           | The image of the secret request controller                                                                                                                      | `flowcoreio/secret-request-controller` |
 | `controllerTag`             | The tag of the secret request controller                                                                                                                        | `1.0.5`                                |
 | `replicaCount`              | Number of replicas for the secret request controller                                                                                                            | `1`                                    |
-| `resources`                 | Resource requests and limits for the secret request controller see <https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/> for more info | `{}`                                   |
+| `resources`                 | Resource requests and limits for the secret request controller see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ for more info | `{}`                                   |
 | `resources.requests`        | Resource requests for the secret request controller                                                                                                             | `{}`                                   |
 | `resources.requests.cpu`    | The amount of CPU to request for the secret request controller                                                                                                  | `65m`                                  |
 | `resources.requests.memory` | The amount of memory to request for the secret request controller                                                                                               | `122Mib`                               |
@@ -43,9 +51,8 @@ helm install my-release flowcore/flowcore-secret-requester -f values.yaml
 
 ### Metacontroller
 
-| Name                              | Description                                                                                                | Value  |
-| --------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------ |
-| `metacontroller-helm`             | see <https://metacontroller.github.io/metacontroller/guide/helm-install.html> for more configuration options | `{}`   |
-| `metacontroller-helm.enabled`     | Whether to install the metacontroller helm chart                                                           | `true` |
-| `metacontroller-helm.replicas`    | Number of replicas for the metacontroller deployment                                                       | `2`    |
-| `metacontroller-helm.commandArgs` | Command arguments for the metacontroller deployment                                                        | `[]`   |
+| Name                              | Description                                                                                                | Value |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------- | ----- |
+| `metacontroller-helm`             | see https://metacontroller.github.io/metacontroller/guide/helm-install.html for more configuration options | `{}`  |
+| `metacontroller-helm.replicas`    | Number of replicas for the metacontroller deployment                                                       | `2`   |
+| `metacontroller-helm.commandArgs` | Command arguments for the metacontroller deployment                                                        | `[]`  |
