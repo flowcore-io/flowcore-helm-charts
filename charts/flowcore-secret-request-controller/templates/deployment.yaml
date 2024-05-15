@@ -1,24 +1,26 @@
+{{- $serviceName := "secret-request-controller" -}}
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ $.Release.Name }}
+  name: {{ $serviceName }}
   namespace: {{ $.Release.Namespace }}
   labels:
-    app: {{ $.Release.Name }}
-    app.kubernetes.io/name: {{ $.Release.Name }}
+    app: {{ $serviceName }}
+    app.kubernetes.io/name: {{ $serviceName }}
 spec:
   replicas: {{ $.Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ $.Release.Name }}
+      app: {{ $serviceName }}
   template:
     metadata:
       labels:
-        app: {{ $.Release.Name }}
-        app.kubernetes.io/name: {{ $.Release.Name }}
+        app: {{ $serviceName }}
+        app.kubernetes.io/name: {{ $serviceName }}
     spec:
       containers:
-        - name: {{ $.Release.Name }}
+        - name: {{ $serviceName }}
           image: {{ $.Values.controllerImage }}:{{ $.Values.controllerTag }}
           env:
             - name: PORT
