@@ -8,8 +8,8 @@ helm lint --debug --values "$path"/tests/test-values.yaml "$path"
 
 # If linting fails, exit
 if [ $? -ne 0 ]; then
-    echo "Linting failed"
-    exit 1
+  echo "Linting failed"
+  exit 1
 fi
 
 echo "Deploying new $version_type for $path"
@@ -21,7 +21,6 @@ if [ "$version_type" == "patch" ]; then
   echo "New version: $newVersion"
 
   sed -i.bak "s/^version:.*/version: $newVersion/" "$path"/Chart.yaml
-  sed -i.bak "s/^appVersion:.*/appVersion: $newVersion/" "$path"/Chart.yaml
   rm "$path"/Chart.yaml.bak
 elif [ "$version_type" == "minor" ]; then
   newVersion=$(echo $(cat "$path"/Chart.yaml | grep version: | awk '{print $2}') | awk -F '.' '{print $1 "." $2+1 "." 0}')
@@ -29,7 +28,6 @@ elif [ "$version_type" == "minor" ]; then
   echo "New version: $newVersion"
 
   sed -i.bak "s/^version:.*/version: $newVersion/" "$path"/Chart.yaml
-  sed -i.bak "s/^appVersion:.*/appVersion: $newVersion/" "$path"/Chart.yaml
   rm "$path"/Chart.yaml.bak
 else
   newVersion=$(echo $(cat "$path"/Chart.yaml | grep version: | awk '{print $2}') | awk -F '.' '{print $1+1 "." 0 "." 0}')
@@ -37,7 +35,6 @@ else
   echo "New version: $newVersion"
 
   sed -i.bak "s/^version:.*/version: $newVersion/" "$path"/Chart.yaml
-  sed -i.bak "s/^appVersion:.*/appVersion: $newVersion/" "$path"/Chart.yaml
   rm "$path"/Chart.yaml.bak
 fi
 
@@ -45,4 +42,4 @@ fi
 helm package "$path"
 
 # Update index
-helm repo index --url  https://flowcore-io.github.io/flowcore-helm-charts/ .
+helm repo index --url https://flowcore-io.github.io/flowcore-helm-charts/ .

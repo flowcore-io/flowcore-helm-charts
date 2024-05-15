@@ -1,0 +1,6 @@
+dependencies:
+- name: metacontroller-helm
+  repository: oci://ghcr.io/metacontroller
+  version: v4.11.7
+digest: sha256:6953ceeb17e6e6f792b94ae2c33b6d274fd5a070baee5245bf0f66ed8eb3b1ea
+generated: "2024-05-15T14:08:03.339914+01:00"
