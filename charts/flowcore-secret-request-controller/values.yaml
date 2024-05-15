@@ -18,14 +18,14 @@ resources:
   requests:
     ## @param resources.requests.cpu [default: 65m] The amount of CPU to request for the secret request controller
     cpu: 65m
-    ## @param resources.requests.memory [default: 122Mib] The amount of memory to request for the secret request controller
-    memory: 122Mib
+    ## @param resources.requests.memory [default: 122Mi] The amount of memory to request for the secret request controller
+    memory: 122Mi
   ## @param resources.limits [object] Resource limits for the secret request controller
   limits:
     ## @param resources.limits.cpu [default: 120m]The amount of CPU to limit for the secret request controller
     cpu: 120m
-    ## @param resources.limits.memory [default: 148Mib] The amount of memory to limit for the secret request controller
-    memory: 148Mib
+    ## @param resources.limits.memory [default: 148Mi] The amount of memory to limit for the secret request controller
+    memory: 148Mi
 ## @param service [object] Configuration for the service
 service:
   ## @param service.port [default: 3000] The port the service listens on
