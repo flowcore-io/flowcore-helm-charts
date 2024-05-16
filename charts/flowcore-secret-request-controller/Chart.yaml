@@ -2,7 +2,7 @@ apiVersion: v2
 name: flowcore-secret-request-controller
 description: A helm chart for deploying the flowcore secret request controller, a hook deployment for metacontroller that handles secret requests within a kubernetes cluster.
 type: application
-version: 1.0.5
+version: 1.0.6
 appVersion: 1.0.5
 icon: https://avatars.githubusercontent.com/u/114778675?s=200&v=4
 
@@ -10,4 +10,4 @@ dependencies:
   - name: metacontroller-helm
     version: v4.11.7
     repository: oci://ghcr.io/metacontroller
-    condition: global.flowcore.metacontroller
+    condition: metacontroller-helm.enabled

@@ -1,10 +1,3 @@
-## @section Global configuration
-## @param global [object] Global configuration options
-global:
-  ## @param global.flowcore [object] Global configuration options for flowcore
-  flowcore:
-    ## @param global.flowcore.metacontroller [default: true] Enable or disable the metacontroller
-    metacontroller: true
 ## @section Controller configuration
 ## @param controllerImage [default: flowcoreio/secret-request-controller] The image of the secret request controller 
 controllerImage: flowcoreio/secret-request-controller
@@ -35,6 +28,8 @@ service:
 ## @section Metacontroller
 ## @param metacontroller-helm [object] see https://metacontroller.github.io/metacontroller/guide/helm-install.html for more configuration options
 metacontroller-helm:
+## @param metacontroller-helm.enabled [default: true] Enable the metacontroller helm chart
+  enabled: true
 ## @param metacontroller-helm.replicas [default: 2] Number of replicas for the metacontroller deployment
   replicas: 2
 ## @param metacontroller-helm.commandArgs [array] Command arguments for the metacontroller deployment

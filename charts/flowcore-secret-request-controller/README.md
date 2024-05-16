@@ -24,14 +24,6 @@ helm install my-release flowcore/flowcore-secret-requester -f values.yaml
 
 ## Parameters
 
-### Global configuration
-
-| Name                             | Description                               | Value  |
-| -------------------------------- | ----------------------------------------- | ------ |
-| `global`                         | Global configuration options              | `{}`   |
-| `global.flowcore`                | Global configuration options for flowcore | `{}`   |
-| `global.flowcore.metacontroller` | Enable or disable the metacontroller      | `true` |
-
 ### Controller configuration
 
 | Name                        | Description                                                                                                                                                     | Value                                  |
@@ -52,8 +44,9 @@ helm install my-release flowcore/flowcore-secret-requester -f values.yaml
 
 ### Metacontroller
 
-| Name                              | Description                                                                                                | Value |
-| --------------------------------- | ---------------------------------------------------------------------------------------------------------- | ----- |
-| `metacontroller-helm`             | see https://metacontroller.github.io/metacontroller/guide/helm-install.html for more configuration options | `{}`  |
-| `metacontroller-helm.replicas`    | Number of replicas for the metacontroller deployment                                                       | `2`   |
-| `metacontroller-helm.commandArgs` | Command arguments for the metacontroller deployment                                                        | `[]`  |
+| Name                              | Description                                                                                                | Value  |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------ |
+| `metacontroller-helm`             | see https://metacontroller.github.io/metacontroller/guide/helm-install.html for more configuration options | `{}`   |
+| `metacontroller-helm.enabled`     | Enable the metacontroller helm chart                                                                       | `true` |
+| `metacontroller-helm.replicas`    | Number of replicas for the metacontroller deployment                                                       | `2`    |
+| `metacontroller-helm.commandArgs` | Command arguments for the metacontroller deployment                                                        | `[]`   |
