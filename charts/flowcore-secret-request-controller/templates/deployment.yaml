@@ -1,5 +1,5 @@
 {{- $serviceName := "secret-request-controller" -}}
-{{- $namespace := $.Values.namespace | default $.Release.Namespace -}}
+{{- $namespace := .Values.namespace | default .Release.Namespace -}}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -10,7 +10,7 @@ metadata:
     app: {{ $serviceName }}
     app.kubernetes.io/name: {{ $serviceName }}
 spec:
-  replicas: {{ $.Values.replicaCount }}
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: {{ $serviceName }}
@@ -22,20 +22,20 @@ spec:
     spec:
       containers:
         - name: {{ $serviceName }}
-          image: {{ $.Values.controllerImage }}:{{ $.Values.controllerTag }}
+          image: {{ .Values.controllerImage }}:{{ .Values.controllerTag }}
           env:
             - name: PORT
-              value: {{ $.Values.service.port | quote }}
+              value: {{ .Values.service.port | quote }}
           ports:
             - name: http
-              containerPort: {{ $.Values.service.port }}
+              containerPort: {{ .Values.service.port }}
               protocol: TCP
           resources:
-            {{ $.Values.resources | toYaml | nindent 12 }}
+            {{ .Values.resources | toYaml | nindent 12 }}
           livenessProbe:
             httpGet:
               path: /health
-              port: {{ $.Values.service.port }}
+              port: {{ .Values.service.port }}
               scheme: HTTP
             initialDelaySeconds: 10
             timeoutSeconds: 1
@@ -45,7 +45,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /health
-              port: {{ $.Values.service.port }}
+              port: {{ .Values.service.port }}
               scheme: HTTP
             initialDelaySeconds: 10
             timeoutSeconds: 1

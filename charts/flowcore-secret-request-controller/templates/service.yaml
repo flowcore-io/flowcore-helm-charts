@@ -1,5 +1,5 @@
 {{- $serviceName := "secret-request-controller" -}}
-{{- $namespace := $.Values.namespace | default $.Release.Namespace -}}
+{{- $namespace := .Values.namespace | default $.Release.Namespace -}}
 ---
 apiVersion: v1
 kind: Service
@@ -10,8 +10,8 @@ spec:
   ports:
     - name: http
       protocol: TCP
-      port: {{ $.Values.service.port }}
-      targetPort: {{ $.Values.service.port }}
+      port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
   selector:
     app: {{ $serviceName }}
   type: ClusterIP
