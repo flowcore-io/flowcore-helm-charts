@@ -48,6 +48,7 @@ helm install my-release flowcore/flowcore-secret-requester -f values.yaml
 | `resources.limits.memory`   | The amount of memory to limit for the secret request controller                                                                                                 | `148Mi`                                |
 | `service`                   | Configuration for the service                                                                                                                                   | `{}`                                   |
 | `service.port`              | The port the service listens on                                                                                                                                 | `3000`                                 |
+| `namespace`                 | The namespace to deploy the secret request controller in                                                                                                        |                                        |
 
 ### Metacontroller
 

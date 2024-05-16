@@ -1,10 +1,11 @@
 {{- $serviceName := "secret-request-controller" -}}
+{{- $namespace := $.Values.namespace | default $.Release.Namespace -}}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ $serviceName }}
-  namespace: {{ $.Release.Namespace }}
+  namespace: {{ $namespace }}
   labels:
     app: {{ $serviceName }}
     app.kubernetes.io/name: {{ $serviceName }}

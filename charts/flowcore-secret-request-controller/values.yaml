@@ -30,6 +30,7 @@ resources:
 service:
   ## @param service.port [default: 3000] The port the service listens on
   port: 3000
+## @extra namespace [string] The namespace to deploy the secret request controller in
 
 ## @section Metacontroller
 ## @param metacontroller-helm [object] see https://metacontroller.github.io/metacontroller/guide/helm-install.html for more configuration options

@@ -1,9 +1,10 @@
+{{- $namespace := $.Values.namespace | default $.Release.Namespace -}}
 ---
 apiVersion: metacontroller.k8s.io/v1alpha1
 kind: CompositeController
 metadata:
   name: secret-request-controller
-  namespace: {{ $.Release.Namespace }}
+  namespace: {{ $namespace }}
 spec:
   generateSelector: true
   parentResource:
@@ -17,7 +18,7 @@ spec:
   hooks:
     sync:
       webhook:
-        url: http://{{ $.Release.Name }}.{{ $.Release.Namespace }}:{{ $.Values.service.port }}/sync
+        url: http://{{ $.Release.Name }}.{{ $namespace }}:{{ $.Values.service.port }}/sync
     customize:
       webhook:
-        url: http://{{ $.Release.Name }}.{{ $.Release.Namespace }}:{{ $.Values.service.port }}/customize
+        url: http://{{ $.Release.Name }}.{{ $namespace }}:{{ $.Values.service.port }}/customize
