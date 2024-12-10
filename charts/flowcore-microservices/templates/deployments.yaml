@@ -219,6 +219,10 @@ spec:
         - name: {{ $pullSecret }}
       {{- end }}
       {{- end }}
+      {{- if $spec.affinity }}
+      affinity:
+        {{- $spec.affinity | toYaml | nindent 8 }}
+      {{- end }}
       {{- if $spec.volumes }}
       volumes:
       {{- range $volumeMountName, $volumeSpec := $spec.volumes }}

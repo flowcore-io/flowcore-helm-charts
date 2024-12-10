@@ -97,4 +97,5 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `deployments.<microservice>.volumes.<name>.secret`                          | Secret to use for this volume                                                                      |       |
 | `deployments.<microservice>.volumes.<name>.mountPath`                       | The mount path to use for this volume                                                              |       |
 | `deployments.<microservice>.volumes.<name>.subPath`                         | The sub path to use for this volume, optional                                                      |       |
+| `deployments.<microservice>.affinity`                                       | Affinity configuration for this microservice                                                       |       |
 
