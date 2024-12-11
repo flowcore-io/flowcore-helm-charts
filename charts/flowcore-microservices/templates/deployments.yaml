@@ -125,20 +125,30 @@ spec:
               containerPort: {{ $portSpec.port }}
             {{- end }}
             {{- end }}
+          {{- if $spec.livenessProbe }}
+          livenessProbe:
+          {{- $spec.livenessProbe | toYaml | nindent 12 }}
+          {{- else }}
           livenessProbe:
             httpGet:
               path: /health
               port: {{ $httpPort }}
             initialDelaySeconds: 10
-            timeoutSeconds: 1
+            timeoutSeconds: 5
             failureThreshold: 10
+          {{- end }}
+          {{- if $spec.readinessProbe }}
+          readinessProbe:
+          {{- $spec.readinessProbe | toYaml | nindent 12 }}
+          {{- else }}
           readinessProbe:
             httpGet:
               path: /health
               port: {{ $httpPort }}
             initialDelaySeconds: 10
-            timeoutSeconds: 1
+            timeoutSeconds: 5
             failureThreshold: 10
+          {{- end }}
           {{- if $spec.deployment.resources }}
           resources: {{ $spec.deployment.resources | toYaml | nindent 12 }}
           {{- else }}
@@ -185,13 +195,6 @@ spec:
               value: {{ $sidecarSpec.httpPort | default $sidecarHealthPort | quote }}
             - name: OIDC_WELLKNOWN_URL
               value: {{ $wellKnownUrl }}
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: {{ $sidecarHealthPort }}
-            initialDelaySeconds: 10
-            timeoutSeconds: 1
-            failureThreshold: 10
           {{- if $sidecarSpec.resources }}
           resources: {{ $spec.deployment.resources | toYaml | nindent 12 }}
           {{- else }}

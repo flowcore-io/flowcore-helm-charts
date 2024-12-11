@@ -120,3 +120,5 @@ deployments: {}
 ## @extra deployments.<microservice>.volumes.<name>.mountPath The mount path to use for this volume
 ## @extra deployments.<microservice>.volumes.<name>.subPath The sub path to use for this volume, optional
 ## @extra deployments.<microservice>.affinity Affinity configuration for this microservice
+## @extra deployments.<microservice>.livenessProbe Liveness probe configuration for this microservice
+## @extra deployments.<microservice>.readinessProbe Readiness probe configuration for this microservice
