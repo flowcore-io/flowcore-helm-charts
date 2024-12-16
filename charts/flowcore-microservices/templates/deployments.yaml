@@ -53,8 +53,8 @@ spec:
   template:
     metadata:
       labels: *common_labels
+      {{- if $spec.metrics }}
       annotations:
-        {{- if $spec.metrics }}
         {{- if $spec.metrics.enabled }}
         prometheus.io/scrape: {{ $spec.metrics.enabled | default "false" | quote }}
         prometheus.io/port: {{ $spec.metrics.port | default 3000 | quote }}
@@ -62,7 +62,7 @@ spec:
         prometheus.io/path: {{ $spec.metrics.path }}
         {{- end }}
         {{- end }}
-        {{- end }}
+      {{- end }}
     spec:
       restartPolicy: {{ $spec.restartPolicy | default "Always" }}
       containers:
