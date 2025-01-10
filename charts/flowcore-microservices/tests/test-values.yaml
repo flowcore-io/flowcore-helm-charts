@@ -19,6 +19,7 @@ deployments:
       image: some-test-image
       tag: 0.0.1
       replicas: 1
+      serviceAccount: some-service-account
       resources:
         limits:
           cpu: 100m

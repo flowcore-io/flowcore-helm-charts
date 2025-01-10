@@ -222,6 +222,9 @@ spec:
         - name: {{ $pullSecret }}
       {{- end }}
       {{- end }}
+      {{- if $spec.deployment.serviceAccount }}
+      serviceAccountName: {{ $spec.deployment.serviceAccount }}
+      {{- end }}
       {{- if $spec.affinity }}
       affinity:
         {{- $spec.affinity | toYaml | nindent 8 }}

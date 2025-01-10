@@ -122,3 +122,4 @@ deployments: {}
 ## @extra deployments.<microservice>.affinity Affinity configuration for this microservice
 ## @extra deployments.<microservice>.livenessProbe Liveness probe configuration for this microservice
 ## @extra deployments.<microservice>.readinessProbe Readiness probe configuration for this microservice
+## @extra deployments.<microservice>.serviceAccount The service account to use for this microservice [string]
