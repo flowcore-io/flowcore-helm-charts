@@ -58,6 +58,7 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `deployments.<microservice>.deployment.tag`                                 | The image tag to use for this microservice [string]                                                |       |
 | `deployments.<microservice>.deployment.replicas`                            | The number of replicas to deploy [integer]                                                         |       |
 | `deployments.<microservice>.deployment.resources`                           | Resource configuration for this microservice                                                       |       |
+| `deployments.<microservice>.deployment.serviceAccount`                      | The service account to use for this microservice [string]                                          |       |
 | `deployments.<microservice>.service`                                        | Service configuration for this microservice if needed                                              |       |
 | `deployments.<microservice>.service.enabled`                                | Whether to deploy a service for this microservice [boolean]                                        |       |
 | `deployments.<microservice>.service.httpPort`                               | The http port to expose for this microservice [integer]                                            |       |
@@ -100,5 +101,4 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `deployments.<microservice>.affinity`                                       | Affinity configuration for this microservice                                                       |       |
 | `deployments.<microservice>.livenessProbe`                                  | Liveness probe configuration for this microservice                                                 |       |
 | `deployments.<microservice>.readinessProbe`                                 | Readiness probe configuration for this microservice                                                |       |
-| `deployments.<microservice>.serviceAccount`                                 | The service account to use for this microservice [string]                                          |       |
 

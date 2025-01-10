@@ -55,6 +55,8 @@ deployments: {}
 #      replicas: 1
 ## @extra deployments.<microservice>.deployment.resources Resource configuration for this microservice
 #      resources: {}
+## @extra deployments.<microservice>.deployment.serviceAccount The service account to use for this microservice [string]
+#      serviceAccount: "some-service-account"
 ## @extra deployments.<microservice>.service Service configuration for this microservice if needed
 #    service:
 ## @extra deployments.<microservice>.service.enabled Whether to deploy a service for this microservice [boolean]
@@ -122,4 +124,3 @@ deployments: {}
 ## @extra deployments.<microservice>.affinity Affinity configuration for this microservice
 ## @extra deployments.<microservice>.livenessProbe Liveness probe configuration for this microservice
 ## @extra deployments.<microservice>.readinessProbe Readiness probe configuration for this microservice
-## @extra deployments.<microservice>.serviceAccount The service account to use for this microservice [string]
