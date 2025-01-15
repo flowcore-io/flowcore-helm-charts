@@ -9,3 +9,4 @@ charts:
 - [flowcore-microservices](https://github.com/flowcore-io/flowcore-helm-charts/blob/main/charts/flowcore-microservices/README.md)
 - [flowcore-secret-requester](https://github.com/flowcore-io/flowcore-helm-charts/blob/main/charts/flowcore-secret-requester/README.md)
 - [flowcore-secret-request-controller](https://github.com/flowcore-io/flowcore-helm-charts/blob/main/charts/flowcore-secret-request-controller/README.md)
+- [flowcore-platform](https://github.com/flowcore-io/flowcore-helm-charts/blob/main/charts/flowcore-platform/README.md)
