@@ -1,8 +1,0 @@
-requests:
-  someSecret:
-    enabled: true
-    source:
-      name: some-other-secret
-      namespace: some-other-namespace
-    destination:
-      name: some-secret

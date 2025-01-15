@@ -2,6 +2,13 @@
 
 An Helm chart for installing a dedicated instance of the Flowcore Platform
 
+## Prerequisites
+
+- Kubernetes 1.22+
+- Helm 3.8+
+- Ingress Controller
+- Cert Manager
+
 ## Installing the Chart
 
 To add the chart repository to Helm:
@@ -18,16 +25,10 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 
 ## Parameters
 
-### Platform configuration
+### K8ssandra configuration
 
-| Name                                 | Description                                                                                            | Value |
-| ------------------------------------ | ------------------------------------------------------------------------------------------------------ | ----- |
-| `requests`                           | List of secrets to request                                                                             | `{}`  |
-| `requests.<secret>`                  | Configuration of a secret request [object]                                                             |       |
-| `requests.<secret>.enabled`          | Whether to request this secret [boolean]                                                               |       |
-| `requests.<secret>.source`           | The source secret to copy from [object]                                                                |       |
-| `requests.<secret>.source.name`      | The name of the source secret [string]                                                                 |       |
-| `requests.<secret>.source.namespace` | The namespace of the source secret [string]                                                            |       |
-| `requests.<secret>.destination`      | The destination secret to copy to [object]                                                             |       |
-| `requests.<secret>.destination`      | The name of the destination secret [string] if not set, the name of the request will be used           |       |
-| `requests.<secret>.destination`      | The namespace of the destination secret [string] if not set, the namespace of the release will be used |       |
+| Name                                  | Description                                                | Value                |
+| ------------------------------------- | ---------------------------------------------------------- | -------------------- |
+| `k8ssandra-operator.fullnameOverride` | The full name of the k8ssandra-operator deployment         | `k8ssandra-operator` |
+| `k8ssandra-operator.nameOverride`     | The name of the k8ssandra-operator deployment              | `k8ssandra-operator` |
+| `k8ssandra-operator.clusterScope`     | Whether to install the k8ssandra-operator in cluster scope | `false`              |
