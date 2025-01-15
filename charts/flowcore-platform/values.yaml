@@ -8,6 +8,8 @@ k8ssandra-operator:
   clusterScope: false
 
 k8ssandra:
+  ## @param k8ssandra.enabled [default: true] Whether to install the k8ssandra cluster
+  enabled: true
   reaper:
     ## @param k8ssandra.reaper.cassandraUserSecretRef [string, default: platform-source-reaper-user] The secret containing the Reaper user credentials, has to contain username and password
     cassandraUserSecretRef: platform-source-reaper-user
