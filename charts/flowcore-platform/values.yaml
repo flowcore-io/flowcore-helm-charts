@@ -1,0 +1,8 @@
+## @section K8ssandra configuration
+k8ssandra-operator: 
+  ## @param k8ssandra-operator.fullnameOverride [string, default: k8ssandra-operator] The full name of the k8ssandra-operator deployment
+  fullnameOverride: k8ssandra-operator
+  ## @param k8ssandra-operator.nameOverride [string, default: k8ssandra-operator] The name of the k8ssandra-operator deployment
+  nameOverride: k8ssandra-operator
+  ## @param k8ssandra-operator.clusterScope [string, default: false] Whether to install the k8ssandra-operator in cluster scope
+  clusterScope: false
