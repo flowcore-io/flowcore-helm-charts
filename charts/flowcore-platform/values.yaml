@@ -6,3 +6,53 @@ k8ssandra-operator:
   nameOverride: k8ssandra-operator
   ## @param k8ssandra-operator.clusterScope [string, default: false] Whether to install the k8ssandra-operator in cluster scope
   clusterScope: false
+
+k8ssandra:
+  reaper:
+    ## @param k8ssandra.reaper.cassandraUserSecretRef [string, default: platform-source-reaper-user] The secret containing the Reaper user credentials, has to contain username and password
+    cassandraUserSecretRef: platform-source-reaper-user
+    ## @param k8ssandra.reaper.uiUserSecretRef [string, default: platform-source-reaper-ui-user] The secret containing the Reaper UI user credentials, has to contain username and password
+    uiUserSecretRef: platform-source-reaper-ui-user
+    ## @param k8ssandra.reaper.heapSize [string, default: 2Gi] The heap size for the Reaper
+    heapSize: 2Gi
+    ## @extra k8ssandra.reaper.metadata [object] The metadata for the Reaper instance. See https://docs.k8ssandra.io/reference/crd/k8ssandra-operator-crds-latest/#k8ssandraclusterspecreapermetadata
+    ## @extra k8ssandra.reaper.telemetry [object] The telemetry for the Reaper instance. See https://docs.k8ssandra.io/reference/crd/k8ssandra-operator-crds-latest/#k8ssandraclusterspecreapertelemetry
+    ## @extra k8ssandra.reaper.tolerations [array] The tolerations for the Reaper instance. See https://docs.k8ssandra.io/reference/crd/k8ssandra-operator-crds-latest/#k8ssandraclusterspecreapertolerationsindex
+  cassandra:
+    ## @extra k8ssandra.cassandra.config [object] The config for the Cassandra instance. See https://docs.k8ssandra.io/reference/crd/k8ssandra-operator-crds-latest/#k8ssandraclusterspeccassandraconfig
+    ## @param k8ssandra.cassandra.version [string, default: 5.0.2] The version of the Cassandra instance, supported versions are 3.xx, 4.xx, 5.xx
+    version: "5.0.2"
+    ## @param k8ssandra.cassandra.superuserSecretRef [string, default: platform-source-superuser] The secret containing the superuser credentials, has to contain password
+    superuserSecretRef: platform-source-superuser
+    ## @extra k8ssandra.cassandra.metadata [object] The metadata for the Cassandra instance. See https://docs.k8ssandra.io/reference/crd/k8ssandra-operator-crds-latest/#k8ssandraclusterspeccassandrametadata
+    ## @extra k8ssandra.cassandra.telemetry [object] The telemetry for the Cassandra instance. See https://docs.k8ssandra.io/reference/crd/k8ssandra-operator-crds-latest/#k8ssandraclusterspeccassandratelemetry
+    ## @extra k8ssandra.cassandra.tolerations [array] The tolerations for the Cassandra instance. See https://docs.k8ssandra.io/reference/crd/k8ssandra-operator-crds-latest/#k8ssandraclusterspeccassandratolerationsindex
+    ## @param k8ssandra.cassandra.heapSize [string, default: 4Gi] The heap size for the Cassandra instance, should be around 25% of request limits for memory
+    heapSize: 4Gi
+    ## @param k8ssandra.cassandra.storageSpec [object] The storage spec for the Cassandra instance. See https://docs.k8ssandra.io/reference/crd/k8ssandra-operator-crds-latest/#k8ssandraclusterspeccassandrastorageconfigcassandradatavolumeclaimspec
+    storageSpec:
+      ## @param k8ssandra.cassandra.storageSpec.accessModes [array, default: [ReadWriteOnce]] The access modes for the Cassandra instance
+      accessModes:
+        - ReadWriteOnce
+      ## @param k8ssandra.cassandra.storageSpec.resources.requests.storage [string, default: 512Gi] The storage request for the Cassandra instance
+      resources:
+        requests:
+          storage: 512Gi
+    resources:
+      limits:
+        ## @param k8ssandra.cassandra.resources.limits.cpu [default: 8] The CPU limit for the Cassandra instance
+        cpu: 8
+        ## @param k8ssandra.cassandra.resources.limits.memory [string, default: 16Gi] The memory limit for the Cassandra instance
+        memory: 16Gi
+      requests:
+        ## @param k8ssandra.cassandra.resources.requests.cpu [default: 8] The CPU request for the Cassandra instance
+        cpu: 8
+         ## @param k8ssandra.cassandra.resources.requests.memory [string, default: 16Gi] The memory request for the Cassandra instance
+        memory: 16Gi
+    ## @param k8ssandra.cassandra.datacenters [object] The datacenters for the Cassandra instance.
+    datacenters:
+      datacenter1:
+        ## @param k8ssandra.cassandra.datacenters.<datacenter-name>.stopped [string, default: false] Whether the datacenter is stopped or not
+        stopped: false
+        ## @param k8ssandra.cassandra.datacenters.<datacenter-name>.size [default: 3] The size of the datacenter
+        size: 3
