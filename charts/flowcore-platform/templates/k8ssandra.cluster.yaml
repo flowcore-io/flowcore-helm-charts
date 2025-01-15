@@ -28,6 +28,7 @@ spec:
       {{- $k8ssandra.reaper.tolerations | toYaml | nindent 6  }}
     {{- end }}
   cassandra:
+    clusterName: platform-source
     serverType: cassandra
     {{- if $k8ssandra.cassandra.config }}
     config: 
