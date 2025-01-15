@@ -1,0 +1,61 @@
+{{- $k8ssandra := .Values.k8ssandra }}
+apiVersion: k8ssandra.io/v1alpha1
+kind: K8ssandraCluster
+metadata:
+  name: platform-source
+spec:
+  auth: true
+  reaper:
+    heapSize: {{ $k8ssandra.reaper.heapSize }}
+    cassandraUserSecretRef:
+      name: {{ $k8ssandra.reaper.cassandraUserSecretRef }}
+    uiUserSecretRef:
+      name: {{ $k8ssandra.reaper.uiUserSecretRef }}
+    autoScheduling:
+      enabled: true
+    keyspace: reaper_db
+    {{- if $k8ssandra.reaper.metadata }}
+    metadata: 
+      {{- $k8ssandra.reaper.metadata | toYaml | nindent 6 }}
+    {{- end }}
+    {{- if $k8ssandra.reaper.telemetry }}
+    telemetry: 
+      {{- $k8ssandra.reaper.telemetry | toYaml | nindent 6  }}
+    {{- end }}
+    {{- if $k8ssandra.reaper.tolerations }}
+    tolerations: 
+      {{- $k8ssandra.reaper.tolerations | toYaml | nindent 6  }}
+    {{- end }}
+  cassandra:
+    serverType: cassandra
+    {{- if $k8ssandra.cassandra.config }}
+    config: 
+      {{- $k8ssandra.cassandra.config | toYaml | nindent 6 }}
+    {{- end }}
+    serverVersion: {{ $k8ssandra.cassandra.version }}
+    superuserSecretRef:
+      name: {{ $k8ssandra.cassandra.superuserSecretRef }}
+    {{- if $k8ssandra.cassandra.metadata }}
+    metadata: 
+      {{- $k8ssandra.cassandra.metadata | toYaml | nindent 6 }}
+    {{- end }}
+    storageConfig:
+      cassandraDataVolumeClaimSpec:
+        {{- $k8ssandra.cassandra.storageSpec | toYaml | nindent 8 }}
+    resources:
+      {{- $k8ssandra.cassandra.resources | toYaml | nindent 6 }}
+    datacenters:
+    {{- range $dc, $dcSpec := $k8ssandra.cassandra.datacenters }}
+      - metadata:
+          name: {{ $dc }}
+        size: {{ $dcSpec.size }}
+        stopped: {{ $dcSpec.stopped }}
+    {{- end }}
+    {{- if $k8ssandra.cassandra.telemetry }}
+    telemetry: 
+      {{- $k8ssandra.cassandra.telemetry | toYaml | nindent 6}}
+    {{- end }}
+    {{- if $k8ssandra.cassandra.tolerations }}
+    tolerations: 
+      {{- $k8ssandra.cassandra.tolerations | toYaml | nindent 6 }}
+    {{- end }}
