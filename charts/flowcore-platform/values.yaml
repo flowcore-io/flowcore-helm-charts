@@ -22,8 +22,8 @@ k8ssandra:
     ## @extra k8ssandra.reaper.tolerations [array] The tolerations for the Reaper instance. See https://docs.k8ssandra.io/reference/crd/k8ssandra-operator-crds-latest/#k8ssandraclusterspecreapertolerationsindex
   cassandra:
     ## @extra k8ssandra.cassandra.config [object] The config for the Cassandra instance. See https://docs.k8ssandra.io/reference/crd/k8ssandra-operator-crds-latest/#k8ssandraclusterspeccassandraconfig
-    ## @param k8ssandra.cassandra.version [string, default: 5.0.2] The version of the Cassandra instance, supported versions are 3.xx, 4.xx, 5.xx
-    version: "5.0.2"
+    ## @param k8ssandra.cassandra.version [string, default: 4.0.15] The version of the Cassandra instance, supported versions are 3.xx, 4.xx, 5.xx
+    version: "4.0.15"
     ## @param k8ssandra.cassandra.superuserSecretRef [string, default: platform-source-superuser] The secret containing the superuser credentials, has to contain password
     superuserSecretRef: platform-source-superuser
     ## @extra k8ssandra.cassandra.metadata [object] The metadata for the Cassandra instance. See https://docs.k8ssandra.io/reference/crd/k8ssandra-operator-crds-latest/#k8ssandraclusterspeccassandrametadata
