@@ -1,4 +1,5 @@
 {{- $k8ssandra := .Values.k8ssandra }}
+{{- if $k8ssandra.enabled -}}
 apiVersion: k8ssandra.io/v1alpha1
 kind: K8ssandraCluster
 metadata:
@@ -59,3 +60,4 @@ spec:
     tolerations: 
       {{- $k8ssandra.cassandra.tolerations | toYaml | nindent 6 }}
     {{- end }}
+{{- end }}
