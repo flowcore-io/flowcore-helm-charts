@@ -7,15 +7,19 @@ data:
   configure-auth.sh: |
     #!/bin/bash
 
+    # Create a temporary directory for cqlshrc
+    TEMP_DIR=$(mktemp -d)
+    export CQLSH_CONFIG="${TEMP_DIR}/.cqlshrc"
+
     # Create a temporary cqlshrc file with credentials
-    cat << EOF > ~/.cqlshrc
+    cat << EOF > "${CQLSH_CONFIG}"
     [authentication]
     username = cassandra
     password = ${CASSANDRA_PASSWORD}
     EOF
 
     # Set appropriate permissions
-    chmod 600 ~/.cqlshrc
+    chmod 600 "${CQLSH_CONFIG}"
 
     # Wait for Cassandra to be ready
     until cqlsh -e "describe keyspaces"; do
@@ -42,7 +46,7 @@ data:
     nodetool repair -full system_auth
 
     # Clean up
-    rm -f ~/.cqlshrc
+    rm -rf "${TEMP_DIR}"
 
     echo "System_auth keyspace configuration completed"
   initdb.cql: |

@@ -1,5 +1,4 @@
 ## @section Flowcore Platform Configuration
-
 flowcore:
   ## @param flowcore.keyspace [object] The keyspace configuration
   keyspace:
