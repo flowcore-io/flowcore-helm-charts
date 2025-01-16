@@ -54,4 +54,179 @@ cassandra:
   ## @param cassandra.initDBConfigMap [default: platform-source-initdb] The name of the config map to use for initializing the database
   initDBConfigMap: platform-source-initdb
 
+## @section Valkey Configuration
+valkey-ha:
+  ## @param valkey-ha.enabled [default: true] Whether to install the Valkey HA instance
+  enabled: true
+  ## @param valkey-ha.nameOverride [default: valkey-ha] The name override
+  nameOverride: valkey-ha
+  ## @param valkey-ha.fullnameOverride [default: valkey-ha] The full name override
+  fullnameOverride: valkey-ha
+  ## @param valkey-ha.architecture [default: replication] The architecture to use
+  architecture: replication
+  sentinel:
+    ## @param valkey-ha.sentinel.enabled [default: true] Whether to install the Sentinel instance
+    enabled: true
+    ## @param valkey-ha.sentinel.masterSet [default: fcmprimary] The master set to use
+    masterSet: fcmprimary
+    ## @extra valkey-ha.sentinel.resources [object] The resources for the Sentinel instance
+  auth:
+    ## @param valkey-ha.auth.enabled [default: true] Whether to install the Auth instance
+    enabled: true
+    ## @param valkey-ha.auth.sentinel [default: true] Whether to use the Sentinel instance
+    sentinel: true
+    ## @param valkey-ha.auth.existingSecret [default: platform-source-valkey-ha-password] The name of the existing secret containing the Auth password
+    existingSecret: platform-source-valkey-ha
+    ## @param valkey-ha.auth.existingSecretPasswordKey [default: password] The key in the existing secret containing the Auth password
+    existingSecretPasswordKey: password
+  primary:
+    ## @param valkey-ha.primary.enabled [default: true] Whether to install the primary instance
+    enabled: true
+    ## @param valkey-ha.primary.replicaCount [default: 1] The number of replicas
+    replicaCount: 1
+    ## @extra valkey-ha.primary.resources [object] The resources for the primary instance
+    persistence:
+      ## @param valkey-ha.primary.persistence.enabled [default: true] Whether to install the persistence
+      enabled: true
+      ## @param valkey-ha.primary.persistence.size [default: 50Gi] The size of the persistent volume
+      size: 50Gi
+      ## @extra valkey-ha.primary.persistence.storageClass [string] The storage class for the persistent volume
+  replica:
+    ## @param valkey-ha.replica.enabled [default: true] Whether to install the replica instance
+    enabled: true
+    ## @param valkey-ha.replica.replicaCount [default: 3] The number of replicas
+    replicaCount: 3
+    ## @extra valkey-ha.replica.resources [object] The resources for the replica instance
+    persistence:
+      ## @param valkey-ha.replica.persistence.enabled [default: true] Whether to install the persistence
+      enabled: true
+      ## @param valkey-ha.replica.persistence.size [default: 50Gi] The size of the persistent volume
+      size: 50Gi
+      ## @extra valkey-ha.replica.persistence.storageClass [string] The storage class for the persistent volume
 
+valkey-single:
+  ## @param valkey-single.enabled [default: false] Whether to install the Valkey single instance
+  enabled: true
+  ## @param valkey-single.nameOverride [default: valkey-single] The name override
+  nameOverride: valkey-single
+  ## @param valkey-single.fullnameOverride [default: valkey-single] The full name override
+  fullnameOverride: valkey-single
+  ## @param valkey-single.architecture [default: single] The architecture to use
+  architecture: standalone
+  auth:
+    ## @param valkey-single.auth.enabled [default: true] Whether to install the Auth instance
+    enabled: true
+    ## @param valkey-single.auth.existingSecret [default: platform-source-valkey-single-password] The name of the existing secret containing the Auth password
+    existingSecret: platform-source-valkey-single
+    ## @param valkey-single.auth.existingSecretPasswordKey [default: password] The key in the existing secret containing the Auth password
+    existingSecretPasswordKey: password
+  primary:
+    ## @param valkey-single.primary.enabled [default: true] Whether to install the primary instance
+    enabled: true
+    ## @param valkey-single.primary.replicaCount [default: 1] The number of replicas
+    replicaCount: 1
+    ## @extra valkey-single.primary.resources [object] The resources for the primary instance
+    persistence:
+      ## @param valkey-single.primary.persistence.enabled [default: true] Whether to install the persistence
+      enabled: true
+      ## @param valkey-single.primary.persistence.size [default: 50Gi] The size of the persistent volume
+      size: 50Gi
+      ## @extra valkey-single.primary.persistence.storageClass [string] The storage class for the persistent volume
+
+## @section NATS Configuration
+
+nats:
+  ## @param nats.nameOverride [default: nats] The name override
+  nameOverride: nats
+  ## @param nats.fullnameOverride [default: nats] The full name override
+  fullnameOverride: nats
+  ## @param nats.enabled [default: true] Whether to install the NATS instance
+  enabled: true
+  ## @param nats.config [object] The NATS configuration
+  config:
+    cluster:
+      ## @param nats.config.cluster.enabled [default: true] Whether to install the NATS cluster
+      enabled: true
+      ## @param nats.config.cluster.replicas [default: 3] The number of replicas
+      replicas: 3
+    jetstream:
+      ## @param nats.config.jetstream.enabled [default: true] Whether to install the NATS JetStream instance
+      enabled: true
+      ## @param nats.config.jetstream.fileStore.pvc.size [default: 10Gi] The size of the persistent volume
+      fileStore:
+        pvc:
+          ## @param nats.config.jetstream.fileStore.pvc.size [default: 10Gi] The size of the persistent volume
+          size: 10Gi
+          ## @extra nats.config.jetstream.fileStore.pvc.storageClass [string] The storage class for the persistent volume
+  container:
+    env:
+      ## @param nats.container.env.GOMEMLIMIT [default: 7GiB] The memory limit, 90% of the memory limit, different from k8s units, suffix must be B, KiB, MiB, GiB, or TiB
+      GOMEMLIMIT: 7GiB
+    merge:
+      resources:
+        requests:
+          ## @param nats.container.merge.resources.requests.cpu [default: 2] The CPU request
+          cpu: "2"
+          ## @param nats.container.merge.resources.requests.memory [default: 8Gi] The memory request
+          memory: 8Gi
+        limits:
+          ## @param nats.container.merge.resources.limits.cpu [default: 2] The CPU limit
+          cpu: "2"
+          ## @param nats.container.merge.resources.limits.memory [default: 8Gi] The memory limit
+          memory: 8Gi
+
+## @section Flowcore Platform Services
+# flowcore-microservices:
+#   ## @param flowcore-microservices.enabled [default: true] Whether to install the Flowcore Platform Services
+#   enabled: true
+#   imageRepository: flowcore-io
+#   oidcWellKnownUrl: https://auth.flowcore.io/realms/flowcore/.well-known/openid-configuration
+#   transport:
+#     nats:
+#       NATS_SERVERS:
+#         value: nats://transport-nats.transport.svc.cluster.local:4222
+#   deployments:
+#     ingestionChannel:
+#       enabled: true
+#       deployment:
+#         image: service-ingestion
+#         tag: 1.1.0
+#         replicas: 1
+#       metrics:
+#         enabled: true
+#         port: 3001
+#       env:
+#         REDIS_URL:
+#           valueFrom:
+#             secretKeyRef:
+#               name: ingestion-channel-credentials
+#               key: redis-url
+#         WEBHOOK_BASE_URL:
+#           value: https://flowcore.webhook.flowcore.io
+#         WEBHOOK_TENANT:
+#           value: flowcore
+#         WEBHOOK_DATA_CORE:
+#           value: ecc024c5-3adf-42a3-aa55-fd3620673192
+#         WEBHOOK_API_KEY:
+#           valueFrom:
+#             secretKeyRef:
+#               name: ingestion-credentials
+#               key: webhook-api-key
+#         NATS_QUEUE:
+#           value: source-ingestion-channel-v2
+#         CASSANDRA_CONTACT_POINTS:
+#           value: datastores-flowcore-eu-west-1a.datastores.svc.cluster.local
+#         CASSANDRA_KEYSPACE:
+#           value: flowcore_platform_data
+#         CASSANDRA_USERNAME:
+#           valueFrom:
+#             secretKeyRef:
+#               name: ingestion-credentials
+#               key: cassandra-username
+#         CASSANDRA_PASSWORD:
+#           valueFrom:
+#             secretKeyRef:
+#               name: ingestion-credentials
+#               key: cassandra-password
+#         LOG_LEVEL:
+#           value: info
