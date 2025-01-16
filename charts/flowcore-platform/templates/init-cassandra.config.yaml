@@ -34,8 +34,12 @@ data:
     DESC KEYSPACE system_auth;
     EOF
 
-    # Run repair
-    nodetool repair system_auth -full
+    # Wait for schema agreement
+    echo "Waiting for schema agreement..."
+    sleep 30
+
+    # Run repair on all nodes
+    nodetool repair -full system_auth
 
     # Clean up
     rm -f ~/.cqlshrc
