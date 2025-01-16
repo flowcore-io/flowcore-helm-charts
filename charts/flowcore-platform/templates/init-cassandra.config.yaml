@@ -16,16 +16,11 @@ data:
     };
 
     DESC KEYSPACE system_auth;
-    EOF
 
-    # Run repair on all nodes
-    nodetool repair -full system_auth
+    CREATE KEYSPACE IF NOT EXISTS flowcore 
+    WITH REPLICATION = { 'class' : 'NetworkTopologyStrategy', 'datacenter1' : {{ .Values.flowcore.keyspace.replicationFactor }} };
 
-    echo "System_auth keyspace configuration completed"
-  initdb.cql: |
-    CREATE KEYSPACE flowcore WITH REPLICATION = { 'class' : 'NetworkTopologyStrategy', 'datacenter1' : {{ .Values.flowcore.keyspace.replicationFactor }} };
-
-    CREATE TABLE flowcore.stored_event_stream (
+    CREATE TABLE IF NOT EXISTS flowcore.stored_event_stream (
         tenant_id text,
         data_core uuid,
         aggregator text,
@@ -55,9 +50,10 @@ data:
         AND read_repair = 'BLOCKING'
         AND speculative_retry = '99p';
 
-    CREATE KEYSPACE flowcore_platform_data WITH REPLICATION = { 'class' : 'NetworkTopologyStrategy', 'datacenter1' : {{ .Values.flowcore.keyspace.replicationFactor }} };
+    CREATE KEYSPACE IF NOT EXISTS flowcore_platform_data 
+    WITH REPLICATION = { 'class' : 'NetworkTopologyStrategy', 'datacenter1' : {{ .Values.flowcore.keyspace.replicationFactor }} };
 
-    CREATE TABLE flowcore_platform_data.stored_event_stream (
+    CREATE TABLE IF NOT EXISTS flowcore_platform_data.stored_event_stream (
         tenant_id text,
         data_core uuid,
         aggregator text,
@@ -87,9 +83,10 @@ data:
         AND read_repair = 'BLOCKING'
         AND speculative_retry = '99p';
 
-    CREATE KEYSPACE flowcore_archive WITH REPLICATION = { 'class' : 'NetworkTopologyStrategy', 'datacenter1' : {{ .Values.flowcore.keyspace.replicationFactor }} };
+    CREATE KEYSPACE IF NOT EXISTS flowcore_archive 
+    WITH REPLICATION = { 'class' : 'NetworkTopologyStrategy', 'datacenter1' : {{ .Values.flowcore.keyspace.replicationFactor }} };
 
-    CREATE TABLE flowcore_archive.archive_keys (
+    CREATE TABLE IF NOT EXISTS flowcore_archive.archive_keys (
         hash_key text PRIMARY KEY
     ) WITH additional_write_policy = '99p'
         AND bloom_filter_fp_chance = 0.01
@@ -109,7 +106,7 @@ data:
         AND read_repair = 'BLOCKING'
         AND speculative_retry = '99p';
 
-    CREATE TABLE flowcore_archive.backup_stream (
+    CREATE TABLE IF NOT EXISTS flowcore_archive.backup_stream (
         hash_key text,
         event_id timeuuid,
         data text,
@@ -132,3 +129,9 @@ data:
         AND min_index_interval = 128
         AND read_repair = 'BLOCKING'
         AND speculative_retry = '99p';
+    EOF
+
+    # Run repair on all nodes
+    nodetool repair -full system_auth
+
+    echo "System_auth keyspace configuration completed"
