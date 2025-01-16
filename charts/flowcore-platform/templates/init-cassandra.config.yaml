@@ -7,12 +7,6 @@ data:
   configure-auth.sh: |
     #!/bin/bash
 
-    # Wait for Cassandra to be ready
-    until cqlsh -u cassandra -p "${CASSANDRA_PASSWORD}" -e "describe keyspaces"; do
-      echo "Waiting for Cassandra to start..."
-      sleep 10
-    done
-
     # Configure system_auth keyspace
     cqlsh -u cassandra -p "${CASSANDRA_PASSWORD}" <<EOF
     ALTER KEYSPACE system_auth 
@@ -23,10 +17,6 @@ data:
 
     DESC KEYSPACE system_auth;
     EOF
-
-    # Wait for schema agreement
-    echo "Waiting for schema agreement..."
-    sleep 30
 
     # Run repair on all nodes
     nodetool repair -full system_auth
