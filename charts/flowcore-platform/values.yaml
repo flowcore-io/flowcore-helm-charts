@@ -1,3 +1,10 @@
+## @param flowcore [object] The Flowcore instance configuration
+flowcore:
+  ## @param flowcore.keyspace [object] The keyspace configuration
+  keyspace:
+    ## @param flowcore.keyspace.replicationFactor [default: 3] The number of replicas
+    replicationFactor: 3
+
 cassandra:
   ## @param cassandra.enabled [default: true] Whether to install the Cassandra instance
   enabled: true
