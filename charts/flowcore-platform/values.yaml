@@ -176,57 +176,80 @@ nats:
           memory: 8Gi
 
 ## @section Flowcore Platform Services
-# flowcore-microservices:
-#   ## @param flowcore-microservices.enabled [default: true] Whether to install the Flowcore Platform Services
-#   enabled: true
-#   imageRepository: flowcore-io
-#   oidcWellKnownUrl: https://auth.flowcore.io/realms/flowcore/.well-known/openid-configuration
-#   transport:
-#     nats:
-#       NATS_SERVERS:
-#         value: nats://transport-nats.transport.svc.cluster.local:4222
-#   deployments:
-#     ingestionChannel:
-#       enabled: true
-#       deployment:
-#         image: service-ingestion
-#         tag: 1.1.0
-#         replicas: 1
-#       metrics:
-#         enabled: true
-#         port: 3001
-#       env:
-#         REDIS_URL:
-#           valueFrom:
-#             secretKeyRef:
-#               name: ingestion-channel-credentials
-#               key: redis-url
-#         WEBHOOK_BASE_URL:
-#           value: https://flowcore.webhook.flowcore.io
-#         WEBHOOK_TENANT:
-#           value: flowcore
-#         WEBHOOK_DATA_CORE:
-#           value: ecc024c5-3adf-42a3-aa55-fd3620673192
-#         WEBHOOK_API_KEY:
-#           valueFrom:
-#             secretKeyRef:
-#               name: ingestion-credentials
-#               key: webhook-api-key
-#         NATS_QUEUE:
-#           value: source-ingestion-channel-v2
-#         CASSANDRA_CONTACT_POINTS:
-#           value: datastores-flowcore-eu-west-1a.datastores.svc.cluster.local
-#         CASSANDRA_KEYSPACE:
-#           value: flowcore_platform_data
-#         CASSANDRA_USERNAME:
-#           valueFrom:
-#             secretKeyRef:
-#               name: ingestion-credentials
-#               key: cassandra-username
-#         CASSANDRA_PASSWORD:
-#           valueFrom:
-#             secretKeyRef:
-#               name: ingestion-credentials
-#               key: cassandra-password
-#         LOG_LEVEL:
-#           value: info
+flowcore-microservices:
+  ## @param flowcore-microservices.enabled [default: true] Whether to install the Flowcore Platform Services
+  enabled: true
+  ## @param flowcore-microservices.imageRepository [default: flowcore-io] The image repository
+  imageRepository: flowcore-io
+  ## @param flowcore-microservices.oidcWellKnownUrl [default: https://auth.flowcore.io/realms/flowcore/.well-known/openid-configuration] The OIDC well-known URL
+  oidcWellKnownUrl: https://auth.flowcore.io/realms/flowcore/.well-known/openid-configuration
+  transport:
+    nats:
+      NATS_SERVERS:
+        ## @param flowcore-microservices.transport.nats.NATS_SERVERS.value [default: nats://nats:4222] The NATS servers
+        value: nats://nats:4222
+  deployments:
+    ingestionChannel:
+      ## @param flowcore-microservices.deployments.ingestionChannel.enabled [default: true] Whether to install the Ingestion Channel instance
+      enabled: true
+      deployment:
+        ## @param flowcore-microservices.deployments.ingestionChannel.deployment.image [default: service-ingestion] The image
+        image: service-ingestion
+        ## @param flowcore-microservices.deployments.ingestionChannel.deployment.tag [default: 1.1.0] The tag
+        tag: 1.1.0
+        ## @param flowcore-microservices.deployments.ingestionChannel.deployment.replicas [default: 1] The number of replicas
+        replicas: 1
+      metrics:
+        ## @param flowcore-microservices.deployments.ingestionChannel.metrics.enabled [default: true] Whether to install the metrics
+        enabled: true
+        ## @param flowcore-microservices.deployments.ingestionChannel.metrics.port [default: 3001] The port
+        port: 3001
+      ## @param flowcore-microservices.deployments.ingestionChannel.useTransports [default: [nats]] The transports to use
+      useTransports:
+        - nats
+      env:
+        ## @param flowcore-microservices.deployments.ingestionChannel.env.REDIS_URL [object] The Redis URL
+        REDIS_URL:
+          valueFrom:
+            secretKeyRef:
+              name: ingestion-channel-credentials
+              key: redis-url
+        ## @param flowcore-microservices.deployments.ingestionChannel.env.DEFAULT_TTL_ON_STORED_EVENT [object] The default TTL on stored event in seconds
+        DEFAULT_TTL_ON_STORED_EVENT:
+          value: "259200"
+        ## @param flowcore-microservices.deployments.ingestionChannel.env.NATS_QUEUE [object] The NATS queue
+        NATS_QUEUE:
+          value: source-ingestion-channel-v2
+        ## @param flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_CONTACT_POINTS [object] The Cassandra contact points
+        CASSANDRA_CONTACT_POINTS:
+          value: flowcore-cassandra
+        ## @param flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_USERNAME [object] The Cassandra username
+        CASSANDRA_USERNAME:
+          valueFrom:
+            secretKeyRef:
+              name: ingestion-channel-credentials
+              key: cassandra-username
+        ## @param flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_PASSWORD [object] The Cassandra password
+        CASSANDRA_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: ingestion-channel-credentials
+              key: cassandra-password
+        ## @param flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_FLOWCORE_KEYSPACE [object] The Cassandra Flowcore keyspace
+        CASSANDRA_FLOWCORE_KEYSPACE:
+          value: flowcore
+        ## @param flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_CLIENT_KEYSPACE [object] The Cassandra client keyspace
+        CASSANDRA_CLIENT_KEYSPACE:
+          value: flowcore_platform_data
+        ## @param flowcore-microservices.deployments.ingestionChannel.env.LOG_LEVEL [object] The log level
+        LOG_LEVEL:
+          value: info
+        ## @param flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_TENANT_WEBHOOK_BASE_URL [object] The Flowcore tenant webhook base URL
+        FLOWCORE_TENANT_WEBHOOK_BASE_URL:
+          value: https://tenant.api.flowcore.io/api/v1/webhook
+        ## @param flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_TENANT_WEBHOOK_API_KEY [object] The Flowcore tenant webhook API key
+        FLOWCORE_TENANT_WEBHOOK_API_KEY:
+          valueFrom:
+            secretKeyRef:
+              name: tenant-credentials
+              key: webhook-api-key
