@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: platform-source-initdb
+  namespace: {{ .Release.Namespace }}
+data:
+  configure-auth.sh: |
+    #!/bin/bash
+
+    # Wait for Cassandra to be ready
+    until cqlsh -u cassandra -p $CASSANDRA_PASSWORD -e "describe keyspaces"; do
+      echo "Waiting for Cassandra to start..."
+      sleep 10
+    done
+
+    # Configure system_auth keyspace
+    cqlsh -u cassandra -p $CASSANDRA_PASSWORD <<EOF
+    ALTER KEYSPACE system_auth 
+    WITH REPLICATION = {
+        'class': 'NetworkTopologyStrategy',
+        'datacenter1': {{ .Values.cassandra.replicaCount }}
+    };
+
+    DESC KEYSPACE system_auth;
+    EOF
+
+    # Run repair
+    nodetool repair system_auth -full
+
+    echo "System_auth keyspace configuration completed"
+

@@ -38,4 +38,11 @@ cassandra:
   metrics:
     ## @param cassandra.metrics.enabled [default: true] Whether to enable the metrics
     enabled: true
+  jvm:
+    ## @param cassandra.jvm.maxHeapSize [default: 2048m] The maximum heap size (1/4 or 1/2 of the total memory)
+    maxHeapSize: 8G
+    ## @param cassandra.jvm.newHeapSize [default: 1024m] The new heap size (1/4 of the max heap size)
+    newHeapSize: 2G
+  ## @param cassandra.initDBConfigMap [default: platform-source-initdb] The name of the config map to use for initializing the database
+  initDBConfigMap: platform-source-initdb
 
