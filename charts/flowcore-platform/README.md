@@ -61,44 +61,44 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 
 ### Valkey Configuration
 
-| Name                                             | Description                                                  | Value                                    |
-| ------------------------------------------------ | ------------------------------------------------------------ | ---------------------------------------- |
-| `valkey-ha.enabled`                              | Whether to install the Valkey HA instance                    | `true`                                   |
-| `valkey-ha.nameOverride`                         | The name override                                            | `valkey-ha`                              |
-| `valkey-ha.fullnameOverride`                     | The full name override                                       | `valkey-ha`                              |
-| `valkey-ha.architecture`                         | The architecture to use                                      | `replication`                            |
-| `valkey-ha.sentinel.enabled`                     | Whether to install the Sentinel instance                     | `true`                                   |
-| `valkey-ha.sentinel.masterSet`                   | The master set to use                                        | `fcmprimary`                             |
-| `valkey-ha.sentinel.resources`                   | The resources for the Sentinel instance                      |                                          |
-| `valkey-ha.auth.enabled`                         | Whether to install the Auth instance                         | `true`                                   |
-| `valkey-ha.auth.sentinel`                        | Whether to use the Sentinel instance                         | `true`                                   |
-| `valkey-ha.auth.existingSecret`                  | The name of the existing secret containing the Auth password | `platform-source-valkey-ha-password`     |
-| `valkey-ha.auth.existingSecretPasswordKey`       | The key in the existing secret containing the Auth password  | `password`                               |
-| `valkey-ha.primary.enabled`                      | Whether to install the primary instance                      | `true`                                   |
-| `valkey-ha.primary.replicaCount`                 | The number of replicas                                       | `1`                                      |
-| `valkey-ha.primary.resources`                    | The resources for the primary instance                       |                                          |
-| `valkey-ha.primary.persistence.enabled`          | Whether to install the persistence                           | `true`                                   |
-| `valkey-ha.primary.persistence.size`             | The size of the persistent volume                            | `50Gi`                                   |
-| `valkey-ha.primary.persistence.storageClass`     | The storage class for the persistent volume                  |                                          |
-| `valkey-ha.replica.enabled`                      | Whether to install the replica instance                      | `true`                                   |
-| `valkey-ha.replica.replicaCount`                 | The number of replicas                                       | `3`                                      |
-| `valkey-ha.replica.resources`                    | The resources for the replica instance                       |                                          |
-| `valkey-ha.replica.persistence.enabled`          | Whether to install the persistence                           | `true`                                   |
-| `valkey-ha.replica.persistence.size`             | The size of the persistent volume                            | `50Gi`                                   |
-| `valkey-ha.replica.persistence.storageClass`     | The storage class for the persistent volume                  |                                          |
-| `valkey-single.enabled`                          | Whether to install the Valkey single instance                | `false`                                  |
-| `valkey-single.nameOverride`                     | The name override                                            | `valkey-single`                          |
-| `valkey-single.fullnameOverride`                 | The full name override                                       | `valkey-single`                          |
-| `valkey-single.architecture`                     | The architecture to use                                      | `single`                                 |
-| `valkey-single.auth.enabled`                     | Whether to install the Auth instance                         | `true`                                   |
-| `valkey-single.auth.existingSecret`              | The name of the existing secret containing the Auth password | `platform-source-valkey-single-password` |
-| `valkey-single.auth.existingSecretPasswordKey`   | The key in the existing secret containing the Auth password  | `password`                               |
-| `valkey-single.primary.enabled`                  | Whether to install the primary instance                      | `true`                                   |
-| `valkey-single.primary.replicaCount`             | The number of replicas                                       | `1`                                      |
-| `valkey-single.primary.resources`                | The resources for the primary instance                       |                                          |
-| `valkey-single.primary.persistence.enabled`      | Whether to install the persistence                           | `true`                                   |
-| `valkey-single.primary.persistence.size`         | The size of the persistent volume                            | `50Gi`                                   |
-| `valkey-single.primary.persistence.storageClass` | The storage class for the persistent volume                  |                                          |
+| Name                                             | Description                                                  | Value                           |
+| ------------------------------------------------ | ------------------------------------------------------------ | ------------------------------- |
+| `valkey-ha.enabled`                              | Whether to install the Valkey HA instance                    | `true`                          |
+| `valkey-ha.nameOverride`                         | The name override                                            | `valkey-ha`                     |
+| `valkey-ha.fullnameOverride`                     | The full name override                                       | `valkey-ha`                     |
+| `valkey-ha.architecture`                         | The architecture to use                                      | `replication`                   |
+| `valkey-ha.sentinel.enabled`                     | Whether to install the Sentinel instance                     | `true`                          |
+| `valkey-ha.sentinel.masterSet`                   | The master set to use                                        | `fcmprimary`                    |
+| `valkey-ha.sentinel.resources`                   | The resources for the Sentinel instance                      |                                 |
+| `valkey-ha.auth.enabled`                         | Whether to install the Auth instance                         | `true`                          |
+| `valkey-ha.auth.sentinel`                        | Whether to use the Sentinel instance                         | `true`                          |
+| `valkey-ha.auth.existingSecret`                  | The name of the existing secret containing the Auth password | `platform-source-valkey-ha`     |
+| `valkey-ha.auth.existingSecretPasswordKey`       | The key in the existing secret containing the Auth password  | `password`                      |
+| `valkey-ha.primary.enabled`                      | Whether to install the primary instance                      | `true`                          |
+| `valkey-ha.primary.replicaCount`                 | The number of replicas                                       | `1`                             |
+| `valkey-ha.primary.resources`                    | The resources for the primary instance                       |                                 |
+| `valkey-ha.primary.persistence.enabled`          | Whether to install the persistence                           | `true`                          |
+| `valkey-ha.primary.persistence.size`             | The size of the persistent volume                            | `50Gi`                          |
+| `valkey-ha.primary.persistence.storageClass`     | The storage class for the persistent volume                  |                                 |
+| `valkey-ha.replica.enabled`                      | Whether to install the replica instance                      | `true`                          |
+| `valkey-ha.replica.replicaCount`                 | The number of replicas                                       | `3`                             |
+| `valkey-ha.replica.resources`                    | The resources for the replica instance                       |                                 |
+| `valkey-ha.replica.persistence.enabled`          | Whether to install the persistence                           | `true`                          |
+| `valkey-ha.replica.persistence.size`             | The size of the persistent volume                            | `50Gi`                          |
+| `valkey-ha.replica.persistence.storageClass`     | The storage class for the persistent volume                  |                                 |
+| `valkey-single.enabled`                          | Whether to install the Valkey single instance                | `false`                         |
+| `valkey-single.nameOverride`                     | The name override                                            | `valkey-single`                 |
+| `valkey-single.fullnameOverride`                 | The full name override                                       | `valkey-single`                 |
+| `valkey-single.architecture`                     | The architecture to use                                      | `single`                        |
+| `valkey-single.auth.enabled`                     | Whether to install the Auth instance                         | `true`                          |
+| `valkey-single.auth.existingSecret`              | The name of the existing secret containing the Auth password | `platform-source-valkey-single` |
+| `valkey-single.auth.existingSecretPasswordKey`   | The key in the existing secret containing the Auth password  | `password`                      |
+| `valkey-single.primary.enabled`                  | Whether to install the primary instance                      | `true`                          |
+| `valkey-single.primary.replicaCount`             | The number of replicas                                       | `1`                             |
+| `valkey-single.primary.resources`                | The resources for the primary instance                       |                                 |
+| `valkey-single.primary.persistence.enabled`      | Whether to install the persistence                           | `true`                          |
+| `valkey-single.primary.persistence.size`         | The size of the persistent volume                            | `50Gi`                          |
+| `valkey-single.primary.persistence.storageClass` | The storage class for the persistent volume                  |                                 |
 
 ### NATS Configuration
 
@@ -121,6 +121,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `nats.container.merge.resources.limits.memory`     | The memory limit                                                                                             | `8Gi`  |
 
 ### Flowcore Platform Services
+
 
 
 See [values.yaml](values.yaml) for the full list of parameters.

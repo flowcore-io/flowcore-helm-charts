@@ -75,7 +75,7 @@ valkey-ha:
     enabled: true
     ## @param valkey-ha.auth.sentinel [default: true] Whether to use the Sentinel instance
     sentinel: true
-    ## @param valkey-ha.auth.existingSecret [default: platform-source-valkey-ha-password] The name of the existing secret containing the Auth password
+    ## @param valkey-ha.auth.existingSecret [default: platform-source-valkey-ha] The name of the existing secret containing the Auth password
     existingSecret: platform-source-valkey-ha
     ## @param valkey-ha.auth.existingSecretPasswordKey [default: password] The key in the existing secret containing the Auth password
     existingSecretPasswordKey: password
@@ -116,7 +116,7 @@ valkey-single:
   auth:
     ## @param valkey-single.auth.enabled [default: true] Whether to install the Auth instance
     enabled: true
-    ## @param valkey-single.auth.existingSecret [default: platform-source-valkey-single-password] The name of the existing secret containing the Auth password
+    ## @param valkey-single.auth.existingSecret [default: platform-source-valkey-single] The name of the existing secret containing the Auth password
     existingSecret: platform-source-valkey-single
     ## @param valkey-single.auth.existingSecretPasswordKey [default: password] The key in the existing secret containing the Auth password
     existingSecretPasswordKey: password
