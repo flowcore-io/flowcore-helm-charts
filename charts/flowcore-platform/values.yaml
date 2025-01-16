@@ -1,10 +1,12 @@
-## @param flowcore [object] The Flowcore instance configuration
+## @section Flowcore Platform Configuration
+
 flowcore:
   ## @param flowcore.keyspace [object] The keyspace configuration
   keyspace:
     ## @param flowcore.keyspace.replicationFactor [default: 3] The number of replicas
     replicationFactor: 3
 
+## @section Cassandra Configuration
 cassandra:
   ## @param cassandra.enabled [default: true] Whether to install the Cassandra instance
   enabled: true
@@ -52,4 +54,5 @@ cassandra:
     newHeapSize: 2G
   ## @param cassandra.initDBConfigMap [default: platform-source-initdb] The name of the config map to use for initializing the database
   initDBConfigMap: platform-source-initdb
+
 
