@@ -7,28 +7,14 @@ data:
   configure-auth.sh: |
     #!/bin/bash
 
-    # Create a temporary directory for cqlshrc
-    TEMP_DIR=$(mktemp -d)
-    export CQLSH_CONFIG="${TEMP_DIR}/.cqlshrc"
-
-    # Create a temporary cqlshrc file with credentials
-    cat << EOF > "${CQLSH_CONFIG}"
-    [authentication]
-    username = cassandra
-    password = ${CASSANDRA_PASSWORD}
-    EOF
-
-    # Set appropriate permissions
-    chmod 600 "${CQLSH_CONFIG}"
-
     # Wait for Cassandra to be ready
-    until cqlsh -e "describe keyspaces"; do
+    until cqlsh -u cassandra -p "${CASSANDRA_PASSWORD}" -e "describe keyspaces"; do
       echo "Waiting for Cassandra to start..."
       sleep 10
     done
 
     # Configure system_auth keyspace
-    cqlsh <<EOF
+    cqlsh -u cassandra -p "${CASSANDRA_PASSWORD}" <<EOF
     ALTER KEYSPACE system_auth 
     WITH REPLICATION = {
         'class': 'NetworkTopologyStrategy',
@@ -44,9 +30,6 @@ data:
 
     # Run repair on all nodes
     nodetool repair -full system_auth
-
-    # Clean up
-    rm -rf "${TEMP_DIR}"
 
     echo "System_auth keyspace configuration completed"
   initdb.cql: |
