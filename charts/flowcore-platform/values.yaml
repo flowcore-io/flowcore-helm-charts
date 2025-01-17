@@ -259,4 +259,4 @@ flowcore-microservices:
           valueFrom:
             secretKeyRef:
               name: tenant-credentials
-              key: webhook-api-key
+              key: api-key
