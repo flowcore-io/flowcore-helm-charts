@@ -216,7 +216,7 @@ flowcore-microservices:
               key: redis-url
         ## @param flowcore-microservices.deployments.ingestionChannel.env.METRICS_SERVICE_NAME [object] The metrics service name
         METRICS_SERVICE_NAME:
-          value: ingestion-channel
+          value: ingestion_channel
         ## @param flowcore-microservices.deployments.ingestionChannel.env.DEFAULT_TTL_ON_STORED_EVENT [object] The default TTL on stored event in seconds
         DEFAULT_TTL_ON_STORED_EVENT:
           value: "259200"
