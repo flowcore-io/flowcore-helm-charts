@@ -59,33 +59,38 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `cassandra.jvm.newHeapSize`           | The new heap size (1/4 of the max heap size)                               | `1024m`                          |
 | `cassandra.initDBConfigMap`           | The name of the config map to use for initializing the database            | `platform-source-initdb`         |
 
-### Valkey Configuration
+### Valkey HA Configuration
+
+| Name                                         | Description                                                  | Value                       |
+| -------------------------------------------- | ------------------------------------------------------------ | --------------------------- |
+| `valkey-ha.enabled`                          | Whether to install the Valkey HA instance                    | `true`                      |
+| `valkey-ha.nameOverride`                     | The name override                                            | `valkey-ha`                 |
+| `valkey-ha.fullnameOverride`                 | The full name override                                       | `valkey-ha`                 |
+| `valkey-ha.architecture`                     | The architecture to use                                      | `replication`               |
+| `valkey-ha.sentinel.enabled`                 | Whether to install the Sentinel instance                     | `true`                      |
+| `valkey-ha.sentinel.primarySet`              | The primary set to use                                       | `fcmprimary`                |
+| `valkey-ha.sentinel.resources`               | The resources for the Sentinel instance                      |                             |
+| `valkey-ha.auth.enabled`                     | Whether to install the Auth instance                         | `true`                      |
+| `valkey-ha.auth.sentinel`                    | Whether to use the Sentinel instance                         | `true`                      |
+| `valkey-ha.auth.existingSecret`              | The name of the existing secret containing the Auth password | `platform-source-valkey-ha` |
+| `valkey-ha.auth.existingSecretPasswordKey`   | The key in the existing secret containing the Auth password  | `password`                  |
+| `valkey-ha.primary.enabled`                  | Whether to install the primary instance                      | `true`                      |
+| `valkey-ha.primary.replicaCount`             | The number of replicas                                       | `1`                         |
+| `valkey-ha.primary.resources`                | The resources for the primary instance                       |                             |
+| `valkey-ha.primary.persistence.enabled`      | Whether to install the persistence                           | `true`                      |
+| `valkey-ha.primary.persistence.size`         | The size of the persistent volume                            | `50Gi`                      |
+| `valkey-ha.primary.persistence.storageClass` | The storage class for the persistent volume                  |                             |
+| `valkey-ha.replica.enabled`                  | Whether to install the replica instance                      | `true`                      |
+| `valkey-ha.replica.replicaCount`             | The number of replicas                                       | `3`                         |
+| `valkey-ha.replica.resources`                | The resources for the replica instance                       |                             |
+| `valkey-ha.replica.persistence.enabled`      | Whether to install the persistence                           | `true`                      |
+| `valkey-ha.replica.persistence.size`         | The size of the persistent volume                            | `50Gi`                      |
+| `valkey-ha.replica.persistence.storageClass` | The storage class for the persistent volume                  |                             |
+
+### Valkey Single Configuration
 
 | Name                                             | Description                                                  | Value                           |
 | ------------------------------------------------ | ------------------------------------------------------------ | ------------------------------- |
-| `valkey-ha.enabled`                              | Whether to install the Valkey HA instance                    | `true`                          |
-| `valkey-ha.nameOverride`                         | The name override                                            | `valkey-ha`                     |
-| `valkey-ha.fullnameOverride`                     | The full name override                                       | `valkey-ha`                     |
-| `valkey-ha.architecture`                         | The architecture to use                                      | `replication`                   |
-| `valkey-ha.sentinel.enabled`                     | Whether to install the Sentinel instance                     | `true`                          |
-| `valkey-ha.sentinel.masterSet`                   | The master set to use                                        | `fcmprimary`                    |
-| `valkey-ha.sentinel.resources`                   | The resources for the Sentinel instance                      |                                 |
-| `valkey-ha.auth.enabled`                         | Whether to install the Auth instance                         | `true`                          |
-| `valkey-ha.auth.sentinel`                        | Whether to use the Sentinel instance                         | `true`                          |
-| `valkey-ha.auth.existingSecret`                  | The name of the existing secret containing the Auth password | `platform-source-valkey-ha`     |
-| `valkey-ha.auth.existingSecretPasswordKey`       | The key in the existing secret containing the Auth password  | `password`                      |
-| `valkey-ha.primary.enabled`                      | Whether to install the primary instance                      | `true`                          |
-| `valkey-ha.primary.replicaCount`                 | The number of replicas                                       | `1`                             |
-| `valkey-ha.primary.resources`                    | The resources for the primary instance                       |                                 |
-| `valkey-ha.primary.persistence.enabled`          | Whether to install the persistence                           | `true`                          |
-| `valkey-ha.primary.persistence.size`             | The size of the persistent volume                            | `50Gi`                          |
-| `valkey-ha.primary.persistence.storageClass`     | The storage class for the persistent volume                  |                                 |
-| `valkey-ha.replica.enabled`                      | Whether to install the replica instance                      | `true`                          |
-| `valkey-ha.replica.replicaCount`                 | The number of replicas                                       | `3`                             |
-| `valkey-ha.replica.resources`                    | The resources for the replica instance                       |                                 |
-| `valkey-ha.replica.persistence.enabled`          | Whether to install the persistence                           | `true`                          |
-| `valkey-ha.replica.persistence.size`             | The size of the persistent volume                            | `50Gi`                          |
-| `valkey-ha.replica.persistence.storageClass`     | The storage class for the persistent volume                  |                                 |
 | `valkey-single.enabled`                          | Whether to install the Valkey single instance                | `false`                         |
 | `valkey-single.nameOverride`                     | The name override                                            | `valkey-single`                 |
 | `valkey-single.fullnameOverride`                 | The full name override                                       | `valkey-single`                 |
@@ -134,21 +139,21 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.ingestionChannel.deployment.replicas`             | The number of replicas                                           | `1`                                                                         |
 | `flowcore-microservices.deployments.ingestionChannel.metrics.enabled`                 | Whether to install the metrics                                   | `true`                                                                      |
 | `flowcore-microservices.deployments.ingestionChannel.metrics.port`                    | The port                                                         | `3001`                                                                      |
-| `flowcore-microservices.deployments.ingestionChannel.useTransports`                   | ] The transports to use                                          | `""`                                                                        |
+| `flowcore-microservices.deployments.ingestionChannel.useTransports`                   | The transports to use                                            | `nats`                                                                      |
 | `flowcore-microservices.deployments.ingestionChannel.env.REDIS_URL`                   | The Redis URL                                                    | `{}`                                                                        |
-| `flowcore-microservices.deployments.ingestionChannel.env.METRICS_SERVICE_NAME`        | The metrics service name                                         | `{}`                                                                        |
-| `flowcore-microservices.deployments.ingestionChannel.env.DEFAULT_TTL_ON_STORED_EVENT` | The default TTL on stored event in seconds                       | `{}`                                                                        |
+| `flowcore-microservices.deployments.ingestionChannel.env.METRICS_SERVICE_NAME`        | The metrics service name                                         | `ingestion_channel`                                                         |
+| `flowcore-microservices.deployments.ingestionChannel.env.DEFAULT_TTL_ON_STORED_EVENT` | The default TTL on stored event in seconds                       | `259200`                                                                    |
 | `flowcore-microservices.deployments.ingestionChannel.env.NATS_QUEUE`                  | The NATS queue                                                   |                                                                             |
-| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_CONTACT_POINTS`    | The Cassandra contact points                                     | `{}`                                                                        |
-| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_USERNAME`          | The Cassandra username                                           | `{}`                                                                        |
-| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_PASSWORD`          | The Cassandra password                                           | `{}`                                                                        |
-| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_FLOWCORE_KEYSPACE` | The Cassandra Flowcore keyspace                                  | `{}`                                                                        |
-| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_CLIENT_KEYSPACE`   | The Cassandra client keyspace                                    | `{}`                                                                        |
-| `flowcore-microservices.deployments.ingestionChannel.env.LOG_LEVEL`                   | The log level                                                    | `{}`                                                                        |
+| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_CONTACT_POINTS`    | The Cassandra contact points                                     | `flowcore-cassandra`                                                        |
+| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_USERNAME`          | The Cassandra username                                           | `cassandra-username in ingestion-channel-credentials secret`                |
+| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_PASSWORD`          | The Cassandra password                                           | `cassandra-password in ingestion-channel-credentials secret`                |
+| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_FLOWCORE_KEYSPACE` | The Cassandra Flowcore keyspace                                  | `flowcore`                                                                  |
+| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_CLIENT_KEYSPACE`   | The Cassandra client keyspace                                    | `flowcore_platform_data`                                                    |
+| `flowcore-microservices.deployments.ingestionChannel.env.LOG_LEVEL`                   | The log level                                                    | `info`                                                                      |
 | `flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_DEPLOYMENT_TYPE`    | The Flowcore deployment type, supported values: dedicated, cloud | `{}`                                                                        |
-| `flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_TENANT_ID`          | The Flowcore tenant ID                                           | `{}`                                                                        |
-| `flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_TENANT_API_URL`     | The Flowcore tenant API URL                                      | `{}`                                                                        |
-| `flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_API_KEY`            | The Flowcore API key                                             | `{}`                                                                        |
+| `flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_TENANT_ID`          | The Flowcore tenant ID                                           | `tenant-id in tenant-credentials secret`                                    |
+| `flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_TENANT_API_URL`     | The Flowcore tenant API URL                                      | `https://tenant.api.flowcore.io`                                            |
+| `flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_API_KEY`            | The Flowcore API key                                             | `api-key in tenant-credentials secret`                                      |
 
 
 
