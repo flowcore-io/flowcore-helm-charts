@@ -3,7 +3,7 @@ entries:
   flowcore-microservices:
   - apiVersion: v2
     appVersion: 2.4.4
-    created: "2025-01-17T21:20:50.994564Z"
+    created: "2025-01-17T21:36:58.949791Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 436cc9acda3167a4a6f9f1344f9f4802f92f6948f9c0aa9c5619fb48dfb92a2d
@@ -15,7 +15,7 @@ entries:
     version: 2.6.1
   - apiVersion: v2
     appVersion: 2.4.4
-    created: "2025-01-17T21:20:50.994142Z"
+    created: "2025-01-17T21:36:58.949333Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 8c8f211063d12fe8cd1e574b2c1ed7f6c4403f2c7f33059e1a7984f30db8401a
@@ -27,7 +27,7 @@ entries:
     version: 2.6.0
   - apiVersion: v2
     appVersion: 2.4.4
-    created: "2025-01-17T21:20:50.993713Z"
+    created: "2025-01-17T21:36:58.948839Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: cd70715803e4279ed2ee6d1a091836fde352e8daf0c4bc3a124ed1a0bd6c0453
@@ -39,7 +39,7 @@ entries:
     version: 2.5.1
   - apiVersion: v2
     appVersion: 2.4.4
-    created: "2025-01-17T21:20:50.993001Z"
+    created: "2025-01-17T21:36:58.948229Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 4f02068a5192adba74ee6c434fc652cef216103ae794c71acd6ab6e42945f31b
@@ -51,7 +51,7 @@ entries:
     version: 2.5.0
   - apiVersion: v2
     appVersion: 2.4.4
-    created: "2025-01-17T21:20:50.992561Z"
+    created: "2025-01-17T21:36:58.947722Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: a139bf85bfaf7adfabc7b97ab256b9eb8c926c428ce18f9810d337cf028ffab5
@@ -63,7 +63,7 @@ entries:
     version: 2.4.5
   - apiVersion: v2
     appVersion: 2.4.4
-    created: "2025-01-17T21:20:50.991931Z"
+    created: "2025-01-17T21:36:58.947097Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: fe2985967c8f84bf36c836fd5179713996b82d6aa60877f8aba553115ad2b636
@@ -75,7 +75,7 @@ entries:
     version: 2.4.4
   - apiVersion: v2
     appVersion: 2.4.3
-    created: "2025-01-17T21:20:50.991124Z"
+    created: "2025-01-17T21:36:58.946455Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: cc8cff51a44aa1d992953bb922c464c82840d871282321fbb373867232cf1b5a
@@ -87,7 +87,7 @@ entries:
     version: 2.4.3
   - apiVersion: v2
     appVersion: 2.4.2
-    created: "2025-01-17T21:20:50.990491Z"
+    created: "2025-01-17T21:36:58.945498Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: d5503bb7a367efd038f2772484d4e6338c96a604de58b6905ec628da5f9b9e90
@@ -99,7 +99,7 @@ entries:
     version: 2.4.2
   - apiVersion: v2
     appVersion: 2.4.1
-    created: "2025-01-17T21:20:50.989957Z"
+    created: "2025-01-17T21:36:58.945005Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 2c8b6bb19fa9dbe908785c8b66986d0380fb10dca6e88010f505ccc78f378519
@@ -111,7 +111,7 @@ entries:
     version: 2.4.1
   - apiVersion: v2
     appVersion: 2.4.0
-    created: "2025-01-17T21:20:50.989281Z"
+    created: "2025-01-17T21:36:58.944338Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 1c16fd68a6cc75aeb15fe074b0cd02951f2ead54997dd55225cfcd297916f47f
@@ -123,7 +123,7 @@ entries:
     version: 2.4.0
   - apiVersion: v2
     appVersion: 2.3.1
-    created: "2025-01-17T21:20:50.988675Z"
+    created: "2025-01-17T21:36:58.943841Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: eb65d7ea20e144913c72cf793f4a4a26c6edeb4255869e6bc72ecbf3d4515552
@@ -135,7 +135,7 @@ entries:
     version: 2.3.1
   - apiVersion: v2
     appVersion: 2.3.0
-    created: "2025-01-17T21:20:50.988231Z"
+    created: "2025-01-17T21:36:58.943387Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: b461e62074578c192f2c7f1045bdc2dad5b81893fb10432d3996de3cbf7c5a85
@@ -147,7 +147,7 @@ entries:
     version: 2.3.0
   - apiVersion: v2
     appVersion: 2.2.0
-    created: "2025-01-17T21:20:50.987629Z"
+    created: "2025-01-17T21:36:58.942692Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 629055d0e447d858635d0e668d39e1ed4113a1f00778b42cba77406c36c8f39e
@@ -159,7 +159,7 @@ entries:
     version: 2.2.0
   - apiVersion: v2
     appVersion: 2.1.0
-    created: "2025-01-17T21:20:50.987115Z"
+    created: "2025-01-17T21:36:58.942175Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: b2b2e8056d9630d1b1700415cc7d2c2ad0ed83b886f95abf363509ca3bc207fb
@@ -171,7 +171,7 @@ entries:
     version: 2.1.0
   - apiVersion: v2
     appVersion: 2.0.1
-    created: "2025-01-17T21:20:50.986676Z"
+    created: "2025-01-17T21:36:58.941757Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 696f31f824aff2568c806a80031e474541bb1fd50b3245fce3c0af7d24968270
@@ -182,7 +182,7 @@ entries:
     version: 2.0.1
   - apiVersion: v2
     appVersion: 2.0.0
-    created: "2025-01-17T21:20:50.985797Z"
+    created: "2025-01-17T21:36:58.941091Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 759dd8661d23e54d21294a229b5f4b90796b41541ccd29c0f761d1bfe77617b4
@@ -193,7 +193,7 @@ entries:
     version: 2.0.0
   - apiVersion: v2
     appVersion: 1.7.0
-    created: "2025-01-17T21:20:50.985298Z"
+    created: "2025-01-17T21:36:58.940639Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: d080bcbfb0268529330ef23e5ce95f69f3e0cbb4cd1f0e5e32654032d03e5566
@@ -204,7 +204,7 @@ entries:
     version: 1.7.0
   - apiVersion: v2
     appVersion: 1.6.3
-    created: "2025-01-17T21:20:50.984728Z"
+    created: "2025-01-17T21:36:58.940197Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: b60bcbddb00f2845fd4ea2361a593113b0678e7fe49364e3db726d6b335e02d2
@@ -215,7 +215,7 @@ entries:
     version: 1.6.3
   - apiVersion: v2
     appVersion: 1.6.2
-    created: "2025-01-17T21:20:50.984379Z"
+    created: "2025-01-17T21:36:58.939861Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: ee7011c72e1cdfb827d562b3fa53c0a6ab6723d3f9ae06c367e8575da9aea588
@@ -226,7 +226,7 @@ entries:
     version: 1.6.2
   - apiVersion: v2
     appVersion: 1.6.1
-    created: "2025-01-17T21:20:50.98386Z"
+    created: "2025-01-17T21:36:58.939398Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: ea8ba94c6f1d1aeea9cb56b7a63d6638ee9f30ff64253d378ad36078a2437552
@@ -237,7 +237,7 @@ entries:
     version: 1.6.1
   - apiVersion: v2
     appVersion: 1.6.0
-    created: "2025-01-17T21:20:50.983418Z"
+    created: "2025-01-17T21:36:58.936701Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: e00cb7400fa902ffccd8c4e5f87bb48cad135c6437d6321371e356b5489df948
@@ -248,7 +248,7 @@ entries:
     version: 1.6.0
   - apiVersion: v2
     appVersion: 1.5.0
-    created: "2025-01-17T21:20:50.982776Z"
+    created: "2025-01-17T21:36:58.936034Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: fa9526ca2d0e3c94863f17af735ddd15ea65f1a46d88702f47edfdbdc199bcfb
@@ -259,7 +259,7 @@ entries:
     version: 1.5.0
   - apiVersion: v2
     appVersion: 1.4.0
-    created: "2025-01-17T21:20:50.981787Z"
+    created: "2025-01-17T21:36:58.935456Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 9042e3d615415c01e00b4e0e516e74f2cd5154e64a8514c96821a149b5a2ac97
@@ -270,7 +270,7 @@ entries:
     version: 1.4.0
   - apiVersion: v2
     appVersion: 1.3.1
-    created: "2025-01-17T21:20:50.98128Z"
+    created: "2025-01-17T21:36:58.934918Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 15b0d126d52646e1ac72574ac5abb86b14c9cd84322fde748bf75386adad4ae9
@@ -281,7 +281,7 @@ entries:
     version: 1.3.1
   - apiVersion: v2
     appVersion: 1.3.0
-    created: "2025-01-17T21:20:50.980878Z"
+    created: "2025-01-17T21:36:58.934502Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 74bfc2cc60f9b29f6755f2b36a2592ee594046723cd278ac63298a3069293cdd
@@ -292,7 +292,7 @@ entries:
     version: 1.3.0
   - apiVersion: v2
     appVersion: 1.2.0
-    created: "2025-01-17T21:20:50.980464Z"
+    created: "2025-01-17T21:36:58.934192Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 01b4d2151c9abb79d2222278d444f8b00ad12249330c1def9ef00bf2c8839cd6
@@ -303,7 +303,7 @@ entries:
     version: 1.2.0
   - apiVersion: v2
     appVersion: 1.1.2
-    created: "2025-01-17T21:20:50.979952Z"
+    created: "2025-01-17T21:36:58.933579Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 29083eeebf525621ac4f310f97e60dba02bafb3d0f447723b795e8e96f5f3d2d
@@ -314,7 +314,7 @@ entries:
     version: 1.1.2
   - apiVersion: v2
     appVersion: 1.1.1
-    created: "2025-01-17T21:20:50.97958Z"
+    created: "2025-01-17T21:36:58.930387Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 96a6de73ba6c230e525c7b0ea43c23a0c8dd4c3c9397128f6c1bce11308bd292
@@ -325,7 +325,7 @@ entries:
     version: 1.1.1
   - apiVersion: v2
     appVersion: 1.1.0
-    created: "2025-01-17T21:20:50.979195Z"
+    created: "2025-01-17T21:36:58.929965Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: e825d750833b72ab71ea43add8d4e8e584376fc06318460ee2ef0bb2f7ead9f2
@@ -336,7 +336,7 @@ entries:
     version: 1.1.0
   - apiVersion: v2
     appVersion: 1.0.1
-    created: "2025-01-17T21:20:50.978244Z"
+    created: "2025-01-17T21:36:58.929508Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: c451af30726d0a3849528e84299e7f443d131c9723ac74fd77bfa5e07075aef3
@@ -347,7 +347,7 @@ entries:
     version: 1.0.1
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-01-17T21:20:50.977745Z"
+    created: "2025-01-17T21:36:58.928877Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 3d9237932bfbd9d15bfa5cf11763b954969869d7d50101258309ec016933a5f0
@@ -359,7 +359,42 @@ entries:
   flowcore-platform:
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.189546Z"
+    created: "2025-01-17T21:36:59.154426Z"
+    dependencies:
+    - condition: cassandra.enabled
+      name: cassandra
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 12.1.1
+    - alias: valkey-ha
+      condition: valkey-ha.enabled
+      name: valkey
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 2.2.3
+    - alias: valkey-single
+      condition: valkey-single.enabled
+      name: valkey
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 2.2.3
+    - condition: nats.enabled
+      name: nats
+      repository: https://nats-io.github.io/k8s/helm/charts/
+      version: 1.2.5
+    - condition: flowcore-microservices.enabled
+      name: flowcore-microservices
+      repository: https://flowcore-io.github.io/flowcore-helm-charts
+      version: 2.6.1
+    description: A helm chart for installing a dedicated instance of the Flowcore
+      Platform
+    digest: ce47ec64534aec95c058f057cdb8a76d94bc095685c523995649d1343c50ff74
+    icon: https://avatars.githubusercontent.com/u/114778675?s=200&v=4
+    name: flowcore-platform
+    type: application
+    urls:
+    - https://flowcore-io.github.io/flowcore-helm-charts/flowcore-platform-0.5.1.tgz
+    version: 0.5.1
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2025-01-17T21:36:59.146218Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -394,7 +429,7 @@ entries:
     version: 0.5.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.182218Z"
+    created: "2025-01-17T21:36:59.138035Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -429,7 +464,7 @@ entries:
     version: 0.4.8
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.174363Z"
+    created: "2025-01-17T21:36:59.130171Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -464,7 +499,7 @@ entries:
     version: 0.4.7
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.165962Z"
+    created: "2025-01-17T21:36:59.121429Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -499,7 +534,7 @@ entries:
     version: 0.4.6
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.157639Z"
+    created: "2025-01-17T21:36:59.113393Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -534,7 +569,7 @@ entries:
     version: 0.4.5
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.149929Z"
+    created: "2025-01-17T21:36:59.105947Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -569,7 +604,7 @@ entries:
     version: 0.4.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.142212Z"
+    created: "2025-01-17T21:36:59.098008Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -604,7 +639,7 @@ entries:
     version: 0.4.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.134018Z"
+    created: "2025-01-17T21:36:59.088878Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -639,7 +674,7 @@ entries:
     version: 0.4.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.126265Z"
+    created: "2025-01-17T21:36:59.08058Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -674,7 +709,7 @@ entries:
     version: 0.4.1
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.118196Z"
+    created: "2025-01-17T21:36:59.072421Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -709,7 +744,7 @@ entries:
     version: 0.4.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.110239Z"
+    created: "2025-01-17T21:36:59.064623Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -740,7 +775,7 @@ entries:
     version: 0.3.1
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.102263Z"
+    created: "2025-01-17T21:36:59.057218Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -771,7 +806,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.094542Z"
+    created: "2025-01-17T21:36:59.049536Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -788,7 +823,7 @@ entries:
     version: 0.2.9
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.092042Z"
+    created: "2025-01-17T21:36:59.047Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -805,7 +840,7 @@ entries:
     version: 0.2.8
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.08937Z"
+    created: "2025-01-17T21:36:59.043832Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -822,7 +857,7 @@ entries:
     version: 0.2.7
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.086999Z"
+    created: "2025-01-17T21:36:59.041335Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -839,7 +874,7 @@ entries:
     version: 0.2.6
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.08444Z"
+    created: "2025-01-17T21:36:59.038482Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -856,7 +891,7 @@ entries:
     version: 0.2.5
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.081315Z"
+    created: "2025-01-17T21:36:59.035246Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -873,7 +908,7 @@ entries:
     version: 0.2.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.078864Z"
+    created: "2025-01-17T21:36:59.032232Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -890,7 +925,7 @@ entries:
     version: 0.2.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.07629Z"
+    created: "2025-01-17T21:36:59.029408Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -907,7 +942,7 @@ entries:
     version: 0.2.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.073761Z"
+    created: "2025-01-17T21:36:59.026751Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -924,7 +959,7 @@ entries:
     version: 0.2.1
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.071138Z"
+    created: "2025-01-17T21:36:59.02401Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -941,7 +976,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.068326Z"
+    created: "2025-01-17T21:36:59.021043Z"
     dependencies:
     - name: k8ssandra-operator
       repository: https://helm.k8ssandra.io
@@ -957,7 +992,7 @@ entries:
     version: 0.1.5
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.058669Z"
+    created: "2025-01-17T21:36:59.011001Z"
     dependencies:
     - name: k8ssandra-operator
       repository: https://helm.k8ssandra.io
@@ -973,7 +1008,7 @@ entries:
     version: 0.1.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.04787Z"
+    created: "2025-01-17T21:36:58.999884Z"
     dependencies:
     - name: k8ssandra-operator
       repository: https://helm.k8ssandra.io
@@ -989,7 +1024,7 @@ entries:
     version: 0.1.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.036453Z"
+    created: "2025-01-17T21:36:58.990268Z"
     dependencies:
     - name: k8ssandra-operator
       repository: https://helm.k8ssandra.io
@@ -1005,7 +1040,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.025884Z"
+    created: "2025-01-17T21:36:58.979789Z"
     dependencies:
     - name: k8ssandra-operator
       repository: https://helm.k8ssandra.io
@@ -1021,7 +1056,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.015074Z"
+    created: "2025-01-17T21:36:58.969898Z"
     dependencies:
     - name: k8ssandra-operator
       repository: https://helm.k8ssandra.io
@@ -1037,7 +1072,7 @@ entries:
     version: 0.1.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-01-17T21:20:51.005182Z"
+    created: "2025-01-17T21:36:58.959962Z"
     dependencies:
     - name: k8ssandra-operator
       repository: https://helm.k8ssandra.io
@@ -1054,7 +1089,7 @@ entries:
   flowcore-secret-request-controller:
   - apiVersion: v2
     appVersion: 1.0.5
-    created: "2025-01-17T21:20:51.19639Z"
+    created: "2025-01-17T21:36:59.161005Z"
     dependencies:
     - condition: metacontroller-helm.enabled
       name: metacontroller-helm
@@ -1072,7 +1107,7 @@ entries:
     version: 1.0.7
   - apiVersion: v2
     appVersion: 1.0.5
-    created: "2025-01-17T21:20:51.195497Z"
+    created: "2025-01-17T21:36:59.160241Z"
     dependencies:
     - condition: metacontroller-helm.enabled
       name: metacontroller-helm
@@ -1090,7 +1125,7 @@ entries:
     version: 1.0.6
   - apiVersion: v2
     appVersion: 1.0.5
-    created: "2025-01-17T21:20:51.19473Z"
+    created: "2025-01-17T21:36:59.159476Z"
     dependencies:
     - condition: global.flowcore.metacontroller
       name: metacontroller-helm
@@ -1108,7 +1143,7 @@ entries:
     version: 1.0.5
   - apiVersion: v2
     appVersion: 1.0.5
-    created: "2025-01-17T21:20:51.193976Z"
+    created: "2025-01-17T21:36:59.158625Z"
     dependencies:
     - condition: global.flowcore.metacontroller
       name: metacontroller-helm
@@ -1126,7 +1161,7 @@ entries:
     version: 1.0.4
   - apiVersion: v2
     appVersion: 1.0.5
-    created: "2025-01-17T21:20:51.193202Z"
+    created: "2025-01-17T21:36:59.157839Z"
     dependencies:
     - condition: global.flowcore.metacontroller
       name: metacontroller-helm
@@ -1144,7 +1179,7 @@ entries:
     version: 1.0.3
   - apiVersion: v2
     appVersion: 1.0.5
-    created: "2025-01-17T21:20:51.192427Z"
+    created: "2025-01-17T21:36:59.157073Z"
     dependencies:
     - condition: global.flowcore.metacontroller
       name: metacontroller-helm
@@ -1162,7 +1197,7 @@ entries:
     version: 1.0.2
   - apiVersion: v2
     appVersion: 1.0.5
-    created: "2025-01-17T21:20:51.191624Z"
+    created: "2025-01-17T21:36:59.156299Z"
     dependencies:
     - condition: global.flowcore.metacontroller
       name: metacontroller-helm
@@ -1180,7 +1215,7 @@ entries:
     version: 1.0.1
   - apiVersion: v2
     appVersion: 1.0.5
-    created: "2025-01-17T21:20:51.190741Z"
+    created: "2025-01-17T21:36:59.155419Z"
     dependencies:
     - condition: metacontroller-helm.enabled
       name: metacontroller-helm
@@ -1199,7 +1234,7 @@ entries:
   flowcore-secret-requester:
   - apiVersion: v2
     appVersion: 1.1.2
-    created: "2025-01-17T21:20:51.198296Z"
+    created: "2025-01-17T21:36:59.162036Z"
     description: A helm chart template for creating multiple flowcore secret requests
     digest: de610836b4a0835ed2e62a607f8ebe8d4a78944964cd3e31c3d2824cb62e0a90
     icon: https://avatars.githubusercontent.com/u/114778675?s=200&v=4
@@ -1210,7 +1245,7 @@ entries:
     version: 1.1.2
   - apiVersion: v2
     appVersion: 1.1.1
-    created: "2025-01-17T21:20:51.197896Z"
+    created: "2025-01-17T21:36:59.161708Z"
     description: A helm chart template for creating multiple flowcore secret requests
     digest: 2d6475ccdd16b014b9dfa603a6c60623d84618d2faf3d9f51a1de4ab7205a47a
     icon: https://avatars.githubusercontent.com/u/114778675?s=200&v=4
@@ -1221,7 +1256,7 @@ entries:
     version: 1.1.1
   - apiVersion: v2
     appVersion: 1.1.0
-    created: "2025-01-17T21:20:51.197503Z"
+    created: "2025-01-17T21:36:59.161471Z"
     description: A helm chart template for creating multiple flowcore secret requests
     digest: f3d9c2a1ff14cd48eac0e17e2934d09da16f2f166065ff6b804d08bec4eb7544
     name: flowcore-secret-requester
@@ -1229,4 +1264,4 @@ entries:
     urls:
     - https://flowcore-io.github.io/flowcore-helm-charts/flowcore-secret-requester-1.1.0.tgz
     version: 1.1.0
-generated: "2025-01-17T21:20:50.977028Z"
+generated: "2025-01-17T21:36:58.928343Z"

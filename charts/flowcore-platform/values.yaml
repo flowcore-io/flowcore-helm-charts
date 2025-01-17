@@ -305,6 +305,36 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.CASSANDRA_DEFAULT_REPLICATION_FACTOR [object, default: 3] The Cassandra default replication factor
         CASSANDRA_DEFAULT_REPLICATION_FACTOR:
           value: "3"
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_BUCKET_NAME [object, default: flowcore-platform-archive] The archive bucket name
+        ARCHIVE_BUCKET_NAME:
+          value: flowcore-platform-archive
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_REGION [object, default: eu-west-1] The archive region
+        ARCHIVE_REGION:
+          value: "eu-west-1"
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_ACCESS_KEY_ID [object, default: archive-access-key-id in legacy-client-event-source-credentials secret] The archive access key ID
+        ARCHIVE_ACCESS_KEY_ID:
+          valueFrom:
+            secretKeyRef:
+              name: legacy-client-event-source-credentials
+              key: archive-access-key-id
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_SECRET_ACCESS_KEY [object, default: archive-secret-access-key in legacy-client-event-source-credentials secret] The archive secret access key
+        ARCHIVE_SECRET_ACCESS_KEY:
+          valueFrom:
+            secretKeyRef:
+              name: legacy-client-event-source-credentials
+              key: archive-secret-access-key
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.HOT_STORAGE_RETENTION [object, default: 7] The hot storage retention
+        HOT_STORAGE_RETENTION:
+          value: "7"
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.CACHE_USE_REMOTE [object, default: true] Whether to use the remote cache
+        CACHE_USE_REMOTE:
+          value: "true"
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.CACHE_REDIS_URL [object, default: redis-url in legacy-client-event-source-credentials secret] The Redis URL
+        CACHE_REDIS_URL:
+          valueFrom:
+            secretKeyRef:
+              name: legacy-client-event-source-credentials
+              key: redis-url
       service:
         ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.service.enabled [default: true] Whether to install the service
         enabled: true
@@ -352,6 +382,36 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CASSANDRA_DEFAULT_REPLICATION_FACTOR [object, default: 3] The Cassandra default replication factor
         CASSANDRA_DEFAULT_REPLICATION_FACTOR:
           value: "3"
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_BUCKET_NAME [object, default: flowcore-platform-archive] The archive bucket name
+        ARCHIVE_BUCKET_NAME:
+          value: flowcore-platform-archive
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_REGION [object, default: eu-west-1] The archive region
+        ARCHIVE_REGION:
+          value: "eu-west-1"
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_ACCESS_KEY_ID [object, default: archive-access-key-id in legacy-client-event-source-credentials secret] The archive access key ID
+        ARCHIVE_ACCESS_KEY_ID:
+          valueFrom:
+            secretKeyRef:
+              name: legacy-client-event-source-credentials
+              key: archive-access-key-id
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_SECRET_ACCESS_KEY [object, default: archive-secret-access-key in legacy-client-event-source-credentials secret] The archive secret access key
+        ARCHIVE_SECRET_ACCESS_KEY:
+          valueFrom:
+            secretKeyRef:
+              name: legacy-client-event-source-credentials
+              key: archive-secret-access-key
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.HOT_STORAGE_RETENTION [object, default: 7] The hot storage retention
+        HOT_STORAGE_RETENTION:
+          value: "7"
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CACHE_USE_REMOTE [object, default: true] Whether to use the remote cache
+        CACHE_USE_REMOTE:
+          value: "true"
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CACHE_REDIS_URL [object, default: redis-url in legacy-platform-event-source-credentials secret] The Redis URL
+        CACHE_REDIS_URL:
+          valueFrom:
+            secretKeyRef:
+              name: legacy-platform-event-source-credentials
+              key: redis-url
       service:
         ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.service.enabled [default: true] Whether to install the service
         enabled: true
