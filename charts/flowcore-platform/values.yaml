@@ -180,7 +180,7 @@ flowcore-microservices:
   ## @param flowcore-microservices.enabled [default: true] Whether to install the Flowcore Platform Services
   enabled: true
   ## @param flowcore-microservices.imageRepository [default: flowcore-io] The image repository
-  imageRepository: flowcore-io
+  imageRepository: flowcoreio
   ## @param flowcore-microservices.oidcWellKnownUrl [default: https://auth.flowcore.io/realms/flowcore/.well-known/openid-configuration] The OIDC well-known URL
   oidcWellKnownUrl: https://auth.flowcore.io/realms/flowcore/.well-known/openid-configuration
   transport:
