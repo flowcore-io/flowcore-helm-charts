@@ -12,7 +12,7 @@ data:
     ALTER KEYSPACE system_auth 
     WITH REPLICATION = {
         'class': 'NetworkTopologyStrategy',
-        'datacenter1': 3
+        'datacenter1': {{ .Values.cassandra.replicaCount }}
     };
 
     DESC KEYSPACE system_auth;
