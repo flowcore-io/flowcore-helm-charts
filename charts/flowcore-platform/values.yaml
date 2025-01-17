@@ -176,7 +176,7 @@ nats:
           ## @param nats.container.merge.resources.limits.memory [default: 8Gi] The memory limit
           memory: 8Gi
 
-## @section Flowcore Platform Services
+## @section Flowcore Platform Common Configuration
 flowcore-microservices:
   ## @param flowcore-microservices.enabled [default: true] Whether to install the Flowcore Platform Services
   enabled: true
@@ -190,6 +190,7 @@ flowcore-microservices:
         ## @param flowcore-microservices.transport.nats.NATS_SERVERS.value [default: nats://nats:4222] The NATS servers
         value: nats://nats:4222
   deployments:
+    ## @section Flowcore Ingestion Channel
     ingestionChannel:
       ## @param flowcore-microservices.deployments.ingestionChannel.enabled [default: true] Whether to install the Ingestion Channel instance
       enabled: true
@@ -264,3 +265,97 @@ flowcore-microservices:
             secretKeyRef:
               name: tenant-credentials
               key: api-key
+
+    ## @section Flowcore Legacy Client Event Source API
+    legacyClientEventSourceApi:
+      ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.enabled [default: true] Whether to install the legacy client event source API
+      enabled: true
+      deployment:
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.deployment.image [default: source-event-source] The image
+        image: source-event-source
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.deployment.tag [default: 2.10.3] The tag
+        tag: 2.10.3
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.deployment.replicas [default: 1] The number of replicas
+        replicas: 1
+      env:
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.CASSANDRA_CONTACT_POINTS [object, default: flowcore-cassandra] The Cassandra contact points
+        CASSANDRA_CONTACT_POINTS:
+          value: flowcore-cassandra
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.CASSANDRA_KEYSPACE [object, default: flowcore_platform_data] The Cassandra keyspace
+        CASSANDRA_KEYSPACE:
+          value: flowcore_platform_data
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.CASSANDRA_USERNAME [object, default: cassandra-username in legacy-client-event-source-credentials secret] The Cassandra username
+        CASSANDRA_USERNAME:
+          valueFrom:
+            secretKeyRef:
+              name: legacy-client-event-source-credentials
+              key: cassandra-username
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.CASSANDRA_PASSWORD [object, default: cassandra-password in legacy-client-event-source-credentials secret] The Cassandra password
+        CASSANDRA_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: legacy-client-event-source-credentials
+              key: cassandra-password
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.GRPC_URL [object, default: 0.0.0.0:5000] The GRPC URL
+        GRPC_URL:
+          value: 0.0.0.0:5000
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.CASSANDRA_DEFAULT_REPLICATION_STRATEGY [object, default: NetworkTopologyStrategy] The Cassandra default replication strategy
+        CASSANDRA_DEFAULT_REPLICATION_STRATEGY:
+          value: NetworkTopologyStrategy
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.CASSANDRA_DEFAULT_REPLICATION_FACTOR [object, default: 3] The Cassandra default replication factor
+        CASSANDRA_DEFAULT_REPLICATION_FACTOR:
+          value: "3"
+      service:
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.service.enabled [default: true] Whether to install the service
+        enabled: true
+        extraPorts:
+          grpc:
+            ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.service.extraPorts.grpc.port [default: 5000] The port for the GRPC service
+            port: "5000"
+
+    ## @section Flowcore Legacy Platform Event Source API
+    legacyPlatformEventSourceApi:
+      ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.enabled [default: true] Whether to install the legacy platform event source API
+      enabled: true
+      deployment:
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.deployment.image [default: source-event-source] The image
+        image: source-event-source
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.deployment.tag [default: 2.10.3] The tag
+        tag: 2.10.3
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.deployment.replicas [default: 1] The number of replicas
+        replicas: 1
+      env:
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CASSANDRA_CONTACT_POINTS [object, default: flowcore-cassandra] The Cassandra contact points
+        CASSANDRA_CONTACT_POINTS:
+          value: flowcore-cassandra
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CASSANDRA_KEYSPACE [object, default: flowcore] The Cassandra keyspace
+        CASSANDRA_KEYSPACE:
+          value: flowcore
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CASSANDRA_USERNAME [object, default: cassandra-username in legacy-platform-event-source-credentials secret] The Cassandra username
+        CASSANDRA_USERNAME:
+          valueFrom:
+            secretKeyRef:
+              name: legacy-platform-event-source-credentials
+              key: cassandra-username
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CASSANDRA_PASSWORD [object, default: cassandra-password in legacy-platform-event-source-credentials secret] The Cassandra password
+        CASSANDRA_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: legacy-platform-event-source-credentials
+              key: cassandra-password
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.GRPC_URL [object, default: 0.0.0.0:5000] The GRPC URL
+        GRPC_URL:
+          value: 0.0.0.0:5000
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CASSANDRA_DEFAULT_REPLICATION_STRATEGY [object, default: NetworkTopologyStrategy] The Cassandra default replication strategy
+        CASSANDRA_DEFAULT_REPLICATION_STRATEGY:
+          value: NetworkTopologyStrategy
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CASSANDRA_DEFAULT_REPLICATION_FACTOR [object, default: 3] The Cassandra default replication factor
+        CASSANDRA_DEFAULT_REPLICATION_FACTOR:
+          value: "3"
+      service:
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.service.enabled [default: true] Whether to install the service
+        enabled: true
+        extraPorts:
+          grpc:
+            ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.service.extraPorts.grpc.port [default: 5000] The port for the GRPC service
+            port: "5000"

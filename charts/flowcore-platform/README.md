@@ -125,35 +125,76 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `nats.container.merge.resources.limits.cpu`        | The CPU limit                                                                                                | `2`    |
 | `nats.container.merge.resources.limits.memory`     | The memory limit                                                                                             | `8Gi`  |
 
-### Flowcore Platform Services
+### Flowcore Platform Common Configuration
 
-| Name                                                                                  | Description                                                      | Value                                                                       |
-| ------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `flowcore-microservices.enabled`                                                      | Whether to install the Flowcore Platform Services                | `true`                                                                      |
-| `flowcore-microservices.imageRepository`                                              | The image repository                                             | `flowcore-io`                                                               |
-| `flowcore-microservices.oidcWellKnownUrl`                                             | The OIDC well-known URL                                          | `https://auth.flowcore.io/realms/flowcore/.well-known/openid-configuration` |
-| `flowcore-microservices.transport.nats.NATS_SERVERS.value`                            | The NATS servers                                                 | `nats://nats:4222`                                                          |
-| `flowcore-microservices.deployments.ingestionChannel.enabled`                         | Whether to install the Ingestion Channel instance                | `true`                                                                      |
-| `flowcore-microservices.deployments.ingestionChannel.deployment.image`                | The image                                                        | `service-ingestion`                                                         |
-| `flowcore-microservices.deployments.ingestionChannel.deployment.tag`                  | The tag                                                          | `1.1.0`                                                                     |
-| `flowcore-microservices.deployments.ingestionChannel.deployment.replicas`             | The number of replicas                                           | `1`                                                                         |
-| `flowcore-microservices.deployments.ingestionChannel.metrics.enabled`                 | Whether to install the metrics                                   | `true`                                                                      |
-| `flowcore-microservices.deployments.ingestionChannel.metrics.port`                    | The port                                                         | `3001`                                                                      |
-| `flowcore-microservices.deployments.ingestionChannel.useTransports`                   | The transports to use                                            | `nats`                                                                      |
-| `flowcore-microservices.deployments.ingestionChannel.env.REDIS_URL`                   | The Redis URL                                                    | `{}`                                                                        |
-| `flowcore-microservices.deployments.ingestionChannel.env.METRICS_SERVICE_NAME`        | The metrics service name                                         | `ingestion_channel`                                                         |
-| `flowcore-microservices.deployments.ingestionChannel.env.DEFAULT_TTL_ON_STORED_EVENT` | The default TTL on stored event in seconds                       | `259200`                                                                    |
-| `flowcore-microservices.deployments.ingestionChannel.env.NATS_QUEUE`                  | The NATS queue                                                   |                                                                             |
-| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_CONTACT_POINTS`    | The Cassandra contact points                                     | `flowcore-cassandra`                                                        |
-| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_USERNAME`          | The Cassandra username                                           | `cassandra-username in ingestion-channel-credentials secret`                |
-| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_PASSWORD`          | The Cassandra password                                           | `cassandra-password in ingestion-channel-credentials secret`                |
-| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_FLOWCORE_KEYSPACE` | The Cassandra Flowcore keyspace                                  | `flowcore`                                                                  |
-| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_CLIENT_KEYSPACE`   | The Cassandra client keyspace                                    | `flowcore_platform_data`                                                    |
-| `flowcore-microservices.deployments.ingestionChannel.env.LOG_LEVEL`                   | The log level                                                    | `info`                                                                      |
-| `flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_DEPLOYMENT_TYPE`    | The Flowcore deployment type, supported values: dedicated, cloud | `{}`                                                                        |
-| `flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_TENANT_ID`          | The Flowcore tenant ID                                           | `tenant-id in tenant-credentials secret`                                    |
-| `flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_TENANT_API_URL`     | The Flowcore tenant API URL                                      | `https://tenant.api.flowcore.io`                                            |
-| `flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_API_KEY`            | The Flowcore API key                                             | `api-key in tenant-credentials secret`                                      |
+| Name                                                       | Description                                       | Value                                                                       |
+| ---------------------------------------------------------- | ------------------------------------------------- | --------------------------------------------------------------------------- |
+| `flowcore-microservices.enabled`                           | Whether to install the Flowcore Platform Services | `true`                                                                      |
+| `flowcore-microservices.imageRepository`                   | The image repository                              | `flowcore-io`                                                               |
+| `flowcore-microservices.oidcWellKnownUrl`                  | The OIDC well-known URL                           | `https://auth.flowcore.io/realms/flowcore/.well-known/openid-configuration` |
+| `flowcore-microservices.transport.nats.NATS_SERVERS.value` | The NATS servers                                  | `nats://nats:4222`                                                          |
+
+### Flowcore Ingestion Channel
+
+| Name                                                                                  | Description                                                      | Value                                                        |
+| ------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------ |
+| `flowcore-microservices.deployments.ingestionChannel.enabled`                         | Whether to install the Ingestion Channel instance                | `true`                                                       |
+| `flowcore-microservices.deployments.ingestionChannel.deployment.image`                | The image                                                        | `service-ingestion`                                          |
+| `flowcore-microservices.deployments.ingestionChannel.deployment.tag`                  | The tag                                                          | `1.1.0`                                                      |
+| `flowcore-microservices.deployments.ingestionChannel.deployment.replicas`             | The number of replicas                                           | `1`                                                          |
+| `flowcore-microservices.deployments.ingestionChannel.metrics.enabled`                 | Whether to install the metrics                                   | `true`                                                       |
+| `flowcore-microservices.deployments.ingestionChannel.metrics.port`                    | The port                                                         | `3001`                                                       |
+| `flowcore-microservices.deployments.ingestionChannel.useTransports`                   | The transports to use                                            | `nats`                                                       |
+| `flowcore-microservices.deployments.ingestionChannel.env.REDIS_URL`                   | The Redis URL                                                    | `{}`                                                         |
+| `flowcore-microservices.deployments.ingestionChannel.env.METRICS_SERVICE_NAME`        | The metrics service name                                         | `ingestion_channel`                                          |
+| `flowcore-microservices.deployments.ingestionChannel.env.DEFAULT_TTL_ON_STORED_EVENT` | The default TTL on stored event in seconds                       | `259200`                                                     |
+| `flowcore-microservices.deployments.ingestionChannel.env.NATS_QUEUE`                  | The NATS queue                                                   |                                                              |
+| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_CONTACT_POINTS`    | The Cassandra contact points                                     | `flowcore-cassandra`                                         |
+| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_USERNAME`          | The Cassandra username                                           | `cassandra-username in ingestion-channel-credentials secret` |
+| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_PASSWORD`          | The Cassandra password                                           | `cassandra-password in ingestion-channel-credentials secret` |
+| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_FLOWCORE_KEYSPACE` | The Cassandra Flowcore keyspace                                  | `flowcore`                                                   |
+| `flowcore-microservices.deployments.ingestionChannel.env.CASSANDRA_CLIENT_KEYSPACE`   | The Cassandra client keyspace                                    | `flowcore_platform_data`                                     |
+| `flowcore-microservices.deployments.ingestionChannel.env.LOG_LEVEL`                   | The log level                                                    | `info`                                                       |
+| `flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_DEPLOYMENT_TYPE`    | The Flowcore deployment type, supported values: dedicated, cloud | `{}`                                                         |
+| `flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_TENANT_ID`          | The Flowcore tenant ID                                           | `tenant-id in tenant-credentials secret`                     |
+| `flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_TENANT_API_URL`     | The Flowcore tenant API URL                                      | `https://tenant.api.flowcore.io`                             |
+| `flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_API_KEY`            | The Flowcore API key                                             | `api-key in tenant-credentials secret`                       |
+
+### Flowcore Legacy Client Event Source API
+
+| Name                                                                                                       | Description                                           | Value                                                                 |
+| ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | --------------------------------------------------------------------- |
+| `flowcore-microservices.deployments.legacyClientEventSourceApi.enabled`                                    | Whether to install the legacy client event source API | `true`                                                                |
+| `flowcore-microservices.deployments.legacyClientEventSourceApi.deployment.image`                           | The image                                             | `source-event-source`                                                 |
+| `flowcore-microservices.deployments.legacyClientEventSourceApi.deployment.tag`                             | The tag                                               | `2.10.3`                                                              |
+| `flowcore-microservices.deployments.legacyClientEventSourceApi.deployment.replicas`                        | The number of replicas                                | `1`                                                                   |
+| `flowcore-microservices.deployments.legacyClientEventSourceApi.env.CASSANDRA_CONTACT_POINTS`               | The Cassandra contact points                          | `flowcore-cassandra`                                                  |
+| `flowcore-microservices.deployments.legacyClientEventSourceApi.env.CASSANDRA_KEYSPACE`                     | The Cassandra keyspace                                | `flowcore_platform_data`                                              |
+| `flowcore-microservices.deployments.legacyClientEventSourceApi.env.CASSANDRA_USERNAME`                     | The Cassandra username                                | `cassandra-username in legacy-client-event-source-credentials secret` |
+| `flowcore-microservices.deployments.legacyClientEventSourceApi.env.CASSANDRA_PASSWORD`                     | The Cassandra password                                | `cassandra-password in legacy-client-event-source-credentials secret` |
+| `flowcore-microservices.deployments.legacyClientEventSourceApi.env.GRPC_URL`                               | The GRPC URL                                          | `0.0.0.0:5000`                                                        |
+| `flowcore-microservices.deployments.legacyClientEventSourceApi.env.CASSANDRA_DEFAULT_REPLICATION_STRATEGY` | The Cassandra default replication strategy            | `NetworkTopologyStrategy`                                             |
+| `flowcore-microservices.deployments.legacyClientEventSourceApi.env.CASSANDRA_DEFAULT_REPLICATION_FACTOR`   | The Cassandra default replication factor              | `3`                                                                   |
+| `flowcore-microservices.deployments.legacyClientEventSourceApi.service.enabled`                            | Whether to install the service                        | `true`                                                                |
+| `flowcore-microservices.deployments.legacyClientEventSourceApi.service.extraPorts.grpc.port`               | The port for the GRPC service                         | `5000`                                                                |
+
+### Flowcore Legacy Platform Event Source API
+
+| Name                                                                                                         | Description                                             | Value                                                                   |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `flowcore-microservices.deployments.legacyPlatformEventSourceApi.enabled`                                    | Whether to install the legacy platform event source API | `true`                                                                  |
+| `flowcore-microservices.deployments.legacyPlatformEventSourceApi.deployment.image`                           | The image                                               | `source-event-source`                                                   |
+| `flowcore-microservices.deployments.legacyPlatformEventSourceApi.deployment.tag`                             | The tag                                                 | `2.10.3`                                                                |
+| `flowcore-microservices.deployments.legacyPlatformEventSourceApi.deployment.replicas`                        | The number of replicas                                  | `1`                                                                     |
+| `flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CASSANDRA_CONTACT_POINTS`               | The Cassandra contact points                            | `flowcore-cassandra`                                                    |
+| `flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CASSANDRA_KEYSPACE`                     | The Cassandra keyspace                                  | `flowcore`                                                              |
+| `flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CASSANDRA_USERNAME`                     | The Cassandra username                                  | `cassandra-username in legacy-platform-event-source-credentials secret` |
+| `flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CASSANDRA_PASSWORD`                     | The Cassandra password                                  | `cassandra-password in legacy-platform-event-source-credentials secret` |
+| `flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.GRPC_URL`                               | The GRPC URL                                            | `0.0.0.0:5000`                                                          |
+| `flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CASSANDRA_DEFAULT_REPLICATION_STRATEGY` | The Cassandra default replication strategy              | `NetworkTopologyStrategy`                                               |
+| `flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CASSANDRA_DEFAULT_REPLICATION_FACTOR`   | The Cassandra default replication factor                | `3`                                                                     |
+| `flowcore-microservices.deployments.legacyPlatformEventSourceApi.service.enabled`                            | Whether to install the service                          | `true`                                                                  |
+| `flowcore-microservices.deployments.legacyPlatformEventSourceApi.service.extraPorts.grpc.port`               | The port for the GRPC service                           | `5000`                                                                  |
 
 
 
