@@ -323,9 +323,9 @@ flowcore-microservices:
             secretKeyRef:
               name: legacy-client-event-source-credentials
               key: archive-secret-access-key
-        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.HOT_STORAGE_RETENTION [object, default: 7] The hot storage retention
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.HOT_STORAGE_RETENTION [object, default: 3] The hot storage retention
         HOT_STORAGE_RETENTION:
-          value: "7"
+          value: "3"
         ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.CACHE_USE_REMOTE [object, default: true] Whether to use the remote cache
         CACHE_USE_REMOTE:
           value: "true"
@@ -400,9 +400,9 @@ flowcore-microservices:
             secretKeyRef:
               name: legacy-client-event-source-credentials
               key: archive-secret-access-key
-        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.HOT_STORAGE_RETENTION [object, default: 7] The hot storage retention
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.HOT_STORAGE_RETENTION [object, default: 3] The hot storage retention
         HOT_STORAGE_RETENTION:
-          value: "7"
+          value: "3"
         ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CACHE_USE_REMOTE [object, default: true] Whether to use the remote cache
         CACHE_USE_REMOTE:
           value: "true"
