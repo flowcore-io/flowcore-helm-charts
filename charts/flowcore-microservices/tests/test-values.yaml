@@ -61,6 +61,10 @@ deployments:
         secret: some-secret
         mountPath: /etc/secret
         type: secret
+      shared:
+        type: emptyDir
+        mountPath: /etc/something
+        mainMount: "no"
     imagePullSecrets:
       - regcred
     useFlowcoreWebhooks: true
@@ -91,6 +95,8 @@ deployments:
               secretKeyRef:
                 name: some-secret
                 key: some-key
+        volumes:
+          - "shared"
         httpPort: 8080
       sideCarB:
         enabled: true

@@ -92,12 +92,15 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `deployments.<microservice>.sidecars.<name>.env.<variable>.value`           | The value to set for this environment variable, use valueFrom if you want to use a secret [string] |       |
 | `deployments.<microservice>.sidecars.<name>.httpPort`                       | The http port for this sidecar, used for health checks [integer]                                   |       |
 | `deployments.<microservice>.sidecars.<name>.resources`                      | Resource configuration for this sidecar                                                            |       |
+| `deployments.<microservice>.sidecars.<name>.volumes`                        | List of volumes to mount for this sidecar, optional [array] that points to the volumes section     |       |
 | `deployments.<microservice>.volumes`                                        | list of config volumes to deploy                                                                   |       |
 | `deployments.<microservice>.volumes.<name>`                                 | Configuration for a volume                                                                         |       |
 | `deployments.<microservice>.volumes.<name>.config`                          | Config Map to use for this volume                                                                  |       |
 | `deployments.<microservice>.volumes.<name>.secret`                          | Secret to use for this volume                                                                      |       |
 | `deployments.<microservice>.volumes.<name>.mountPath`                       | The mount path to use for this volume                                                              |       |
 | `deployments.<microservice>.volumes.<name>.subPath`                         | The sub path to use for this volume, optional                                                      |       |
+| `deployments.<microservice>.volumes.<name>.mainMount`                       | Whether this volume is mounted to the main container, optional [yes, no] defaults to yes           |       |
+| `deployments.<microservice>.volumes.<name>.type`                            | The type of volume to use [configMap, secret, emptyDir]                                            |       |
 | `deployments.<microservice>.affinity`                                       | Affinity configuration for this microservice                                                       |       |
 | `deployments.<microservice>.livenessProbe`                                  | Liveness probe configuration for this microservice                                                 |       |
 | `deployments.<microservice>.readinessProbe`                                 | Readiness probe configuration for this microservice                                                |       |

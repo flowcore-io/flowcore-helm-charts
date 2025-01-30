@@ -109,11 +109,13 @@ spec:
           {{- if $spec.volumes }}
           volumeMounts:
           {{- range $volumeMountName, $volumeSpec := $spec.volumes }}
+            {{- if ne ($volumeSpec.mainMount | default "yes") "no" }}
             - name: {{ cat $volumeMountName "volume"| kebabcase }}
               mountPath: {{ $volumeSpec.mountPath }}
               {{- if $volumeSpec.subPath }}
               subPath: {{ $volumeSpec.subPath }}
               {{- end }}
+            {{- end }}
           {{- end }}
           {{- end }}
           ports:
@@ -195,6 +197,22 @@ spec:
               value: {{ $sidecarSpec.httpPort | default $sidecarHealthPort | quote }}
             - name: OIDC_WELLKNOWN_URL
               value: {{ $wellKnownUrl }}
+          {{- if $sidecarSpec.volumes }}
+          volumeMounts:
+          {{- range $sidecarVolumeName := $sidecarSpec.volumes }}
+            {{- $vspec := "" }}
+            {{- range $key, $value := $.Values.deployments.testService.volumes }}
+              {{- if eq $key $sidecarVolumeName }}
+                {{- $vspec = $value }}
+              {{- end }}
+            {{- end }}
+            - name: {{ cat $vspec.sidecarVolumeName | kebabcase }}
+              mountPath: {{ $vspec.mountPath }}
+              {{- if $vspec.subPath }}
+              subPath: {{ $vspec.subPath }}
+              {{- end }}
+          {{- end }}
+          {{- end }}
           {{- if $sidecarSpec.resources }}
           resources: {{ $spec.deployment.resources | toYaml | nindent 12 }}
           {{- else }}
@@ -233,13 +251,16 @@ spec:
       volumes:
       {{- range $volumeMountName, $volumeSpec := $spec.volumes }}
         - name: {{ cat $volumeMountName "volume"| kebabcase }}
-          {{- if $volumeSpec.secret }}
+          {{- if eq $volumeSpec.type "secret" }}
           secret:
             secretName: {{ $volumeSpec.secret }}
           {{- end }}
-          {{- if $volumeSpec.configMap }}
+          {{- if eq $volumeSpec.type "configMap" }}
           configMap:
-            name: {{ $volumeSpec.name }}
+            name: {{ $volumeMountName }}
+          {{- end }}
+          {{- if eq $volumeSpec.type "emptyDir" }}
+          emptyDir: {}
           {{- end }}
       {{- end }}
       {{- end }}
