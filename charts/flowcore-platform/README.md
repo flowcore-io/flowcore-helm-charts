@@ -136,6 +136,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `postgresql-ha.postgresql.existingSecret` | The name of the existing secret containing the PostgreSQL credentials | `postgresql-ha` |
 | `postgresql-ha.pgpool`                    | The pgPool configuration                                              | `{}`            |
 | `postgresql-ha.pgpool.existingSecret`     | The name of the existing secret containing the pgPool credentials     | `postgresql-ha` |
+| `postgresql-ha.pgpool.replicaCount`       | The number of replicas                                                | `3`             |
 | `postgresql-ha.persistence.enabled`       | Whether to install the persistence                                    | `true`          |
 | `postgresql-ha.persistence.size`          | The size of the persistent volume                                     | `200Gi`         |
 | `postgresql-ha.persistence.storageClass`  | The storage class for the persistent volume                           |                 |

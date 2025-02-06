@@ -192,6 +192,8 @@ postgresql-ha:
   pgpool:
     ## @param postgresql-ha.pgpool.existingSecret [default: postgresql-ha] The name of the existing secret containing the pgPool credentials
     existingSecret: postgresql-ha
+    ## @param postgresql-ha.pgpool.replicaCount [default: 3] The number of replicas
+    replicaCount: 3
   persistence:
     ## @param postgresql-ha.persistence.enabled [default: true] Whether to install the persistence
     enabled: true
