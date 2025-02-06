@@ -125,6 +125,23 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `nats.container.merge.resources.limits.cpu`        | The CPU limit                                                                                                | `2`    |
 | `nats.container.merge.resources.limits.memory`     | The memory limit                                                                                             | `8Gi`  |
 
+### PostgreSQL HA Configuration
+
+| Name                                      | Description                                                           | Value           |
+| ----------------------------------------- | --------------------------------------------------------------------- | --------------- |
+| `postgresql-ha.enabled`                   | Whether to install the PostgreSQL HA instance                         | `true`          |
+| `postgresql-ha.nameOverride`              | The name override                                                     | `postgresql-ha` |
+| `postgresql-ha.fullnameOverride`          | The full name override                                                | `postgresql-ha` |
+| `postgresql-ha.postgresql`                | The PostgreSQL configuration                                          | `{}`            |
+| `postgresql-ha.postgresql.existingSecret` | The name of the existing secret containing the PostgreSQL credentials | `postgresql-ha` |
+| `postgresql-ha.pgpool`                    | The pgPool configuration                                              | `{}`            |
+| `postgresql-ha.pgpool.existingSecret`     | The name of the existing secret containing the pgPool credentials     | `postgresql-ha` |
+| `postgresql-ha.persistence.enabled`       | Whether to install the persistence                                    | `true`          |
+| `postgresql-ha.persistence.size`          | The size of the persistent volume                                     | `200Gi`         |
+| `postgresql-ha.persistence.storageClass`  | The storage class for the persistent volume                           |                 |
+| `postgresql-ha.metrics.enabled`           | Whether to install the metrics                                        | `true`          |
+| `postgresql-ha.metrics.annotations`       | The annotations for the metrics                                       | `{}`            |
+
 ### Flowcore Platform Common Configuration
 
 | Name                                                       | Description                                       | Value                                                                       |

@@ -176,6 +176,37 @@ nats:
           ## @param nats.container.merge.resources.limits.memory [default: 8Gi] The memory limit
           memory: 8Gi
 
+## @section PostgreSQL HA Configuration
+postgresql-ha:
+  ## @param postgresql-ha.enabled [default: true] Whether to install the PostgreSQL HA instance
+  enabled: true
+  ## @param postgresql-ha.nameOverride [default: postgresql-ha] The name override
+  nameOverride: postgresql-ha
+  ## @param postgresql-ha.fullnameOverride [default: postgresql-ha] The full name override
+  fullnameOverride: postgresql-ha
+  ## @param postgresql-ha.postgresql [object] The PostgreSQL configuration
+  postgresql:
+    ## @param postgresql-ha.postgresql.existingSecret [default: postgresql-ha] The name of the existing secret containing the PostgreSQL credentials
+    existingSecret: postgresql-ha
+  ## @param postgresql-ha.pgpool [object] The pgPool configuration
+  pgpool:
+    ## @param postgresql-ha.pgpool.existingSecret [default: postgresql-ha] The name of the existing secret containing the pgPool credentials
+    existingSecret: postgresql-ha
+  persistence:
+    ## @param postgresql-ha.persistence.enabled [default: true] Whether to install the persistence
+    enabled: true
+    ## @param postgresql-ha.persistence.size [default: 200Gi] The size of the persistent volume
+    size: 200Gi
+    ## @extra postgresql-ha.persistence.storageClass [string] The storage class for the persistent volume
+  metrics:
+    ## @param postgresql-ha.metrics.enabled [default: true] Whether to install the metrics
+    enabled: true
+    ## @param postgresql-ha.metrics.annotations [object] The annotations for the metrics
+    annotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "9187"
+        
+
 ## @section Flowcore Platform Common Configuration
 flowcore-microservices:
   ## @param flowcore-microservices.enabled [default: true] Whether to install the Flowcore Platform Services
