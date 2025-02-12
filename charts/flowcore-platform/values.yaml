@@ -213,7 +213,7 @@ ensureCredentials:
   image:
     ## @param ensureCredentials.image.repository [default: flowcoreio/job-create-dedicated-credentials] The image repository
     repository: flowcoreio/job-create-dedicated-credentials
-    ## @param ensureCredentials.image.tag [default: 1.1.0] The image tag
+    ## @param ensureCredentials.image.tag [default: 1.1.1] The image tag
     tag: 1.1.1
   ## @param ensureCredentials.resources [object] The resources for the ensure credentials job
   resources:
