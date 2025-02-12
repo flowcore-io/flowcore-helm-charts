@@ -143,6 +143,20 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `postgresql-ha.metrics.enabled`           | Whether to install the metrics                                        | `true`          |
 | `postgresql-ha.metrics.annotations`       | The annotations for the metrics                                       | `{}`            |
 
+### Ensure Credentials
+
+| Name                                          | Description                                  | Value                                         |
+| --------------------------------------------- | -------------------------------------------- | --------------------------------------------- |
+| `ensureCredentials.image.repository`          | The image repository                         | `flowcoreio/job-create-dedicated-credentials` |
+| `ensureCredentials.image.tag`                 | The image tag                                | `1.1.0`                                       |
+| `ensureCredentials.resources`                 | The resources for the ensure credentials job | `{}`                                          |
+| `ensureCredentials.resources.limits.cpu`      | The CPU limit                                | `100m`                                        |
+| `ensureCredentials.resources.limits.cpu`      | The CPU limit                                | `100m`                                        |
+| `ensureCredentials.resources.limits.memory`   | The memory limit                             | `128Mi`                                       |
+| `ensureCredentials.resources.requests.cpu`    | The CPU request                              | `50m`                                         |
+| `ensureCredentials.resources.requests.cpu`    | The CPU request                              | `50m`                                         |
+| `ensureCredentials.resources.requests.memory` | The memory request                           | `64Mi`                                        |
+
 ### Flowcore Platform Common Configuration
 
 | Name                                                       | Description                                       | Value                                                                       |

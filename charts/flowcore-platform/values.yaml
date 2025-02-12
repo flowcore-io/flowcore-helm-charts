@@ -207,7 +207,28 @@ postgresql-ha:
     annotations:
       prometheus.io/scrape: "true"
       prometheus.io/port: "9187"
-        
+
+## @section Ensure Credentials
+ensureCredentials:
+  image:
+    ## @param ensureCredentials.image.repository [default: flowcoreio/job-create-dedicated-credentials] The image repository
+    repository: flowcoreio/job-create-dedicated-credentials
+    ## @param ensureCredentials.image.tag [default: 1.1.0] The image tag
+    tag: 1.1.0
+  ## @param ensureCredentials.resources [object] The resources for the ensure credentials job
+  resources:
+    ## @param ensureCredentials.resources.limits.cpu [default: 100m] The CPU limit
+    limits:
+      ## @param ensureCredentials.resources.limits.cpu [default: 100m] The CPU limit
+      cpu: 100m
+      ## @param ensureCredentials.resources.limits.memory [default: 128Mi] The memory limit
+      memory: 128Mi
+    ## @param ensureCredentials.resources.requests.cpu [default: 50m] The CPU request
+    requests:
+      ## @param ensureCredentials.resources.requests.cpu [default: 50m] The CPU request
+      cpu: 50m
+      ## @param ensureCredentials.resources.requests.memory [default: 64Mi] The memory request
+      memory: 64Mi
 
 ## @section Flowcore Platform Common Configuration
 flowcore-microservices:
