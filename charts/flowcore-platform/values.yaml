@@ -268,8 +268,8 @@ flowcore-microservices:
         REDIS_URL:
           valueFrom:
             secretKeyRef:
-              name: ingestion-channel-credentials
-              key: redis-url
+              name: valkey-ha-credentials-url
+              key: redis-sentinel-url
         ## @param flowcore-microservices.deployments.ingestionChannel.env.METRICS_SERVICE_NAME [object, default: ingestion_channel] The metrics service name
         METRICS_SERVICE_NAME:
           value: ingestion_channel
@@ -387,7 +387,7 @@ flowcore-microservices:
         CACHE_REDIS_URL:
           valueFrom:
             secretKeyRef:
-              name: legacy-client-event-source-credentials
+              name: valkey-single-credentials-url
               key: redis-url
       service:
         ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.service.enabled [default: true] Whether to install the service
@@ -464,7 +464,7 @@ flowcore-microservices:
         CACHE_REDIS_URL:
           valueFrom:
             secretKeyRef:
-              name: legacy-platform-event-source-credentials
+              name: valkey-single-credentials-url
               key: redis-url
       service:
         ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.service.enabled [default: true] Whether to install the service

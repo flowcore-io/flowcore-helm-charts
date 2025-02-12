@@ -60,3 +60,27 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Generate Redis HA Sentinel URL (read-write)
+*/}}
+{{- define "flowcore-platform.redisHaSentinelUrl" -}}
+{{- $redisPassword := (lookup "v1" "Secret" .Release.Namespace (index .Values "valkey-ha").auth.existingSecret).data.password | b64dec -}}
+{{- printf "redis+sentinel://:%s@%s-valkey-ha:26379/%s" $redisPassword .Release.Name (index .Values "valkey-ha").sentinel.primarySet -}}
+{{- end -}}
+
+{{/*
+Generate Redis HA URL (read-only)
+*/}}
+{{- define "flowcore-platform.redisHaUrl" -}}
+{{- $redisPassword := (lookup "v1" "Secret" .Release.Namespace (index .Values "valkey-ha").auth.existingSecret).data.password | b64dec -}}
+{{- printf "redis://:%s@%s-valkey-ha:6379" $redisPassword .Release.Name -}}
+{{- end -}}
+
+{{/*
+Generate Redis Single URL
+*/}}
+{{- define "flowcore-platform.redisSingleUrl" -}}
+{{- $redisPassword := (lookup "v1" "Secret" .Release.Namespace (index .Values "valkey-single").auth.existingSecret).data.password | b64dec -}}
+{{- printf "redis://:%s@%s-valkey-single:6379" $redisPassword .Release.Name -}}
+{{- end -}}
