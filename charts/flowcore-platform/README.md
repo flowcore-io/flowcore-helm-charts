@@ -148,7 +148,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | Name                                          | Description                                  | Value                                         |
 | --------------------------------------------- | -------------------------------------------- | --------------------------------------------- |
 | `ensureCredentials.image.repository`          | The image repository                         | `flowcoreio/job-create-dedicated-credentials` |
-| `ensureCredentials.image.tag`                 | The image tag                                | `1.1.2`                                       |
+| `ensureCredentials.image.tag`                 | The image tag                                | `1.2.0`                                       |
 | `ensureCredentials.resources`                 | The resources for the ensure credentials job | `{}`                                          |
 | `ensureCredentials.resources.limits.cpu`      | The CPU limit                                | `100m`                                        |
 | `ensureCredentials.resources.limits.cpu`      | The CPU limit                                | `100m`                                        |
