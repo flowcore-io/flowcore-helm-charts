@@ -253,8 +253,8 @@ flowcore-microservices:
         image: service-ingestion
         ## @param flowcore-microservices.deployments.ingestionChannel.deployment.tag [default: 1.1.0] The tag
         tag: 1.2.0
-        ## @param flowcore-microservices.deployments.ingestionChannel.deployment.replicas [default: 1] The number of replicas
-        replicas: 1
+        ## @param flowcore-microservices.deployments.ingestionChannel.deployment.replicas [default: 2] The number of replicas
+        replicas: 2
       metrics:
         ## @param flowcore-microservices.deployments.ingestionChannel.metrics.enabled [default: true] Whether to install the metrics
         enabled: true
@@ -329,8 +329,8 @@ flowcore-microservices:
         image: source-event-source
         ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.deployment.tag [default: 2.10.3] The tag
         tag: 2.10.3
-        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.deployment.replicas [default: 1] The number of replicas
-        replicas: 1
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.deployment.replicas [default: 2] The number of replicas
+        replicas: 2
       env:
         ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.CASSANDRA_CONTACT_POINTS [object, default: flowcore-cassandra] The Cassandra contact points
         CASSANDRA_CONTACT_POINTS:
@@ -406,8 +406,8 @@ flowcore-microservices:
         image: source-event-source
         ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.deployment.tag [default: 2.10.3] The tag
         tag: 2.10.3
-        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.deployment.replicas [default: 1] The number of replicas
-        replicas: 1
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.deployment.replicas [default: 2] The number of replicas
+        replicas: 2
       env:
         ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CASSANDRA_CONTACT_POINTS [object, default: flowcore-cassandra] The Cassandra contact points
         CASSANDRA_CONTACT_POINTS:
