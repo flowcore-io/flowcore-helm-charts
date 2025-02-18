@@ -477,7 +477,7 @@ flowcore-microservices:
     ## @section Flowcore Event Source API
     eventSourceApi:
       ## @param flowcore-microservices.deployments.eventSourceApi.enabled [default: true] Whether to install the event source API
-      enabled: false
+      enabled: true
       deployment:
         ## @param flowcore-microservices.deployments.eventSourceApi.deployment.image [default: source-event-source] The image
         image: service-event-source-api
@@ -586,10 +586,10 @@ flowcore-microservices:
           nginx.ingress.kubernetes.io/server-snippet: |
             gzip on;
             gzip_comp_level 5;
-        ## @param flowcore-microservices.deployments.eventSourceApi.ingress.route [object] The ingress route
+        ## @param flowcore-microservices.deployments.eventSourceApi.ingress.route [array] The ingress route
         route:
-          ## @param flowcore-microservices.deployments.eventSourceApi.ingress.route.hosts [object, default: example.com] The ingress hosts
-          hosts:
+          ## @param flowcore-microservices.deployments.eventSourceApi.ingress.route.hosts [array, default: example.com] The ingress hosts
+          - hosts:
             - example.com
-          ## @param flowcore-microservices.deployments.eventSourceApi.ingress.route.tlsSecret [object, default: example-tls] The ingress TLS secret
-          tlsSecret: example-tls
+            ## @param flowcore-microservices.deployments.eventSourceApi.ingress.route.tlsSecret [object, default: example-tls] The ingress TLS secret
+            tlsSecret: example-tls
