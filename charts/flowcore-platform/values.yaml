@@ -213,8 +213,8 @@ ensureCredentials:
   image:
     ## @param ensureCredentials.image.repository [default: flowcoreio/job-create-dedicated-credentials] The image repository
     repository: flowcoreio/job-create-dedicated-credentials
-    ## @param ensureCredentials.image.tag [default: 1.3.0] The image tag
-    tag: 1.3.0
+    ## @param ensureCredentials.image.tag [default: 1.5.0] The image tag
+    tag: 1.5.0
   ## @param ensureCredentials.resources [object] The resources for the ensure credentials job
   resources:
     ## @param ensureCredentials.resources.limits.cpu [default: 100m] The CPU limit
@@ -268,7 +268,7 @@ flowcore-microservices:
         REDIS_URL:
           valueFrom:
             secretKeyRef:
-              name: valkey-ha-credentials-url
+              name: ingestion-channel-credentials
               key: redis-sentinel-url
         ## @param flowcore-microservices.deployments.ingestionChannel.env.METRICS_SERVICE_NAME [object, default: ingestion_channel] The metrics service name
         METRICS_SERVICE_NAME:
@@ -365,17 +365,17 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_REGION [object, default: eu-west-1] The archive region
         ARCHIVE_REGION:
           value: "eu-west-1"
-        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_ACCESS_KEY_ID [object, default: archive-access-key-id in legacy-client-event-source-credentials secret] The archive access key ID
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_ACCESS_KEY_ID [object, default: archive-access-key-id in aws-credentials secret] The archive access key ID
         ARCHIVE_ACCESS_KEY_ID:
           valueFrom:
             secretKeyRef:
-              name: legacy-client-event-source-credentials
+              name: aws-credentials
               key: archive-access-key-id
-        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_SECRET_ACCESS_KEY [object, default: archive-secret-access-key in legacy-client-event-source-credentials secret] The archive secret access key
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_SECRET_ACCESS_KEY [object, default: archive-secret-access-key in aws-credentials secret] The archive secret access key
         ARCHIVE_SECRET_ACCESS_KEY:
           valueFrom:
             secretKeyRef:
-              name: legacy-client-event-source-credentials
+              name: aws-credentials
               key: archive-secret-access-key
         ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.HOT_STORAGE_RETENTION [object, default: 3] The hot storage retention
         HOT_STORAGE_RETENTION:
@@ -387,7 +387,7 @@ flowcore-microservices:
         CACHE_REDIS_URL:
           valueFrom:
             secretKeyRef:
-              name: valkey-single-credentials-url
+              name: legacy-client-event-source-credentials
               key: redis-url
       service:
         ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.service.enabled [default: true] Whether to install the service
@@ -442,17 +442,17 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_REGION [object, default: eu-west-1] The archive region
         ARCHIVE_REGION:
           value: "eu-west-1"
-        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_ACCESS_KEY_ID [object, default: archive-access-key-id in legacy-client-event-source-credentials secret] The archive access key ID
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_ACCESS_KEY_ID [object, default: archive-access-key-id in aws-credentials secret] The archive access key ID
         ARCHIVE_ACCESS_KEY_ID:
           valueFrom:
             secretKeyRef:
-              name: legacy-client-event-source-credentials
+              name: aws-credentials
               key: archive-access-key-id
-        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_SECRET_ACCESS_KEY [object, default: archive-secret-access-key in legacy-client-event-source-credentials secret] The archive secret access key
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_SECRET_ACCESS_KEY [object, default: archive-secret-access-key in aws-credentials secret] The archive secret access key
         ARCHIVE_SECRET_ACCESS_KEY:
           valueFrom:
             secretKeyRef:
-              name: legacy-client-event-source-credentials
+              name: aws-credentials
               key: archive-secret-access-key
         ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.HOT_STORAGE_RETENTION [object, default: 3] The hot storage retention
         HOT_STORAGE_RETENTION:
@@ -464,7 +464,7 @@ flowcore-microservices:
         CACHE_REDIS_URL:
           valueFrom:
             secretKeyRef:
-              name: valkey-single-credentials-url
+              name: legacy-platform-event-source-credentials
               key: redis-url
       service:
         ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.service.enabled [default: true] Whether to install the service
@@ -482,7 +482,7 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.eventSourceApi.deployment.image [default: source-event-source] The image
         image: service-event-source-api
         ## @param flowcore-microservices.deployments.eventSourceApi.deployment.tag [default: 1.17.3] The tag
-        tag: 1.17.3
+        tag: 1.17.4
         ## @param flowcore-microservices.deployments.eventSourceApi.deployment.replicas [default: 2] The number of replicas
         replicas: 2
       ## @param flowcore-microservices.deployments.eventSourceApi.service [object] The service
@@ -508,33 +508,18 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.eventSourceApi.env.SERVICE_PORT [object, default: 3000] The service port
         SERVICE_PORT:
           value: "3000"
-        ## @param flowcore-microservices.deployments.eventSourceApi.env.POSTGRES_CONNECTION_STRING [object, default: postgres-connection-string in service-event-source-api-credentials secret] The PostgreSQL connection string
+        ## @param flowcore-microservices.deployments.eventSourceApi.env.POSTGRES_CONNECTION_STRING [object, default: postgres-connection-string in event-source-api-user-credentials secret] The PostgreSQL connection string
         POSTGRES_CONNECTION_STRING:
           valueFrom:
             secretKeyRef:
-              name: service-event-source-api-credentials
+              name: event-source-api-credentials
               key: postgres-connection-string
         ## @param flowcore-microservices.deployments.eventSourceApi.env.TRANSFORMER_SECRET [object, default: transformer-secret in service-event-source-api-credentials secret] The transformer secret
         TRANSFORMER_SECRET:
           valueFrom:
             secretKeyRef:
-              name: service-event-source-api-credentials
+              name: event-source-api-credentials
               key: transformer-secret
-        ## @param flowcore-microservices.deployments.eventSourceApi.env.FLOWCORE_API_KEY [object, default: flowcore-api-key in service-event-source-api-credentials secret] The Flowcore API key
-        FLOWCORE_API_KEY:
-          valueFrom:
-            secretKeyRef:
-              name: service-event-source-api-credentials
-              key: flowcore-api-key
-        ## @param flowcore-microservices.deployments.eventSourceApi.env.FLOWCORE_TENANT [object, default: flowcore in service-event-source-api-credentials secret] The Flowcore tenant
-        FLOWCORE_TENANT:
-          value: flowcore
-        ## @param flowcore-microservices.deployments.eventSourceApi.env.FLOWCORE_DATA_CORE [object, default: ecc024c5-3adf-42a3-aa55-fd3620673192 in service-event-source-api-credentials secret] The Flowcore data core
-        FLOWCORE_DATA_CORE:
-          value: ecc024c5-3adf-42a3-aa55-fd3620673192
-        ## @param flowcore-microservices.deployments.eventSourceApi.env.FLOWCORE_WEBHOOK_BASE_URL [object, default: https://flowcore.webhook.flowcore.io] The Flowcore webhook base URL
-        FLOWCORE_WEBHOOK_BASE_URL:
-          value: https://flowcore.webhook.flowcore.io
         ## @param flowcore-microservices.deployments.eventSourceApi.env.CASSANDRA_DATA_KEYSPACE [object, default: flowcore_platform_data] The Cassandra data keyspace
         CASSANDRA_DATA_KEYSPACE:
           value: flowcore_platform_data
@@ -543,25 +528,25 @@ flowcore-microservices:
           value: flowcore
         ## @param flowcore-microservices.deployments.eventSourceApi.env.CASSANDRA_CONTACT_POINTS [object, default: production-cluster-datacenter1-service.datastores.svc.cluster.local in service-event-source-api-credentials secret] The Cassandra contact points
         CASSANDRA_CONTACT_POINTS:
-          value: production-cluster-datacenter1-service.datastores.svc.cluster.local
+          value: flowcore-cassandra.flowcore.svc.cluster.local
         ## @param flowcore-microservices.deployments.eventSourceApi.env.CASSANDRA_USERNAME [object, default: cassandra-username in service-event-source-api-credentials secret] The Cassandra username
         CASSANDRA_USERNAME:
           valueFrom:
             secretKeyRef:
-              name: service-event-source-api-credentials
+              name: event-source-api-credentials
               key: cassandra-username
         ## @param flowcore-microservices.deployments.eventSourceApi.env.CASSANDRA_PASSWORD [object, default: cassandra-password in service-event-source-api-credentials secret] The Cassandra password
         CASSANDRA_PASSWORD:
           valueFrom:
             secretKeyRef:
-              name: service-event-source-api-credentials
+              name: event-source-api-credentials
               key: cassandra-password
         ## @param flowcore-microservices.deployments.eventSourceApi.env.REDIS_URL [object, default: redis-url in service-event-source-api-credentials secret] The Redis URL
         REDIS_URL:
           valueFrom:
             secretKeyRef:
-              name: service-event-source-api-credentials
-              key: redis-url
+              name: event-source-api-credentials
+              key: redis-sentinel-rw
         ## @param flowcore-microservices.deployments.eventSourceApi.env.REDIS_KEY_PATTERN [object, default: event-source-api:event-cache] The Redis key pattern
         REDIS_KEY_PATTERN:
           value: event-source-api:event-cache
@@ -570,34 +555,16 @@ flowcore-microservices:
           value: https://auth.flowcore.io/realms/flowcore/protocol/openid-connect/certs
         ## @param flowcore-microservices.deployments.eventSourceApi.env.API_KEY_URL [object, default: http://organization-api-key-api.flowcore-security.svc.cluster.local:3000] The API key URL
         API_KEY_URL:
-          value: http://organization-api-key-api.flowcore-security.svc.cluster.local:3000
+          value: https://security.api.flowcore.io/
         ## @param flowcore-microservices.deployments.eventSourceApi.env.IAM_API_URL [object, default: http://service-iam-api.flowcore-public:3000] The IAM API URL
         IAM_API_URL:
           value: http://service-iam-api.flowcore-public:3000
-        ## @param flowcore-microservices.deployments.eventSourceApi.env.IAM_REDIS_URL [object, default: iam-redis-url in service-event-source-api-credentials secret] The IAM Redis URL
-        IAM_REDIS_URL:
-          valueFrom:
-            secretKeyRef:
-              name: service-event-source-api-credentials
-              key: iam-redis-url
         ## @param flowcore-microservices.deployments.eventSourceApi.env.COLD_STORAGE_API_URL [object, default: http://cold-storage-api.flowcore-source:3000] The cold storage API URL
         COLD_STORAGE_API_URL:
           value: http://cold-storage-api.flowcore-source:3000
         ## @param flowcore-microservices.deployments.eventSourceApi.env.HOT_STORAGE_RETENTION_HOURS [object, default: 72] The hot storage retention hours
         HOT_STORAGE_RETENTION_HOURS:
           value: "72"
-        ## @param flowcore-microservices.deployments.eventSourceApi.env.COLD_STORAGE_BUCKET_NAME [object, default: flowcore-platform-cold-storage] The cold storage bucket name
-        COLD_STORAGE_BUCKET_NAME:
-          value: flowcore-platform-cold-storage
-        ## @param flowcore-microservices.deployments.eventSourceApi.env.COLD_STORAGE_REGION [object, default: eu-west-1] The cold storage region
-        COLD_STORAGE_REGION:
-          value: "eu-west-1"
-        ## @param flowcore-microservices.deployments.eventSourceApi.env.COLD_STORAGE_ACCESS_KEY_ID [object, default: cold-storage-access-key-id in service-event-source-api-credentials secret] The cold storage access key ID
-        COLD_STORAGE_ACCESS_KEY_ID:
-          valueFrom:
-            secretKeyRef:
-              name: service-event-source-api-credentials
-              key: cold-storage-access-key-id
       ## @param flowcore-microservices.deployments.eventSourceApi.affinity [object] The affinity
       affinity:
         nodeAffinity:
@@ -621,6 +588,8 @@ flowcore-microservices:
             gzip_comp_level 5;
         ## @param flowcore-microservices.deployments.eventSourceApi.ingress.route [object] The ingress route
         route:
-          - hosts:
-              - event-source.api.flowcore.io
-            tlsSecret: flowcore-io-api-tls
+          ## @param flowcore-microservices.deployments.eventSourceApi.ingress.route.hosts [object, default: example.com] The ingress hosts
+          hosts:
+            - example.com
+          ## @param flowcore-microservices.deployments.eventSourceApi.ingress.route.tlsSecret [object, default: example-tls] The ingress TLS secret
+          tlsSecret: example-tls
