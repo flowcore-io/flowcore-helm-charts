@@ -269,7 +269,7 @@ flowcore-microservices:
           valueFrom:
             secretKeyRef:
               name: ingestion-channel-credentials
-              key: redis-sentinel-url
+              key: redis-sentinel-rw
         ## @param flowcore-microservices.deployments.ingestionChannel.env.METRICS_SERVICE_NAME [object, default: ingestion_channel] The metrics service name
         METRICS_SERVICE_NAME:
           value: ingestion_channel
