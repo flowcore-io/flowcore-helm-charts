@@ -477,7 +477,7 @@ flowcore-microservices:
     ## @section Flowcore Event Source API
     eventSourceApi:
       ## @param flowcore-microservices.deployments.eventSourceApi.enabled [default: true] Whether to install the event source API
-      enabled: true
+      enabled: false
       deployment:
         ## @param flowcore-microservices.deployments.eventSourceApi.deployment.image [default: source-event-source] The image
         image: service-event-source-api
