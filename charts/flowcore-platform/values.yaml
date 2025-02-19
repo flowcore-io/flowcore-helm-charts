@@ -176,8 +176,15 @@ nats:
           ## @param nats.container.merge.resources.limits.memory [default: 8Gi] The memory limit
           memory: 8Gi
 
+## @section PostgreSQL Operator Configuration
+postgresql-operator:
+  ## @param postgresql-operator.enabled [default: true] Whether to install the PostgreSQL operator
+  enabled: true
+  ## @param postgresql-operator.fullnameOverride [default: postgresql-operator] The full name override
+  fullnameOverride: cnpg-operator
+
 ## @section PostgreSQL HA Configuration
-postgresql-ha:
+postgresql-ha:  
   ## @param postgresql-ha.enabled [default: true] Whether to install the PostgreSQL HA instance
   enabled: true
   ## @param postgresql-ha.nameOverride [default: postgresql-ha] The name override
@@ -210,6 +217,9 @@ postgresql-ha:
 
 ## @section Ensure Credentials
 ensureCredentials:
+  ## @param ensureCredentials.enabled [default: true] Whether to install the ensure credentials job
+  enabled: false
+  ## @param ensureCredentials.image [object] The image
   image:
     ## @param ensureCredentials.image.repository [default: flowcoreio/job-create-dedicated-credentials] The image repository
     repository: flowcoreio/job-create-dedicated-credentials
@@ -590,6 +600,6 @@ flowcore-microservices:
         route:
           ## @param flowcore-microservices.deployments.eventSourceApi.ingress.route.hosts [array, default: example.com] The ingress hosts
           - hosts:
-            - example.com
+              - example.com
             ## @param flowcore-microservices.deployments.eventSourceApi.ingress.route.tlsSecret [object, default: example-tls] The ingress TLS secret
             tlsSecret: example-tls

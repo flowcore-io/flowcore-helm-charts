@@ -125,6 +125,13 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `nats.container.merge.resources.limits.cpu`        | The CPU limit                                                                                                | `2`    |
 | `nats.container.merge.resources.limits.memory`     | The memory limit                                                                                             | `8Gi`  |
 
+### PostgreSQL Operator Configuration
+
+| Name                                   | Description                                | Value                 |
+| -------------------------------------- | ------------------------------------------ | --------------------- |
+| `postgresql-operator.enabled`          | Whether to install the PostgreSQL operator | `true`                |
+| `postgresql-operator.fullnameOverride` | The full name override                     | `postgresql-operator` |
+
 ### PostgreSQL HA Configuration
 
 | Name                                      | Description                                                           | Value           |
@@ -145,17 +152,19 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 
 ### Ensure Credentials
 
-| Name                                          | Description                                  | Value                                         |
-| --------------------------------------------- | -------------------------------------------- | --------------------------------------------- |
-| `ensureCredentials.image.repository`          | The image repository                         | `flowcoreio/job-create-dedicated-credentials` |
-| `ensureCredentials.image.tag`                 | The image tag                                | `1.5.0`                                       |
-| `ensureCredentials.resources`                 | The resources for the ensure credentials job | `{}`                                          |
-| `ensureCredentials.resources.limits.cpu`      | The CPU limit                                | `100m`                                        |
-| `ensureCredentials.resources.limits.cpu`      | The CPU limit                                | `100m`                                        |
-| `ensureCredentials.resources.limits.memory`   | The memory limit                             | `128Mi`                                       |
-| `ensureCredentials.resources.requests.cpu`    | The CPU request                              | `50m`                                         |
-| `ensureCredentials.resources.requests.cpu`    | The CPU request                              | `50m`                                         |
-| `ensureCredentials.resources.requests.memory` | The memory request                           | `64Mi`                                        |
+| Name                                          | Description                                   | Value                                         |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| `ensureCredentials.enabled`                   | Whether to install the ensure credentials job | `true`                                        |
+| `ensureCredentials.image`                     | The image                                     | `{}`                                          |
+| `ensureCredentials.image.repository`          | The image repository                          | `flowcoreio/job-create-dedicated-credentials` |
+| `ensureCredentials.image.tag`                 | The image tag                                 | `1.5.0`                                       |
+| `ensureCredentials.resources`                 | The resources for the ensure credentials job  | `{}`                                          |
+| `ensureCredentials.resources.limits.cpu`      | The CPU limit                                 | `100m`                                        |
+| `ensureCredentials.resources.limits.cpu`      | The CPU limit                                 | `100m`                                        |
+| `ensureCredentials.resources.limits.memory`   | The memory limit                              | `128Mi`                                       |
+| `ensureCredentials.resources.requests.cpu`    | The CPU request                               | `50m`                                         |
+| `ensureCredentials.resources.requests.cpu`    | The CPU request                               | `50m`                                         |
+| `ensureCredentials.resources.requests.memory` | The memory request                            | `64Mi`                                        |
 
 ### Flowcore Platform Common Configuration
 
