@@ -206,7 +206,7 @@ postgresql:
 ## @section Ensure Credentials
 ensureCredentials:
   ## @param ensureCredentials.enabled [default: true] Whether to install the ensure credentials job
-  enabled: false
+  enabled: true
   ## @param ensureCredentials.image [object] The image
   image:
     ## @param ensureCredentials.image.repository [default: flowcoreio/job-create-dedicated-credentials] The image repository
