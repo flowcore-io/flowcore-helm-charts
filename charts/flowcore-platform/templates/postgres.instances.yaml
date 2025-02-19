@@ -1,0 +1,51 @@
+{{ $spec := index .Values "postgresql" }}
+{{- if $spec.enabled }}
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: {{ cat "postgres" | kebabcase }}
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9187"
+spec:
+  enableSuperuserAccess: true
+  superuserSecret: 
+    name: {{ $spec.existingSecret }}
+  instances: {{ $spec.replicas }}
+  storage:
+    size: {{ $spec.persistence.size }}
+    {{- if $spec.persistence.storageClass }}
+    storageClass: {{ $spec.persistence.storageClass }}
+    {{- end }}
+  {{- if $spec.tolerations }}
+  affinity:
+    tolerations:
+      {{- $spec.tolerations | toYaml | nindent 6 }}
+  {{- end }}
+  {{- if $spec.resources }}
+  resources:
+    {{- $spec.resources | toYaml | nindent 4 }}
+  {{- end }}
+  {{- if $spec.env }}
+  env:
+    {{- $spec.env | toYaml | nindent 4 }}
+  {{- end }}
+  {{- if $spec.config }}
+  postgresql:
+    {{- $spec.config | toYaml | nindent 4 }}
+  {{- end }}
+  {{- if $spec.bootstrap }}
+  bootstrap:
+    {{- $spec.bootstrap | toYaml | nindent 4 }}
+  {{- end }}
+  {{- if $spec.metadata }}
+  inheritedMetadata:
+    {{- $spec.metadata | toYaml | nindent 4 }}
+  {{- end }}
+  {{- if $spec.serverAltDNSNames }}
+  certificates:
+    serverAltDNSNames:
+      {{- $spec.serverAltDNSNames | toYaml | nindent 6 }}
+  {{- end }}
+{{- end }}

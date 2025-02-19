@@ -183,37 +183,25 @@ postgresql-operator:
   ## @param postgresql-operator.fullnameOverride [default: postgresql-operator] The full name override
   fullnameOverride: cnpg-operator
 
-## @section PostgreSQL HA Configuration
-postgresql-ha:  
-  ## @param postgresql-ha.enabled [default: true] Whether to install the PostgreSQL HA instance
+## @section PostgreSQL Configuration
+postgresql:  
+  ## @param postgresql.enabled [default: true] Whether to install the PostgreSQL instance
   enabled: true
-  ## @param postgresql-ha.nameOverride [default: postgresql-ha] The name override
-  nameOverride: postgresql-ha
-  ## @param postgresql-ha.fullnameOverride [default: postgresql-ha] The full name override
-  fullnameOverride: postgresql-ha
-  ## @param postgresql-ha.postgresql [object] The PostgreSQL configuration
-  postgresql:
-    ## @param postgresql-ha.postgresql.existingSecret [default: postgresql-ha] The name of the existing secret containing the PostgreSQL credentials
-    existingSecret: postgresql-ha
-  ## @param postgresql-ha.pgpool [object] The pgPool configuration
-  pgpool:
-    ## @param postgresql-ha.pgpool.existingSecret [default: postgresql-ha] The name of the existing secret containing the pgPool credentials
-    existingSecret: postgresql-ha
-    ## @param postgresql-ha.pgpool.replicaCount [default: 3] The number of replicas
-    replicaCount: 3
+  ## @param postgresql.existingSecret [default: postgresql-credentials] The name of the existing secret containing the PostgreSQL credentials
+  existingSecret: postgresql-credentials
+  ## @param postgresql.replicas [default: 3] The number of replicas
+  replicas: 3
   persistence:
-    ## @param postgresql-ha.persistence.enabled [default: true] Whether to install the persistence
-    enabled: true
-    ## @param postgresql-ha.persistence.size [default: 200Gi] The size of the persistent volume
+    ## @param postgresql.persistence.size [default: 200Gi] The size of the persistent volume
     size: 200Gi
-    ## @extra postgresql-ha.persistence.storageClass [string] The storage class for the persistent volume
-  metrics:
-    ## @param postgresql-ha.metrics.enabled [default: true] Whether to install the metrics
-    enabled: true
-    ## @param postgresql-ha.metrics.annotations [object] The annotations for the metrics
-    annotations:
-      prometheus.io/scrape: "true"
-      prometheus.io/port: "9187"
+    ## @extra postgresql.persistence.storageClass [string] The storage class for the persistent volume  
+  ## @extra postgresql.tolerations [object]
+  ## @extra postgresql.resources [object]
+  ## @extra env [object]
+  ## @extra config [object]
+  ## @extra bootstrap [object]
+  ## @extra metadata [object]
+  ## @extra serverAltDNSNames [object]
 
 ## @section Ensure Credentials
 ensureCredentials:
