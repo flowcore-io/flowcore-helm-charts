@@ -8,6 +8,8 @@ metadata:
   annotations:
     prometheus.io/scrape: "true"
     prometheus.io/port: "9187"
+    argocd.argoproj.io/sync-wave: "-3"
+    argocd.argoproj.io/hook: "PreSync"
 spec:
   enableSuperuserAccess: true
   superuserSecret: 

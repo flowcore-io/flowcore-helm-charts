@@ -3,6 +3,9 @@ kind: ConfigMap
 metadata:
   name: platform-source-initdb
   namespace: {{ .Release.Namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-3"
+    argocd.argoproj.io/hook: "PreSync"
 data:
   configure-auth.sh: |
     #!/bin/bash

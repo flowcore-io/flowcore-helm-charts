@@ -9,6 +9,12 @@ flowcore:
 cassandra:
   ## @param cassandra.enabled [default: true] Whether to install the Cassandra instance
   enabled: true
+  ## @param cassandra.commonAnnotations [object] The common annotations
+  commonAnnotations:
+    ## @param cassandra.commonAnnotations.argocd.argoproj.io/sync-wave [default: "-3"] The sync wave
+    "argocd.argoproj.io/sync-wave": "-3"
+    ## @param cassandra.commonAnnotations.argocd.argoproj.io/hook [default: "PreSync"] The hook
+    "argocd.argoproj.io/hook": "PreSync"
   ## @param cassandra.dbUser [object] The Cassandra user configuration
   dbUser:
     ## @param cassandra.dbUser.existingSecret [default: platform-source-cassandra-user] The name of the existing secret containing the Cassandra user and password
@@ -62,6 +68,12 @@ valkey-ha:
   nameOverride: valkey-ha
   ## @param valkey-ha.fullnameOverride [default: valkey-ha] The full name override
   fullnameOverride: valkey-ha
+  ## @param valkey-ha.commonAnnotations [object] The common annotations
+  commonAnnotations:
+    ## @param valkey-ha.commonAnnotations.argocd.argoproj.io/sync-wave [default: "-3"] The sync wave
+    "argocd.argoproj.io/sync-wave": "-3"
+    ## @param valkey-ha.commonAnnotations.argocd.argoproj.io/hook [default: "PreSync"] The hook
+    "argocd.argoproj.io/hook": "PreSync"
   ## @param valkey-ha.architecture [default: replication] The architecture to use
   architecture: replication
   sentinel:
@@ -112,6 +124,12 @@ valkey-single:
   nameOverride: valkey-single
   ## @param valkey-single.fullnameOverride [default: valkey-single] The full name override
   fullnameOverride: valkey-single
+  ## @param valkey-single.commonAnnotations [object] The common annotations
+  commonAnnotations:
+    ## @param valkey-single.commonAnnotations.argocd.argoproj.io/sync-wave [default: "-3"] The sync wave
+    "argocd.argoproj.io/sync-wave": "-3"
+    ## @param valkey-single.commonAnnotations.argocd.argoproj.io/hook [default: "PreSync"] The hook
+    "argocd.argoproj.io/hook": "PreSync"
   ## @param valkey-single.architecture [default: single] The architecture to use
   architecture: standalone
   auth:
@@ -184,7 +202,7 @@ postgresql-operator:
   fullnameOverride: cnpg-operator
 
 ## @section PostgreSQL Configuration
-postgresql:  
+postgresql:
   ## @param postgresql.enabled [default: true] Whether to install the PostgreSQL instance
   enabled: true
   ## @param postgresql.existingSecret [default: postgresql-credentials] The name of the existing secret containing the PostgreSQL credentials
@@ -194,7 +212,7 @@ postgresql:
   persistence:
     ## @param postgresql.persistence.size [default: 200Gi] The size of the persistent volume
     size: 200Gi
-    ## @extra postgresql.persistence.storageClass [string] The storage class for the persistent volume  
+    ## @extra postgresql.persistence.storageClass [string] The storage class for the persistent volume
   ## @extra postgresql.tolerations [object]
   ## @extra postgresql.resources [object]
   ## @extra env [object]
