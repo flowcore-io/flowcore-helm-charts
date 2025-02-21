@@ -34,84 +34,75 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 
 ### Cassandra Configuration
 
-| Name                                                       | Description                                                                | Value                            |
-| ---------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------- |
-| `cassandra.enabled`                                        | Whether to install the Cassandra instance                                  | `true`                           |
-| `cassandra.commonAnnotations`                              | The common annotations                                                     | `{}`                             |
-| `cassandra.commonAnnotations.argocd.argoproj.io/sync-wave` | The sync wave                                                              | `"-3"`                           |
-| `cassandra.commonAnnotations.argocd.argoproj.io/hook`      | The hook                                                                   | `"PreSync"`                      |
-| `cassandra.dbUser`                                         | The Cassandra user configuration                                           | `{}`                             |
-| `cassandra.dbUser.existingSecret`                          | The name of the existing secret containing the Cassandra user and password | `platform-source-cassandra-user` |
-| `cassandra.cluster`                                        | The Cassandra cluster configuration                                        | `{}`                             |
-| `cassandra.cluster.name`                                   | The name of the Cassandra cluster                                          | `platform-source`                |
-| `cassandra.cluster.seedCount`                              | The number of seed nodes                                                   | `2`                              |
-| `cassandra.cluster.numTokens`                              | The number of tokens                                                       | `16`                             |
-| `cassandra.cluster.datacenter`                             | The datacenter name                                                        | `datacenter1`                    |
-| `cassandra.replicaCount`                                   | The number of replicas                                                     | `3`                              |
-| `cassandra.resources`                                      | The resources for the Cassandra instance                                   | `{}`                             |
-| `cassandra.resources.requests.cpu`                         | The CPU request                                                            | `8`                              |
-| `cassandra.resources.requests.memory`                      | The memory request                                                         | `16Gi`                           |
-| `cassandra.resources.limits.cpu`                           | The CPU limit                                                              | `8`                              |
-| `cassandra.resources.limits.memory`                        | The memory limit                                                           | `16Gi`                           |
-| `cassandra.persistence`                                    | The persistence configuration                                              | `{}`                             |
-| `cassandra.persistence.storageClass`                       | The storage class for the persistent volume                                |                                  |
-| `cassandra.persistence.size`                               | The size of the persistent volume                                          | `512Gi`                          |
-| `cassandra.metrics`                                        | The metrics configuration                                                  | `{}`                             |
-| `cassandra.metrics.enabled`                                | Whether to enable the metrics                                              | `true`                           |
-| `cassandra.jvm.maxHeapSize`                                | The maximum heap size (1/4 or 1/2 of the total memory)                     | `2048m`                          |
-| `cassandra.jvm.newHeapSize`                                | The new heap size (1/4 of the max heap size)                               | `1024m`                          |
+| Name                                  | Description                                                                | Value                            |
+| ------------------------------------- | -------------------------------------------------------------------------- | -------------------------------- |
+| `cassandra.enabled`                   | Whether to install the Cassandra instance                                  | `true`                           |
+| `cassandra.dbUser`                    | The Cassandra user configuration                                           | `{}`                             |
+| `cassandra.dbUser.existingSecret`     | The name of the existing secret containing the Cassandra user and password | `platform-source-cassandra-user` |
+| `cassandra.cluster`                   | The Cassandra cluster configuration                                        | `{}`                             |
+| `cassandra.cluster.name`              | The name of the Cassandra cluster                                          | `platform-source`                |
+| `cassandra.cluster.seedCount`         | The number of seed nodes                                                   | `2`                              |
+| `cassandra.cluster.numTokens`         | The number of tokens                                                       | `16`                             |
+| `cassandra.cluster.datacenter`        | The datacenter name                                                        | `datacenter1`                    |
+| `cassandra.replicaCount`              | The number of replicas                                                     | `3`                              |
+| `cassandra.resources`                 | The resources for the Cassandra instance                                   | `{}`                             |
+| `cassandra.resources.requests.cpu`    | The CPU request                                                            | `8`                              |
+| `cassandra.resources.requests.memory` | The memory request                                                         | `16Gi`                           |
+| `cassandra.resources.limits.cpu`      | The CPU limit                                                              | `8`                              |
+| `cassandra.resources.limits.memory`   | The memory limit                                                           | `16Gi`                           |
+| `cassandra.persistence`               | The persistence configuration                                              | `{}`                             |
+| `cassandra.persistence.storageClass`  | The storage class for the persistent volume                                |                                  |
+| `cassandra.persistence.size`          | The size of the persistent volume                                          | `512Gi`                          |
+| `cassandra.metrics`                   | The metrics configuration                                                  | `{}`                             |
+| `cassandra.metrics.enabled`           | Whether to enable the metrics                                              | `true`                           |
+| `cassandra.jvm.maxHeapSize`           | The maximum heap size (1/4 or 1/2 of the total memory)                     | `2048m`                          |
+| `cassandra.jvm.newHeapSize`           | The new heap size (1/4 of the max heap size)                               | `1024m`                          |
 
 ### Valkey HA Configuration
 
-| Name                                                       | Description                                                  | Value                       |
-| ---------------------------------------------------------- | ------------------------------------------------------------ | --------------------------- |
-| `valkey-ha.enabled`                                        | Whether to install the Valkey HA instance                    | `true`                      |
-| `valkey-ha.nameOverride`                                   | The name override                                            | `valkey-ha`                 |
-| `valkey-ha.fullnameOverride`                               | The full name override                                       | `valkey-ha`                 |
-| `valkey-ha.commonAnnotations`                              | The common annotations                                       | `{}`                        |
-| `valkey-ha.commonAnnotations.argocd.argoproj.io/sync-wave` | The sync wave                                                | `"-3"`                      |
-| `valkey-ha.commonAnnotations.argocd.argoproj.io/hook`      | The hook                                                     | `"PreSync"`                 |
-| `valkey-ha.architecture`                                   | The architecture to use                                      | `replication`               |
-| `valkey-ha.sentinel.enabled`                               | Whether to install the Sentinel instance                     | `true`                      |
-| `valkey-ha.sentinel.primarySet`                            | The primary set to use                                       | `fcmprimary`                |
-| `valkey-ha.sentinel.resources`                             | The resources for the Sentinel instance                      |                             |
-| `valkey-ha.auth.enabled`                                   | Whether to install the Auth instance                         | `true`                      |
-| `valkey-ha.auth.sentinel`                                  | Whether to use the Sentinel instance                         | `true`                      |
-| `valkey-ha.auth.existingSecret`                            | The name of the existing secret containing the Auth password | `platform-source-valkey-ha` |
-| `valkey-ha.auth.existingSecretPasswordKey`                 | The key in the existing secret containing the Auth password  | `password`                  |
-| `valkey-ha.primary.enabled`                                | Whether to install the primary instance                      | `true`                      |
-| `valkey-ha.primary.replicaCount`                           | The number of replicas                                       | `1`                         |
-| `valkey-ha.primary.resources`                              | The resources for the primary instance                       |                             |
-| `valkey-ha.primary.persistence.enabled`                    | Whether to install the persistence                           | `true`                      |
-| `valkey-ha.primary.persistence.size`                       | The size of the persistent volume                            | `50Gi`                      |
-| `valkey-ha.primary.persistence.storageClass`               | The storage class for the persistent volume                  |                             |
-| `valkey-ha.replica.enabled`                                | Whether to install the replica instance                      | `true`                      |
-| `valkey-ha.replica.replicaCount`                           | The number of replicas                                       | `3`                         |
-| `valkey-ha.replica.resources`                              | The resources for the replica instance                       |                             |
-| `valkey-ha.replica.persistence.enabled`                    | Whether to install the persistence                           | `true`                      |
-| `valkey-ha.replica.persistence.size`                       | The size of the persistent volume                            | `50Gi`                      |
-| `valkey-ha.replica.persistence.storageClass`               | The storage class for the persistent volume                  |                             |
+| Name                                         | Description                                                  | Value                       |
+| -------------------------------------------- | ------------------------------------------------------------ | --------------------------- |
+| `valkey-ha.enabled`                          | Whether to install the Valkey HA instance                    | `true`                      |
+| `valkey-ha.nameOverride`                     | The name override                                            | `valkey-ha`                 |
+| `valkey-ha.fullnameOverride`                 | The full name override                                       | `valkey-ha`                 |
+| `valkey-ha.architecture`                     | The architecture to use                                      | `replication`               |
+| `valkey-ha.sentinel.enabled`                 | Whether to install the Sentinel instance                     | `true`                      |
+| `valkey-ha.sentinel.primarySet`              | The primary set to use                                       | `fcmprimary`                |
+| `valkey-ha.sentinel.resources`               | The resources for the Sentinel instance                      |                             |
+| `valkey-ha.auth.enabled`                     | Whether to install the Auth instance                         | `true`                      |
+| `valkey-ha.auth.sentinel`                    | Whether to use the Sentinel instance                         | `true`                      |
+| `valkey-ha.auth.existingSecret`              | The name of the existing secret containing the Auth password | `platform-source-valkey-ha` |
+| `valkey-ha.auth.existingSecretPasswordKey`   | The key in the existing secret containing the Auth password  | `password`                  |
+| `valkey-ha.primary.enabled`                  | Whether to install the primary instance                      | `true`                      |
+| `valkey-ha.primary.replicaCount`             | The number of replicas                                       | `1`                         |
+| `valkey-ha.primary.resources`                | The resources for the primary instance                       |                             |
+| `valkey-ha.primary.persistence.enabled`      | Whether to install the persistence                           | `true`                      |
+| `valkey-ha.primary.persistence.size`         | The size of the persistent volume                            | `50Gi`                      |
+| `valkey-ha.primary.persistence.storageClass` | The storage class for the persistent volume                  |                             |
+| `valkey-ha.replica.enabled`                  | Whether to install the replica instance                      | `true`                      |
+| `valkey-ha.replica.replicaCount`             | The number of replicas                                       | `3`                         |
+| `valkey-ha.replica.resources`                | The resources for the replica instance                       |                             |
+| `valkey-ha.replica.persistence.enabled`      | Whether to install the persistence                           | `true`                      |
+| `valkey-ha.replica.persistence.size`         | The size of the persistent volume                            | `50Gi`                      |
+| `valkey-ha.replica.persistence.storageClass` | The storage class for the persistent volume                  |                             |
 
 ### Valkey Single Configuration
 
-| Name                                                           | Description                                                  | Value                           |
-| -------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------- |
-| `valkey-single.enabled`                                        | Whether to install the Valkey single instance                | `false`                         |
-| `valkey-single.nameOverride`                                   | The name override                                            | `valkey-single`                 |
-| `valkey-single.fullnameOverride`                               | The full name override                                       | `valkey-single`                 |
-| `valkey-single.commonAnnotations`                              | The common annotations                                       | `{}`                            |
-| `valkey-single.commonAnnotations.argocd.argoproj.io/sync-wave` | The sync wave                                                | `"-3"`                          |
-| `valkey-single.commonAnnotations.argocd.argoproj.io/hook`      | The hook                                                     | `"PreSync"`                     |
-| `valkey-single.architecture`                                   | The architecture to use                                      | `single`                        |
-| `valkey-single.auth.enabled`                                   | Whether to install the Auth instance                         | `true`                          |
-| `valkey-single.auth.existingSecret`                            | The name of the existing secret containing the Auth password | `platform-source-valkey-single` |
-| `valkey-single.auth.existingSecretPasswordKey`                 | The key in the existing secret containing the Auth password  | `password`                      |
-| `valkey-single.primary.enabled`                                | Whether to install the primary instance                      | `true`                          |
-| `valkey-single.primary.replicaCount`                           | The number of replicas                                       | `1`                             |
-| `valkey-single.primary.resources`                              | The resources for the primary instance                       |                                 |
-| `valkey-single.primary.persistence.enabled`                    | Whether to install the persistence                           | `true`                          |
-| `valkey-single.primary.persistence.size`                       | The size of the persistent volume                            | `50Gi`                          |
-| `valkey-single.primary.persistence.storageClass`               | The storage class for the persistent volume                  |                                 |
+| Name                                             | Description                                                  | Value                           |
+| ------------------------------------------------ | ------------------------------------------------------------ | ------------------------------- |
+| `valkey-single.enabled`                          | Whether to install the Valkey single instance                | `false`                         |
+| `valkey-single.nameOverride`                     | The name override                                            | `valkey-single`                 |
+| `valkey-single.fullnameOverride`                 | The full name override                                       | `valkey-single`                 |
+| `valkey-single.architecture`                     | The architecture to use                                      | `single`                        |
+| `valkey-single.auth.enabled`                     | Whether to install the Auth instance                         | `true`                          |
+| `valkey-single.auth.existingSecret`              | The name of the existing secret containing the Auth password | `platform-source-valkey-single` |
+| `valkey-single.auth.existingSecretPasswordKey`   | The key in the existing secret containing the Auth password  | `password`                      |
+| `valkey-single.primary.enabled`                  | Whether to install the primary instance                      | `true`                          |
+| `valkey-single.primary.replicaCount`             | The number of replicas                                       | `1`                             |
+| `valkey-single.primary.resources`                | The resources for the primary instance                       |                                 |
+| `valkey-single.primary.persistence.enabled`      | Whether to install the persistence                           | `true`                          |
+| `valkey-single.primary.persistence.size`         | The size of the persistent volume                            | `50Gi`                          |
+| `valkey-single.primary.persistence.storageClass` | The storage class for the persistent volume                  |                                 |
 
 ### NATS Configuration
 
@@ -135,12 +126,10 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 
 ### PostgreSQL Operator Configuration
 
-| Name                                                                 | Description                                | Value                 |
-| -------------------------------------------------------------------- | ------------------------------------------ | --------------------- |
-| `postgresql-operator.enabled`                                        | Whether to install the PostgreSQL operator | `true`                |
-| `postgresql-operator.fullnameOverride`                               | The full name override                     | `postgresql-operator` |
-| `postgresql-operator.commonAnnotations.argocd.argoproj.io/sync-wave` | The sync wave                              | `"-3"`                |
-| `postgresql-operator.commonAnnotations.argocd.argoproj.io/hook`      | The hook                                   | `"PreSync"`           |
+| Name                                   | Description                                | Value                 |
+| -------------------------------------- | ------------------------------------------ | --------------------- |
+| `postgresql-operator.enabled`          | Whether to install the PostgreSQL operator | `true`                |
+| `postgresql-operator.fullnameOverride` | The full name override                     | `postgresql-operator` |
 
 ### PostgreSQL Configuration
 
