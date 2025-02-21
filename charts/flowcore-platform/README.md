@@ -60,7 +60,6 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `cassandra.metrics.enabled`                                | Whether to enable the metrics                                              | `true`                           |
 | `cassandra.jvm.maxHeapSize`                                | The maximum heap size (1/4 or 1/2 of the total memory)                     | `2048m`                          |
 | `cassandra.jvm.newHeapSize`                                | The new heap size (1/4 of the max heap size)                               | `1024m`                          |
-| `cassandra.initDBConfigMap`                                | The name of the config map to use for initializing the database            | `platform-source-initdb`         |
 
 ### Valkey HA Configuration
 

@@ -57,8 +57,6 @@ cassandra:
     maxHeapSize: 8G
     ## @param cassandra.jvm.newHeapSize [default: 1024m] The new heap size (1/4 of the max heap size)
     newHeapSize: 2G
-  ## @param cassandra.initDBConfigMap [default: platform-source-initdb] The name of the config map to use for initializing the database
-  initDBConfigMap: platform-source-initdb
 
 ## @section Valkey HA Configuration
 valkey-ha:
