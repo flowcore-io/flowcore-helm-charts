@@ -135,10 +135,12 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 
 ### PostgreSQL Operator Configuration
 
-| Name                                   | Description                                | Value                 |
-| -------------------------------------- | ------------------------------------------ | --------------------- |
-| `postgresql-operator.enabled`          | Whether to install the PostgreSQL operator | `true`                |
-| `postgresql-operator.fullnameOverride` | The full name override                     | `postgresql-operator` |
+| Name                                                                 | Description                                | Value                 |
+| -------------------------------------------------------------------- | ------------------------------------------ | --------------------- |
+| `postgresql-operator.enabled`                                        | Whether to install the PostgreSQL operator | `true`                |
+| `postgresql-operator.fullnameOverride`                               | The full name override                     | `postgresql-operator` |
+| `postgresql-operator.commonAnnotations.argocd.argoproj.io/sync-wave` | The sync wave                              | `"-3"`                |
+| `postgresql-operator.commonAnnotations.argocd.argoproj.io/hook`      | The hook                                   | `"PreSync"`           |
 
 ### PostgreSQL Configuration
 

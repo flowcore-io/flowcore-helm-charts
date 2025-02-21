@@ -198,6 +198,11 @@ postgresql-operator:
   enabled: true
   ## @param postgresql-operator.fullnameOverride [default: postgresql-operator] The full name override
   fullnameOverride: cnpg-operator
+  commonAnnotations:
+    ## @param postgresql-operator.commonAnnotations.argocd.argoproj.io/sync-wave [default: "-3"] The sync wave
+    "argocd.argoproj.io/sync-wave": "-3"
+    ## @param postgresql-operator.commonAnnotations.argocd.argoproj.io/hook [default: "PreSync"] The hook
+    "argocd.argoproj.io/hook": "PreSync"
 
 ## @section PostgreSQL Configuration
 postgresql:
