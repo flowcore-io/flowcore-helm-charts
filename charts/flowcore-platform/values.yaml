@@ -657,14 +657,14 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.coldStorageApi.env.AWS_BUCKET_NAME [object, default: flowcore-platform-archive] The AWS bucket name
         AWS_BUCKET_NAME:
           value: flowcore-platform-archive
-        ## @param flowcore-microservices.deployments.coldStorageApi.env.ARCHIVE_ACCESS_KEY_ID [object, default: archive-access-key-id in aws-credentials secret] The archive access key ID
-        ARCHIVE_ACCESS_KEY_ID:
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.AWS_ACCESS_KEY_ID [object, default: archive-access-key-id in aws-credentials secret] The archive access key ID
+        AWS_ACCESS_KEY_ID:
           valueFrom:
             secretKeyRef:
               name: aws-credentials
               key: archive-access-key-id
-        ## @param flowcore-microservices.deployments.coldStorageApi.env.ARCHIVE_SECRET_ACCESS_KEY [object, default: archive-secret-access-key in aws-credentials secret] The archive secret access key
-        ARCHIVE_SECRET_ACCESS_KEY:
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.AWS_SECRET_ACCESS_KEY [object, default: archive-secret-access-key in aws-credentials secret] The archive secret access key
+        AWS_SECRET_ACCESS_KEY:
           valueFrom:
             secretKeyRef:
               name: aws-credentials

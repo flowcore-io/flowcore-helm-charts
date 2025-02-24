@@ -310,8 +310,8 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.coldStorageApi.env.IAM_API_URL`                | The IAM API URL                         | `https://iam.api.flowcore.io`                                            |
 | `flowcore-microservices.deployments.coldStorageApi.env.AWS_REGION`                 | The AWS region                          | `eu-west-1`                                                              |
 | `flowcore-microservices.deployments.coldStorageApi.env.AWS_BUCKET_NAME`            | The AWS bucket name                     | `flowcore-platform-archive`                                              |
-| `flowcore-microservices.deployments.coldStorageApi.env.ARCHIVE_ACCESS_KEY_ID`      | The archive access key ID               | `archive-access-key-id in aws-credentials secret`                        |
-| `flowcore-microservices.deployments.coldStorageApi.env.ARCHIVE_SECRET_ACCESS_KEY`  | The archive secret access key           | `archive-secret-access-key in aws-credentials secret`                    |
+| `flowcore-microservices.deployments.coldStorageApi.env.AWS_ACCESS_KEY_ID`          | The archive access key ID               | `archive-access-key-id in aws-credentials secret`                        |
+| `flowcore-microservices.deployments.coldStorageApi.env.AWS_SECRET_ACCESS_KEY`      | The archive secret access key           | `archive-secret-access-key in aws-credentials secret`                    |
 
 
 
