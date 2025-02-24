@@ -16,7 +16,8 @@ webhookBaseURL: https://webhook.api.staging.flowcore.io
 ## @param transport Ingress settings for the transport domain
 transport: {}
   ## @extra transport.<name> Environment variables for the transport in object format
-
+## @param commonAnnotations Annotations to set for all resources in the chart
+commonAnnotations: {}
 
 ## @section Deployments
 ## @param deployments [object] List of microservices to deploy
@@ -25,6 +26,8 @@ deployments: {}
 #  APIKeyCommands:
 ## @extra deployments.<microservice>.enabled Whether to deploy this microservice [boolean]
 #    enabled: true
+## @extra deployments.<microservice>.podAnnotations Annotations to set for the pod
+#    podAnnotations: {}
 ## @extra deployments.<microservice>.component What type of microservice this is [api, adapter, ...]
 #    component: api
 ## @extra deployments.<microservice>.restartPolicy The restart policy to use for this microservice, defaults to Always [Always, OnFailure, Never]

@@ -11,10 +11,14 @@ transport:
       value: nats://localhost:4222
     NATS_QUEUE:
       value: user-queue
+commonAnnotations:
+  "argocd.argoproj.io/sync-wave": "1"
 
 deployments:
   testService:
     enabled: true
+    podAnnotations:
+      hello: world
     deployment:
       image: some-test-image
       tag: 0.0.1
@@ -150,7 +154,7 @@ deployments:
         nginx.ingress.kubernetes.io/rewrite-target: /
         nginx.org/rule: something
       route:
-      - hosts:
-          - somehost.com
-          - www.somehost.com
-        tlsSecret: some-tls-secret
+        - hosts:
+            - somehost.com
+            - www.somehost.com
+          tlsSecret: some-tls-secret

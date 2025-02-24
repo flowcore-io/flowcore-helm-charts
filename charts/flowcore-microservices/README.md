@@ -31,10 +31,11 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 
 ### Domain Settings
 
-| Name               | Description                                              | Value |
-| ------------------ | -------------------------------------------------------- | ----- |
-| `transport`        | Ingress settings for the transport domain                | `{}`  |
-| `transport.<name>` | Environment variables for the transport in object format |       |
+| Name                | Description                                              | Value |
+| ------------------- | -------------------------------------------------------- | ----- |
+| `transport`         | Ingress settings for the transport domain                | `{}`  |
+| `transport.<name>`  | Environment variables for the transport in object format |       |
+| `commonAnnotations` | Annotations to set for all resources in the chart        | `{}`  |
 
 ### Deployments
 
@@ -43,6 +44,7 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `deployments`                                                               | List of microservices to deploy                                                                    | `{}`  |
 | `deployments.<microservice>`                                                | Configuration entry for a microservice                                                             |       |
 | `deployments.<microservice>.enabled`                                        | Whether to deploy this microservice [boolean]                                                      |       |
+| `deployments.<microservice>.podAnnotations`                                 | Annotations to set for the pod                                                                     |       |
 | `deployments.<microservice>.component`                                      | What type of microservice this is [api, adapter, ...]                                              |       |
 | `deployments.<microservice>.restartPolicy`                                  | The restart policy to use for this microservice, defaults to Always [Always, OnFailure, Never]     |       |
 | `deployments.<microservice>.imagePullSecrets`                               | List of image pull secrets to use for this microservice [array]                                    |       |
