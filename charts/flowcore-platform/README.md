@@ -166,12 +166,13 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 
 ### Flowcore Platform Common Configuration
 
-| Name                                                       | Description                                       | Value                                                                       |
-| ---------------------------------------------------------- | ------------------------------------------------- | --------------------------------------------------------------------------- |
-| `flowcore-microservices.enabled`                           | Whether to install the Flowcore Platform Services | `true`                                                                      |
-| `flowcore-microservices.imageRepository`                   | The image repository                              | `flowcore-io`                                                               |
-| `flowcore-microservices.oidcWellKnownUrl`                  | The OIDC well-known URL                           | `https://auth.flowcore.io/realms/flowcore/.well-known/openid-configuration` |
-| `flowcore-microservices.transport.nats.NATS_SERVERS.value` | The NATS servers                                  | `nats://nats:4222`                                                          |
+| Name                                                                    | Description                                       | Value                                                                       |
+| ----------------------------------------------------------------------- | ------------------------------------------------- | --------------------------------------------------------------------------- |
+| `flowcore-microservices.enabled`                                        | Whether to install the Flowcore Platform Services | `true`                                                                      |
+| `flowcore-microservices.imageRepository`                                | The image repository                              | `flowcore-io`                                                               |
+| `flowcore-microservices.oidcWellKnownUrl`                               | The OIDC well-known URL                           | `https://auth.flowcore.io/realms/flowcore/.well-known/openid-configuration` |
+| `flowcore-microservices.transport.nats.NATS_SERVERS.value`              | The NATS servers                                  | `nats://nats:4222`                                                          |
+| `flowcore-microservices.commonAnnotations.argocd.argoproj.io/sync-wave` | The sync wave                                     | `"-3"`                                                                      |
 
 ### Flowcore Ingestion Channel
 

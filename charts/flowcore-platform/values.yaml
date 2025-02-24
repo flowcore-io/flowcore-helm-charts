@@ -239,6 +239,9 @@ flowcore-microservices:
       NATS_SERVERS:
         ## @param flowcore-microservices.transport.nats.NATS_SERVERS.value [default: nats://nats:4222] The NATS servers
         value: nats://nats:4222
+  commonAnnotations:
+    ## @param flowcore-microservices.commonAnnotations.argocd.argoproj.io/sync-wave [default: "-3"] The sync wave
+    "argocd.argoproj.io/sync-wave": "3"
   deployments:
     ## @section Flowcore Ingestion Channel
     ingestionChannel:

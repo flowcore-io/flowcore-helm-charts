@@ -6,7 +6,7 @@ version: 0.7.7
 appVersion: 0.0.1
 icon: https://avatars.githubusercontent.com/u/114778675?s=200&v=4
 
-dependencies: 
+dependencies:
   - name: cassandra
     version: 12.1.1
     repository: oci://registry-1.docker.io/bitnamicharts
@@ -31,5 +31,5 @@ dependencies:
     condition: postgresql-operator.enabled
   - name: flowcore-microservices
     repository: https://flowcore-io.github.io/flowcore-helm-charts
-    version: 2.6.1
+    version: 2.8.0
     condition: flowcore-microservices.enabled
