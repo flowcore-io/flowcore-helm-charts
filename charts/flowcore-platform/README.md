@@ -289,6 +289,30 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.eventSourceApi.ingress.route.hosts`             | The ingress hosts                       | `example.com`                                                                                                        |
 | `flowcore-microservices.deployments.eventSourceApi.ingress.route.tlsSecret`         | The ingress TLS secret                  | `example-tls`                                                                                                        |
 
+### Cold Storage API
+
+| Name                                                                               | Description                             | Value                                                                    |
+| ---------------------------------------------------------------------------------- | --------------------------------------- | ------------------------------------------------------------------------ |
+| `flowcore-microservices.deployments.coldStorageApi.enabled`                        | Whether to install the cold storage API | `true`                                                                   |
+| `flowcore-microservices.deployments.coldStorageApi.deployment.image`               | The image                               | `service-cold-storage-api`                                               |
+| `flowcore-microservices.deployments.coldStorageApi.deployment.tag`                 | The tag                                 | `2.10.0`                                                                 |
+| `flowcore-microservices.deployments.coldStorageApi.deployment.replicas`            | The number of replicas                  | `2`                                                                      |
+| `flowcore-microservices.deployments.coldStorageApi.deployment.resources`           | The resources                           | `{}`                                                                     |
+| `flowcore-microservices.deployments.coldStorageApi.metrics.enabled`                | Whether to enable the metrics           | `true`                                                                   |
+| `flowcore-microservices.deployments.coldStorageApi.service.enabled`                | Whether to enable the service           | `true`                                                                   |
+| `flowcore-microservices.deployments.coldStorageApi.env.LOG_LEVEL`                  | The log level                           | `info`                                                                   |
+| `flowcore-microservices.deployments.coldStorageApi.env.POSTGRES_CONNECTION_STRING` | The PostgreSQL connection string        | `postgres-connection-string in cold-storage-api-credentials secret`      |
+| `flowcore-microservices.deployments.coldStorageApi.env.TRANSFORMER_SECRET`         | The transformer secret                  | `transformer-secret in cold-storage-api-credentials secret`              |
+| `flowcore-microservices.deployments.coldStorageApi.env.JWKS_URL`                   | The JWKS URL                            | `https://auth.flowcore.io/realms/flowcore/protocol/openid-connect/certs` |
+| `flowcore-microservices.deployments.coldStorageApi.env.API_KEY_URL`                | The API key URL                         | `https://security.api.flowcore.io`                                       |
+| `flowcore-microservices.deployments.coldStorageApi.env.REDIS_URL`                  | The Redis URL                           | `redis-sentinel-rw in cold-storage-api-credentials secret`               |
+| `flowcore-microservices.deployments.coldStorageApi.env.REDIS_KEY_PATTERN`          | The Redis key pattern                   | `cold-storage-api:event-cache`                                           |
+| `flowcore-microservices.deployments.coldStorageApi.env.IAM_API_URL`                | The IAM API URL                         | `https://iam.api.flowcore.io`                                            |
+| `flowcore-microservices.deployments.coldStorageApi.env.AWS_REGION`                 | The AWS region                          | `eu-west-1`                                                              |
+| `flowcore-microservices.deployments.coldStorageApi.env.AWS_BUCKET_NAME`            | The AWS bucket name                     | `flowcore-platform-archive`                                              |
+| `flowcore-microservices.deployments.coldStorageApi.env.ARCHIVE_ACCESS_KEY_ID`      | The archive access key ID               | `archive-access-key-id in aws-credentials secret`                        |
+| `flowcore-microservices.deployments.coldStorageApi.env.ARCHIVE_SECRET_ACCESS_KEY`  | The archive secret access key           | `archive-secret-access-key in aws-credentials secret`                    |
+
 
 
 See [values.yaml](values.yaml) for the full list of parameters.

@@ -554,10 +554,10 @@ flowcore-microservices:
           value: https://auth.flowcore.io/realms/flowcore/protocol/openid-connect/certs
         ## @param flowcore-microservices.deployments.eventSourceApi.env.API_KEY_URL [object, default: http://organization-api-key-api.flowcore-security.svc.cluster.local:3000] The API key URL
         API_KEY_URL:
-          value: https://security.api.flowcore.io/
+          value: https://security.api.flowcore.io
         ## @param flowcore-microservices.deployments.eventSourceApi.env.IAM_API_URL [object, default: http://service-iam-api.flowcore-public:3000] The IAM API URL
         IAM_API_URL:
-          value: http://service-iam-api.flowcore-public:3000
+          value: https://iam.api.flowcore.io
         ## @param flowcore-microservices.deployments.eventSourceApi.env.COLD_STORAGE_API_URL [object, default: http://cold-storage-api.flowcore-source:3000] The cold storage API URL
         COLD_STORAGE_API_URL:
           value: http://cold-storage-api.flowcore-source:3000
@@ -592,3 +592,80 @@ flowcore-microservices:
               - example.com
             ## @param flowcore-microservices.deployments.eventSourceApi.ingress.route.tlsSecret [object, default: example-tls] The ingress TLS secret
             tlsSecret: example-tls
+    ## @section Cold Storage API
+    coldStorageApi:
+      ## @param flowcore-microservices.deployments.coldStorageApi.enabled [default: true] Whether to install the cold storage API
+      enabled: true
+      deployment:
+        ## @param flowcore-microservices.deployments.coldStorageApi.deployment.image [default: service-cold-storage-api] The image
+        image: service-cold-storage-api
+        ## @param flowcore-microservices.deployments.coldStorageApi.deployment.tag [default: 2.10.0] The tag
+        tag: 2.10.0
+        ## @param flowcore-microservices.deployments.coldStorageApi.deployment.replicas [default: 2] The number of replicas
+        replicas: 2
+        ## @param flowcore-microservices.deployments.coldStorageApi.deployment.resources [object] The resources
+        resources:
+          requests:
+            cpu: 2000m
+            memory: 2048Mi
+          limits:
+            cpu: 4000m
+            memory: 3042Mi
+      metrics:
+        ## @param flowcore-microservices.deployments.coldStorageApi.metrics.enabled [default: true] Whether to enable the metrics
+        enabled: true
+      service:
+        ## @param flowcore-microservices.deployments.coldStorageApi.service.enabled [default: true] Whether to enable the service
+        enabled: true
+      env:
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.LOG_LEVEL [object, default: info] The log level
+        LOG_LEVEL:
+          value: info
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.POSTGRES_CONNECTION_STRING [object, default: postgres-connection-string in cold-storage-api-credentials secret] The PostgreSQL connection string
+        POSTGRES_CONNECTION_STRING:
+          valueFrom:
+            secretKeyRef:
+              name: cold-storage-api-credentials
+              key: postgres-connection-string
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.TRANSFORMER_SECRET [object, default: transformer-secret in cold-storage-api-credentials secret] The transformer secret
+        TRANSFORMER_SECRET:
+          valueFrom:
+            secretKeyRef:
+              name: cold-storage-api-credentials
+              key: transformer-secret
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.JWKS_URL [object, default: https://auth.flowcore.io/realms/flowcore/protocol/openid-connect/certs] The JWKS URL
+        JWKS_URL:
+          value: https://auth.flowcore.io/realms/flowcore/protocol/openid-connect/certs
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.API_KEY_URL [object, default: https://security.api.flowcore.io] The API key URL
+        API_KEY_URL:
+          value: https://security.api.flowcore.io
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.REDIS_URL [object, default: redis-sentinel-rw in cold-storage-api-credentials secret] The Redis URL
+        REDIS_URL:
+          valueFrom:
+            secretKeyRef:
+              name: cold-storage-api-credentials
+              key: redis-sentinel-rw
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.REDIS_KEY_PATTERN [object, default: cold-storage-api:event-cache] The Redis key pattern
+        REDIS_KEY_PATTERN:
+          value: cold-storage-api:event-cache
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.IAM_API_URL [object, default: https://iam.api.flowcore.io] The IAM API URL
+        IAM_API_URL:
+          value: https://iam.api.flowcore.io
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.AWS_REGION [object, default: eu-west-1] The AWS region
+        AWS_REGION:
+          value: eu-west-1
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.AWS_BUCKET_NAME [object, default: flowcore-platform-archive] The AWS bucket name
+        AWS_BUCKET_NAME:
+          value: flowcore-platform-archive
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.ARCHIVE_ACCESS_KEY_ID [object, default: archive-access-key-id in aws-credentials secret] The archive access key ID
+        ARCHIVE_ACCESS_KEY_ID:
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: archive-access-key-id
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.ARCHIVE_SECRET_ACCESS_KEY [object, default: archive-secret-access-key in aws-credentials secret] The archive secret access key
+        ARCHIVE_SECRET_ACCESS_KEY:
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: archive-secret-access-key
