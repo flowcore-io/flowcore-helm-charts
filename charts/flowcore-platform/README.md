@@ -295,7 +295,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | ---------------------------------------------------------------------------------- | --------------------------------------- | ------------------------------------------------------------------------ |
 | `flowcore-microservices.deployments.coldStorageApi.enabled`                        | Whether to install the cold storage API | `true`                                                                   |
 | `flowcore-microservices.deployments.coldStorageApi.deployment.image`               | The image                               | `service-cold-storage-api`                                               |
-| `flowcore-microservices.deployments.coldStorageApi.deployment.tag`                 | The tag                                 | `2.10.0`                                                                 |
+| `flowcore-microservices.deployments.coldStorageApi.deployment.tag`                 | The tag                                 | `2.10.1`                                                                 |
 | `flowcore-microservices.deployments.coldStorageApi.deployment.replicas`            | The number of replicas                  | `2`                                                                      |
 | `flowcore-microservices.deployments.coldStorageApi.deployment.resources`           | The resources                           | `{}`                                                                     |
 | `flowcore-microservices.deployments.coldStorageApi.metrics.enabled`                | Whether to enable the metrics           | `true`                                                                   |
