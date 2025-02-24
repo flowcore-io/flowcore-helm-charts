@@ -599,8 +599,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.coldStorageApi.deployment.image [default: service-cold-storage-api] The image
         image: service-cold-storage-api
-        ## @param flowcore-microservices.deployments.coldStorageApi.deployment.tag [default: 2.10.1] The tag
-        tag: 2.10.1
+        ## @param flowcore-microservices.deployments.coldStorageApi.deployment.tag [default: 2.10.2] The tag
+        tag: 2.10.2
         ## @param flowcore-microservices.deployments.coldStorageApi.deployment.replicas [default: 2] The number of replicas
         replicas: 2
         ## @param flowcore-microservices.deployments.coldStorageApi.deployment.resources [object] The resources
