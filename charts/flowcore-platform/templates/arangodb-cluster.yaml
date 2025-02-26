@@ -1,0 +1,76 @@
+{{- $clusterSpec := .Values.arangodb }}
+{{- if $clusterSpec.enabled }}
+  {{- $clusterName := "arango" | kebabcase }}
+{{- $debug := $clusterSpec.debug | default false }}
+{{- $agentCount := $clusterSpec.replicas | default 3 }}
+{{- $dbServerCount := $clusterSpec.replicas | default 3 }}
+{{- $dbServerStorage := $clusterSpec.storage | default "30Gi" }}
+{{- $coordinatorCount := $clusterSpec.replicas | default 3 }}
+apiVersion: "database.arangodb.com/v1"
+kind: "ArangoDeployment"
+metadata:
+  name: {{ $clusterName }}
+spec:
+  mode: Cluster
+  environment: Production
+  tls:
+    caSecretName: None
+  agents:
+    count: {{ $agentCount }}
+    {{- if $debug }}
+    args:
+      - --log.level=debug
+    {{- end }}
+    resources:
+      {{- if $clusterSpec.agent }}
+      {{- if $clusterSpec.agent.resources }}
+      limits:
+        {{- $clusterSpec.agent.resources.limits | toYaml | nindent 8 }}
+      {{- end }}
+      {{- end }}
+      requests:
+      {{- if $clusterSpec.agent }}
+      {{- if $clusterSpec.agent.resources }}
+        {{- $clusterSpec.agent.resources.limits | toYaml | nindent 8 }}
+      {{- end }}
+      {{- end }}
+        storage: 8Gi
+  dbservers:
+    count: {{ $dbServerCount }}
+    {{- if $debug }}
+    args:
+      - --log.level=debug
+    {{- end }}
+    resources:
+      {{- if $clusterSpec.dbServer }}
+      {{- if $clusterSpec.dbServer.resources }}
+      limits:
+        {{- $clusterSpec.dbServer.resources.limits | toYaml | nindent 8 }}
+      {{- end }}
+      {{- end }}
+      requests:
+      {{- if $clusterSpec.dbServer }}
+      {{- if $clusterSpec.dbServer.resources }}
+        {{- $clusterSpec.dbServer.resources.limits | toYaml | nindent 8 }}
+      {{- end }}
+      {{- end }}
+        storage: {{ $dbServerStorage }}
+  coordinators:
+    count: {{ $coordinatorCount}}
+    {{- if $debug }}
+    args:
+      - --log.level=debug
+    {{- end }}
+    {{- if $clusterSpec.coordinator }}
+    {{- if $clusterSpec.coordinator.resources }}
+    resources:
+      limits:
+        {{- $clusterSpec.coordinator.resources.limits | toYaml | nindent 8 }}
+      requests:
+        {{- $clusterSpec.coordinator.resources.limits | toYaml | nindent 8 }}
+    {{- end }}
+    {{- end }}
+  image: "arangodb/arangodb:3.10.3"
+  externalAccess:
+    type: None
+{{- end }}

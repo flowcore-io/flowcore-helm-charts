@@ -148,6 +148,20 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `metadata`                            |                                                                       |                          |
 | `serverAltDNSNames`                   |                                                                       |                          |
 
+### ArangoDB Operator Configuration
+
+| Name                        | Description                              | Value  |
+| --------------------------- | ---------------------------------------- | ------ |
+| `arangodb-operator.enabled` | Whether to install the ArangoDB operator | `true` |
+
+### ArangoDB Configuration
+
+| Name                | Description                              | Value   |
+| ------------------- | ---------------------------------------- | ------- |
+| `arangodb.enabled`  | Whether to install the ArangoDB instance | `false` |
+| `arangodb.storage`  | The size of the persistent volume        | `30Gi`  |
+| `arangodb.replicas` | The number of replicas                   | `3`     |
+
 ### Ensure Credentials
 
 | Name                                          | Description                                   | Value                                         |

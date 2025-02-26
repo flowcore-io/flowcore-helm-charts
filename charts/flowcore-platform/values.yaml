@@ -201,6 +201,20 @@ postgresql:
   ## @extra metadata [object]
   ## @extra serverAltDNSNames [object]
 
+## @section ArangoDB Operator Configuration
+arangodb-operator:
+  ## @param arangodb-operator.enabled [default: true] Whether to install the ArangoDB operator
+  enabled: true
+
+## @section ArangoDB Configuration
+arangodb:
+  ## @param arangodb.enabled [default: false] Whether to install the ArangoDB instance
+  enabled: true
+  ## @param arangodb.storage [default: 30Gi] The size of the persistent volume
+  storage: 30Gi
+  ## @param arangodb.replicas [default: 3] The number of replicas
+  replicas: 3
+
 ## @section Ensure Credentials
 ensureCredentials:
   ## @param ensureCredentials.enabled [default: true] Whether to install the ensure credentials job
