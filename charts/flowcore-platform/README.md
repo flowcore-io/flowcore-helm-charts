@@ -156,11 +156,12 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 
 ### ArangoDB Configuration
 
-| Name                | Description                              | Value   |
-| ------------------- | ---------------------------------------- | ------- |
-| `arangodb.enabled`  | Whether to install the ArangoDB instance | `false` |
-| `arangodb.storage`  | The size of the persistent volume        | `30Gi`  |
-| `arangodb.replicas` | The number of replicas                   | `3`     |
+| Name                      | Description                                                           | Value                  |
+| ------------------------- | --------------------------------------------------------------------- | ---------------------- |
+| `arangodb.enabled`        | Whether to install the ArangoDB instance                              | `true`                 |
+| `arangodb.storage`        | The size of the persistent volume                                     | `30Gi`                 |
+| `arangodb.replicas`       | The number of replicas                                                | `3`                    |
+| `arangodb.existingSecret` | The name of the existing secret containing the ArangoDB root password | `arango-root-password` |
 
 ### Ensure Credentials
 

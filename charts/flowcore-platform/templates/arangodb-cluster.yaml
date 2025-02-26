@@ -15,6 +15,9 @@ spec:
   environment: Production
   tls:
     caSecretName: None
+  bootstrap:
+    passwordSecretNames:
+      root: {{ $clusterSpec.existingSecret }}
   agents:
     count: {{ $agentCount }}
     {{- if $debug }}
