@@ -209,7 +209,7 @@ arangodb-operator:
 ## @section ArangoDB Configuration
 arangodb:
   ## @param arangodb.enabled [default: false] Whether to install the ArangoDB instance
-  enabled: true
+  enabled: false
   ## @param arangodb.storage [default: 30Gi] The size of the persistent volume
   storage: 30Gi
   ## @param arangodb.replicas [default: 3] The number of replicas
