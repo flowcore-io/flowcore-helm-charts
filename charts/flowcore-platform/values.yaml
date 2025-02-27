@@ -760,9 +760,9 @@ flowcore-microservices:
             ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.GRPC_URL [object, default: 0.0.0.0:5001] The GRPC URL
             GRPC_URL:
               value: 0.0.0.0:5001
-            ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.REDIS_HOST [object, default: valkey-cache] The REDIS_HOST
+            ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.REDIS_HOST [object, default: valkey-cache-primary] The REDIS_HOST
             REDIS_HOST:
-              value: valkey-cache
+              value: valkey-cache-primary
             ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.REDIS_PORT [object, default: 6379] The REDIS_PORT
             REDIS_PORT:
               value: "6379"
