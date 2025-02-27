@@ -132,8 +132,33 @@ valkey-single:
       size: 50Gi
       ## @extra valkey-single.primary.persistence.storageClass [string] The storage class for the persistent volume
 
-## @section NATS Configuration
+## @section Valkey Cache Configuration
+valkey-cache:
+  ## @param valkey-cache.enabled [default: false] Whether to install the Valkey cache instance
+  enabled: true
+  ## @param valkey-cache.nameOverride [default: valkey-cache] The name override
+  nameOverride: valkey-cache
+  ## @param valkey-cache.fullnameOverride [default: valkey-cache] The full name override
+  fullnameOverride: valkey-cache
+  ## @param valkey-cache.architecture [default: single] The architecture to use
+  architecture: standalone
+  auth:
+    ## @param valkey-cache.auth.enabled [default: false] Whether to install the Auth instance
+    enabled: false
+  primary:
+    ## @param valkey-cache.primary.enabled [default: true] Whether to install the primary instance
+    enabled: true
+    ## @param valkey-cache.primary.replicaCount [default: 1] The number of replicas
+    replicaCount: 1
+    ## @extra valkey-cache.primary.resources [object] The resources for the primary instance
+    persistence:
+      ## @param valkey-cache.primary.persistence.enabled [default: true] Whether to install the persistence
+      enabled: true
+      ## @param valkey-cache.primary.persistence.size [default: 5Gi] The size of the persistent volume
+      size: 5Gi
+      ## @extra valkey-cache.primary.persistence.storageClass [string] The storage class for the persistent volume
 
+## @section NATS Configuration
 nats:
   ## @param nats.nameOverride [default: nats] The name override
   nameOverride: nats
@@ -225,8 +250,8 @@ ensureCredentials:
   image:
     ## @param ensureCredentials.image.repository [default: flowcoreio/job-create-dedicated-credentials] The image repository
     repository: flowcoreio/job-create-dedicated-credentials
-    ## @param ensureCredentials.image.tag [default: 1.8.1] The image tag
-    tag: 1.8.1
+    ## @param ensureCredentials.image.tag [default: 1.9.0] The image tag
+    tag: 1.9.0
   ## @param ensureCredentials.resources [object] The resources for the ensure credentials job
   resources:
     ## @param ensureCredentials.resources.limits.cpu [default: 100m] The CPU limit
@@ -685,3 +710,89 @@ flowcore-microservices:
             secretKeyRef:
               name: aws-credentials
               key: archive-secret-access-key
+    ## @section Ingestion Validation Adapter
+    ingestionValidationAdapter:
+      ## @param flowcore-microservices.deployments.ingestionValidationAdapter.enabled [default: true] Whether to install the ingestion validation adapter
+      enabled: true
+      deployment:
+        ## @param flowcore-microservices.deployments.ingestionValidationAdapter.deployment.tag [default: 1.9.0] The image tag
+        tag: 1.9.0
+        ## @param flowcore-microservices.deployments.ingestionValidationAdapter.deployment.image [default: ingestion-validation-adapter] The image
+        image: ingestion-validation-adapter
+      env:
+        ## @param flowcore-microservices.deployments.ingestionValidationAdapter.env.GRPC_URL [object, default: 0.0.0.0:5000] The GRPC URL
+        GRPC_URL:
+          value: 0.0.0.0:5000
+        ## @param flowcore-microservices.deployments.ingestionValidationAdapter.env.FLOWCORE_DATA_PUMP_URL [object, default: localhost:5001] The FLOWCORE_DATA_PUMP_URL
+        FLOWCORE_DATA_PUMP_URL:
+          value: localhost:5001
+        ## @param flowcore-microservices.deployments.ingestionValidationAdapter.env.REDIS_MASTER_SET_NAME [object, default: sentinel-primary-set in ingestion-validation-credentials secret] The REDIS_MASTER_SET_NAME
+        REDIS_MASTER_SET_NAME:
+          valueFrom:
+            secretKeyRef:
+              name: ingestion-validation-credentials
+              key: sentinel-primary-set
+        ## @param flowcore-microservices.deployments.ingestionValidationAdapter.env.REDIS_SENTINELS [object, default: sentinel-hosts in ingestion-validation-credentials secret] The REDIS_SENTINELS
+        REDIS_SENTINELS:
+          valueFrom:
+            secretKeyRef:
+              name: ingestion-validation-credentials
+              key: sentinel-hosts
+        ## @param flowcore-microservices.deployments.ingestionValidationAdapter.env.REDIS_PASSWORD [object, default: sentinel-password in ingestion-validation-credentials secret] The REDIS_PASSWORD
+        REDIS_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: ingestion-validation-credentials
+              key: sentinel-password
+      ## @param flowcore-microservices.deployments.ingestionValidationAdapter.useTransports [array, default: nats] The useTransports
+      useTransports:
+        - nats
+      ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars [object] The sidecars
+      sidecars:
+        ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.tag [default: 5.0.0] The image tag
+        dataPump:
+          tag: 5.0.0
+          ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.enabled [default: true] Whether to enable the data pump
+          enabled: true
+          ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.image [default: legacy-data-pump] The image
+          image: legacy-data-pump
+          env:
+            ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.GRPC_URL [object, default: 0.0.0.0:5001] The GRPC URL
+            GRPC_URL:
+              value: 0.0.0.0:5001
+            ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.REDIS_HOST [object, default: valkey-cache] The REDIS_HOST
+            REDIS_HOST:
+              value: valkey-cache
+            ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.REDIS_PORT [object, default: 6379] The REDIS_PORT
+            REDIS_PORT:
+              value: "6379"
+            ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.DATA_PUMP_NAME [object, default: ingestion-validation-adapter] The DATA_PUMP_NAME
+            DATA_PUMP_NAME:
+              value: ingestion-validation-adapter
+            ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.DATA_PUMP_MAX_TIME_BETWEEN_MSGS [object, default: 10000] The DATA_PUMP_MAX_TIME_BETWEEN_MSGS
+            DATA_PUMP_MAX_TIME_BETWEEN_MSGS:
+              value: "10000"
+            ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.DATA_PUMP_MAX_HISTORY_IN_HOURS [object, default: 2500] The DATA_PUMP_MAX_HISTORY_IN_HOURS
+            DATA_PUMP_MAX_HISTORY_IN_HOURS:
+              value: "2500"
+            ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.DATA_PUMP_ADAPTER_URL [object, default: localhost:5000] The DATA_PUMP_ADAPTER_URL
+            DATA_PUMP_ADAPTER_URL:
+              value: localhost:5000
+            ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.FLOWCORE_AGGREGATOR [object, default: event-type.0] The FLOWCORE_AGGREGATOR
+            FLOWCORE_AGGREGATOR:
+              value: event-type.0
+            ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.FLOWCORE_EVENT_TYPES [object, default: "event.event-type.created.0 event.event-type.deleted.0"] The FLOWCORE_EVENT_TYPES
+            FLOWCORE_EVENT_TYPES:
+              value: event.event-type.created.0,event.event-type.deleted.0
+            ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.FLOWCORE_DATA_CORE_ID [object, default: ecc024c5-3adf-42a3-aa55-fd3620673192] The FLOWCORE_DATA_CORE_ID
+            FLOWCORE_DATA_CORE_ID:
+              value: ecc024c5-3adf-42a3-aa55-fd3620673192
+            ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.FLOWCORE_EVENT_SOURCE_URL [object, default: legacy-platform-event-source-api:5000] The FLOWCORE_EVENT_SOURCE_URL
+            FLOWCORE_EVENT_SOURCE_URL:
+              value: legacy-platform-event-source-api:5000
+            ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.FLOWCORE_TENANT_ID [object, default: flowcore] The FLOWCORE_TENANT_ID
+            FLOWCORE_TENANT_ID:
+              value: flowcore
+            ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.LOG_LEVEL [object, default: info] The LOG_LEVEL
+            LOG_LEVEL:
+              value: info

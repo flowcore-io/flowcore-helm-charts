@@ -104,6 +104,22 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `valkey-single.primary.persistence.size`         | The size of the persistent volume                            | `50Gi`                          |
 | `valkey-single.primary.persistence.storageClass` | The storage class for the persistent volume                  |                                 |
 
+### Valkey Cache Configuration
+
+| Name                                            | Description                                  | Value          |
+| ----------------------------------------------- | -------------------------------------------- | -------------- |
+| `valkey-cache.enabled`                          | Whether to install the Valkey cache instance | `false`        |
+| `valkey-cache.nameOverride`                     | The name override                            | `valkey-cache` |
+| `valkey-cache.fullnameOverride`                 | The full name override                       | `valkey-cache` |
+| `valkey-cache.architecture`                     | The architecture to use                      | `single`       |
+| `valkey-cache.auth.enabled`                     | Whether to install the Auth instance         | `false`        |
+| `valkey-cache.primary.enabled`                  | Whether to install the primary instance      | `true`         |
+| `valkey-cache.primary.replicaCount`             | The number of replicas                       | `1`            |
+| `valkey-cache.primary.resources`                | The resources for the primary instance       |                |
+| `valkey-cache.primary.persistence.enabled`      | Whether to install the persistence           | `true`         |
+| `valkey-cache.primary.persistence.size`         | The size of the persistent volume            | `5Gi`          |
+| `valkey-cache.primary.persistence.storageClass` | The storage class for the persistent volume  |                |
+
 ### NATS Configuration
 
 | Name                                               | Description                                                                                                  | Value  |
@@ -170,7 +186,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `ensureCredentials.enabled`                   | Whether to install the ensure credentials job | `true`                                        |
 | `ensureCredentials.image`                     | The image                                     | `{}`                                          |
 | `ensureCredentials.image.repository`          | The image repository                          | `flowcoreio/job-create-dedicated-credentials` |
-| `ensureCredentials.image.tag`                 | The image tag                                 | `1.8.1`                                       |
+| `ensureCredentials.image.tag`                 | The image tag                                 | `1.9.0`                                       |
 | `ensureCredentials.resources`                 | The resources for the ensure credentials job  | `{}`                                          |
 | `ensureCredentials.resources.limits.cpu`      | The CPU limit                                 | `100m`                                        |
 | `ensureCredentials.resources.limits.cpu`      | The CPU limit                                 | `100m`                                        |
@@ -327,6 +343,37 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.coldStorageApi.env.AWS_BUCKET_NAME`            | The AWS bucket name                     | `flowcore-platform-archive`                                              |
 | `flowcore-microservices.deployments.coldStorageApi.env.AWS_ACCESS_KEY_ID`          | The archive access key ID               | `archive-access-key-id in aws-credentials secret`                        |
 | `flowcore-microservices.deployments.coldStorageApi.env.AWS_SECRET_ACCESS_KEY`      | The archive secret access key           | `archive-secret-access-key in aws-credentials secret`                    |
+
+### Ingestion Validation Adapter
+
+| Name                                                                                                                  | Description                                         | Value                                                             |
+| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------------------- |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.enabled`                                               | Whether to install the ingestion validation adapter | `true`                                                            |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.deployment.tag`                                        | The image tag                                       | `1.9.0`                                                           |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.deployment.image`                                      | The image                                           | `ingestion-validation-adapter`                                    |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.env.GRPC_URL`                                          | The GRPC URL                                        | `0.0.0.0:5000`                                                    |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.env.FLOWCORE_DATA_PUMP_URL`                            | The FLOWCORE_DATA_PUMP_URL                          | `localhost:5001`                                                  |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.env.REDIS_MASTER_SET_NAME`                             | The REDIS_MASTER_SET_NAME                           | `sentinel-primary-set in ingestion-validation-credentials secret` |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.env.REDIS_SENTINELS`                                   | The REDIS_SENTINELS                                 | `sentinel-hosts in ingestion-validation-credentials secret`       |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.env.REDIS_PASSWORD`                                    | The REDIS_PASSWORD                                  | `sentinel-password in ingestion-validation-credentials secret`    |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.useTransports`                                         | The useTransports                                   | `nats`                                                            |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars`                                              | The sidecars                                        | `{}`                                                              |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.tag`                                 | The image tag                                       | `5.0.0`                                                           |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.enabled`                             | Whether to enable the data pump                     | `true`                                                            |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.image`                               | The image                                           | `legacy-data-pump`                                                |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.GRPC_URL`                        | The GRPC URL                                        | `0.0.0.0:5001`                                                    |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.REDIS_HOST`                      | The REDIS_HOST                                      | `valkey-cache`                                                    |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.REDIS_PORT`                      | The REDIS_PORT                                      | `6379`                                                            |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.DATA_PUMP_NAME`                  | The DATA_PUMP_NAME                                  | `ingestion-validation-adapter`                                    |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.DATA_PUMP_MAX_TIME_BETWEEN_MSGS` | The DATA_PUMP_MAX_TIME_BETWEEN_MSGS                 | `10000`                                                           |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.DATA_PUMP_MAX_HISTORY_IN_HOURS`  | The DATA_PUMP_MAX_HISTORY_IN_HOURS                  | `2500`                                                            |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.DATA_PUMP_ADAPTER_URL`           | The DATA_PUMP_ADAPTER_URL                           | `localhost:5000`                                                  |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.FLOWCORE_AGGREGATOR`             | The FLOWCORE_AGGREGATOR                             | `event-type.0`                                                    |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.FLOWCORE_EVENT_TYPES`            | The FLOWCORE_EVENT_TYPES                            | `"event.event-type.created.0 event.event-type.deleted.0"`         |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.FLOWCORE_DATA_CORE_ID`           | The FLOWCORE_DATA_CORE_ID                           | `ecc024c5-3adf-42a3-aa55-fd3620673192`                            |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.FLOWCORE_EVENT_SOURCE_URL`       | The FLOWCORE_EVENT_SOURCE_URL                       | `legacy-platform-event-source-api:5000`                           |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.FLOWCORE_TENANT_ID`              | The FLOWCORE_TENANT_ID                              | `flowcore`                                                        |
+| `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.LOG_LEVEL`                       | The LOG_LEVEL                                       | `info`                                                            |
 
 
 
