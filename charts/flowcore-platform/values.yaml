@@ -250,8 +250,8 @@ ensureCredentials:
   image:
     ## @param ensureCredentials.image.repository [default: flowcoreio/job-create-dedicated-credentials] The image repository
     repository: flowcoreio/job-create-dedicated-credentials
-    ## @param ensureCredentials.image.tag [default: 1.9.0] The image tag
-    tag: 1.9.0
+    ## @param ensureCredentials.image.tag [default: 1.9.1] The image tag
+    tag: 1.9.1
   ## @param ensureCredentials.resources [object] The resources for the ensure credentials job
   resources:
     ## @param ensureCredentials.resources.limits.cpu [default: 100m] The CPU limit
