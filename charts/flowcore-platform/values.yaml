@@ -717,8 +717,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.ingestionValidationAdapter.deployment.tag [default: 1.9.0] The image tag
         tag: 1.9.0
-        ## @param flowcore-microservices.deployments.ingestionValidationAdapter.deployment.image [default: ingestion-validation-adapter] The image
-        image: ingestion-validation-adapter
+        ## @param flowcore-microservices.deployments.ingestionValidationAdapter.deployment.image [default: ingestion-ingestion-validation-adapter] The image
+        image: ingestion-ingestion-validation-adapter
       env:
         ## @param flowcore-microservices.deployments.ingestionValidationAdapter.env.GRPC_URL [object, default: 0.0.0.0:5000] The GRPC URL
         GRPC_URL:
