@@ -715,8 +715,8 @@ flowcore-microservices:
       ## @param flowcore-microservices.deployments.ingestionValidationAdapter.enabled [default: true] Whether to install the ingestion validation adapter
       enabled: true
       deployment:
-        ## @param flowcore-microservices.deployments.ingestionValidationAdapter.deployment.tag [default: 1.9.0] The image tag
-        tag: 1.9.0
+        ## @param flowcore-microservices.deployments.ingestionValidationAdapter.deployment.tag [default: 1.2.3] The image tag
+        tag: 1.2.3
         ## @param flowcore-microservices.deployments.ingestionValidationAdapter.deployment.image [default: ingestion-ingestion-validation-adapter] The image
         image: ingestion-ingestion-validation-adapter
       env:
