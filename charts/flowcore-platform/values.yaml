@@ -986,3 +986,114 @@ flowcore-microservices:
       ## @param flowcore-microservices.deployments.eventRecorder.useTransports [array, default: nats] The useTransports
       useTransports:
         - nats
+    ## @section Event Archiver
+    eventArchiver:
+      ## @param flowcore-microservices.deployments.eventArchiver.enabled [default: true] Whether to install the event archiver
+      enabled: true
+      metrics:
+        ## @param flowcore-microservices.deployments.eventArchiver.metrics.enabled [default: true] Whether to enable the metrics
+        enabled: true
+      deployment:
+        ## @param flowcore-microservices.deployments.eventArchiver.deployment.image [default: source-event-archiver] The image
+        image: source-event-archiver
+        ## @param flowcore-microservices.deployments.eventArchiver.deployment.tag [default: 1.19.0] The image tag
+        tag: 1.19.0
+        ## @param flowcore-microservices.deployments.eventArchiver.deployment.replicas [default: 2] The number of replicas
+        replicas: 2
+        ## @param flowcore-microservices.deployments.eventArchiver.deployment.resources [object] The resources
+        resources:
+          requests:
+            ## @param flowcore-microservices.deployments.eventArchiver.deployment.resources.requests.cpu [default: 100m] The CPU request
+            cpu: 100m
+            ## @param flowcore-microservices.deployments.eventArchiver.deployment.resources.requests.memory [default: 128Mi] The memory request
+            memory: 128Mi
+          limits:
+            ## @param flowcore-microservices.deployments.eventArchiver.deployment.resources.limits.cpu [default: 2000m] The CPU limit
+            cpu: 2000m
+            ## @param flowcore-microservices.deployments.eventArchiver.deployment.resources.limits.memory [default: 4096Mi] The memory limit
+            memory: 4096Mi
+      env:
+        ## @param flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_CHUNK_SIZE [object, default: 10000] The ARCHIVING_CHUNK_SIZE
+        ARCHIVING_CHUNK_SIZE:
+          value: "10000"
+        ## @param flowcore-microservices.deployments.eventArchiver.env.ARANGODB_URL [object, default: http://arango.flowcore.svc.cluster.local:8529] The ARANGODB_URL
+        ARANGODB_URL:
+          value: http://arango.flowcore.svc.cluster.local:8529
+        ## @param flowcore-microservices.deployments.eventArchiver.env.ARANGODB_USERNAME [object, default: arangodb-username in event-archiver-credentials secret] The ARANGODB_USERNAME
+        ARANGODB_USERNAME:
+          valueFrom:
+            secretKeyRef:
+              name: event-archiver-credentials
+              key: arangodb-username
+        ## @param flowcore-microservices.deployments.eventArchiver.env.ARANGODB_PASSWORD [object, default: arangodb-password in event-archiver-credentials secret] The ARANGODB_PASSWORD
+        ARANGODB_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: event-archiver-credentials
+              key: arangodb-password
+        ## @param flowcore-microservices.deployments.eventArchiver.env.ARANGODB_DATABASE [object, default: archiving] The ARANGODB_DATABASE
+        ARANGODB_DATABASE:
+          value: archiving
+        ## @param flowcore-microservices.deployments.eventArchiver.env.REDIS_MASTER_SET_NAME [object, default: sentinel-primary-set in event-archiver-credentials secret] The REDIS_MASTER_SET_NAME
+        REDIS_MASTER_SET_NAME:
+          valueFrom:
+            secretKeyRef:
+              name: event-archiver-credentials
+              key: sentinel-primary-set
+        ## @param flowcore-microservices.deployments.eventArchiver.env.REDIS_SENTINELS [object, default: sentinel-hosts in event-archiver-credentials secret] The REDIS_SENTINELS
+        REDIS_SENTINELS:
+          valueFrom:
+            secretKeyRef:
+              name: event-archiver-credentials
+              key: sentinel-hosts
+        ## @param flowcore-microservices.deployments.eventArchiver.env.REDIS_PASSWORD [object, default: sentinel-password in event-archiver-credentials secret] The REDIS_PASSWORD
+        REDIS_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: event-archiver-credentials
+              key: sentinel-password
+        ## @param flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_ACCESS_KEY_ID [object, default: archive-access-key-id in aws-credentials secret] The ARCHIVING_ACCESS_KEY_ID
+        ARCHIVING_ACCESS_KEY_ID:
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: archive-access-key-id
+        ## @param flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_SECRET_ACCESS_KEY [object, default: archive-secret-access-key in aws-credentials secret] The ARCHIVING_SECRET_ACCESS_KEY
+        ARCHIVING_SECRET_ACCESS_KEY:
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: archive-secret-access-key
+        ## @param flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_BUCKET_NAME [object, default: archive-bucket-name in aws-credentials secret] The ARCHIVING_BUCKET_NAME
+        ARCHIVING_BUCKET_NAME:
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: archive-bucket-name
+        ## @param flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_REGION [object, default: eu-west-1] The ARCHIVING_REGION
+        ARCHIVING_REGION:
+          value: eu-west-1
+        ## @param flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_CONCURRENT_PROCESSES [object, default: 5] The ARCHIVING_CONCURRENT_PROCESSES
+        ARCHIVING_CONCURRENT_PROCESSES:
+          value: "5"
+        ## @param flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_DEPLOYMENT_TYPE [object, default: dedicated] The ARCHIVING_DEPLOYMENT_TYPE
+        ARCHIVING_DEPLOYMENT_TYPE:
+          value: dedicated
+        ## @param flowcore-microservices.deployments.eventArchiver.env.CASSANDRA_CONTACT_POINTS [object, default: flowcore-cassandra.flowcore.svc.cluster.local] The CASSANDRA_CONTACT_POINTS
+        CASSANDRA_CONTACT_POINTS:
+          value: flowcore-cassandra.flowcore.svc.cluster.local
+        ## @param flowcore-microservices.deployments.eventArchiver.env.CASSANDRA_KEYSPACE [object, default: flowcore_archive] The CASSANDRA_KEYSPACE
+        CASSANDRA_KEYSPACE:
+          value: flowcore_archive
+        ## @param flowcore-microservices.deployments.eventArchiver.env.CASSANDRA_USERNAME [object, default: cassandra-username in event-archiver-credentials secret] The CASSANDRA_USERNAME
+        CASSANDRA_USERNAME:
+          valueFrom:
+            secretKeyRef:
+              name: event-recorder-credentials
+              key: cassandra-username
+        ## @param flowcore-microservices.deployments.eventArchiver.env.CASSANDRA_PASSWORD [object, default: cassandra-password in event-archiver-credentials secret] The CASSANDRA_PASSWORD
+        CASSANDRA_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: event-recorder-credentials
+              key: cassandra-password
