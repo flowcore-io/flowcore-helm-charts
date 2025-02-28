@@ -853,3 +853,31 @@ flowcore-microservices:
       service:
         ## @param flowcore-microservices.deployments.webhookService.service.enabled [default: true] Whether to enable the service
         enabled: true
+      ## @param flowcore-microservices.deployments.webhookService.affinity [object] The affinity
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              preference:
+                matchExpressions:
+                  - key: scheduling.cast.ai/spot
+                    operator: Exists
+      ## @param flowcore-microservices.deployments.webhookService.ingress.enabled [object] The ingress
+      ingress:
+        ## @param flowcore-microservices.deployments.webhookService.ingress.enabled [default: true] Whether to install the ingress
+        enabled: true
+        ## @param flowcore-microservices.deployments.webhookService.ingress.annotations [object] The ingress annotations
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-connect-timeout: "255"
+          nginx.ingress.kubernetes.io/proxy-read-timeout: "255"
+          nginx.ingress.kubernetes.io/proxy-send-timeout: "255"
+          nginx.ingress.kubernetes.io/server-snippet: |
+            gzip on;
+            gzip_comp_level 5;
+        ## @param flowcore-microservices.deployments.webhookService.ingress.route [array] The ingress route
+        route:
+          ## @param flowcore-microservices.deployments.webhookService.ingress.route.hosts [array, default: example.com] The ingress hosts
+          - hosts:
+              - example.com
+            ## @param flowcore-microservices.deployments.eventSourceApi.ingress.route.tlsSecret [object, default: example-tls] The ingress TLS secret
+            tlsSecret: example-tls

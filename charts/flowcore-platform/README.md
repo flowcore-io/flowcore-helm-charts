@@ -396,6 +396,13 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.webhookService.env.REDIS_PASSWORD`                   | The REDIS_PASSWORD                       | `sentinel-password in webhook-ingestion-credentials secret`    |
 | `flowcore-microservices.deployments.webhookService.env.NATS_QUEUE`                       | The NATS_QUEUE                           | `ingestion-webhook`                                            |
 | `flowcore-microservices.deployments.webhookService.service.enabled`                      | Whether to enable the service            | `true`                                                         |
+| `flowcore-microservices.deployments.webhookService.affinity`                             | The affinity                             | `{}`                                                           |
+| `flowcore-microservices.deployments.webhookService.ingress.enabled`                      | The ingress                              | `{}`                                                           |
+| `flowcore-microservices.deployments.webhookService.ingress.enabled`                      | Whether to install the ingress           | `true`                                                         |
+| `flowcore-microservices.deployments.webhookService.ingress.annotations`                  | The ingress annotations                  | `{}`                                                           |
+| `flowcore-microservices.deployments.webhookService.ingress.route`                        | The ingress route                        | `[]`                                                           |
+| `flowcore-microservices.deployments.webhookService.ingress.route.hosts`                  | The ingress hosts                        | `example.com`                                                  |
+| `flowcore-microservices.deployments.eventSourceApi.ingress.route.tlsSecret`              | The ingress TLS secret                   | `example-tls`                                                  |
 
 
 
