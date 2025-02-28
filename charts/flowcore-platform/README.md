@@ -395,6 +395,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.webhookService.env.REDIS_SENTINELS`                  | The REDIS_SENTINELS                      | `sentinel-hosts in webhook-ingestion-credentials secret`       |
 | `flowcore-microservices.deployments.webhookService.env.REDIS_PASSWORD`                   | The REDIS_PASSWORD                       | `sentinel-password in webhook-ingestion-credentials secret`    |
 | `flowcore-microservices.deployments.webhookService.env.NATS_QUEUE`                       | The NATS_QUEUE                           | `ingestion-webhook`                                            |
+| `flowcore-microservices.deployments.webhookService.env.INGESTION_NATS_SERVERS`           | The INGESTION_NATS_SERVERS               | `nats://nats:4222`                                             |
 | `flowcore-microservices.deployments.webhookService.service.enabled`                      | Whether to enable the service            | `true`                                                         |
 | `flowcore-microservices.deployments.webhookService.affinity`                             | The affinity                             | `{}`                                                           |
 | `flowcore-microservices.deployments.webhookService.ingress.enabled`                      | The ingress                              | `{}`                                                           |

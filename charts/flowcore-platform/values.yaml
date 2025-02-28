@@ -850,6 +850,9 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.webhookService.env.NATS_QUEUE [object, default: ingestion-webhook] The NATS_QUEUE
         NATS_QUEUE:
           value: ingestion-webhook
+        ## @param flowcore-microservices.deployments.webhookService.env.INGESTION_NATS_SERVERS [object, default: nats://nats:4222] The INGESTION_NATS_SERVERS
+        INGESTION_NATS_SERVERS:
+          value: nats://nats:4222
       service:
         ## @param flowcore-microservices.deployments.webhookService.service.enabled [default: true] Whether to enable the service
         enabled: true

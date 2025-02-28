@@ -3,7 +3,7 @@ entries:
   flowcore-microservices:
   - apiVersion: v2
     appVersion: 2.4.4
-    created: "2025-02-28T14:59:11.09214Z"
+    created: "2025-02-28T15:08:00.777112Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: fd19ea49f31f4b6d8fdd93e4fe4fe23efb9152b57305242332c80641745eeecf
@@ -15,7 +15,7 @@ entries:
     version: 2.8.1
   - apiVersion: v2
     appVersion: 2.4.4
-    created: "2025-02-28T14:59:11.091478Z"
+    created: "2025-02-28T15:08:00.776531Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 6d4250acee536563caa914c744db1b61f1a1b079b41ee095eec9fcbf7e36efc6
@@ -27,7 +27,7 @@ entries:
     version: 2.8.0
   - apiVersion: v2
     appVersion: 2.4.4
-    created: "2025-02-28T14:59:11.090984Z"
+    created: "2025-02-28T15:08:00.776033Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 9cb03a44443e8bbc3387d8cf5184b31538af6205862f692bfee1e5a108bfc611
@@ -39,7 +39,7 @@ entries:
     version: 2.7.0
   - apiVersion: v2
     appVersion: 2.4.4
-    created: "2025-02-28T14:59:11.090562Z"
+    created: "2025-02-28T15:08:00.775523Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 436cc9acda3167a4a6f9f1344f9f4802f92f6948f9c0aa9c5619fb48dfb92a2d
@@ -51,7 +51,7 @@ entries:
     version: 2.6.1
   - apiVersion: v2
     appVersion: 2.4.4
-    created: "2025-02-28T14:59:11.089987Z"
+    created: "2025-02-28T15:08:00.774976Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 8c8f211063d12fe8cd1e574b2c1ed7f6c4403f2c7f33059e1a7984f30db8401a
@@ -63,7 +63,7 @@ entries:
     version: 2.6.0
   - apiVersion: v2
     appVersion: 2.4.4
-    created: "2025-02-28T14:59:11.089299Z"
+    created: "2025-02-28T15:08:00.774469Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: cd70715803e4279ed2ee6d1a091836fde352e8daf0c4bc3a124ed1a0bd6c0453
@@ -75,7 +75,7 @@ entries:
     version: 2.5.1
   - apiVersion: v2
     appVersion: 2.4.4
-    created: "2025-02-28T14:59:11.088616Z"
+    created: "2025-02-28T15:08:00.773943Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 4f02068a5192adba74ee6c434fc652cef216103ae794c71acd6ab6e42945f31b
@@ -87,7 +87,7 @@ entries:
     version: 2.5.0
   - apiVersion: v2
     appVersion: 2.4.4
-    created: "2025-02-28T14:59:11.088024Z"
+    created: "2025-02-28T15:08:00.773393Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: a139bf85bfaf7adfabc7b97ab256b9eb8c926c428ce18f9810d337cf028ffab5
@@ -99,7 +99,7 @@ entries:
     version: 2.4.5
   - apiVersion: v2
     appVersion: 2.4.4
-    created: "2025-02-28T14:59:11.087417Z"
+    created: "2025-02-28T15:08:00.772918Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: fe2985967c8f84bf36c836fd5179713996b82d6aa60877f8aba553115ad2b636
@@ -111,7 +111,7 @@ entries:
     version: 2.4.4
   - apiVersion: v2
     appVersion: 2.4.3
-    created: "2025-02-28T14:59:11.087037Z"
+    created: "2025-02-28T15:08:00.772482Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: cc8cff51a44aa1d992953bb922c464c82840d871282321fbb373867232cf1b5a
@@ -123,7 +123,7 @@ entries:
     version: 2.4.3
   - apiVersion: v2
     appVersion: 2.4.2
-    created: "2025-02-28T14:59:11.086306Z"
+    created: "2025-02-28T15:08:00.771933Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: d5503bb7a367efd038f2772484d4e6338c96a604de58b6905ec628da5f9b9e90
@@ -135,7 +135,7 @@ entries:
     version: 2.4.2
   - apiVersion: v2
     appVersion: 2.4.1
-    created: "2025-02-28T14:59:11.08564Z"
+    created: "2025-02-28T15:08:00.7714Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 2c8b6bb19fa9dbe908785c8b66986d0380fb10dca6e88010f505ccc78f378519
@@ -147,7 +147,7 @@ entries:
     version: 2.4.1
   - apiVersion: v2
     appVersion: 2.4.0
-    created: "2025-02-28T14:59:11.08501Z"
+    created: "2025-02-28T15:08:00.770821Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 1c16fd68a6cc75aeb15fe074b0cd02951f2ead54997dd55225cfcd297916f47f
@@ -159,7 +159,7 @@ entries:
     version: 2.4.0
   - apiVersion: v2
     appVersion: 2.3.1
-    created: "2025-02-28T14:59:11.084392Z"
+    created: "2025-02-28T15:08:00.770265Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: eb65d7ea20e144913c72cf793f4a4a26c6edeb4255869e6bc72ecbf3d4515552
@@ -171,7 +171,7 @@ entries:
     version: 2.3.1
   - apiVersion: v2
     appVersion: 2.3.0
-    created: "2025-02-28T14:59:11.083986Z"
+    created: "2025-02-28T15:08:00.769778Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: b461e62074578c192f2c7f1045bdc2dad5b81893fb10432d3996de3cbf7c5a85
@@ -183,7 +183,7 @@ entries:
     version: 2.3.0
   - apiVersion: v2
     appVersion: 2.2.0
-    created: "2025-02-28T14:59:11.083554Z"
+    created: "2025-02-28T15:08:00.769372Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 629055d0e447d858635d0e668d39e1ed4113a1f00778b42cba77406c36c8f39e
@@ -195,7 +195,7 @@ entries:
     version: 2.2.0
   - apiVersion: v2
     appVersion: 2.1.0
-    created: "2025-02-28T14:59:11.083124Z"
+    created: "2025-02-28T15:08:00.768408Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: b2b2e8056d9630d1b1700415cc7d2c2ad0ed83b886f95abf363509ca3bc207fb
@@ -207,7 +207,7 @@ entries:
     version: 2.1.0
   - apiVersion: v2
     appVersion: 2.0.1
-    created: "2025-02-28T14:59:11.082565Z"
+    created: "2025-02-28T15:08:00.767902Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 696f31f824aff2568c806a80031e474541bb1fd50b3245fce3c0af7d24968270
@@ -218,7 +218,7 @@ entries:
     version: 2.0.1
   - apiVersion: v2
     appVersion: 2.0.0
-    created: "2025-02-28T14:59:11.082082Z"
+    created: "2025-02-28T15:08:00.767039Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 759dd8661d23e54d21294a229b5f4b90796b41541ccd29c0f761d1bfe77617b4
@@ -229,7 +229,7 @@ entries:
     version: 2.0.0
   - apiVersion: v2
     appVersion: 1.7.0
-    created: "2025-02-28T14:59:11.081635Z"
+    created: "2025-02-28T15:08:00.766512Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: d080bcbfb0268529330ef23e5ce95f69f3e0cbb4cd1f0e5e32654032d03e5566
@@ -240,7 +240,7 @@ entries:
     version: 1.7.0
   - apiVersion: v2
     appVersion: 1.6.3
-    created: "2025-02-28T14:59:11.081132Z"
+    created: "2025-02-28T15:08:00.766018Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: b60bcbddb00f2845fd4ea2361a593113b0678e7fe49364e3db726d6b335e02d2
@@ -251,7 +251,7 @@ entries:
     version: 1.6.3
   - apiVersion: v2
     appVersion: 1.6.2
-    created: "2025-02-28T14:59:11.08002Z"
+    created: "2025-02-28T15:08:00.765643Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: ee7011c72e1cdfb827d562b3fa53c0a6ab6723d3f9ae06c367e8575da9aea588
@@ -262,7 +262,7 @@ entries:
     version: 1.6.2
   - apiVersion: v2
     appVersion: 1.6.1
-    created: "2025-02-28T14:59:11.079576Z"
+    created: "2025-02-28T15:08:00.765214Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: ea8ba94c6f1d1aeea9cb56b7a63d6638ee9f30ff64253d378ad36078a2437552
@@ -273,7 +273,7 @@ entries:
     version: 1.6.1
   - apiVersion: v2
     appVersion: 1.6.0
-    created: "2025-02-28T14:59:11.079014Z"
+    created: "2025-02-28T15:08:00.764791Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: e00cb7400fa902ffccd8c4e5f87bb48cad135c6437d6321371e356b5489df948
@@ -284,7 +284,7 @@ entries:
     version: 1.6.0
   - apiVersion: v2
     appVersion: 1.5.0
-    created: "2025-02-28T14:59:11.078579Z"
+    created: "2025-02-28T15:08:00.764315Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: fa9526ca2d0e3c94863f17af735ddd15ea65f1a46d88702f47edfdbdc199bcfb
@@ -295,7 +295,7 @@ entries:
     version: 1.5.0
   - apiVersion: v2
     appVersion: 1.4.0
-    created: "2025-02-28T14:59:11.078099Z"
+    created: "2025-02-28T15:08:00.763824Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 9042e3d615415c01e00b4e0e516e74f2cd5154e64a8514c96821a149b5a2ac97
@@ -306,7 +306,7 @@ entries:
     version: 1.4.0
   - apiVersion: v2
     appVersion: 1.3.1
-    created: "2025-02-28T14:59:11.07755Z"
+    created: "2025-02-28T15:08:00.763392Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 15b0d126d52646e1ac72574ac5abb86b14c9cd84322fde748bf75386adad4ae9
@@ -317,7 +317,7 @@ entries:
     version: 1.3.1
   - apiVersion: v2
     appVersion: 1.3.0
-    created: "2025-02-28T14:59:11.077158Z"
+    created: "2025-02-28T15:08:00.762848Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 74bfc2cc60f9b29f6755f2b36a2592ee594046723cd278ac63298a3069293cdd
@@ -328,7 +328,7 @@ entries:
     version: 1.3.0
   - apiVersion: v2
     appVersion: 1.2.0
-    created: "2025-02-28T14:59:11.076795Z"
+    created: "2025-02-28T15:08:00.762478Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 01b4d2151c9abb79d2222278d444f8b00ad12249330c1def9ef00bf2c8839cd6
@@ -339,7 +339,7 @@ entries:
     version: 1.2.0
   - apiVersion: v2
     appVersion: 1.1.2
-    created: "2025-02-28T14:59:11.076456Z"
+    created: "2025-02-28T15:08:00.761979Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 29083eeebf525621ac4f310f97e60dba02bafb3d0f447723b795e8e96f5f3d2d
@@ -350,7 +350,7 @@ entries:
     version: 1.1.2
   - apiVersion: v2
     appVersion: 1.1.1
-    created: "2025-02-28T14:59:11.075939Z"
+    created: "2025-02-28T15:08:00.761679Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 96a6de73ba6c230e525c7b0ea43c23a0c8dd4c3c9397128f6c1bce11308bd292
@@ -361,7 +361,7 @@ entries:
     version: 1.1.1
   - apiVersion: v2
     appVersion: 1.1.0
-    created: "2025-02-28T14:59:11.07565Z"
+    created: "2025-02-28T15:08:00.761273Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: e825d750833b72ab71ea43add8d4e8e584376fc06318460ee2ef0bb2f7ead9f2
@@ -372,7 +372,7 @@ entries:
     version: 1.1.0
   - apiVersion: v2
     appVersion: 1.0.1
-    created: "2025-02-28T14:59:11.075357Z"
+    created: "2025-02-28T15:08:00.760871Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: c451af30726d0a3849528e84299e7f443d131c9723ac74fd77bfa5e07075aef3
@@ -383,7 +383,7 @@ entries:
     version: 1.0.1
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-02-28T14:59:11.074979Z"
+    created: "2025-02-28T15:08:00.760317Z"
     description: A helm chart template for deploying multiple flowcore microservices
       in a domain
     digest: 3d9237932bfbd9d15bfa5cf11763b954969869d7d50101258309ec016933a5f0
@@ -395,7 +395,55 @@ entries:
   flowcore-platform:
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.270499Z"
+    created: "2025-02-28T15:08:00.96302Z"
+    dependencies:
+    - condition: cassandra.enabled
+      name: cassandra
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 12.1.1
+    - alias: valkey-ha
+      condition: valkey-ha.enabled
+      name: valkey
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 2.2.3
+    - alias: valkey-single
+      condition: valkey-single.enabled
+      name: valkey
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 2.2.3
+    - alias: valkey-cache
+      condition: valkey-cache.enabled
+      name: valkey
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 2.2.3
+    - condition: nats.enabled
+      name: nats
+      repository: https://nats-io.github.io/k8s/helm/charts/
+      version: 1.2.10
+    - condition: postgresql-operator.enabled
+      name: cloudnative-pg
+      repository: https://cloudnative-pg.io/charts/
+      version: 0.23.0
+    - condition: flowcore-microservices.enabled
+      name: flowcore-microservices
+      repository: https://flowcore-io.github.io/flowcore-helm-charts
+      version: 2.8.0
+    - condition: arangodb-operator.enabled
+      name: kube-arangodb
+      repository: https://arangodb.github.io/kube-arangodb
+      version: 1.2.26
+    description: A helm chart for installing a dedicated instance of the Flowcore
+      Platform
+    digest: 80bd2f1cee22db0a2ab6b271c0236875223ba08aa9fa48e48dbd13cc91ede8da
+    icon: https://avatars.githubusercontent.com/u/114778675?s=200&v=4
+    name: flowcore-platform
+    type: application
+    urls:
+    - https://flowcore-io.github.io/flowcore-helm-charts/flowcore-platform-0.11.2.tgz
+    version: 0.11.2
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2025-02-28T15:08:00.948939Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -443,7 +491,7 @@ entries:
     version: 0.11.1
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.253912Z"
+    created: "2025-02-28T15:08:00.934143Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -491,7 +539,7 @@ entries:
     version: 0.11.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.239254Z"
+    created: "2025-02-28T15:08:00.917361Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -539,7 +587,7 @@ entries:
     version: 0.10.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.224946Z"
+    created: "2025-02-28T15:08:00.904352Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -587,7 +635,7 @@ entries:
     version: 0.10.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.209811Z"
+    created: "2025-02-28T15:08:00.890817Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -635,7 +683,7 @@ entries:
     version: 0.10.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.195311Z"
+    created: "2025-02-28T15:08:00.87717Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -683,7 +731,7 @@ entries:
     version: 0.10.1
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.182414Z"
+    created: "2025-02-28T15:08:00.863886Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -731,7 +779,7 @@ entries:
     version: 0.10.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:12.112154Z"
+    created: "2025-02-28T15:08:01.783198Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -774,7 +822,7 @@ entries:
     version: 0.9.6
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:12.097355Z"
+    created: "2025-02-28T15:08:01.769314Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -817,7 +865,7 @@ entries:
     version: 0.9.5
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:12.075901Z"
+    created: "2025-02-28T15:08:01.753845Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -864,7 +912,7 @@ entries:
     version: 0.9.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:12.056545Z"
+    created: "2025-02-28T15:08:01.738509Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -911,7 +959,7 @@ entries:
     version: 0.9.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:12.031601Z"
+    created: "2025-02-28T15:08:01.722995Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -958,7 +1006,7 @@ entries:
     version: 0.9.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:12.016089Z"
+    created: "2025-02-28T15:08:01.709142Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1005,7 +1053,7 @@ entries:
     version: 0.9.1
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:12.003341Z"
+    created: "2025-02-28T15:08:01.694736Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1052,7 +1100,7 @@ entries:
     version: 0.9.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.990033Z"
+    created: "2025-02-28T15:08:01.680499Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1091,7 +1139,7 @@ entries:
     version: 0.8.7
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.977285Z"
+    created: "2025-02-28T15:08:01.668277Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1130,7 +1178,7 @@ entries:
     version: 0.8.6
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.965241Z"
+    created: "2025-02-28T15:08:01.655783Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1169,7 +1217,7 @@ entries:
     version: 0.8.5
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.952636Z"
+    created: "2025-02-28T15:08:01.642407Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1208,7 +1256,7 @@ entries:
     version: 0.8.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.940235Z"
+    created: "2025-02-28T15:08:01.629752Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1247,7 +1295,7 @@ entries:
     version: 0.8.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.927606Z"
+    created: "2025-02-28T15:08:01.617406Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1286,7 +1334,7 @@ entries:
     version: 0.8.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.914998Z"
+    created: "2025-02-28T15:08:01.604381Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1325,7 +1373,7 @@ entries:
     version: 0.8.1
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.901687Z"
+    created: "2025-02-28T15:08:01.591823Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1364,7 +1412,7 @@ entries:
     version: 0.8.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.78796Z"
+    created: "2025-02-28T15:08:01.473587Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1403,7 +1451,7 @@ entries:
     version: 0.7.12
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.775623Z"
+    created: "2025-02-28T15:08:01.458377Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1442,7 +1490,7 @@ entries:
     version: 0.7.11
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.762799Z"
+    created: "2025-02-28T15:08:01.445345Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1481,7 +1529,7 @@ entries:
     version: 0.7.10
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.888954Z"
+    created: "2025-02-28T15:08:01.578397Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1520,7 +1568,7 @@ entries:
     version: 0.7.9
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.876421Z"
+    created: "2025-02-28T15:08:01.562225Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1559,7 +1607,7 @@ entries:
     version: 0.7.8
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.864399Z"
+    created: "2025-02-28T15:08:01.54985Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1598,7 +1646,7 @@ entries:
     version: 0.7.7
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.8518Z"
+    created: "2025-02-28T15:08:01.537155Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1637,7 +1685,7 @@ entries:
     version: 0.7.6
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.839462Z"
+    created: "2025-02-28T15:08:01.524514Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1676,7 +1724,7 @@ entries:
     version: 0.7.5
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.827132Z"
+    created: "2025-02-28T15:08:01.51233Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1715,7 +1763,7 @@ entries:
     version: 0.7.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.814572Z"
+    created: "2025-02-28T15:08:01.499074Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1754,7 +1802,7 @@ entries:
     version: 0.7.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.802399Z"
+    created: "2025-02-28T15:08:01.486907Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1793,7 +1841,7 @@ entries:
     version: 0.7.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.750377Z"
+    created: "2025-02-28T15:08:01.432442Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1832,7 +1880,7 @@ entries:
     version: 0.7.1
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.737253Z"
+    created: "2025-02-28T15:08:01.419492Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1871,7 +1919,7 @@ entries:
     version: 0.7.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.640198Z"
+    created: "2025-02-28T15:08:01.31951Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1910,7 +1958,7 @@ entries:
     version: 0.6.22
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.627715Z"
+    created: "2025-02-28T15:08:01.3074Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1949,7 +1997,7 @@ entries:
     version: 0.6.21
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.615451Z"
+    created: "2025-02-28T15:08:01.293848Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -1988,7 +2036,7 @@ entries:
     version: 0.6.20
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.591128Z"
+    created: "2025-02-28T15:08:01.265639Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2027,7 +2075,7 @@ entries:
     version: 0.6.19
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.578668Z"
+    created: "2025-02-28T15:08:01.252518Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2066,7 +2114,7 @@ entries:
     version: 0.6.18
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.566472Z"
+    created: "2025-02-28T15:08:01.237385Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2105,7 +2153,7 @@ entries:
     version: 0.6.17
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.55411Z"
+    created: "2025-02-28T15:08:01.225549Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2144,7 +2192,7 @@ entries:
     version: 0.6.16
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.541637Z"
+    created: "2025-02-28T15:08:01.213523Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2183,7 +2231,7 @@ entries:
     version: 0.6.15
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.528982Z"
+    created: "2025-02-28T15:08:01.200447Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2222,7 +2270,7 @@ entries:
     version: 0.6.14
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.517155Z"
+    created: "2025-02-28T15:08:01.186144Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2261,7 +2309,7 @@ entries:
     version: 0.6.13
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.505351Z"
+    created: "2025-02-28T15:08:01.174644Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2300,7 +2348,7 @@ entries:
     version: 0.6.12
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.4917Z"
+    created: "2025-02-28T15:08:01.162873Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2339,7 +2387,7 @@ entries:
     version: 0.6.11
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.479721Z"
+    created: "2025-02-28T15:08:01.151127Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2378,7 +2426,7 @@ entries:
     version: 0.6.10
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.724215Z"
+    created: "2025-02-28T15:08:01.406824Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2417,7 +2465,7 @@ entries:
     version: 0.6.9
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.71284Z"
+    created: "2025-02-28T15:08:01.394622Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2456,7 +2504,7 @@ entries:
     version: 0.6.8
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.700429Z"
+    created: "2025-02-28T15:08:01.382058Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2495,7 +2543,7 @@ entries:
     version: 0.6.7
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.688034Z"
+    created: "2025-02-28T15:08:01.369139Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2534,7 +2582,7 @@ entries:
     version: 0.6.6
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.676281Z"
+    created: "2025-02-28T15:08:01.357306Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2573,7 +2621,7 @@ entries:
     version: 0.6.5
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.664436Z"
+    created: "2025-02-28T15:08:01.344827Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2612,7 +2660,7 @@ entries:
     version: 0.6.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.652019Z"
+    created: "2025-02-28T15:08:01.331152Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2651,7 +2699,7 @@ entries:
     version: 0.6.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.603259Z"
+    created: "2025-02-28T15:08:01.27796Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2690,7 +2738,7 @@ entries:
     version: 0.6.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.467032Z"
+    created: "2025-02-28T15:08:01.138663Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2729,7 +2777,7 @@ entries:
     version: 0.6.1
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.454669Z"
+    created: "2025-02-28T15:08:01.127043Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2768,7 +2816,7 @@ entries:
     version: 0.6.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.440916Z"
+    created: "2025-02-28T15:08:01.114497Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2803,7 +2851,7 @@ entries:
     version: 0.5.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.422681Z"
+    created: "2025-02-28T15:08:01.10594Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2838,7 +2886,7 @@ entries:
     version: 0.5.1
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.411692Z"
+    created: "2025-02-28T15:08:01.096993Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2873,7 +2921,7 @@ entries:
     version: 0.5.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.402221Z"
+    created: "2025-02-28T15:08:01.083926Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2908,7 +2956,7 @@ entries:
     version: 0.4.8
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.392793Z"
+    created: "2025-02-28T15:08:01.075817Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2943,7 +2991,7 @@ entries:
     version: 0.4.7
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.383586Z"
+    created: "2025-02-28T15:08:01.067861Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -2978,7 +3026,7 @@ entries:
     version: 0.4.6
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.37267Z"
+    created: "2025-02-28T15:08:01.058935Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -3013,7 +3061,7 @@ entries:
     version: 0.4.5
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.363897Z"
+    created: "2025-02-28T15:08:01.050988Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -3048,7 +3096,7 @@ entries:
     version: 0.4.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.355962Z"
+    created: "2025-02-28T15:08:01.043435Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -3083,7 +3131,7 @@ entries:
     version: 0.4.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.347938Z"
+    created: "2025-02-28T15:08:01.035091Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -3118,7 +3166,7 @@ entries:
     version: 0.4.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.33891Z"
+    created: "2025-02-28T15:08:01.02706Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -3153,7 +3201,7 @@ entries:
     version: 0.4.1
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.328907Z"
+    created: "2025-02-28T15:08:01.019465Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -3188,7 +3236,7 @@ entries:
     version: 0.4.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.319001Z"
+    created: "2025-02-28T15:08:01.010643Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -3219,7 +3267,7 @@ entries:
     version: 0.3.1
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.310147Z"
+    created: "2025-02-28T15:08:01.002793Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -3250,7 +3298,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.302054Z"
+    created: "2025-02-28T15:08:00.992415Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -3267,7 +3315,7 @@ entries:
     version: 0.2.9
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.299344Z"
+    created: "2025-02-28T15:08:00.989693Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -3284,7 +3332,7 @@ entries:
     version: 0.2.8
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.296657Z"
+    created: "2025-02-28T15:08:00.986816Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -3301,7 +3349,7 @@ entries:
     version: 0.2.7
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.293043Z"
+    created: "2025-02-28T15:08:00.983389Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -3318,7 +3366,7 @@ entries:
     version: 0.2.6
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.289861Z"
+    created: "2025-02-28T15:08:00.980352Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -3335,7 +3383,7 @@ entries:
     version: 0.2.5
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.287198Z"
+    created: "2025-02-28T15:08:00.977827Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -3352,7 +3400,7 @@ entries:
     version: 0.2.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.284158Z"
+    created: "2025-02-28T15:08:00.974902Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -3369,7 +3417,7 @@ entries:
     version: 0.2.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.280581Z"
+    created: "2025-02-28T15:08:00.971394Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -3386,7 +3434,7 @@ entries:
     version: 0.2.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.277698Z"
+    created: "2025-02-28T15:08:00.968736Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -3403,7 +3451,7 @@ entries:
     version: 0.2.1
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.274617Z"
+    created: "2025-02-28T15:08:00.965805Z"
     dependencies:
     - condition: cassandra.enabled
       name: cassandra
@@ -3420,7 +3468,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.168424Z"
+    created: "2025-02-28T15:08:00.849954Z"
     dependencies:
     - name: k8ssandra-operator
       repository: https://helm.k8ssandra.io
@@ -3436,7 +3484,7 @@ entries:
     version: 0.1.5
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.158651Z"
+    created: "2025-02-28T15:08:00.839297Z"
     dependencies:
     - name: k8ssandra-operator
       repository: https://helm.k8ssandra.io
@@ -3452,7 +3500,7 @@ entries:
     version: 0.1.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.148375Z"
+    created: "2025-02-28T15:08:00.829372Z"
     dependencies:
     - name: k8ssandra-operator
       repository: https://helm.k8ssandra.io
@@ -3468,7 +3516,7 @@ entries:
     version: 0.1.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.137644Z"
+    created: "2025-02-28T15:08:00.819722Z"
     dependencies:
     - name: k8ssandra-operator
       repository: https://helm.k8ssandra.io
@@ -3484,7 +3532,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.127164Z"
+    created: "2025-02-28T15:08:00.809958Z"
     dependencies:
     - name: k8ssandra-operator
       repository: https://helm.k8ssandra.io
@@ -3500,7 +3548,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.115513Z"
+    created: "2025-02-28T15:08:00.800027Z"
     dependencies:
     - name: k8ssandra-operator
       repository: https://helm.k8ssandra.io
@@ -3516,7 +3564,7 @@ entries:
     version: 0.1.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2025-02-28T14:59:11.103683Z"
+    created: "2025-02-28T15:08:00.788515Z"
     dependencies:
     - name: k8ssandra-operator
       repository: https://helm.k8ssandra.io
@@ -3533,7 +3581,7 @@ entries:
   flowcore-secret-request-controller:
   - apiVersion: v2
     appVersion: 1.0.5
-    created: "2025-02-28T14:59:12.11897Z"
+    created: "2025-02-28T15:08:01.79057Z"
     dependencies:
     - condition: metacontroller-helm.enabled
       name: metacontroller-helm
@@ -3551,7 +3599,7 @@ entries:
     version: 1.0.7
   - apiVersion: v2
     appVersion: 1.0.5
-    created: "2025-02-28T14:59:12.118226Z"
+    created: "2025-02-28T15:08:01.789808Z"
     dependencies:
     - condition: metacontroller-helm.enabled
       name: metacontroller-helm
@@ -3569,7 +3617,7 @@ entries:
     version: 1.0.6
   - apiVersion: v2
     appVersion: 1.0.5
-    created: "2025-02-28T14:59:12.117289Z"
+    created: "2025-02-28T15:08:01.78893Z"
     dependencies:
     - condition: global.flowcore.metacontroller
       name: metacontroller-helm
@@ -3587,7 +3635,7 @@ entries:
     version: 1.0.5
   - apiVersion: v2
     appVersion: 1.0.5
-    created: "2025-02-28T14:59:12.116585Z"
+    created: "2025-02-28T15:08:01.788022Z"
     dependencies:
     - condition: global.flowcore.metacontroller
       name: metacontroller-helm
@@ -3605,7 +3653,7 @@ entries:
     version: 1.0.4
   - apiVersion: v2
     appVersion: 1.0.5
-    created: "2025-02-28T14:59:12.115338Z"
+    created: "2025-02-28T15:08:01.786662Z"
     dependencies:
     - condition: global.flowcore.metacontroller
       name: metacontroller-helm
@@ -3623,7 +3671,7 @@ entries:
     version: 1.0.3
   - apiVersion: v2
     appVersion: 1.0.5
-    created: "2025-02-28T14:59:12.114676Z"
+    created: "2025-02-28T15:08:01.785789Z"
     dependencies:
     - condition: global.flowcore.metacontroller
       name: metacontroller-helm
@@ -3641,7 +3689,7 @@ entries:
     version: 1.0.2
   - apiVersion: v2
     appVersion: 1.0.5
-    created: "2025-02-28T14:59:12.11398Z"
+    created: "2025-02-28T15:08:01.784958Z"
     dependencies:
     - condition: global.flowcore.metacontroller
       name: metacontroller-helm
@@ -3659,7 +3707,7 @@ entries:
     version: 1.0.1
   - apiVersion: v2
     appVersion: 1.0.5
-    created: "2025-02-28T14:59:12.113248Z"
+    created: "2025-02-28T15:08:01.784154Z"
     dependencies:
     - condition: metacontroller-helm.enabled
       name: metacontroller-helm
@@ -3678,7 +3726,7 @@ entries:
   flowcore-secret-requester:
   - apiVersion: v2
     appVersion: 1.1.2
-    created: "2025-02-28T14:59:12.12007Z"
+    created: "2025-02-28T15:08:01.792646Z"
     description: A helm chart template for creating multiple flowcore secret requests
     digest: de610836b4a0835ed2e62a607f8ebe8d4a78944964cd3e31c3d2824cb62e0a90
     icon: https://avatars.githubusercontent.com/u/114778675?s=200&v=4
@@ -3689,7 +3737,7 @@ entries:
     version: 1.1.2
   - apiVersion: v2
     appVersion: 1.1.1
-    created: "2025-02-28T14:59:12.11968Z"
+    created: "2025-02-28T15:08:01.792317Z"
     description: A helm chart template for creating multiple flowcore secret requests
     digest: 2d6475ccdd16b014b9dfa603a6c60623d84618d2faf3d9f51a1de4ab7205a47a
     icon: https://avatars.githubusercontent.com/u/114778675?s=200&v=4
@@ -3700,7 +3748,7 @@ entries:
     version: 1.1.1
   - apiVersion: v2
     appVersion: 1.1.0
-    created: "2025-02-28T14:59:12.119421Z"
+    created: "2025-02-28T15:08:01.791875Z"
     description: A helm chart template for creating multiple flowcore secret requests
     digest: f3d9c2a1ff14cd48eac0e17e2934d09da16f2f166065ff6b804d08bec4eb7544
     name: flowcore-secret-requester
@@ -3708,4 +3756,4 @@ entries:
     urls:
     - https://flowcore-io.github.io/flowcore-helm-charts/flowcore-secret-requester-1.1.0.tgz
     version: 1.1.0
-generated: "2025-02-28T14:59:11.074379Z"
+generated: "2025-02-28T15:08:00.759668Z"
