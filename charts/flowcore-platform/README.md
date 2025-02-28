@@ -438,6 +438,39 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.eventRecorder.env.FLOWCORE_WRITE_BATCH_SIZE`        | The FLOWCORE_WRITE_BATCH_SIZE         | `1000`                                                      |
 | `flowcore-microservices.deployments.eventRecorder.useTransports`                        | The useTransports                     | `nats`                                                      |
 
+### Event Archiver
+
+| Name                                                                                    | Description                           | Value                                                       |
+| --------------------------------------------------------------------------------------- | ------------------------------------- | ----------------------------------------------------------- |
+| `flowcore-microservices.deployments.eventArchiver.enabled`                              | Whether to install the event archiver | `true`                                                      |
+| `flowcore-microservices.deployments.eventArchiver.metrics.enabled`                      | Whether to enable the metrics         | `true`                                                      |
+| `flowcore-microservices.deployments.eventArchiver.deployment.image`                     | The image                             | `source-event-archiver`                                     |
+| `flowcore-microservices.deployments.eventArchiver.deployment.tag`                       | The image tag                         | `1.19.0`                                                    |
+| `flowcore-microservices.deployments.eventArchiver.deployment.replicas`                  | The number of replicas                | `2`                                                         |
+| `flowcore-microservices.deployments.eventArchiver.deployment.resources`                 | The resources                         | `{}`                                                        |
+| `flowcore-microservices.deployments.eventArchiver.deployment.resources.requests.cpu`    | The CPU request                       | `100m`                                                      |
+| `flowcore-microservices.deployments.eventArchiver.deployment.resources.requests.memory` | The memory request                    | `128Mi`                                                     |
+| `flowcore-microservices.deployments.eventArchiver.deployment.resources.limits.cpu`      | The CPU limit                         | `2000m`                                                     |
+| `flowcore-microservices.deployments.eventArchiver.deployment.resources.limits.memory`   | The memory limit                      | `4096Mi`                                                    |
+| `flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_CHUNK_SIZE`             | The ARCHIVING_CHUNK_SIZE              | `10000`                                                     |
+| `flowcore-microservices.deployments.eventArchiver.env.ARANGODB_URL`                     | The ARANGODB_URL                      | `http://arango.flowcore.svc.cluster.local:8529`             |
+| `flowcore-microservices.deployments.eventArchiver.env.ARANGODB_USERNAME`                | The ARANGODB_USERNAME                 | `arangodb-username in event-archiver-credentials secret`    |
+| `flowcore-microservices.deployments.eventArchiver.env.ARANGODB_PASSWORD`                | The ARANGODB_PASSWORD                 | `arangodb-password in event-archiver-credentials secret`    |
+| `flowcore-microservices.deployments.eventArchiver.env.ARANGODB_DATABASE`                | The ARANGODB_DATABASE                 | `archiving`                                                 |
+| `flowcore-microservices.deployments.eventArchiver.env.REDIS_MASTER_SET_NAME`            | The REDIS_MASTER_SET_NAME             | `sentinel-primary-set in event-archiver-credentials secret` |
+| `flowcore-microservices.deployments.eventArchiver.env.REDIS_SENTINELS`                  | The REDIS_SENTINELS                   | `sentinel-hosts in event-archiver-credentials secret`       |
+| `flowcore-microservices.deployments.eventArchiver.env.REDIS_PASSWORD`                   | The REDIS_PASSWORD                    | `sentinel-password in event-archiver-credentials secret`    |
+| `flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_ACCESS_KEY_ID`          | The ARCHIVING_ACCESS_KEY_ID           | `archive-access-key-id in aws-credentials secret`           |
+| `flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_SECRET_ACCESS_KEY`      | The ARCHIVING_SECRET_ACCESS_KEY       | `archive-secret-access-key in aws-credentials secret`       |
+| `flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_BUCKET_NAME`            | The ARCHIVING_BUCKET_NAME             | `archive-bucket-name in aws-credentials secret`             |
+| `flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_REGION`                 | The ARCHIVING_REGION                  | `eu-west-1`                                                 |
+| `flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_CONCURRENT_PROCESSES`   | The ARCHIVING_CONCURRENT_PROCESSES    | `5`                                                         |
+| `flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_DEPLOYMENT_TYPE`        | The ARCHIVING_DEPLOYMENT_TYPE         | `dedicated`                                                 |
+| `flowcore-microservices.deployments.eventArchiver.env.CASSANDRA_CONTACT_POINTS`         | The CASSANDRA_CONTACT_POINTS          | `flowcore-cassandra.flowcore.svc.cluster.local`             |
+| `flowcore-microservices.deployments.eventArchiver.env.CASSANDRA_KEYSPACE`               | The CASSANDRA_KEYSPACE                | `flowcore_archive`                                          |
+| `flowcore-microservices.deployments.eventArchiver.env.CASSANDRA_USERNAME`               | The CASSANDRA_USERNAME                | `cassandra-username in event-archiver-credentials secret`   |
+| `flowcore-microservices.deployments.eventArchiver.env.CASSANDRA_PASSWORD`               | The CASSANDRA_PASSWORD                | `cassandra-password in event-archiver-credentials secret`   |
+
 
 
 See [values.yaml](values.yaml) for the full list of parameters.
