@@ -1089,11 +1089,11 @@ flowcore-microservices:
         CASSANDRA_USERNAME:
           valueFrom:
             secretKeyRef:
-              name: event-recorder-credentials
+              name: event-archiver-credentials
               key: cassandra-username
         ## @param flowcore-microservices.deployments.eventArchiver.env.CASSANDRA_PASSWORD [object, default: cassandra-password in event-archiver-credentials secret] The CASSANDRA_PASSWORD
         CASSANDRA_PASSWORD:
           valueFrom:
             secretKeyRef:
-              name: event-recorder-credentials
+              name: event-archiver-credentials
               key: cassandra-password
