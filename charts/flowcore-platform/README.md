@@ -471,6 +471,20 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.eventArchiver.env.CASSANDRA_USERNAME`               | The CASSANDRA_USERNAME                | `cassandra-username in event-archiver-credentials secret`   |
 | `flowcore-microservices.deployments.eventArchiver.env.CASSANDRA_PASSWORD`               | The CASSANDRA_PASSWORD                | `cassandra-password in event-archiver-credentials secret`   |
 
+### Resource Lock Manager
+
+| Name                                                                         | Description                                  | Value                        |
+| ---------------------------------------------------------------------------- | -------------------------------------------- | ---------------------------- |
+| `flowcore-microservices.deployments.resourceLockManager.enabled`             | Whether to install the resource lock manager | `true`                       |
+| `flowcore-microservices.deployments.resourceLockManager.metrics.enabled`     | Whether to enable the metrics                | `true`                       |
+| `flowcore-microservices.deployments.resourceLockManager.deployment.image`    | The image                                    | `core-resource-lock-manager` |
+| `flowcore-microservices.deployments.resourceLockManager.deployment.tag`      | The image tag                                | `1.1.0`                      |
+| `flowcore-microservices.deployments.resourceLockManager.deployment.replicas` | The number of replicas                       | `2`                          |
+| `flowcore-microservices.deployments.resourceLockManager.env.NATS_QUEUE`      | The NATS_QUEUE                               | `resource-lock-manager`      |
+| `flowcore-microservices.deployments.resourceLockManager.env.REDIS_HOST`      | The REDIS_HOST                               | `valkey-cache-primary`       |
+| `flowcore-microservices.deployments.resourceLockManager.env.REDIS_PORT`      | The REDIS_PORT                               | `6379`                       |
+| `flowcore-microservices.deployments.resourceLockManager.useTransports`       | The useTransports                            | `nats`                       |
+
 
 
 See [values.yaml](values.yaml) for the full list of parameters.

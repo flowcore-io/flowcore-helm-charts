@@ -1094,3 +1094,30 @@ flowcore-microservices:
             secretKeyRef:
               name: event-archiver-credentials
               key: cassandra-password
+    ## @section Resource Lock Manager
+    resourceLockManager:
+      ## @param flowcore-microservices.deployments.resourceLockManager.enabled [default: true] Whether to install the resource lock manager
+      enabled: true
+      metrics:
+        ## @param flowcore-microservices.deployments.resourceLockManager.metrics.enabled [default: true] Whether to enable the metrics
+        enabled: true
+      deployment:
+        ## @param flowcore-microservices.deployments.resourceLockManager.deployment.image [default: core-resource-lock-manager] The image
+        image: core-resource-lock-manager
+        ## @param flowcore-microservices.deployments.resourceLockManager.deployment.tag [default: 1.1.0] The image tag
+        tag: 1.1.0
+        ## @param flowcore-microservices.deployments.resourceLockManager.deployment.replicas [default: 2] The number of replicas
+        replicas: 2
+      env:
+        ## @param flowcore-microservices.deployments.resourceLockManager.env.NATS_QUEUE [object, default: resource-lock-manager] The NATS_QUEUE
+        NATS_QUEUE:
+          value: resource-lock-manager
+        ## @param flowcore-microservices.deployments.resourceLockManager.env.REDIS_HOST [object, default: valkey-cache-primary] The REDIS_HOST
+        REDIS_HOST:
+          value: valkey-cache-primary
+        ## @param flowcore-microservices.deployments.resourceLockManager.env.REDIS_PORT [object, default: 6379] The REDIS_PORT
+        REDIS_PORT:
+          value: "6379"
+      ## @param flowcore-microservices.deployments.resourceLockManager.useTransports [array, default: nats] The useTransports
+      useTransports:
+        - nats
