@@ -186,7 +186,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `ensureCredentials.enabled`                   | Whether to install the ensure credentials job | `true`                                        |
 | `ensureCredentials.image`                     | The image                                     | `{}`                                          |
 | `ensureCredentials.image.repository`          | The image repository                          | `flowcoreio/job-create-dedicated-credentials` |
-| `ensureCredentials.image.tag`                 | The image tag                                 | `1.9.1`                                       |
+| `ensureCredentials.image.tag`                 | The image tag                                 | `1.10.0`                                      |
 | `ensureCredentials.resources`                 | The resources for the ensure credentials job  | `{}`                                          |
 | `ensureCredentials.resources.limits.cpu`      | The CPU limit                                 | `100m`                                        |
 | `ensureCredentials.resources.limits.cpu`      | The CPU limit                                 | `100m`                                        |
@@ -374,6 +374,28 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.FLOWCORE_EVENT_SOURCE_URL`       | The FLOWCORE_EVENT_SOURCE_URL                       | `legacy-platform-event-source-api:5000`                           |
 | `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.FLOWCORE_TENANT_ID`              | The FLOWCORE_TENANT_ID                              | `flowcore`                                                        |
 | `flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.LOG_LEVEL`                       | The LOG_LEVEL                                       | `info`                                                            |
+
+### Webhook Service
+
+| Name                                                                                     | Description                              | Value                                                          |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------- | -------------------------------------------------------------- |
+| `flowcore-microservices.deployments.webhookService.enabled`                              | Whether to install the webhook service   | `true`                                                         |
+| `flowcore-microservices.deployments.webhookService.deployment.image`                     | The image                                | `ingestion-webhook-service`                                    |
+| `flowcore-microservices.deployments.webhookService.deployment.tag`                       | The image tag                            | `1.24.1`                                                       |
+| `flowcore-microservices.deployments.webhookService.deployment.replicas`                  | The number of replicas                   | `2`                                                            |
+| `flowcore-microservices.deployments.webhookService.deployment.resources`                 | The resources                            | `{}`                                                           |
+| `flowcore-microservices.deployments.webhookService.deployment.resources.requests.cpu`    | The CPU request                          | `328m`                                                         |
+| `flowcore-microservices.deployments.webhookService.deployment.resources.requests.memory` | The memory request                       | `128Mi`                                                        |
+| `flowcore-microservices.deployments.webhookService.deployment.resources.limits.cpu`      | The CPU limit                            | `2000m`                                                        |
+| `flowcore-microservices.deployments.webhookService.deployment.resources.limits.memory`   | The memory limit                         | `2048Mi`                                                       |
+| `flowcore-microservices.deployments.webhookService.metrics.enabled`                      | Whether to enable the metrics            | `true`                                                         |
+| `flowcore-microservices.deployments.webhookService.useTransports`                        | The useTransports                        | `nats`                                                         |
+| `flowcore-microservices.deployments.webhookService.env.FLOWCORE_DATA_CORE_ID`            | The FLOWCORE_DATA_CORE_ID                | `ecc024c5-3adf-42a3-aa55-fd3620673192`                         |
+| `flowcore-microservices.deployments.webhookService.env.REDIS_MASTER_SET_NAME`            | The REDIS_MASTER_SET_NAME                | `sentinel-primary-set in webhook-ingestion-credentials secret` |
+| `flowcore-microservices.deployments.webhookService.env.REDIS_SENTINELS`                  | The REDIS_SENTINELS                      | `sentinel-hosts in webhook-ingestion-credentials secret`       |
+| `flowcore-microservices.deployments.webhookService.env.REDIS_PASSWORD`                   | The REDIS_PASSWORD                       | `sentinel-password in webhook-ingestion-credentials secret`    |
+| `flowcore-microservices.deployments.webhookService.env.NATS_QUEUE`                       | The NATS_QUEUE                           | `ingestion-webhook`                                            |
+| `flowcore-microservices.deployments.webhookService.service.enabled`                      | Whether to enable the service            | `true`                                                         |
 
 
 

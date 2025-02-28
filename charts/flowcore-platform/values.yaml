@@ -250,8 +250,8 @@ ensureCredentials:
   image:
     ## @param ensureCredentials.image.repository [default: flowcoreio/job-create-dedicated-credentials] The image repository
     repository: flowcoreio/job-create-dedicated-credentials
-    ## @param ensureCredentials.image.tag [default: 1.9.1] The image tag
-    tag: 1.9.1
+    ## @param ensureCredentials.image.tag [default: 1.10.0] The image tag
+    tag: 1.10.0
   ## @param ensureCredentials.resources [object] The resources for the ensure credentials job
   resources:
     ## @param ensureCredentials.resources.limits.cpu [default: 100m] The CPU limit
@@ -796,3 +796,60 @@ flowcore-microservices:
             ## @param flowcore-microservices.deployments.ingestionValidationAdapter.sidecars.dataPump.env.LOG_LEVEL [object, default: info] The LOG_LEVEL
             LOG_LEVEL:
               value: info
+    ## @section Webhook Service
+    webhookService:
+      ## @param flowcore-microservices.deployments.webhookService.enabled [default: true] Whether to install the webhook service  
+      enabled: true
+      deployment:
+        ## @param flowcore-microservices.deployments.webhookService.deployment.image [default: ingestion-webhook-service] The image
+        image: ingestion-webhook-service
+        ## @param flowcore-microservices.deployments.webhookService.deployment.tag [default: 1.24.1] The image tag
+        tag: 1.24.1
+        ## @param flowcore-microservices.deployments.webhookService.deployment.replicas [default: 2] The number of replicas
+        replicas: 2
+        ## @param flowcore-microservices.deployments.webhookService.deployment.resources [object] The resources
+        resources:
+          requests:
+            ## @param flowcore-microservices.deployments.webhookService.deployment.resources.requests.cpu [default: 328m] The CPU request
+            cpu: 328m
+            ## @param flowcore-microservices.deployments.webhookService.deployment.resources.requests.memory [default: 128Mi] The memory request
+            memory: 128Mi
+          limits:
+            ## @param flowcore-microservices.deployments.webhookService.deployment.resources.limits.cpu [default: 2000m] The CPU limit
+            cpu: 2000m
+            ## @param flowcore-microservices.deployments.webhookService.deployment.resources.limits.memory [default: 2048Mi] The memory limit
+            memory: 2048Mi
+      metrics:
+        ## @param flowcore-microservices.deployments.webhookService.metrics.enabled [default: true] Whether to enable the metrics
+        enabled: true
+      ## @param flowcore-microservices.deployments.webhookService.useTransports [array, default: nats] The useTransports
+      useTransports:
+        - nats
+      env:
+        ## @param flowcore-microservices.deployments.webhookService.env.FLOWCORE_DATA_CORE_ID [object, default: ecc024c5-3adf-42a3-aa55-fd3620673192] The FLOWCORE_DATA_CORE_ID
+        FLOWCORE_DATA_CORE_ID:
+          value: ecc024c5-3adf-42a3-aa55-fd3620673192
+        ## @param flowcore-microservices.deployments.webhookService.env.REDIS_MASTER_SET_NAME [object, default: sentinel-primary-set in webhook-ingestion-credentials secret] The REDIS_MASTER_SET_NAME
+        REDIS_MASTER_SET_NAME:
+          valueFrom:
+            secretKeyRef:
+              name: webhook-ingestion-credentials
+              key: sentinel-primary-set
+        ## @param flowcore-microservices.deployments.webhookService.env.REDIS_SENTINELS [object, default: sentinel-hosts in webhook-ingestion-credentials secret] The REDIS_SENTINELS
+        REDIS_SENTINELS:
+          valueFrom:
+            secretKeyRef:
+              name: webhook-ingestion-credentials
+              key: sentinel-hosts
+        ## @param flowcore-microservices.deployments.webhookService.env.REDIS_PASSWORD [object, default: sentinel-password in webhook-ingestion-credentials secret] The REDIS_PASSWORD
+        REDIS_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: webhook-ingestion-credentials
+              key: sentinel-password
+        ## @param flowcore-microservices.deployments.webhookService.env.NATS_QUEUE [object, default: ingestion-webhook] The NATS_QUEUE
+        NATS_QUEUE:
+          value: ingestion-webhook
+      service:
+        ## @param flowcore-microservices.deployments.webhookService.service.enabled [default: true] Whether to enable the service
+        enabled: true
