@@ -1066,10 +1066,7 @@ flowcore-microservices:
               key: archive-secret-access-key
         ## @param flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_BUCKET_NAME [object, default: archive-bucket-name in aws-credentials secret] The ARCHIVING_BUCKET_NAME
         ARCHIVING_BUCKET_NAME:
-          valueFrom:
-            secretKeyRef:
-              name: aws-credentials
-              key: archive-bucket-name
+          value: flowcore-archive
         ## @param flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_REGION [object, default: eu-west-1] The ARCHIVING_REGION
         ARCHIVING_REGION:
           value: eu-west-1
