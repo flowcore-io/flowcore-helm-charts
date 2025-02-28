@@ -377,33 +377,66 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 
 ### Webhook Service
 
-| Name                                                                                     | Description                              | Value                                                          |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------- | -------------------------------------------------------------- |
-| `flowcore-microservices.deployments.webhookService.enabled`                              | Whether to install the webhook service   | `true`                                                         |
-| `flowcore-microservices.deployments.webhookService.deployment.image`                     | The image                                | `ingestion-webhook-service`                                    |
-| `flowcore-microservices.deployments.webhookService.deployment.tag`                       | The image tag                            | `1.24.1`                                                       |
-| `flowcore-microservices.deployments.webhookService.deployment.replicas`                  | The number of replicas                   | `2`                                                            |
-| `flowcore-microservices.deployments.webhookService.deployment.resources`                 | The resources                            | `{}`                                                           |
-| `flowcore-microservices.deployments.webhookService.deployment.resources.requests.cpu`    | The CPU request                          | `328m`                                                         |
-| `flowcore-microservices.deployments.webhookService.deployment.resources.requests.memory` | The memory request                       | `128Mi`                                                        |
-| `flowcore-microservices.deployments.webhookService.deployment.resources.limits.cpu`      | The CPU limit                            | `2000m`                                                        |
-| `flowcore-microservices.deployments.webhookService.deployment.resources.limits.memory`   | The memory limit                         | `2048Mi`                                                       |
-| `flowcore-microservices.deployments.webhookService.metrics.enabled`                      | Whether to enable the metrics            | `true`                                                         |
-| `flowcore-microservices.deployments.webhookService.useTransports`                        | The useTransports                        | `nats`                                                         |
-| `flowcore-microservices.deployments.webhookService.env.FLOWCORE_DATA_CORE_ID`            | The FLOWCORE_DATA_CORE_ID                | `ecc024c5-3adf-42a3-aa55-fd3620673192`                         |
-| `flowcore-microservices.deployments.webhookService.env.REDIS_MASTER_SET_NAME`            | The REDIS_MASTER_SET_NAME                | `sentinel-primary-set in webhook-ingestion-credentials secret` |
-| `flowcore-microservices.deployments.webhookService.env.REDIS_SENTINELS`                  | The REDIS_SENTINELS                      | `sentinel-hosts in webhook-ingestion-credentials secret`       |
-| `flowcore-microservices.deployments.webhookService.env.REDIS_PASSWORD`                   | The REDIS_PASSWORD                       | `sentinel-password in webhook-ingestion-credentials secret`    |
-| `flowcore-microservices.deployments.webhookService.env.NATS_QUEUE`                       | The NATS_QUEUE                           | `ingestion-webhook`                                            |
-| `flowcore-microservices.deployments.webhookService.env.INGESTION_NATS_SERVERS`           | The INGESTION_NATS_SERVERS               | `nats://nats:4222`                                             |
-| `flowcore-microservices.deployments.webhookService.service.enabled`                      | Whether to enable the service            | `true`                                                         |
-| `flowcore-microservices.deployments.webhookService.affinity`                             | The affinity                             | `{}`                                                           |
-| `flowcore-microservices.deployments.webhookService.ingress.enabled`                      | The ingress                              | `{}`                                                           |
-| `flowcore-microservices.deployments.webhookService.ingress.enabled`                      | Whether to install the ingress           | `true`                                                         |
-| `flowcore-microservices.deployments.webhookService.ingress.annotations`                  | The ingress annotations                  | `{}`                                                           |
-| `flowcore-microservices.deployments.webhookService.ingress.route`                        | The ingress route                        | `[]`                                                           |
-| `flowcore-microservices.deployments.webhookService.ingress.route.hosts`                  | The ingress hosts                        | `example.com`                                                  |
-| `flowcore-microservices.deployments.eventSourceApi.ingress.route.tlsSecret`              | The ingress TLS secret                   | `example-tls`                                                  |
+| Name                                                                                     | Description                            | Value                                                          |
+| ---------------------------------------------------------------------------------------- | -------------------------------------- | -------------------------------------------------------------- |
+| `flowcore-microservices.deployments.webhookService.enabled`                              | Whether to install the webhook service | `true`                                                         |
+| `flowcore-microservices.deployments.webhookService.deployment.image`                     | The image                              | `ingestion-webhook-service`                                    |
+| `flowcore-microservices.deployments.webhookService.deployment.tag`                       | The image tag                          | `1.24.1`                                                       |
+| `flowcore-microservices.deployments.webhookService.deployment.replicas`                  | The number of replicas                 | `2`                                                            |
+| `flowcore-microservices.deployments.webhookService.deployment.resources`                 | The resources                          | `{}`                                                           |
+| `flowcore-microservices.deployments.webhookService.deployment.resources.requests.cpu`    | The CPU request                        | `328m`                                                         |
+| `flowcore-microservices.deployments.webhookService.deployment.resources.requests.memory` | The memory request                     | `128Mi`                                                        |
+| `flowcore-microservices.deployments.webhookService.deployment.resources.limits.cpu`      | The CPU limit                          | `2000m`                                                        |
+| `flowcore-microservices.deployments.webhookService.deployment.resources.limits.memory`   | The memory limit                       | `2048Mi`                                                       |
+| `flowcore-microservices.deployments.webhookService.metrics.enabled`                      | Whether to enable the metrics          | `true`                                                         |
+| `flowcore-microservices.deployments.webhookService.useTransports`                        | The useTransports                      | `nats`                                                         |
+| `flowcore-microservices.deployments.webhookService.env.FLOWCORE_DATA_CORE_ID`            | The FLOWCORE_DATA_CORE_ID              | `ecc024c5-3adf-42a3-aa55-fd3620673192`                         |
+| `flowcore-microservices.deployments.webhookService.env.REDIS_MASTER_SET_NAME`            | The REDIS_MASTER_SET_NAME              | `sentinel-primary-set in webhook-ingestion-credentials secret` |
+| `flowcore-microservices.deployments.webhookService.env.REDIS_SENTINELS`                  | The REDIS_SENTINELS                    | `sentinel-hosts in webhook-ingestion-credentials secret`       |
+| `flowcore-microservices.deployments.webhookService.env.REDIS_PASSWORD`                   | The REDIS_PASSWORD                     | `sentinel-password in webhook-ingestion-credentials secret`    |
+| `flowcore-microservices.deployments.webhookService.env.NATS_QUEUE`                       | The NATS_QUEUE                         | `ingestion-webhook`                                            |
+| `flowcore-microservices.deployments.webhookService.env.INGESTION_NATS_SERVERS`           | The INGESTION_NATS_SERVERS             | `nats://nats:4222`                                             |
+| `flowcore-microservices.deployments.webhookService.service.enabled`                      | Whether to enable the service          | `true`                                                         |
+| `flowcore-microservices.deployments.webhookService.affinity`                             | The affinity                           | `{}`                                                           |
+| `flowcore-microservices.deployments.webhookService.ingress.enabled`                      | The ingress                            | `{}`                                                           |
+| `flowcore-microservices.deployments.webhookService.ingress.enabled`                      | Whether to install the ingress         | `true`                                                         |
+| `flowcore-microservices.deployments.webhookService.ingress.annotations`                  | The ingress annotations                | `{}`                                                           |
+| `flowcore-microservices.deployments.webhookService.ingress.route`                        | The ingress route                      | `[]`                                                           |
+| `flowcore-microservices.deployments.webhookService.ingress.route.hosts`                  | The ingress hosts                      | `example.com`                                                  |
+| `flowcore-microservices.deployments.eventSourceApi.ingress.route.tlsSecret`              | The ingress TLS secret                 | `example-tls`                                                  |
+
+### Event Recorder
+
+| Name                                                                                    | Description                           | Value                                                       |
+| --------------------------------------------------------------------------------------- | ------------------------------------- | ----------------------------------------------------------- |
+| `flowcore-microservices.deployments.eventRecorder.enabled`                              | Whether to install the event recorder | `true`                                                      |
+| `flowcore-microservices.deployments.eventRecorder.deployment.tag`                       | The image tag                         | `1.16.0`                                                    |
+| `flowcore-microservices.deployments.eventRecorder.deployment.replicas`                  | The number of replicas                | `2`                                                         |
+| `flowcore-microservices.deployments.eventRecorder.deployment.image`                     | The image                             | `source-event-recorder`                                     |
+| `flowcore-microservices.deployments.eventRecorder.deployment.resources`                 | The resources                         | `{}`                                                        |
+| `flowcore-microservices.deployments.eventRecorder.deployment.resources.requests.cpu`    | The CPU request                       | `1024m`                                                     |
+| `flowcore-microservices.deployments.eventRecorder.deployment.resources.requests.memory` | The memory request                    | `1024Mi`                                                    |
+| `flowcore-microservices.deployments.eventRecorder.deployment.resources.limits.cpu`      | The CPU limit                         | `2048m`                                                     |
+| `flowcore-microservices.deployments.eventRecorder.deployment.resources.limits.memory`   | The memory limit                      | `2048Mi`                                                    |
+| `flowcore-microservices.deployments.eventRecorder.metrics.enabled`                      | Whether to enable the metrics         | `true`                                                      |
+| `flowcore-microservices.deployments.eventRecorder.env.LOG_LEVEL`                        | The LOG_LEVEL                         | `info`                                                      |
+| `flowcore-microservices.deployments.eventRecorder.env.NATS_MAX_MESSAGES`                | The NATS_MAX_MESSAGES                 | `1000`                                                      |
+| `flowcore-microservices.deployments.eventRecorder.env.NATS_QUEUE`                       | The NATS_QUEUE                        | `source-event-recorder`                                     |
+| `flowcore-microservices.deployments.eventRecorder.env.REDIS_MASTER_SET_NAME`            | The REDIS_MASTER_SET_NAME             | `sentinel-primary-set in event-recorder-credentials secret` |
+| `flowcore-microservices.deployments.eventRecorder.env.REDIS_SENTINELS`                  | The REDIS_SENTINELS                   | `sentinel-hosts in event-recorder-credentials secret`       |
+| `flowcore-microservices.deployments.eventRecorder.env.REDIS_PASSWORD`                   | The REDIS_PASSWORD                    | `sentinel-password in event-recorder-credentials secret`    |
+| `flowcore-microservices.deployments.eventRecorder.env.CASSANDRA_CONTACT_POINTS`         | The CASSANDRA_CONTACT_POINTS          | `flowcore-cassandra.flowcore.svc.cluster.local`             |
+| `flowcore-microservices.deployments.eventRecorder.env.CASSANDRA_KEYSPACE`               | The CASSANDRA_KEYSPACE                | `flowcore_archive`                                          |
+| `flowcore-microservices.deployments.eventRecorder.env.CASSANDRA_USERNAME`               | The CASSANDRA_USERNAME                | `cassandra-username in event-recorder-credentials secret`   |
+| `flowcore-microservices.deployments.eventRecorder.env.CASSANDRA_PASSWORD`               | The CASSANDRA_PASSWORD                | `cassandra-password in event-recorder-credentials secret`   |
+| `flowcore-microservices.deployments.eventRecorder.env.FLOWCORE_JETSTREAM_NAME`          | The FLOWCORE_JETSTREAM_NAME           | `flowcore-stored-events`                                    |
+| `flowcore-microservices.deployments.eventRecorder.env.ARANGODB_URL`                     | The ARANGODB_URL                      | `http://arango.flowcore.svc.cluster.local:8529`             |
+| `flowcore-microservices.deployments.eventRecorder.env.ARANGODB_USERNAME`                | The ARANGODB_USERNAME                 | `arangodb-username in event-recorder-credentials secret`    |
+| `flowcore-microservices.deployments.eventRecorder.env.ARANGODB_PASSWORD`                | The ARANGODB_PASSWORD                 | `arangodb-password in event-recorder-credentials secret`    |
+| `flowcore-microservices.deployments.eventRecorder.env.ARANGODB_DATABASE`                | The ARANGODB_DATABASE                 | `archiving`                                                 |
+| `flowcore-microservices.deployments.eventRecorder.env.FLOWCORE_PARALLEL_WRITE`          | The FLOWCORE_PARALLEL_WRITE           | `20`                                                        |
+| `flowcore-microservices.deployments.eventRecorder.env.FLOWCORE_WRITE_BATCH_SIZE`        | The FLOWCORE_WRITE_BATCH_SIZE         | `1000`                                                      |
+| `flowcore-microservices.deployments.eventRecorder.useTransports`                        | The useTransports                     | `nats`                                                      |
 
 
 

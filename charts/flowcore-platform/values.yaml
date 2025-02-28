@@ -798,7 +798,7 @@ flowcore-microservices:
               value: info
     ## @section Webhook Service
     webhookService:
-      ## @param flowcore-microservices.deployments.webhookService.enabled [default: true] Whether to install the webhook service  
+      ## @param flowcore-microservices.deployments.webhookService.enabled [default: true] Whether to install the webhook service
       enabled: true
       deployment:
         ## @param flowcore-microservices.deployments.webhookService.deployment.image [default: ingestion-webhook-service] The image
@@ -884,3 +884,105 @@ flowcore-microservices:
               - example.com
             ## @param flowcore-microservices.deployments.eventSourceApi.ingress.route.tlsSecret [object, default: example-tls] The ingress TLS secret
             tlsSecret: example-tls
+    ## @section Event Recorder
+    eventRecorder:
+      ## @param flowcore-microservices.deployments.eventRecorder.enabled [default: true] Whether to install the event recorder
+      enabled: true
+      deployment:
+        ## @param flowcore-microservices.deployments.eventRecorder.deployment.tag [default: 1.16.0] The image tag
+        tag: 1.16.0
+        ## @param flowcore-microservices.deployments.eventRecorder.deployment.replicas [default: 2] The number of replicas
+        replicas: 2
+        ## @param flowcore-microservices.deployments.eventRecorder.deployment.image [default: source-event-recorder] The image
+        image: source-event-recorder
+        ## @param flowcore-microservices.deployments.eventRecorder.deployment.resources [object] The resources
+        resources:
+          requests:
+            ## @param flowcore-microservices.deployments.eventRecorder.deployment.resources.requests.cpu [default: 1024m] The CPU request
+            cpu: 1024m
+            ## @param flowcore-microservices.deployments.eventRecorder.deployment.resources.requests.memory [default: 1024Mi] The memory request
+            memory: 1024Mi
+          limits:
+            ## @param flowcore-microservices.deployments.eventRecorder.deployment.resources.limits.cpu [default: 2048m] The CPU limit
+            cpu: 2048m
+            ## @param flowcore-microservices.deployments.eventRecorder.deployment.resources.limits.memory [default: 2048Mi] The memory limit
+            memory: 2048Mi
+      metrics:
+        ## @param flowcore-microservices.deployments.eventRecorder.metrics.enabled [default: true] Whether to enable the metrics
+        enabled: true
+      env:
+        ## @param flowcore-microservices.deployments.eventRecorder.env.LOG_LEVEL [object, default: info] The LOG_LEVEL
+        LOG_LEVEL:
+          value: info
+        ## @param flowcore-microservices.deployments.eventRecorder.env.NATS_MAX_MESSAGES [object, default: 1000] The NATS_MAX_MESSAGES
+        NATS_MAX_MESSAGES:
+          value: "1000"
+        ## @param flowcore-microservices.deployments.eventRecorder.env.NATS_QUEUE [object, default: source-event-recorder] The NATS_QUEUE
+        NATS_QUEUE:
+          value: source-event-recorder
+        ## @param flowcore-microservices.deployments.eventRecorder.env.REDIS_MASTER_SET_NAME [object, default: sentinel-primary-set in event-recorder-credentials secret] The REDIS_MASTER_SET_NAME
+        REDIS_MASTER_SET_NAME:
+          valueFrom:
+            secretKeyRef:
+              name: event-recorder-credentials
+              key: sentinel-primary-set
+        ## @param flowcore-microservices.deployments.eventRecorder.env.REDIS_SENTINELS [object, default: sentinel-hosts in event-recorder-credentials secret] The REDIS_SENTINELS
+        REDIS_SENTINELS:
+          valueFrom:
+            secretKeyRef:
+              name: event-recorder-credentials
+              key: sentinel-hosts
+        ## @param flowcore-microservices.deployments.eventRecorder.env.REDIS_PASSWORD [object, default: sentinel-password in event-recorder-credentials secret] The REDIS_PASSWORD
+        REDIS_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: event-recorder-credentials
+              key: sentinel-password
+        ## @param flowcore-microservices.deployments.eventRecorder.env.CASSANDRA_CONTACT_POINTS [object, default: flowcore-cassandra.flowcore.svc.cluster.local] The CASSANDRA_CONTACT_POINTS
+        CASSANDRA_CONTACT_POINTS:
+          value: flowcore-cassandra.flowcore.svc.cluster.local
+        ## @param flowcore-microservices.deployments.eventRecorder.env.CASSANDRA_KEYSPACE [object, default: flowcore_archive] The CASSANDRA_KEYSPACE
+        CASSANDRA_KEYSPACE:
+          value: flowcore_archive
+        ## @param flowcore-microservices.deployments.eventRecorder.env.CASSANDRA_USERNAME [object, default: cassandra-username in event-recorder-credentials secret] The CASSANDRA_USERNAME
+        CASSANDRA_USERNAME:
+          valueFrom:
+            secretKeyRef:
+              name: event-recorder-credentials
+              key: cassandra-username
+        ## @param flowcore-microservices.deployments.eventRecorder.env.CASSANDRA_PASSWORD [object, default: cassandra-password in event-recorder-credentials secret] The CASSANDRA_PASSWORD
+        CASSANDRA_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: event-recorder-credentials
+              key: cassandra-password
+        ## @param flowcore-microservices.deployments.eventRecorder.env.FLOWCORE_JETSTREAM_NAME [object, default: flowcore-stored-events] The FLOWCORE_JETSTREAM_NAME
+        FLOWCORE_JETSTREAM_NAME:
+          value: flowcore-stored-events
+        ## @param flowcore-microservices.deployments.eventRecorder.env.ARANGODB_URL [object, default: http://arango.flowcore.svc.cluster.local:8529] The ARANGODB_URL
+        ARANGODB_URL:
+          value: http://arango.flowcore.svc.cluster.local:8529
+        ## @param flowcore-microservices.deployments.eventRecorder.env.ARANGODB_USERNAME [object, default: arangodb-username in event-recorder-credentials secret] The ARANGODB_USERNAME
+        ARANGODB_USERNAME:
+          valueFrom:
+            secretKeyRef:
+              name: event-recorder-credentials
+              key: arangodb-username
+        ## @param flowcore-microservices.deployments.eventRecorder.env.ARANGODB_PASSWORD [object, default: arangodb-password in event-recorder-credentials secret] The ARANGODB_PASSWORD
+        ARANGODB_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: event-recorder-credentials
+              key: arangodb-password
+        ## @param flowcore-microservices.deployments.eventRecorder.env.ARANGODB_DATABASE [object, default: archiving] The ARANGODB_DATABASE
+        ARANGODB_DATABASE:
+          value: archiving
+        ## @param flowcore-microservices.deployments.eventRecorder.env.FLOWCORE_PARALLEL_WRITE [object, default: 20] The FLOWCORE_PARALLEL_WRITE
+        FLOWCORE_PARALLEL_WRITE:
+          value: "20"
+        ## @param flowcore-microservices.deployments.eventRecorder.env.FLOWCORE_WRITE_BATCH_SIZE [object, default: 1000] The FLOWCORE_WRITE_BATCH_SIZE
+        FLOWCORE_WRITE_BATCH_SIZE:
+          value: "1000"
+      ## @param flowcore-microservices.deployments.eventRecorder.useTransports [array, default: nats] The useTransports
+      useTransports:
+        - nats
