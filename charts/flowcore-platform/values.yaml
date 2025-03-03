@@ -225,8 +225,8 @@ postgresql-operator:
 postgresql:
   ## @param postgresql.enabled [default: true] Whether to install the PostgreSQL instance
   enabled: true
-  ## @param postgresql.existingSecret [default: postgresql-credentials] The name of the existing secret containing the PostgreSQL credentials
-  existingSecret: platform-source-postgresql-ha
+  ## @param postgresql.existingSecret [default: platform-source-postgresql-credentials] The name of the existing secret containing the PostgreSQL credentials
+  existingSecret: platform-source-postgresql-credentials
   ## @param postgresql.replicas [default: 3] The number of replicas
   replicas: 3
   persistence:
@@ -254,8 +254,8 @@ arangodb:
   storage: 30Gi
   ## @param arangodb.replicas [default: 3] The number of replicas
   replicas: 3
-  ## @param arangodb.existingSecret [default: platform-source-arangodb-root] The name of the existing secret containing the ArangoDB root password
-  existingSecret: platform-source-arangodb-root
+  ## @param arangodb.existingSecret [default: platform-source-arangodb-credentials] The name of the existing secret containing the ArangoDB root password
+  existingSecret: platform-source-arangodb-credentials
 
 ## @section Ensure Credentials
 ensureCredentials:

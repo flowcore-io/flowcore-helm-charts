@@ -160,20 +160,20 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 
 ### PostgreSQL Configuration
 
-| Name                                  | Description                                                           | Value                    |
-| ------------------------------------- | --------------------------------------------------------------------- | ------------------------ |
-| `postgresql.enabled`                  | Whether to install the PostgreSQL instance                            | `true`                   |
-| `postgresql.existingSecret`           | The name of the existing secret containing the PostgreSQL credentials | `postgresql-credentials` |
-| `postgresql.replicas`                 | The number of replicas                                                | `3`                      |
-| `postgresql.persistence.size`         | The size of the persistent volume                                     | `200Gi`                  |
-| `postgresql.persistence.storageClass` | The storage class for the persistent volume                           |                          |
-| `postgresql.tolerations`              |                                                                       |                          |
-| `postgresql.resources`                |                                                                       |                          |
-| `env`                                 |                                                                       |                          |
-| `config`                              |                                                                       |                          |
-| `bootstrap`                           |                                                                       |                          |
-| `metadata`                            |                                                                       |                          |
-| `serverAltDNSNames`                   |                                                                       |                          |
+| Name                                  | Description                                                           | Value                                    |
+| ------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------- |
+| `postgresql.enabled`                  | Whether to install the PostgreSQL instance                            | `true`                                   |
+| `postgresql.existingSecret`           | The name of the existing secret containing the PostgreSQL credentials | `platform-source-postgresql-credentials` |
+| `postgresql.replicas`                 | The number of replicas                                                | `3`                                      |
+| `postgresql.persistence.size`         | The size of the persistent volume                                     | `200Gi`                                  |
+| `postgresql.persistence.storageClass` | The storage class for the persistent volume                           |                                          |
+| `postgresql.tolerations`              |                                                                       |                                          |
+| `postgresql.resources`                |                                                                       |                                          |
+| `env`                                 |                                                                       |                                          |
+| `config`                              |                                                                       |                                          |
+| `bootstrap`                           |                                                                       |                                          |
+| `metadata`                            |                                                                       |                                          |
+| `serverAltDNSNames`                   |                                                                       |                                          |
 
 ### ArangoDB Operator Configuration
 
@@ -183,12 +183,12 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 
 ### ArangoDB Configuration
 
-| Name                      | Description                                                           | Value                           |
-| ------------------------- | --------------------------------------------------------------------- | ------------------------------- |
-| `arangodb.enabled`        | Whether to install the ArangoDB instance                              | `true`                          |
-| `arangodb.storage`        | The size of the persistent volume                                     | `30Gi`                          |
-| `arangodb.replicas`       | The number of replicas                                                | `3`                             |
-| `arangodb.existingSecret` | The name of the existing secret containing the ArangoDB root password | `platform-source-arangodb-root` |
+| Name                      | Description                                                           | Value                                  |
+| ------------------------- | --------------------------------------------------------------------- | -------------------------------------- |
+| `arangodb.enabled`        | Whether to install the ArangoDB instance                              | `true`                                 |
+| `arangodb.storage`        | The size of the persistent volume                                     | `30Gi`                                 |
+| `arangodb.replicas`       | The number of replicas                                                | `3`                                    |
+| `arangodb.existingSecret` | The name of the existing secret containing the ArangoDB root password | `platform-source-arangodb-credentials` |
 
 ### Ensure Credentials
 
