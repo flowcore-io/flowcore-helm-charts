@@ -1,9 +1,24 @@
 ## @section Flowcore Platform Configuration
 flowcore:
+  ## @param flowcore.tenant [string] The tenant name (e.g. "my-org")
+  tenant: example-org
+  ## @param flowcore.configurationRepository [string] The configuration repository (e.g. "https://github.com/example-org/flowcore-configuration")
+  configurationRepository: https://github.com/example-org/flowcore-configuration.git
   ## @param flowcore.keyspace [object] The keyspace configuration
   keyspace:
     ## @param flowcore.keyspace.replicationFactor [default: 3] The number of replicas
     replicationFactor: 3
+  ## @param flowcore.domain [default: example.com] The domain
+  domain: example.com
+  ## @param flowcore.tlsSecret [default: example-tls] The TLS secret
+  tlsSecret: example-tls
+
+## @section ArgoCD Configuration
+argocd:
+  ## @param argocd.namespace [default: argocd] The namespace
+  namespace: argocd
+  ## @param argocd.project [default: default] The project
+  project: default
 
 ## @section Cassandra Configuration
 cassandra:
@@ -211,7 +226,7 @@ postgresql:
   ## @param postgresql.enabled [default: true] Whether to install the PostgreSQL instance
   enabled: true
   ## @param postgresql.existingSecret [default: postgresql-credentials] The name of the existing secret containing the PostgreSQL credentials
-  existingSecret: postgresql-credentials
+  existingSecret: platform-source-postgresql-ha
   ## @param postgresql.replicas [default: 3] The number of replicas
   replicas: 3
   persistence:
@@ -239,8 +254,8 @@ arangodb:
   storage: 30Gi
   ## @param arangodb.replicas [default: 3] The number of replicas
   replicas: 3
-  ## @param arangodb.existingSecret [default: arango-root-password] The name of the existing secret containing the ArangoDB root password
-  existingSecret: arango-root-password
+  ## @param arangodb.existingSecret [default: platform-source-arangodb-root] The name of the existing secret containing the ArangoDB root password
+  existingSecret: platform-source-arangodb-root
 
 ## @section Ensure Credentials
 ensureCredentials:
@@ -405,18 +420,18 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_REGION [object, default: eu-west-1] The archive region
         ARCHIVE_REGION:
           value: "eu-west-1"
-        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_ACCESS_KEY_ID [object, default: archive-access-key-id in aws-credentials secret] The archive access key ID
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_ACCESS_KEY_ID [object, default: aws-access-key-id in aws-credentials secret] The archive access key ID
         ARCHIVE_ACCESS_KEY_ID:
           valueFrom:
             secretKeyRef:
               name: aws-credentials
-              key: archive-access-key-id
-        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_SECRET_ACCESS_KEY [object, default: archive-secret-access-key in aws-credentials secret] The archive secret access key
+              key: aws-access-key-id
+        ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_SECRET_ACCESS_KEY [object, default: aws-secret-access-key in aws-credentials secret] The archive secret access key
         ARCHIVE_SECRET_ACCESS_KEY:
           valueFrom:
             secretKeyRef:
               name: aws-credentials
-              key: archive-secret-access-key
+              key: aws-secret-access-key
         ## @param flowcore-microservices.deployments.legacyClientEventSourceApi.env.HOT_STORAGE_RETENTION [object, default: 3] The hot storage retention
         HOT_STORAGE_RETENTION:
           value: "3"
@@ -482,18 +497,18 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_REGION [object, default: eu-west-1] The archive region
         ARCHIVE_REGION:
           value: "eu-west-1"
-        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_ACCESS_KEY_ID [object, default: archive-access-key-id in aws-credentials secret] The archive access key ID
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_ACCESS_KEY_ID [object, default: aws-access-key-id in aws-credentials secret] The archive access key ID
         ARCHIVE_ACCESS_KEY_ID:
           valueFrom:
             secretKeyRef:
               name: aws-credentials
-              key: archive-access-key-id
-        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_SECRET_ACCESS_KEY [object, default: archive-secret-access-key in aws-credentials secret] The archive secret access key
+              key: aws-access-key-id
+        ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_SECRET_ACCESS_KEY [object, default: aws-secret-access-key in aws-credentials secret] The archive secret access key
         ARCHIVE_SECRET_ACCESS_KEY:
           valueFrom:
             secretKeyRef:
               name: aws-credentials
-              key: archive-secret-access-key
+              key: aws-secret-access-key
         ## @param flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.HOT_STORAGE_RETENTION [object, default: 3] The hot storage retention
         HOT_STORAGE_RETENTION:
           value: "3"
@@ -529,6 +544,8 @@ flowcore-microservices:
       service:
         ## @param flowcore-microservices.deployments.eventSourceApi.service.enabled [default: true] Whether to enable the service
         enabled: true
+        ## @param flowcore-microservices.deployments.eventSourceApi.service.port [default: 3000] The service port
+        port: 3000
         extraPorts:
           metrics:
             ## @param flowcore-microservices.deployments.eventSourceApi.service.extraPorts.metrics.port [default: 9000] The port for the metrics
@@ -614,11 +631,10 @@ flowcore-microservices:
                 matchExpressions:
                   - key: scheduling.cast.ai/spot
                     operator: Exists
-      ## @param flowcore-microservices.deployments.eventSourceApi.ingress.enabled [object] The ingress
+      ## @param flowcore-microservices.deployments.eventSourceApi.subdomain [default: event-source] The subdomain
+      subdomain: event-source
+      ## @param flowcore-microservices.deployments.eventSourceApi.ingress.annotations [object] The ingress annotations
       ingress:
-        ## @param flowcore-microservices.deployments.eventSourceApi.ingress.enabled [default: true] Whether to install the ingress
-        enabled: true
-        ## @param flowcore-microservices.deployments.eventSourceApi.ingress.annotations [object] The ingress annotations
         annotations:
           nginx.ingress.kubernetes.io/proxy-connect-timeout: "255"
           nginx.ingress.kubernetes.io/proxy-read-timeout: "255"
@@ -626,13 +642,6 @@ flowcore-microservices:
           nginx.ingress.kubernetes.io/server-snippet: |
             gzip on;
             gzip_comp_level 5;
-        ## @param flowcore-microservices.deployments.eventSourceApi.ingress.route [array] The ingress route
-        route:
-          ## @param flowcore-microservices.deployments.eventSourceApi.ingress.route.hosts [array, default: example.com] The ingress hosts
-          - hosts:
-              - example.com
-            ## @param flowcore-microservices.deployments.eventSourceApi.ingress.route.tlsSecret [object, default: example-tls] The ingress TLS secret
-            tlsSecret: example-tls
     ## @section Cold Storage API
     coldStorageApi:
       ## @param flowcore-microservices.deployments.coldStorageApi.enabled [default: true] Whether to install the cold storage API
@@ -698,18 +707,18 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.coldStorageApi.env.AWS_BUCKET_NAME [object, default: flowcore-platform-archive] The AWS bucket name
         AWS_BUCKET_NAME:
           value: flowcore-platform-archive
-        ## @param flowcore-microservices.deployments.coldStorageApi.env.AWS_ACCESS_KEY_ID [object, default: archive-access-key-id in aws-credentials secret] The archive access key ID
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.AWS_ACCESS_KEY_ID [object, default: aws-access-key-id in aws-credentials secret] The archive access key ID
         AWS_ACCESS_KEY_ID:
           valueFrom:
             secretKeyRef:
               name: aws-credentials
-              key: archive-access-key-id
-        ## @param flowcore-microservices.deployments.coldStorageApi.env.AWS_SECRET_ACCESS_KEY [object, default: archive-secret-access-key in aws-credentials secret] The archive secret access key
+              key: aws-access-key-id
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.AWS_SECRET_ACCESS_KEY [object, default: aws-secret-access-key in aws-credentials secret] The archive secret access key
         AWS_SECRET_ACCESS_KEY:
           valueFrom:
             secretKeyRef:
               name: aws-credentials
-              key: archive-secret-access-key
+              key: aws-secret-access-key
     ## @section Ingestion Validation Adapter
     ingestionValidationAdapter:
       ## @param flowcore-microservices.deployments.ingestionValidationAdapter.enabled [default: true] Whether to install the ingestion validation adapter
@@ -856,6 +865,8 @@ flowcore-microservices:
       service:
         ## @param flowcore-microservices.deployments.webhookService.service.enabled [default: true] Whether to enable the service
         enabled: true
+        ## @param flowcore-microservices.deployments.webhookService.service.port [default: 3000] The service port
+        port: 3000
       ## @param flowcore-microservices.deployments.webhookService.affinity [object] The affinity
       affinity:
         nodeAffinity:
@@ -865,11 +876,10 @@ flowcore-microservices:
                 matchExpressions:
                   - key: scheduling.cast.ai/spot
                     operator: Exists
-      ## @param flowcore-microservices.deployments.webhookService.ingress.enabled [object] The ingress
+      ## @param flowcore-microservices.deployments.webhookService.subdomain [default: webhook] The subdomain
+      subdomain: webhook
+      ## @param flowcore-microservices.deployments.webhookService.ingress.annotations [object] The ingress annotations
       ingress:
-        ## @param flowcore-microservices.deployments.webhookService.ingress.enabled [default: true] Whether to install the ingress
-        enabled: true
-        ## @param flowcore-microservices.deployments.webhookService.ingress.annotations [object] The ingress annotations
         annotations:
           nginx.ingress.kubernetes.io/proxy-connect-timeout: "255"
           nginx.ingress.kubernetes.io/proxy-read-timeout: "255"
@@ -877,13 +887,6 @@ flowcore-microservices:
           nginx.ingress.kubernetes.io/server-snippet: |
             gzip on;
             gzip_comp_level 5;
-        ## @param flowcore-microservices.deployments.webhookService.ingress.route [array] The ingress route
-        route:
-          ## @param flowcore-microservices.deployments.webhookService.ingress.route.hosts [array, default: example.com] The ingress hosts
-          - hosts:
-              - example.com
-            ## @param flowcore-microservices.deployments.eventSourceApi.ingress.route.tlsSecret [object, default: example-tls] The ingress TLS secret
-            tlsSecret: example-tls
     ## @section Event Recorder
     eventRecorder:
       ## @param flowcore-microservices.deployments.eventRecorder.enabled [default: true] Whether to install the event recorder
@@ -1052,19 +1055,19 @@ flowcore-microservices:
             secretKeyRef:
               name: event-archiver-credentials
               key: sentinel-password
-        ## @param flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_ACCESS_KEY_ID [object, default: archive-access-key-id in aws-credentials secret] The ARCHIVING_ACCESS_KEY_ID
+        ## @param flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_ACCESS_KEY_ID [object, default: aws-access-key-id in aws-credentials secret] The ARCHIVING_ACCESS_KEY_ID
         ARCHIVING_ACCESS_KEY_ID:
           valueFrom:
             secretKeyRef:
               name: aws-credentials
-              key: archive-access-key-id
-        ## @param flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_SECRET_ACCESS_KEY [object, default: archive-secret-access-key in aws-credentials secret] The ARCHIVING_SECRET_ACCESS_KEY
+              key: aws-access-key-id
+        ## @param flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_SECRET_ACCESS_KEY [object, default: aws-secret-access-key in aws-credentials secret] The ARCHIVING_SECRET_ACCESS_KEY
         ARCHIVING_SECRET_ACCESS_KEY:
           valueFrom:
             secretKeyRef:
               name: aws-credentials
-              key: archive-secret-access-key
-        ## @param flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_BUCKET_NAME [object, default: archive-bucket-name in aws-credentials secret] The ARCHIVING_BUCKET_NAME
+              key: aws-secret-access-key
+        ## @param flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_BUCKET_NAME [object, default: flowcore-archive] The ARCHIVING_BUCKET_NAME
         ARCHIVING_BUCKET_NAME:
           value: flowcore-archive
         ## @param flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_REGION [object, default: eu-west-1] The ARCHIVING_REGION
@@ -1121,3 +1124,51 @@ flowcore-microservices:
       ## @param flowcore-microservices.deployments.resourceLockManager.useTransports [array, default: nats] The useTransports
       useTransports:
         - nats
+    ## @section Service Kube Log API
+    serviceKubeLogApi:
+      ## @param flowcore-microservices.deployments.serviceKubeLogApi.enabled [default: true] Whether to install the service kube log api
+      enabled: true
+      deployment:
+        ## @param flowcore-microservices.deployments.serviceKubeLogApi.deployment.replicas [default: 2] The number of replicas
+        replicas: 2
+        ## @param flowcore-microservices.deployments.serviceKubeLogApi.deployment.tag [default: 1.4.0] The image tag
+        tag: 1.4.0
+        ## @param flowcore-microservices.deployments.serviceKubeLogApi.deployment.image [default: service-kube-log-api] The image
+        image: service-kube-log-api
+        ## @param flowcore-microservices.deployments.serviceKubeLogApi.deployment.serviceAccount [default: service-kube-log-api] The service account
+        serviceAccount: service-kube-log-api
+      service:
+        ## @param flowcore-microservices.deployments.serviceKubeLogApi.service.enabled [default: true] Whether to enable the service
+        enabled: true
+        ## @param flowcore-microservices.deployments.serviceKubeLogApi.service.port [default: 3000] The service port
+        port: 3000
+      env:
+        ## @param flowcore-microservices.deployments.serviceKubeLogApi.env.NODE_TLS_REJECT_UNAUTHORIZED [object, default: 0] The NODE_TLS_REJECT_UNAUTHORIZED
+        NODE_TLS_REJECT_UNAUTHORIZED:
+          value: "0"
+        ## @param flowcore-microservices.deployments.serviceKubeLogApi.env.JWKS_URL [object, default: https://auth.flowcore.io/realms/flowcore/protocol/openid-connect/certs] The JWKS_URL
+        JWKS_URL:
+          value: https://auth.flowcore.io/realms/flowcore/protocol/openid-connect/certs
+        ## @param flowcore-microservices.deployments.serviceKubeLogApi.env.IAM_API_URL [object, default: https://iam.api.flowcore.io] The IAM_API_URL
+        IAM_API_URL:
+          value: https://iam.api.flowcore.io
+      ## @param flowcore-microservices.deployments.serviceKubeLogApi.affinity [object] The affinity
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              preference:
+                matchExpressions:
+                  - key: scheduling.cast.ai/spot
+                    operator: Exists
+      ## @param flowcore-microservices.deployments.serviceKubeLogApi.subdomain [default: logs] The subdomain
+      subdomain: logs
+      ## @param flowcore-microservices.deployments.serviceKubeLogApi.ingress.annotations [object] The ingress annotations
+      ingress:
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-connect-timeout: "255"
+          nginx.ingress.kubernetes.io/proxy-read-timeout: "255"
+          nginx.ingress.kubernetes.io/proxy-send-timeout: "255"
+          nginx.ingress.kubernetes.io/server-snippet: |
+            gzip on;
+            gzip_comp_level 5;

@@ -27,10 +27,21 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 
 ### Flowcore Platform Configuration
 
-| Name                                  | Description                | Value |
-| ------------------------------------- | -------------------------- | ----- |
-| `flowcore.keyspace`                   | The keyspace configuration | `{}`  |
-| `flowcore.keyspace.replicationFactor` | The number of replicas     | `3`   |
+| Name                                  | Description                                                                                 | Value         |
+| ------------------------------------- | ------------------------------------------------------------------------------------------- | ------------- |
+| `flowcore.tenant`                     | The tenant name (e.g. "my-org")                                                             | `""`          |
+| `flowcore.configurationRepository`    | The configuration repository (e.g. "https://github.com/example-org/flowcore-configuration") | `""`          |
+| `flowcore.keyspace`                   | The keyspace configuration                                                                  | `{}`          |
+| `flowcore.keyspace.replicationFactor` | The number of replicas                                                                      | `3`           |
+| `flowcore.domain`                     | The domain                                                                                  | `example.com` |
+| `flowcore.tlsSecret`                  | The TLS secret                                                                              | `example-tls` |
+
+### ArgoCD Configuration
+
+| Name               | Description   | Value     |
+| ------------------ | ------------- | --------- |
+| `argocd.namespace` | The namespace | `argocd`  |
+| `argocd.project`   | The project   | `default` |
 
 ### Cassandra Configuration
 
@@ -172,12 +183,12 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 
 ### ArangoDB Configuration
 
-| Name                      | Description                                                           | Value                  |
-| ------------------------- | --------------------------------------------------------------------- | ---------------------- |
-| `arangodb.enabled`        | Whether to install the ArangoDB instance                              | `true`                 |
-| `arangodb.storage`        | The size of the persistent volume                                     | `30Gi`                 |
-| `arangodb.replicas`       | The number of replicas                                                | `3`                    |
-| `arangodb.existingSecret` | The name of the existing secret containing the ArangoDB root password | `arango-root-password` |
+| Name                      | Description                                                           | Value                           |
+| ------------------------- | --------------------------------------------------------------------- | ------------------------------- |
+| `arangodb.enabled`        | Whether to install the ArangoDB instance                              | `true`                          |
+| `arangodb.storage`        | The size of the persistent volume                                     | `30Gi`                          |
+| `arangodb.replicas`       | The number of replicas                                                | `3`                             |
+| `arangodb.existingSecret` | The name of the existing secret containing the ArangoDB root password | `platform-source-arangodb-root` |
 
 ### Ensure Credentials
 
@@ -248,8 +259,8 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.legacyClientEventSourceApi.env.CASSANDRA_DEFAULT_REPLICATION_FACTOR`   | The Cassandra default replication factor              | `3`                                                                   |
 | `flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_BUCKET_NAME`                    | The archive bucket name                               | `flowcore-platform-archive`                                           |
 | `flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_REGION`                         | The archive region                                    | `eu-west-1`                                                           |
-| `flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_ACCESS_KEY_ID`                  | The archive access key ID                             | `archive-access-key-id in aws-credentials secret`                     |
-| `flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_SECRET_ACCESS_KEY`              | The archive secret access key                         | `archive-secret-access-key in aws-credentials secret`                 |
+| `flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_ACCESS_KEY_ID`                  | The archive access key ID                             | `aws-access-key-id in aws-credentials secret`                         |
+| `flowcore-microservices.deployments.legacyClientEventSourceApi.env.ARCHIVE_SECRET_ACCESS_KEY`              | The archive secret access key                         | `aws-secret-access-key in aws-credentials secret`                     |
 | `flowcore-microservices.deployments.legacyClientEventSourceApi.env.HOT_STORAGE_RETENTION`                  | The hot storage retention                             | `3`                                                                   |
 | `flowcore-microservices.deployments.legacyClientEventSourceApi.env.CACHE_USE_REMOTE`                       | Whether to use the remote cache                       | `true`                                                                |
 | `flowcore-microservices.deployments.legacyClientEventSourceApi.env.CACHE_REDIS_URL`                        | The Redis URL                                         | `redis-url in legacy-client-event-source-credentials secret`          |
@@ -273,8 +284,8 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CASSANDRA_DEFAULT_REPLICATION_FACTOR`   | The Cassandra default replication factor                | `3`                                                                     |
 | `flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_BUCKET_NAME`                    | The archive bucket name                                 | `flowcore-platform-archive`                                             |
 | `flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_REGION`                         | The archive region                                      | `eu-west-1`                                                             |
-| `flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_ACCESS_KEY_ID`                  | The archive access key ID                               | `archive-access-key-id in aws-credentials secret`                       |
-| `flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_SECRET_ACCESS_KEY`              | The archive secret access key                           | `archive-secret-access-key in aws-credentials secret`                   |
+| `flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_ACCESS_KEY_ID`                  | The archive access key ID                               | `aws-access-key-id in aws-credentials secret`                           |
+| `flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.ARCHIVE_SECRET_ACCESS_KEY`              | The archive secret access key                           | `aws-secret-access-key in aws-credentials secret`                       |
 | `flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.HOT_STORAGE_RETENTION`                  | The hot storage retention                               | `3`                                                                     |
 | `flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CACHE_USE_REMOTE`                       | Whether to use the remote cache                         | `true`                                                                  |
 | `flowcore-microservices.deployments.legacyPlatformEventSourceApi.env.CACHE_REDIS_URL`                        | The Redis URL                                           | `redis-url in legacy-platform-event-source-credentials secret`          |
@@ -291,6 +302,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.eventSourceApi.deployment.replicas`             | The number of replicas                  | `2`                                                                                                                  |
 | `flowcore-microservices.deployments.eventSourceApi.service`                         | The service                             | `{}`                                                                                                                 |
 | `flowcore-microservices.deployments.eventSourceApi.service.enabled`                 | Whether to enable the service           | `true`                                                                                                               |
+| `flowcore-microservices.deployments.eventSourceApi.service.port`                    | The service port                        | `3000`                                                                                                               |
 | `flowcore-microservices.deployments.eventSourceApi.service.extraPorts.metrics.port` | The port for the metrics                | `9000`                                                                                                               |
 | `flowcore-microservices.deployments.eventSourceApi.service.extraPorts.metrics.type` | The type for the metrics                | `TCP`                                                                                                                |
 | `flowcore-microservices.deployments.eventSourceApi.metrics.enabled`                 | Whether to enable the metrics           | `true`                                                                                                               |
@@ -313,12 +325,8 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.eventSourceApi.env.COLD_STORAGE_API_URL`        | The cold storage API URL                | `http://cold-storage-api.flowcore-source:3000`                                                                       |
 | `flowcore-microservices.deployments.eventSourceApi.env.HOT_STORAGE_RETENTION_HOURS` | The hot storage retention hours         | `72`                                                                                                                 |
 | `flowcore-microservices.deployments.eventSourceApi.affinity`                        | The affinity                            | `{}`                                                                                                                 |
-| `flowcore-microservices.deployments.eventSourceApi.ingress.enabled`                 | The ingress                             | `{}`                                                                                                                 |
-| `flowcore-microservices.deployments.eventSourceApi.ingress.enabled`                 | Whether to install the ingress          | `true`                                                                                                               |
+| `flowcore-microservices.deployments.eventSourceApi.subdomain`                       | The subdomain                           | `event-source`                                                                                                       |
 | `flowcore-microservices.deployments.eventSourceApi.ingress.annotations`             | The ingress annotations                 | `{}`                                                                                                                 |
-| `flowcore-microservices.deployments.eventSourceApi.ingress.route`                   | The ingress route                       | `[]`                                                                                                                 |
-| `flowcore-microservices.deployments.eventSourceApi.ingress.route.hosts`             | The ingress hosts                       | `example.com`                                                                                                        |
-| `flowcore-microservices.deployments.eventSourceApi.ingress.route.tlsSecret`         | The ingress TLS secret                  | `example-tls`                                                                                                        |
 
 ### Cold Storage API
 
@@ -341,8 +349,8 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.coldStorageApi.env.IAM_API_URL`                | The IAM API URL                         | `https://iam.api.flowcore.io`                                            |
 | `flowcore-microservices.deployments.coldStorageApi.env.AWS_REGION`                 | The AWS region                          | `eu-west-1`                                                              |
 | `flowcore-microservices.deployments.coldStorageApi.env.AWS_BUCKET_NAME`            | The AWS bucket name                     | `flowcore-platform-archive`                                              |
-| `flowcore-microservices.deployments.coldStorageApi.env.AWS_ACCESS_KEY_ID`          | The archive access key ID               | `archive-access-key-id in aws-credentials secret`                        |
-| `flowcore-microservices.deployments.coldStorageApi.env.AWS_SECRET_ACCESS_KEY`      | The archive secret access key           | `archive-secret-access-key in aws-credentials secret`                    |
+| `flowcore-microservices.deployments.coldStorageApi.env.AWS_ACCESS_KEY_ID`          | The archive access key ID               | `aws-access-key-id in aws-credentials secret`                            |
+| `flowcore-microservices.deployments.coldStorageApi.env.AWS_SECRET_ACCESS_KEY`      | The archive secret access key           | `aws-secret-access-key in aws-credentials secret`                        |
 
 ### Ingestion Validation Adapter
 
@@ -397,13 +405,10 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.webhookService.env.NATS_QUEUE`                       | The NATS_QUEUE                         | `ingestion-webhook`                                            |
 | `flowcore-microservices.deployments.webhookService.env.INGESTION_NATS_SERVERS`           | The INGESTION_NATS_SERVERS             | `nats://nats:4222`                                             |
 | `flowcore-microservices.deployments.webhookService.service.enabled`                      | Whether to enable the service          | `true`                                                         |
+| `flowcore-microservices.deployments.webhookService.service.port`                         | The service port                       | `3000`                                                         |
 | `flowcore-microservices.deployments.webhookService.affinity`                             | The affinity                           | `{}`                                                           |
-| `flowcore-microservices.deployments.webhookService.ingress.enabled`                      | The ingress                            | `{}`                                                           |
-| `flowcore-microservices.deployments.webhookService.ingress.enabled`                      | Whether to install the ingress         | `true`                                                         |
+| `flowcore-microservices.deployments.webhookService.subdomain`                            | The subdomain                          | `webhook`                                                      |
 | `flowcore-microservices.deployments.webhookService.ingress.annotations`                  | The ingress annotations                | `{}`                                                           |
-| `flowcore-microservices.deployments.webhookService.ingress.route`                        | The ingress route                      | `[]`                                                           |
-| `flowcore-microservices.deployments.webhookService.ingress.route.hosts`                  | The ingress hosts                      | `example.com`                                                  |
-| `flowcore-microservices.deployments.eventSourceApi.ingress.route.tlsSecret`              | The ingress TLS secret                 | `example-tls`                                                  |
 
 ### Event Recorder
 
@@ -460,9 +465,9 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.eventArchiver.env.REDIS_MASTER_SET_NAME`            | The REDIS_MASTER_SET_NAME             | `sentinel-primary-set in event-archiver-credentials secret` |
 | `flowcore-microservices.deployments.eventArchiver.env.REDIS_SENTINELS`                  | The REDIS_SENTINELS                   | `sentinel-hosts in event-archiver-credentials secret`       |
 | `flowcore-microservices.deployments.eventArchiver.env.REDIS_PASSWORD`                   | The REDIS_PASSWORD                    | `sentinel-password in event-archiver-credentials secret`    |
-| `flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_ACCESS_KEY_ID`          | The ARCHIVING_ACCESS_KEY_ID           | `archive-access-key-id in aws-credentials secret`           |
-| `flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_SECRET_ACCESS_KEY`      | The ARCHIVING_SECRET_ACCESS_KEY       | `archive-secret-access-key in aws-credentials secret`       |
-| `flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_BUCKET_NAME`            | The ARCHIVING_BUCKET_NAME             | `archive-bucket-name in aws-credentials secret`             |
+| `flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_ACCESS_KEY_ID`          | The ARCHIVING_ACCESS_KEY_ID           | `aws-access-key-id in aws-credentials secret`               |
+| `flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_SECRET_ACCESS_KEY`      | The ARCHIVING_SECRET_ACCESS_KEY       | `aws-secret-access-key in aws-credentials secret`           |
+| `flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_BUCKET_NAME`            | The ARCHIVING_BUCKET_NAME             | `flowcore-archive`                                          |
 | `flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_REGION`                 | The ARCHIVING_REGION                  | `eu-west-1`                                                 |
 | `flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_CONCURRENT_PROCESSES`   | The ARCHIVING_CONCURRENT_PROCESSES    | `5`                                                         |
 | `flowcore-microservices.deployments.eventArchiver.env.ARCHIVING_DEPLOYMENT_TYPE`        | The ARCHIVING_DEPLOYMENT_TYPE         | `dedicated`                                                 |
@@ -484,6 +489,24 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.resourceLockManager.env.REDIS_HOST`      | The REDIS_HOST                               | `valkey-cache-primary`       |
 | `flowcore-microservices.deployments.resourceLockManager.env.REDIS_PORT`      | The REDIS_PORT                               | `6379`                       |
 | `flowcore-microservices.deployments.resourceLockManager.useTransports`       | The useTransports                            | `nats`                       |
+
+### Service Kube Log API
+
+| Name                                                                                    | Description                                 | Value                                                                    |
+| --------------------------------------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------------------------------ |
+| `flowcore-microservices.deployments.serviceKubeLogApi.enabled`                          | Whether to install the service kube log api | `true`                                                                   |
+| `flowcore-microservices.deployments.serviceKubeLogApi.deployment.replicas`              | The number of replicas                      | `2`                                                                      |
+| `flowcore-microservices.deployments.serviceKubeLogApi.deployment.tag`                   | The image tag                               | `1.4.0`                                                                  |
+| `flowcore-microservices.deployments.serviceKubeLogApi.deployment.image`                 | The image                                   | `service-kube-log-api`                                                   |
+| `flowcore-microservices.deployments.serviceKubeLogApi.deployment.serviceAccount`        | The service account                         | `service-kube-log-api`                                                   |
+| `flowcore-microservices.deployments.serviceKubeLogApi.service.enabled`                  | Whether to enable the service               | `true`                                                                   |
+| `flowcore-microservices.deployments.serviceKubeLogApi.service.port`                     | The service port                            | `3000`                                                                   |
+| `flowcore-microservices.deployments.serviceKubeLogApi.env.NODE_TLS_REJECT_UNAUTHORIZED` | The NODE_TLS_REJECT_UNAUTHORIZED            | `0`                                                                      |
+| `flowcore-microservices.deployments.serviceKubeLogApi.env.JWKS_URL`                     | The JWKS_URL                                | `https://auth.flowcore.io/realms/flowcore/protocol/openid-connect/certs` |
+| `flowcore-microservices.deployments.serviceKubeLogApi.env.IAM_API_URL`                  | The IAM_API_URL                             | `https://iam.api.flowcore.io`                                            |
+| `flowcore-microservices.deployments.serviceKubeLogApi.affinity`                         | The affinity                                | `{}`                                                                     |
+| `flowcore-microservices.deployments.serviceKubeLogApi.subdomain`                        | The subdomain                               | `logs`                                                                   |
+| `flowcore-microservices.deployments.serviceKubeLogApi.ingress.annotations`              | The ingress annotations                     | `{}`                                                                     |
 
 
 

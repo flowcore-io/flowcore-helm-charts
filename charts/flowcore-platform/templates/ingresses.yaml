@@ -1,0 +1,47 @@
+{{/*
+# Ingresses
+
+This file contains the ingress resources for the Flowcore Platform.
+*/}}
+
+{{- $microservices := index .Values "flowcore-microservices" "deployments" -}}
+{{- $services := list "eventSourceApi" "webhookService" "serviceKubeLogApi" -}}
+{{- $domain := .Values.flowcore.domain }}
+{{- $tlsSecret := .Values.flowcore.tlsSecret }}
+
+{{- range $name := $services -}}
+{{- $spec := index $microservices $name -}}
+{{- if and $spec.enabled $spec.enabled -}}
+{{- $serviceName := $name | kebabcase }}
+{{- $routeHost := print $spec.subdomain "." $domain }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ $serviceName }}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    {{- if $spec.ingress.annotations -}}
+    {{- $spec.ingress.annotations | toYaml | nindent 4 }}
+    {{- end }}
+    {{- if $.Values.commonAnnotations }}
+    {{- $.Values.commonAnnotations | toYaml | nindent 4 }}
+    {{- end }}
+spec:
+  tls:
+    - hosts:
+        - {{ $routeHost }}
+      secretName: {{ $tlsSecret }}
+  rules:
+    - host: {{ $routeHost }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $serviceName }}
+                port:
+                  number: {{ $spec.service.port }}
+{{- end }}
+{{- end }}

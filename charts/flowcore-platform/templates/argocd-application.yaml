@@ -1,0 +1,26 @@
+{{- $tenant := .Values.flowcore.tenant -}}
+{{- $repository := .Values.flowcore.configurationRepository -}}
+{{- $namespace := printf "org-%s-config" $tenant -}}
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $namespace }}
+  namespace: argocd
+spec:
+  destination:
+    namespace: {{ $namespace }}
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      valueFiles:
+        - ./configuration/spec.yaml
+    path: "."
+    repoURL: {{ $repository }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
