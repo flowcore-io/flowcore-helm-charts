@@ -498,7 +498,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.serviceKubeLogApi.deployment.replicas`              | The number of replicas                      | `2`                                                                      |
 | `flowcore-microservices.deployments.serviceKubeLogApi.deployment.tag`                   | The image tag                               | `1.4.0`                                                                  |
 | `flowcore-microservices.deployments.serviceKubeLogApi.deployment.image`                 | The image                                   | `service-kube-log-api`                                                   |
-| `flowcore-microservices.deployments.serviceKubeLogApi.deployment.serviceAccount`        | The service account                         | `service-kube-log-api`                                                   |
+| `flowcore-microservices.deployments.serviceKubeLogApi.deployment.serviceAccount`        | The service account                         | `flowcore-kube-log-reader`                                               |
 | `flowcore-microservices.deployments.serviceKubeLogApi.service.enabled`                  | Whether to enable the service               | `true`                                                                   |
 | `flowcore-microservices.deployments.serviceKubeLogApi.service.port`                     | The service port                            | `3000`                                                                   |
 | `flowcore-microservices.deployments.serviceKubeLogApi.env.NODE_TLS_REJECT_UNAUTHORIZED` | The NODE_TLS_REJECT_UNAUTHORIZED            | `0`                                                                      |

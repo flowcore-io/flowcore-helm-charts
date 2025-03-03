@@ -1135,8 +1135,8 @@ flowcore-microservices:
         tag: 1.4.0
         ## @param flowcore-microservices.deployments.serviceKubeLogApi.deployment.image [default: service-kube-log-api] The image
         image: service-kube-log-api
-        ## @param flowcore-microservices.deployments.serviceKubeLogApi.deployment.serviceAccount [default: service-kube-log-api] The service account
-        serviceAccount: service-kube-log-api
+        ## @param flowcore-microservices.deployments.serviceKubeLogApi.deployment.serviceAccount [default: flowcore-kube-log-reader] The service account
+        serviceAccount: flowcore-kube-log-reader
       service:
         ## @param flowcore-microservices.deployments.serviceKubeLogApi.service.enabled [default: true] Whether to enable the service
         enabled: true
