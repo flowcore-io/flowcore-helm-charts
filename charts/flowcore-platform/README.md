@@ -496,7 +496,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | --------------------------------------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------------------------------ |
 | `flowcore-microservices.deployments.serviceKubeLogApi.enabled`                          | Whether to install the service kube log api | `true`                                                                   |
 | `flowcore-microservices.deployments.serviceKubeLogApi.deployment.replicas`              | The number of replicas                      | `2`                                                                      |
-| `flowcore-microservices.deployments.serviceKubeLogApi.deployment.tag`                   | The image tag                               | `1.4.0`                                                                  |
+| `flowcore-microservices.deployments.serviceKubeLogApi.deployment.tag`                   | The image tag                               | `1.4.1`                                                                  |
 | `flowcore-microservices.deployments.serviceKubeLogApi.deployment.image`                 | The image                                   | `service-kube-log-api`                                                   |
 | `flowcore-microservices.deployments.serviceKubeLogApi.deployment.serviceAccount`        | The service account                         | `flowcore-kube-log-reader`                                               |
 | `flowcore-microservices.deployments.serviceKubeLogApi.service.enabled`                  | Whether to enable the service               | `true`                                                                   |

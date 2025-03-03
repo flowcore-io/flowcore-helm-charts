@@ -1131,8 +1131,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.serviceKubeLogApi.deployment.replicas [default: 2] The number of replicas
         replicas: 2
-        ## @param flowcore-microservices.deployments.serviceKubeLogApi.deployment.tag [default: 1.4.0] The image tag
-        tag: 1.4.0
+        ## @param flowcore-microservices.deployments.serviceKubeLogApi.deployment.tag [default: 1.4.1] The image tag
+        tag: 1.4.1
         ## @param flowcore-microservices.deployments.serviceKubeLogApi.deployment.image [default: service-kube-log-api] The image
         image: service-kube-log-api
         ## @param flowcore-microservices.deployments.serviceKubeLogApi.deployment.serviceAccount [default: flowcore-kube-log-reader] The service account
