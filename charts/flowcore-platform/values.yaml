@@ -610,9 +610,9 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.eventSourceApi.env.JWKS_URL [object, default: https://auth.flowcore.io/realms/flowcore/protocol/openid-connect/certs] The JWKS URL
         JWKS_URL:
           value: https://auth.flowcore.io/realms/flowcore/protocol/openid-connect/certs
-        ## @param flowcore-microservices.deployments.eventSourceApi.env.API_KEY_URL [object, default: http://organization-api-key-api.flowcore-security.svc.cluster.local:3000] The API key URL
+        ## @param flowcore-microservices.deployments.eventSourceApi.env.API_KEY_URL [object, default: ttps://security-key.api.flowcore.io] The API key URL
         API_KEY_URL:
-          value: https://security.api.flowcore.io
+          value: ttps://security-key.api.flowcore.io
         ## @param flowcore-microservices.deployments.eventSourceApi.env.IAM_API_URL [object, default: http://service-iam-api.flowcore-public:3000] The IAM API URL
         IAM_API_URL:
           value: https://iam.api.flowcore.io
@@ -686,9 +686,9 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.coldStorageApi.env.JWKS_URL [object, default: https://auth.flowcore.io/realms/flowcore/protocol/openid-connect/certs] The JWKS URL
         JWKS_URL:
           value: https://auth.flowcore.io/realms/flowcore/protocol/openid-connect/certs
-        ## @param flowcore-microservices.deployments.coldStorageApi.env.API_KEY_URL [object, default: https://security.api.flowcore.io] The API key URL
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.API_KEY_URL [object, default: ttps://security-key.api.flowcore.io] The API key URL
         API_KEY_URL:
-          value: https://security.api.flowcore.io
+          value: https://security-key.api.flowcore.io
         ## @param flowcore-microservices.deployments.coldStorageApi.env.REDIS_URL [object, default: redis-sentinel-rw in cold-storage-api-credentials secret] The Redis URL
         REDIS_URL:
           valueFrom:
@@ -862,6 +862,9 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.webhookService.env.INGESTION_NATS_SERVERS [object, default: nats://nats:4222] The INGESTION_NATS_SERVERS
         INGESTION_NATS_SERVERS:
           value: nats://nats:4222
+        ## @param flowcore-microservices.deployments.webhookService.env.FLOWCORE_API_KEY_URL [object, default: https://security-key.api.flowcore.io] The FLOWCORE_API_KEY_URL
+        FLOWCORE_API_KEY_URL:
+          value: https://security-key.api.flowcore.io
       service:
         ## @param flowcore-microservices.deployments.webhookService.service.enabled [default: true] Whether to enable the service
         enabled: true
