@@ -5,7 +5,7 @@ This file contains the ingress resources for the Flowcore Platform.
 */}}
 
 {{- $microservices := index .Values "flowcore-microservices" "deployments" -}}
-{{- $services := list "eventSourceApi" "webhookService" "serviceKubeLogApi" -}}
+{{- $services := list "eventSourceApi" "webhookService" "serviceKubeLogApi" "deleteManagerApi" -}}
 {{- $domain := .Values.flowcore.domain }}
 {{- $tlsSecret := .Values.flowcore.tlsSecret }}
 

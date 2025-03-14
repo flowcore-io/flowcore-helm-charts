@@ -266,7 +266,7 @@ ensureCredentials:
     ## @param ensureCredentials.image.repository [default: flowcoreio/job-create-dedicated-credentials] The image repository
     repository: flowcoreio/job-create-dedicated-credentials
     ## @param ensureCredentials.image.tag [default: 1.10.0] The image tag
-    tag: 1.10.1
+    tag: 1.11.0
   ## @param ensureCredentials.resources [object] The resources for the ensure credentials job
   resources:
     ## @param ensureCredentials.resources.limits.cpu [default: 100m] The CPU limit
@@ -1168,6 +1168,154 @@ flowcore-microservices:
       subdomain: logs
       ## @param flowcore-microservices.deployments.serviceKubeLogApi.ingress.annotations [object] The ingress annotations
       ingress:
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-connect-timeout: "255"
+          nginx.ingress.kubernetes.io/proxy-read-timeout: "255"
+          nginx.ingress.kubernetes.io/proxy-send-timeout: "255"
+          nginx.ingress.kubernetes.io/server-snippet: |
+            gzip on;
+            gzip_comp_level 5;
+    ## @section Service Delete Manager API
+    serviceDeleteManagerApi:
+      ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.enabled [default: false] Whether to install the service delete manager api
+      enabled: false
+      deployment:
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.deployment.image [default: service-delete-manager-api] The image
+        image: service-delete-manager-api
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.deployment.tag [default: 1.0.8] The image tag
+        tag: 1.0.8
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.deployment.replicas [default: 2] The number of replicas
+        replicas: 2
+      service:
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.service.enabled [default: true] Whether to enable the service
+        enabled: true
+      env:
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.LOG_LEVEL [default: info] The LOG_LEVEL
+        LOG_LEVEL:
+          value: info
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.SERVICE_PORT [default: 3000] The SERVICE_PORT
+        SERVICE_PORT:
+          value: "3000"
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.FLOWCORE_DEPLOYMENT_TYPE [default: dedicated] The FLOWCORE_DEPLOYMENT_TYPE
+        FLOWCORE_DEPLOYMENT_TYPE:
+          value: dedicated
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.FLOWCORE_API_KEY [object, default: flowcore-api-key in service-delete-manager-api-credentials secret] The FLOWCORE_API_KEY
+        FLOWCORE_API_KEY:
+          valueFrom:
+            secretKeyRef:
+              name: service-delete-manager-api-credentials
+              key: FLOWCORE_API_KEY
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.FLOWCORE_TENANT_API_URL [object, default: https://tenant.api.flowcore.io] The FLOWCORE_TENANT_API_URL
+        FLOWCORE_TENANT_API_URL:
+          value: https://tenant.api.flowcore.io
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.FLOWCORE_DEDICATED_TENANT_ID [object, default: flowcore-dedicated-tenant-id in service-delete-manager-api-credentials secret] The FLOWCORE_DEDICATED_TENANT_ID
+        FLOWCORE_DEDICATED_TENANT_ID:
+          valueFrom:
+            secretKeyRef:
+              name: service-delete-manager-api-credentials
+              key: flowcore-dedicated-tenant-id
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.FLOWCORE_DEDICATED_LICENSE_KEY [object, default: flowcore-dedicated-license-key in service-delete-manager-api-credentials secret] The FLOWCORE_DEDICATED_LICENSE_KEY
+        FLOWCORE_DEDICATED_LICENSE_KEY:
+          valueFrom:
+            secretKeyRef:
+              name: service-delete-manager-api-credentials
+              key: flowcore-dedicated-license-key
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.SDK_API_KEY [object, default: sdk-api-key in service-delete-manager-api-credentials secret] The SDK_API_KEY
+        SDK_API_KEY:
+          valueFrom:
+            secretKeyRef:
+              name: service-delete-manager-api-credentials
+              key: sdk-api-key
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.SDK_API_KEY_ID [object, default: sdk-api-key-id in service-delete-manager-api-credentials secret] The SDK_API_KEY_ID
+        SDK_API_KEY_ID:
+          valueFrom:
+            secretKeyRef:
+              name: service-delete-manager-api-credentials
+              key: sdk-api-key-id
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.LOCK_REDIS_URL [object, default: lock-redis-url in service-delete-manager-api-credentials secret] The LOCK_REDIS_URL
+        LOCK_REDIS_URL:
+          valueFrom:
+            secretKeyRef:
+              name: service-delete-manager-api-credentials
+              key: lock-redis-url
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.QUEUE_REDIS_URL [object, default: queue-redis-url in service-delete-manager-api-credentials secret] The QUEUE_REDIS_URL
+        QUEUE_REDIS_URL:
+          valueFrom:
+            secretKeyRef:
+              name: service-delete-manager-api-credentials
+              key: queue-redis-url
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.QUEUE_NAME [object, default: delete-manager-queue] The QUEUE_NAME
+        QUEUE_NAME:
+          value: delete-manager-queue
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.CASSANDRA_LOCAL_DATA_CENTER [object, default: datacenter1] The CASSANDRA_LOCAL_DATA_CENTER
+        CASSANDRA_LOCAL_DATA_CENTER:
+          value: datacenter1
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.CASSANDRA_CONSISTENCY [object, default: 6] The CASSANDRA_CONSISTENCY
+        CASSANDRA_CONSISTENCY:
+          value: "6"
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.CASSANDRA_CONTACT_POINTS [object, default: flowcore-cassandra.flowcore.svc.cluster.local] The CASSANDRA_CONTACT_POINTS
+        CASSANDRA_CONTACT_POINTS:
+          value: flowcore-cassandra.flowcore.svc.cluster.local
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.CASSANDRA_KEYSPACE [object, default: flowcore_archive] The CASSANDRA_KEYSPACE
+        CASSANDRA_KEYSPACE:
+          value: flowcore_archive
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.CASSANDRA_USERNAME [object, default: cassandra-username in service-delete-manager-api-credentials secret] The CASSANDRA_USERNAME
+        CASSANDRA_USERNAME:
+          valueFrom:
+            secretKeyRef:
+              name: service-delete-manager-api-credentials
+              key: cassandra-username
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.CASSANDRA_PASSWORD [object, default: cassandra-password in service-delete-manager-api-credentials secret] The CASSANDRA_PASSWORD
+        CASSANDRA_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: service-delete-manager-api-credentials
+              key: cassandra-password
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.EVENT_STORAGE_TYPE [object, default: aws] The EVENT_STORAGE_TYPE
+        EVENT_STORAGE_TYPE:
+          value: aws
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.EVENT_STORAGE_BUCKET [object, default: flowcore-platform-archive] The EVENT_STORAGE_BUCKET
+        EVENT_STORAGE_BUCKET:
+          value: flowcore-platform-archive
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.EVENT_STORAGE_AWS_ACCESS_KEY_ID [object, default: aws-access-key-id in aws-credentials secret] The EVENT_STORAGE_AWS_ACCESS_KEY_ID
+        EVENT_STORAGE_AWS_ACCESS_KEY_ID:
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: aws-access-key-id
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.EVENT_STORAGE_AWS_SECRET_ACCESS_KEY [object, default: aws-secret-access-key in aws-credentials secret] The EVENT_STORAGE_AWS_SECRET_ACCESS_KEY
+        EVENT_STORAGE_AWS_SECRET_ACCESS_KEY:
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: aws-secret-access-key
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.EVENT_STORAGE_AWS_REGION [object, default: eu-west-1] The EVENT_STORAGE_AWS_REGION
+        EVENT_STORAGE_AWS_REGION:
+          value: eu-west-1
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.JWKS_URL [object, default: https://auth.flowcore.io/realms/flowcore/protocol/openid-connect/certs] The JWKS_URL
+        JWKS_URL:
+          value: https://auth.flowcore.io/realms/flowcore/protocol/openid-connect/certs
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.API_KEY_URL [object, default: https://security-key.api.flowcore.io] The API_KEY_URL
+        API_KEY_URL:
+          value: https://security-key.api.flowcore.io
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.IAM_API_URL [object, default: https://iam.api.flowcore.io] The IAM_API_URL
+        IAM_API_URL:
+          value: https://iam.api.flowcore.io
+      ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.affinity [object] The affinity
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              preference:
+                matchExpressions:
+                  - key: scheduling.cast.ai/spot
+                    operator: Exists
+      ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.subdomain [default: delete-manager] The subdomain
+      subdomain: delete-manager
+      ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.ingress.enabled [default: true] Whether to enable the ingress
+      ingress:
+        enabled: true
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.ingress.annotations [object] The ingress annotations
         annotations:
           nginx.ingress.kubernetes.io/proxy-connect-timeout: "255"
           nginx.ingress.kubernetes.io/proxy-read-timeout: "255"
