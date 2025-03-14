@@ -1178,7 +1178,7 @@ flowcore-microservices:
     ## @section Service Delete Manager API
     serviceDeleteManagerApi:
       ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.enabled [default: false] Whether to install the service delete manager api
-      enabled: false
+      enabled: true
       deployment:
         ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.deployment.image [default: service-delete-manager-api] The image
         image: service-delete-manager-api
@@ -1199,51 +1199,51 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.FLOWCORE_DEPLOYMENT_TYPE [default: dedicated] The FLOWCORE_DEPLOYMENT_TYPE
         FLOWCORE_DEPLOYMENT_TYPE:
           value: dedicated
-        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.FLOWCORE_API_KEY [object, default: flowcore-api-key in service-delete-manager-api-credentials secret] The FLOWCORE_API_KEY
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.FLOWCORE_API_KEY [object, default: api-key in tenant-credentials secret] The FLOWCORE_API_KEY
         FLOWCORE_API_KEY:
           valueFrom:
             secretKeyRef:
-              name: service-delete-manager-api-credentials
-              key: FLOWCORE_API_KEY
+              name: tenant-credentials
+              key: api-key
         ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.FLOWCORE_TENANT_API_URL [object, default: https://tenant.api.flowcore.io] The FLOWCORE_TENANT_API_URL
         FLOWCORE_TENANT_API_URL:
           value: https://tenant.api.flowcore.io
-        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.FLOWCORE_DEDICATED_TENANT_ID [object, default: flowcore-dedicated-tenant-id in service-delete-manager-api-credentials secret] The FLOWCORE_DEDICATED_TENANT_ID
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.FLOWCORE_DEDICATED_TENANT_ID [object, default: tenant-id in tenant-credentials secret] The FLOWCORE_DEDICATED_TENANT_ID
         FLOWCORE_DEDICATED_TENANT_ID:
           valueFrom:
             secretKeyRef:
-              name: service-delete-manager-api-credentials
-              key: flowcore-dedicated-tenant-id
-        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.FLOWCORE_DEDICATED_LICENSE_KEY [object, default: flowcore-dedicated-license-key in service-delete-manager-api-credentials secret] The FLOWCORE_DEDICATED_LICENSE_KEY
+              name: tenant-credentials
+              key: tenant-id
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.FLOWCORE_DEDICATED_LICENSE_KEY [object, default: tenant-license-key in tenant-credentials secret] The FLOWCORE_DEDICATED_LICENSE_KEY
         FLOWCORE_DEDICATED_LICENSE_KEY:
           valueFrom:
             secretKeyRef:
-              name: service-delete-manager-api-credentials
-              key: flowcore-dedicated-license-key
-        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.SDK_API_KEY [object, default: sdk-api-key in service-delete-manager-api-credentials secret] The SDK_API_KEY
+              name: tenant-credentials
+              key: tenant-license-key
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.SDK_API_KEY [object, default: api-key in tenant-credentials secret] The SDK_API_KEY
         SDK_API_KEY:
           valueFrom:
             secretKeyRef:
-              name: service-delete-manager-api-credentials
-              key: sdk-api-key
-        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.SDK_API_KEY_ID [object, default: sdk-api-key-id in service-delete-manager-api-credentials secret] The SDK_API_KEY_ID
+              name: tenant-credentials
+              key: api-key
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.SDK_API_KEY_ID [object, default: api-key-id in tenant-credentials] The SDK_API_KEY_ID
         SDK_API_KEY_ID:
           valueFrom:
             secretKeyRef:
-              name: service-delete-manager-api-credentials
-              key: sdk-api-key-id
-        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.LOCK_REDIS_URL [object, default: lock-redis-url in service-delete-manager-api-credentials secret] The LOCK_REDIS_URL
+              name: tenant-credentials
+              key: api-key-id
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.LOCK_REDIS_URL [object, default: redis-url in service-delete-manager-api-credentials secret] The LOCK_REDIS_URL
         LOCK_REDIS_URL:
           valueFrom:
             secretKeyRef:
               name: service-delete-manager-api-credentials
-              key: lock-redis-url
-        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.QUEUE_REDIS_URL [object, default: queue-redis-url in service-delete-manager-api-credentials secret] The QUEUE_REDIS_URL
+              key: redis-url
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.QUEUE_REDIS_URL [object, default: redis-sentinel-rw in service-delete-manager-api-credentials secret] The QUEUE_REDIS_URL
         QUEUE_REDIS_URL:
           valueFrom:
             secretKeyRef:
               name: service-delete-manager-api-credentials
-              key: queue-redis-url
+              key: redis-sentinel-rw
         ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.QUEUE_NAME [object, default: delete-manager-queue] The QUEUE_NAME
         QUEUE_NAME:
           value: delete-manager-queue
