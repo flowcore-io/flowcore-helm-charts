@@ -318,6 +318,8 @@ flowcore-microservices:
       ## @param flowcore-microservices.deployments.ingestionChannel.useTransports [default: nats] The transports to use
       useTransports:
         - nats
+      ## @param flowcore-microservices.deployments.ingestionChannel.castAiSpot [default: preferred] The castAiSpot
+      castAiSpot: preferred
       env:
         ## @param flowcore-microservices.deployments.ingestionChannel.env.REDIS_URL [object] The Redis URL
         REDIS_URL:
@@ -622,15 +624,8 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.eventSourceApi.env.HOT_STORAGE_RETENTION_HOURS [object, default: 72] The hot storage retention hours
         HOT_STORAGE_RETENTION_HOURS:
           value: "72"
-      ## @param flowcore-microservices.deployments.eventSourceApi.affinity [object] The affinity
-      affinity:
-        nodeAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 1
-              preference:
-                matchExpressions:
-                  - key: scheduling.cast.ai/spot
-                    operator: Exists
+      ## @param flowcore-microservices.deployments.eventSourceApi.castAiSpot [default: preferred] The castAiSpot
+      castAiSpot: preferred
       ## @param flowcore-microservices.deployments.eventSourceApi.subdomain [default: event-source] The subdomain
       subdomain: event-source
       ## @param flowcore-microservices.deployments.eventSourceApi.ingress.annotations [object] The ingress annotations
@@ -661,6 +656,8 @@ flowcore-microservices:
           limits:
             cpu: 4000m
             memory: 3042Mi
+      ## @param flowcore-microservices.deployments.coldStorageApi.castAiSpot [default: preferred] The castAiSpot
+      castAiSpot: preferred
       metrics:
         ## @param flowcore-microservices.deployments.coldStorageApi.metrics.enabled [default: true] Whether to enable the metrics
         enabled: true
@@ -870,15 +867,8 @@ flowcore-microservices:
         enabled: true
         ## @param flowcore-microservices.deployments.webhookService.service.port [default: 3000] The service port
         port: 3000
-      ## @param flowcore-microservices.deployments.webhookService.affinity [object] The affinity
-      affinity:
-        nodeAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 1
-              preference:
-                matchExpressions:
-                  - key: scheduling.cast.ai/spot
-                    operator: Exists
+      ## @param flowcore-microservices.deployments.webhookService.castAiSpot [default: preferred] The castAiSpot
+      castAiSpot: preferred
       ## @param flowcore-microservices.deployments.webhookService.subdomain [default: webhook] The subdomain
       subdomain: webhook
       ## @param flowcore-microservices.deployments.webhookService.ingress.annotations [object] The ingress annotations
@@ -1155,15 +1145,8 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.serviceKubeLogApi.env.IAM_API_URL [object, default: https://iam.api.flowcore.io] The IAM_API_URL
         IAM_API_URL:
           value: https://iam.api.flowcore.io
-      ## @param flowcore-microservices.deployments.serviceKubeLogApi.affinity [object] The affinity
-      affinity:
-        nodeAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 1
-              preference:
-                matchExpressions:
-                  - key: scheduling.cast.ai/spot
-                    operator: Exists
+      ## @param flowcore-microservices.deployments.serviceKubeLogApi.castAiSpot [default: preferred] The castAiSpot
+      castAiSpot: preferred
       ## @param flowcore-microservices.deployments.serviceKubeLogApi.subdomain [default: logs] The subdomain
       subdomain: logs
       ## @param flowcore-microservices.deployments.serviceKubeLogApi.ingress.annotations [object] The ingress annotations
@@ -1301,15 +1284,8 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.IAM_API_URL [object, default: https://iam.api.flowcore.io] The IAM_API_URL
         IAM_API_URL:
           value: https://iam.api.flowcore.io
-      ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.affinity [object] The affinity
-      affinity:
-        nodeAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 1
-              preference:
-                matchExpressions:
-                  - key: scheduling.cast.ai/spot
-                    operator: Exists
+      ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.castAiSpot [default: preferred] The castAiSpot
+      castAiSpot: preferred
       ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.subdomain [default: delete-manager] The subdomain
       subdomain: delete-manager
       ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.ingress.enabled [default: true] Whether to enable the ingress

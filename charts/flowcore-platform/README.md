@@ -227,6 +227,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.ingestionChannel.metrics.enabled`                 | Whether to install the metrics                                   | `true`                                                       |
 | `flowcore-microservices.deployments.ingestionChannel.metrics.port`                    | The port                                                         | `3001`                                                       |
 | `flowcore-microservices.deployments.ingestionChannel.useTransports`                   | The transports to use                                            | `nats`                                                       |
+| `flowcore-microservices.deployments.ingestionChannel.castAiSpot`                      | The castAiSpot                                                   | `preferred`                                                  |
 | `flowcore-microservices.deployments.ingestionChannel.env.REDIS_URL`                   | The Redis URL                                                    | `{}`                                                         |
 | `flowcore-microservices.deployments.ingestionChannel.env.METRICS_SERVICE_NAME`        | The metrics service name                                         | `ingestion_channel`                                          |
 | `flowcore-microservices.deployments.ingestionChannel.env.DEFAULT_TTL_ON_STORED_EVENT` | The default TTL on stored event in seconds                       | `259200`                                                     |
@@ -324,7 +325,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.eventSourceApi.env.IAM_API_URL`                 | The IAM API URL                         | `http://service-iam-api.flowcore-public:3000`                                                                        |
 | `flowcore-microservices.deployments.eventSourceApi.env.COLD_STORAGE_API_URL`        | The cold storage API URL                | `http://cold-storage-api.flowcore-source:3000`                                                                       |
 | `flowcore-microservices.deployments.eventSourceApi.env.HOT_STORAGE_RETENTION_HOURS` | The hot storage retention hours         | `72`                                                                                                                 |
-| `flowcore-microservices.deployments.eventSourceApi.affinity`                        | The affinity                            | `{}`                                                                                                                 |
+| `flowcore-microservices.deployments.eventSourceApi.castAiSpot`                      | The castAiSpot                          | `preferred`                                                                                                          |
 | `flowcore-microservices.deployments.eventSourceApi.subdomain`                       | The subdomain                           | `event-source`                                                                                                       |
 | `flowcore-microservices.deployments.eventSourceApi.ingress.annotations`             | The ingress annotations                 | `{}`                                                                                                                 |
 
@@ -337,6 +338,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.coldStorageApi.deployment.tag`                 | The tag                                 | `2.10.1`                                                                 |
 | `flowcore-microservices.deployments.coldStorageApi.deployment.replicas`            | The number of replicas                  | `2`                                                                      |
 | `flowcore-microservices.deployments.coldStorageApi.deployment.resources`           | The resources                           | `{}`                                                                     |
+| `flowcore-microservices.deployments.coldStorageApi.castAiSpot`                     | The castAiSpot                          | `preferred`                                                              |
 | `flowcore-microservices.deployments.coldStorageApi.metrics.enabled`                | Whether to enable the metrics           | `true`                                                                   |
 | `flowcore-microservices.deployments.coldStorageApi.service.enabled`                | Whether to enable the service           | `true`                                                                   |
 | `flowcore-microservices.deployments.coldStorageApi.env.LOG_LEVEL`                  | The log level                           | `info`                                                                   |
@@ -407,7 +409,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.webhookService.env.FLOWCORE_API_KEY_URL`             | The FLOWCORE_API_KEY_URL               | `https://security-key.api.flowcore.io`                         |
 | `flowcore-microservices.deployments.webhookService.service.enabled`                      | Whether to enable the service          | `true`                                                         |
 | `flowcore-microservices.deployments.webhookService.service.port`                         | The service port                       | `3000`                                                         |
-| `flowcore-microservices.deployments.webhookService.affinity`                             | The affinity                           | `{}`                                                           |
+| `flowcore-microservices.deployments.webhookService.castAiSpot`                           | The castAiSpot                         | `preferred`                                                    |
 | `flowcore-microservices.deployments.webhookService.subdomain`                            | The subdomain                          | `webhook`                                                      |
 | `flowcore-microservices.deployments.webhookService.ingress.annotations`                  | The ingress annotations                | `{}`                                                           |
 
@@ -505,7 +507,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.serviceKubeLogApi.env.NODE_TLS_REJECT_UNAUTHORIZED` | The NODE_TLS_REJECT_UNAUTHORIZED            | `0`                                                                      |
 | `flowcore-microservices.deployments.serviceKubeLogApi.env.JWKS_URL`                     | The JWKS_URL                                | `https://auth.flowcore.io/realms/flowcore/protocol/openid-connect/certs` |
 | `flowcore-microservices.deployments.serviceKubeLogApi.env.IAM_API_URL`                  | The IAM_API_URL                             | `https://iam.api.flowcore.io`                                            |
-| `flowcore-microservices.deployments.serviceKubeLogApi.affinity`                         | The affinity                                | `{}`                                                                     |
+| `flowcore-microservices.deployments.serviceKubeLogApi.castAiSpot`                       | The castAiSpot                              | `preferred`                                                              |
 | `flowcore-microservices.deployments.serviceKubeLogApi.subdomain`                        | The subdomain                               | `logs`                                                                   |
 | `flowcore-microservices.deployments.serviceKubeLogApi.ingress.annotations`              | The ingress annotations                     | `{}`                                                                     |
 
@@ -544,7 +546,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.serviceDeleteManagerApi.env.JWKS_URL`                            | The JWKS_URL                                      | `https://auth.flowcore.io/realms/flowcore/protocol/openid-connect/certs` |
 | `flowcore-microservices.deployments.serviceDeleteManagerApi.env.API_KEY_URL`                         | The API_KEY_URL                                   | `https://security-key.api.flowcore.io`                                   |
 | `flowcore-microservices.deployments.serviceDeleteManagerApi.env.IAM_API_URL`                         | The IAM_API_URL                                   | `https://iam.api.flowcore.io`                                            |
-| `flowcore-microservices.deployments.serviceDeleteManagerApi.affinity`                                | The affinity                                      | `{}`                                                                     |
+| `flowcore-microservices.deployments.serviceDeleteManagerApi.castAiSpot`                              | The castAiSpot                                    | `preferred`                                                              |
 | `flowcore-microservices.deployments.serviceDeleteManagerApi.subdomain`                               | The subdomain                                     | `delete-manager`                                                         |
 | `flowcore-microservices.deployments.serviceDeleteManagerApi.ingress.enabled`                         | Whether to enable the ingress                     | `true`                                                                   |
 | `flowcore-microservices.deployments.serviceDeleteManagerApi.ingress.annotations`                     | The ingress annotations                           | `{}`                                                                     |
