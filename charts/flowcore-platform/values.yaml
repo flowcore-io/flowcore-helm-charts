@@ -1197,12 +1197,12 @@ flowcore-microservices:
             secretKeyRef:
               name: tenant-credentials
               key: tenant-id
-        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.FLOWCORE_DEDICATED_LICENSE_KEY [object, default: tenant-license-key in tenant-credentials secret] The FLOWCORE_DEDICATED_LICENSE_KEY
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.FLOWCORE_DEDICATED_LICENSE_KEY [object, default: license-key in tenant-credentials secret] The FLOWCORE_DEDICATED_LICENSE_KEY
         FLOWCORE_DEDICATED_LICENSE_KEY:
           valueFrom:
             secretKeyRef:
               name: tenant-credentials
-              key: tenant-license-key
+              key: license-key
         ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.SDK_API_KEY [object, default: api-key in tenant-credentials secret] The SDK_API_KEY
         SDK_API_KEY:
           valueFrom:
