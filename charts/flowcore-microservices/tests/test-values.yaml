@@ -134,6 +134,7 @@ deployments:
       image: some-test-image
       tag: 0.0.1
       replicas: 1
+    castAiSpot: "required"
     service:
       enabled: true
       extraPorts:

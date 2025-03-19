@@ -106,4 +106,6 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `deployments.<microservice>.affinity`                                       | Affinity configuration for this microservice                                                       |       |
 | `deployments.<microservice>.livenessProbe`                                  | Liveness probe configuration for this microservice                                                 |       |
 | `deployments.<microservice>.readinessProbe`                                 | Readiness probe configuration for this microservice                                                |       |
+| `deployments.<microservice>.castAiSpot`                                     | Configure service for spot instance prefer or required                                             |       |
+| `deployments.<microservice>.castAiNodeTemplate`                             | Cast AI node template values [string array]                                                        |       |
 

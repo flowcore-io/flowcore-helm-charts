@@ -130,3 +130,5 @@ deployments: {}
 ## @extra deployments.<microservice>.affinity Affinity configuration for this microservice
 ## @extra deployments.<microservice>.livenessProbe Liveness probe configuration for this microservice
 ## @extra deployments.<microservice>.readinessProbe Readiness probe configuration for this microservice
+## @extra deployments.<microservice>.castAiSpot Configure service for spot instance prefer or required
+## @extra deployments.<microservice>.castAiNodeTemplate Cast AI node template values [string array]
