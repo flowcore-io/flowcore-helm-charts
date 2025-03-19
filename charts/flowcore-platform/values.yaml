@@ -1165,8 +1165,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.deployment.image [default: service-delete-manager-api] The image
         image: service-delete-manager-api
-        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.deployment.tag [default: 1.0.8] The image tag
-        tag: 1.0.8
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.deployment.tag [default: 1.0.9] The image tag
+        tag: 1.0.9
         ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.deployment.replicas [default: 2] The number of replicas
         replicas: 2
       service:
