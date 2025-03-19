@@ -1215,17 +1215,17 @@ flowcore-microservices:
             secretKeyRef:
               name: tenant-credentials
               key: api-key-id
-        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.LOCK_REDIS_URL [object, default: redis-url in service-delete-manager-api-credentials secret] The LOCK_REDIS_URL
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.LOCK_REDIS_URL [object, default: redis-url in delete-manager-credentials secret] The LOCK_REDIS_URL
         LOCK_REDIS_URL:
           valueFrom:
             secretKeyRef:
-              name: service-delete-manager-api-credentials
+              name: delete-manager-credentials
               key: redis-url
-        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.QUEUE_REDIS_URL [object, default: redis-sentinel-rw in service-delete-manager-api-credentials secret] The QUEUE_REDIS_URL
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.QUEUE_REDIS_URL [object, default: redis-sentinel-rw in delete-manager-credentials secret] The QUEUE_REDIS_URL
         QUEUE_REDIS_URL:
           valueFrom:
             secretKeyRef:
-              name: service-delete-manager-api-credentials
+              name: delete-manager-credentials
               key: redis-sentinel-rw
         ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.QUEUE_NAME [object, default: delete-manager-queue] The QUEUE_NAME
         QUEUE_NAME:
@@ -1242,17 +1242,17 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.CASSANDRA_KEYSPACE [object, default: flowcore_archive] The CASSANDRA_KEYSPACE
         CASSANDRA_KEYSPACE:
           value: flowcore_archive
-        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.CASSANDRA_USERNAME [object, default: cassandra-username in service-delete-manager-api-credentials secret] The CASSANDRA_USERNAME
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.CASSANDRA_USERNAME [object, default: cassandra-username in delete-manager-credentials secret] The CASSANDRA_USERNAME
         CASSANDRA_USERNAME:
           valueFrom:
             secretKeyRef:
-              name: service-delete-manager-api-credentials
+              name: delete-manager-credentials
               key: cassandra-username
-        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.CASSANDRA_PASSWORD [object, default: cassandra-password in service-delete-manager-api-credentials secret] The CASSANDRA_PASSWORD
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.CASSANDRA_PASSWORD [object, default: cassandra-password in delete-manager-credentials] The CASSANDRA_PASSWORD
         CASSANDRA_PASSWORD:
           valueFrom:
             secretKeyRef:
-              name: service-delete-manager-api-credentials
+              name: delete-manager-credentials
               key: cassandra-password
         ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.EVENT_STORAGE_TYPE [object, default: aws] The EVENT_STORAGE_TYPE
         EVENT_STORAGE_TYPE:
