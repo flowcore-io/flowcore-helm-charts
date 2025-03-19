@@ -29,6 +29,7 @@
 {{- end }}
 {{- $defaultPullSecrets := $.Values.imagePullSecrets }}
 {{- $defaultWebhookBaseUrl := $.Values.webhookBaseURL }}
+{{- $castAiSpot := $spec.castAiSpot | default "none" }}
 {{- $nodeTemplate := $spec.castAiNodeTemplate | default "spot-instances" }}
 ---
 apiVersion: apps/v1
@@ -86,8 +87,8 @@ spec:
       {{- end }}
     spec:
       restartPolicy: {{ $spec.restartPolicy | default "Always" }}
-      {{- if $spec.castAiSpot }}
-      {{- if eq $spec.castAiSpot "preferred" }}
+      {{- if ne $castAiSpot "none" }}
+      {{- if eq $castAiSpot "preferred" }}
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -103,7 +104,7 @@ spec:
           value: {{ $nodeTemplate }}
           operator: "Equal"
           effect: "NoSchedule"
-      {{- else if eq $spec.castAiSpot "required" }}
+      {{- else if eq $castAiSpot "required" }}
       nodeSelector:
         scheduling.cast.ai/node-template: {{ $nodeTemplate }}
       tolerations:
@@ -294,7 +295,7 @@ spec:
       {{- if $spec.affinity }}
       affinity:
         {{- $spec.affinity | toYaml | nindent 8 }}
-      {{- else if and $spec.castAiSpot (eq $spec.castAiSpot "preferred") }}
+      {{- else if and (ne $castAiSpot "none") (eq $castAiSpot "preferred") }}
       {{- /* affinity already set above */ -}}
       {{- end }}
       {{- if $spec.volumes }}
