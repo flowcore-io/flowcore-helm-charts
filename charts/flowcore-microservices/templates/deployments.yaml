@@ -87,9 +87,21 @@ spec:
       {{- end }}
     spec:
       restartPolicy: {{ $spec.restartPolicy | default "Always" }}
-      {{- if ne $castAiSpot "none" }}
-      {{- if eq $castAiSpot "preferred" }}
+      {{- /* Handle CastAI spot instance configurations */ -}}
+      {{- if eq $castAiSpot "required" }}
+      nodeSelector:
+        scheduling.cast.ai/node-template: {{ $nodeTemplate }}
+      tolerations:
+        - key: "scheduling.cast.ai/node-template"
+          value: {{ $nodeTemplate }}
+          operator: "Equal"
+          effect: "NoSchedule"
+      {{- end }}
+      {{- if or $spec.affinity (eq $castAiSpot "preferred") }}
       affinity:
+        {{- if and $spec.affinity (ne $castAiSpot "preferred") }}
+        {{- $spec.affinity | toYaml | nindent 8 }}
+        {{- else if and (eq $castAiSpot "preferred") (not $spec.affinity) }}
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
             - weight: 100
@@ -99,20 +111,72 @@ spec:
                     operator: In
                     values:
                       - {{ $nodeTemplate }}
-      tolerations:
-        - key: "scheduling.cast.ai/node-template"
-          value: {{ $nodeTemplate }}
-          operator: "Equal"
-          effect: "NoSchedule"
-      {{- else if eq $castAiSpot "required" }}
-      nodeSelector:
-        scheduling.cast.ai/node-template: {{ $nodeTemplate }}
-      tolerations:
-        - key: "scheduling.cast.ai/node-template"
-          value: {{ $nodeTemplate }}
-          operator: "Equal"
-          effect: "NoSchedule"
+        {{- else if and (eq $castAiSpot "preferred") $spec.affinity }}
+        {{- range $k, $v := $spec.affinity }}
+        {{- if eq $k "nodeAffinity" }}
+        nodeAffinity:
+          {{- if $v.preferredDuringSchedulingIgnoredDuringExecution }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+            {{- range $item := $v.preferredDuringSchedulingIgnoredDuringExecution }}
+            - weight: {{ $item.weight }}
+              preference:
+                {{- if $item.preference.matchExpressions }}
+                matchExpressions:
+                  {{- range $expr := $item.preference.matchExpressions }}
+                  - key: {{ $expr.key }}
+                    operator: {{ $expr.operator }}
+                    values:
+                    {{- range $val := $expr.values }}
+                    - {{ $val }}
+                    {{- end }}
+                  {{- end }}
+                {{- end }}
+                {{- if $item.preference.matchFields }}
+                matchFields:
+                  {{- range $field := $item.preference.matchFields }}
+                  - key: {{ $field.key }}
+                    operator: {{ $field.operator }}
+                    values:
+                    {{- range $val := $field.values }}
+                    - {{ $val }}
+                    {{- end }}
+                  {{- end }}
+                {{- end }}
+            {{- end }}
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: scheduling.cast.ai/node-template
+                    operator: In
+                    values:
+                      - {{ $nodeTemplate }}
+          {{- else }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: scheduling.cast.ai/node-template
+                    operator: In
+                    values:
+                      - {{ $nodeTemplate }}
+          {{- end }}
+          {{- range $nk, $nv := $v }}
+          {{- if ne $nk "preferredDuringSchedulingIgnoredDuringExecution" }}
+          {{ $nk }}: {{ $nv | toYaml | nindent 12 }}
+          {{- end }}
+          {{- end }}
+        {{- else }}
+        {{ $k }}: {{ $v | toYaml | nindent 10 }}
+        {{- end }}
+        {{- end }}
+        {{- end }}
       {{- end }}
+      {{- if eq $castAiSpot "preferred" }}
+      tolerations:
+        - key: "scheduling.cast.ai/node-template"
+          value: {{ $nodeTemplate }}
+          operator: "Equal"
+          effect: "NoSchedule"
       {{- end }}
       containers:
         - name: {{ $serviceName }}
@@ -291,12 +355,6 @@ spec:
       {{- end }}
       {{- if $spec.deployment.serviceAccount }}
       serviceAccountName: {{ $spec.deployment.serviceAccount }}
-      {{- end }}
-      {{- if $spec.affinity }}
-      affinity:
-        {{- $spec.affinity | toYaml | nindent 8 }}
-      {{- else if and (ne $castAiSpot "none") (eq $castAiSpot "preferred") }}
-      {{- /* affinity already set above */ -}}
       {{- end }}
       {{- if $spec.volumes }}
       volumes:
