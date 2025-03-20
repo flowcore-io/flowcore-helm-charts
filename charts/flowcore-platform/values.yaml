@@ -1172,6 +1172,8 @@ flowcore-microservices:
       service:
         ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.service.enabled [default: true] Whether to enable the service
         enabled: true
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.service.port [default: 3000] The service port
+        port: 3000
       env:
         ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.LOG_LEVEL [default: info] The LOG_LEVEL
         LOG_LEVEL:
