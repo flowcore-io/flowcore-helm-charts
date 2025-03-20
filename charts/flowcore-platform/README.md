@@ -548,7 +548,6 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.serviceDeleteManagerApi.env.IAM_API_URL`                         | The IAM_API_URL                                   | `https://iam.api.flowcore.io`                                            |
 | `flowcore-microservices.deployments.serviceDeleteManagerApi.castAiSpot`                              | The castAiSpot                                    | `preferred`                                                              |
 | `flowcore-microservices.deployments.serviceDeleteManagerApi.subdomain`                               | The subdomain                                     | `delete-manager`                                                         |
-| `flowcore-microservices.deployments.serviceDeleteManagerApi.ingress.enabled`                         | Whether to enable the ingress                     | `true`                                                                   |
 | `flowcore-microservices.deployments.serviceDeleteManagerApi.ingress.annotations`                     | The ingress annotations                           | `{}`                                                                     |
 
 ### Service Dedicated Configurator
