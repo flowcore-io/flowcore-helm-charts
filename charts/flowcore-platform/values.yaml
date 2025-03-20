@@ -1312,9 +1312,11 @@ flowcore-microservices:
         replicas: 2
       env:
         ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.env.SCHEDULER_ENABLED [default: "true"] Whether to enable the scheduler
-        SCHEDULER_ENABLED: "true"
+        SCHEDULER_ENABLED: 
+          value: "true"
         ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.env.SCHEDULER_CRON [default: "*/30 * * * * *"] The scheduler cron
-        SCHEDULER_CRON: "*/30 * * * * *"
+        SCHEDULER_CRON: 
+          value: "*/30 * * * * *"
         ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.env.TENANT_API_KEY [object, default: api-key in tenant-credentials secret] The TENANT_API_KEY
         TENANT_API_KEY:
           valueFrom:
