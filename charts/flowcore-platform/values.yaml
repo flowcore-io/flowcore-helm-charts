@@ -1306,8 +1306,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.deployment.image [default: service-dedicated-configurator] The image
         image: service-dedicated-configurator
-        ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.deployment.tag [default: 1.1.9] The image tag
-        tag: 1.1.9
+        ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.deployment.tag [default: 1.1.10] The image tag
+        tag: 1.1.10
         ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.deployment.replicas [default: 1] The number of replicas
         replicas: 1
         ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.deployment.serviceAccount [default: dedicated-configurator-sa] The service account
