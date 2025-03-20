@@ -1322,7 +1322,7 @@ flowcore-microservices:
           valueFrom:
             secretKeyRef:
               name: tenant-credentials
-              key: api-key
+              key: api-key-value
         ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.env.TENANT_API_KEY_ID [object, default: api-key-id in tenant-credentials secret] The TENANT_API_KEY_ID
         TENANT_API_KEY_ID:
           valueFrom:
