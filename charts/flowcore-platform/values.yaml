@@ -1344,10 +1344,10 @@ flowcore-microservices:
           value: example.com
         ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.env.TENANT_DEDICATED_CONFIGURATION_REPO_URL [default: https://configuration.api.flowcore.io] The TENANT_DEDICATED_CONFIGURATION_REPO_URL
         TENANT_DEDICATED_CONFIGURATION_REPO_URL:
-          value: https://configuration.api.flowcore.io
+          value: https://github.com/example/dedicated-configuration
         ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.env.TENANT_DEDICATED_CONFIGURATION_PATH [default: ".config/"] The TENANT_DEDICATED_CONFIGURATION_PATH
         TENANT_DEDICATED_CONFIGURATION_PATH:
-          value: ".config/"
+          value: ".config/dedicated.json"
       volumes:
         ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration [object] The configuration volume
         configuration:
@@ -1356,9 +1356,9 @@ flowcore-microservices:
             ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.secret.secretName [default: dedicated-configuration] The secret name
             secretName: dedicated-configuration
             ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.mountPath [default: /usr/src/app/.config] The mount path
-            mountPath: /usr/src/app/.config
+            mountPath: /usr/src/app/.config/dedicated.json
             ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.subPath [default: github-private-key] The sub path
-            subPath: github-private-key
+            subPath: dedicated.json
             ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.type [default: secret] The type
             type: secret
       ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.castAiSpot [default: preferred] The castAiSpot
