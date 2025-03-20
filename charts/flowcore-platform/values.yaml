@@ -1168,7 +1168,7 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.deployment.tag [default: 1.0.9] The image tag
         tag: 1.0.9
         ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.deployment.replicas [default: 2] The number of replicas
-        replicas: 2
+        replicas: 1
       service:
         ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.service.enabled [default: true] Whether to enable the service
         enabled: true
@@ -1312,10 +1312,10 @@ flowcore-microservices:
         replicas: 2
       env:
         ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.env.SCHEDULER_ENABLED [default: "true"] Whether to enable the scheduler
-        SCHEDULER_ENABLED: 
+        SCHEDULER_ENABLED:
           value: "true"
         ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.env.SCHEDULER_CRON [default: "*/30 * * * * *"] The scheduler cron
-        SCHEDULER_CRON: 
+        SCHEDULER_CRON:
           value: "*/30 * * * * *"
         ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.env.TENANT_API_KEY [object, default: api-key in tenant-credentials secret] The TENANT_API_KEY
         TENANT_API_KEY:
