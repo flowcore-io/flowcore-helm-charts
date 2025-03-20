@@ -551,6 +551,31 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.serviceDeleteManagerApi.ingress.enabled`                         | Whether to enable the ingress                     | `true`                                                                   |
 | `flowcore-microservices.deployments.serviceDeleteManagerApi.ingress.annotations`                     | The ingress annotations                           | `{}`                                                                     |
 
+### Service Dedicated Configurator
+
+| Name                                                                                                          | Description                                           | Value                                      |
+| ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------ |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.enabled`                                     | Whether to install the service dedicated configurator | `true`                                     |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.deployment.image`                            | The image                                             | `service-dedicated-configurator`           |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.deployment.tag`                              | The image tag                                         | `1.1.2`                                    |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.deployment.replicas`                         | The number of replicas                                | `2`                                        |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.env.SCHEDULER_ENABLED`                       | Whether to enable the scheduler                       | `true`                                     |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.env.SCHEDULER_CRON`                          | The scheduler cron                                    | `"*/30 * * * * *"`                         |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.env.TENANT_API_KEY`                          | The TENANT_API_KEY                                    | `api-key in tenant-credentials secret`     |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.env.TENANT_API_KEY_ID`                       | The TENANT_API_KEY_ID                                 | `api-key-id in tenant-credentials secret`  |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.env.TENANT_LICENSE_KEY`                      | The TENANT_LICENSE_KEY                                | `license-key in tenant-credentials secret` |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.env.TENANT_ID`                               | The TENANT_ID                                         | `tenant-id in tenant-credentials secret`   |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.env.TENANT_DEDICATED_DOMAIN`                 | The TENANT_DEDICATED_DOMAIN                           | `example.com`                              |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.env.TENANT_DEDICATED_CONFIGURATION_REPO_URL` | The TENANT_DEDICATED_CONFIGURATION_REPO_URL           | `https://configuration.api.flowcore.io`    |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.env.TENANT_DEDICATED_CONFIGURATION_PATH`     | The TENANT_DEDICATED_CONFIGURATION_PATH               | `".config/"`                               |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration`                       | The configuration volume                              | `{}`                                       |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.secret`                | The configuration secret                              | `{}`                                       |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.secret.secretName`     | The secret name                                       | `dedicated-configuration`                  |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.mountPath`             | The mount path                                        | `/usr/src/app/.config`                     |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.subPath`               | The sub path                                          | `github-private-key`                       |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.type`                  | The type                                              | `secret`                                   |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.castAiSpot`                                  | The castAiSpot                                        | `preferred`                                |
+
 
 
 See [values.yaml](values.yaml) for the full list of parameters.
