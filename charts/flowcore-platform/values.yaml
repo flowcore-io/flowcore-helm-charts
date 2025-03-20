@@ -1353,8 +1353,8 @@ flowcore-microservices:
         configuration:
           ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.secret [object] The configuration secret
           secret:
-            ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.secret.secretName [default: dedicated-configuration] The secret name
-            secretName: dedicated-configuration
+            ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.secret.secret [default: dedicated-configuration] The secret name
+            secret: dedicated-configuration
             ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.mountPath [default: /usr/src/app/.config] The mount path
             mountPath: /usr/src/app/.config/dedicated.json
             ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.subPath [default: github-private-key] The sub path
