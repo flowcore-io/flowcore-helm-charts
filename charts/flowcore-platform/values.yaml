@@ -1349,17 +1349,15 @@ flowcore-microservices:
         TENANT_DEDICATED_CONFIGURATION_PATH:
           value: ".config/dedicated.json"
       volumes:
-        ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration [object] The configuration volume
-        configuration:
-          ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.secret [object] The configuration secret
-          secret:
-            ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.secret.secret [default: dedicated-configuration] The secret name
-            secret: dedicated-configuration
-            ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.mountPath [default: /usr/src/app/.config] The mount path
-            mountPath: /usr/src/app/.config/dedicated.json
-            ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.subPath [default: github-private-key] The sub path
-            subPath: dedicated.json
-            ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.type [default: secret] The type
-            type: secret
+        ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.secret [object] The configuration secret
+        secret:
+          ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.secret.secret [default: dedicated-configuration] The secret name
+          secret: dedicated-configuration
+          ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.mountPath [default: /usr/src/app/.config] The mount path
+          mountPath: /usr/src/app/.config/dedicated.json
+          ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.subPath [default: github-private-key] The sub path
+          subPath: dedicated.json
+          ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.type [default: secret] The type
+          type: secret
       ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.castAiSpot [default: preferred] The castAiSpot
       castAiSpot: preferred

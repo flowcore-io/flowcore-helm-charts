@@ -568,12 +568,11 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.serviceDedicatedConfigurator.env.TENANT_DEDICATED_DOMAIN`                 | The TENANT_DEDICATED_DOMAIN                           | `example.com`                              |
 | `flowcore-microservices.deployments.serviceDedicatedConfigurator.env.TENANT_DEDICATED_CONFIGURATION_REPO_URL` | The TENANT_DEDICATED_CONFIGURATION_REPO_URL           | `https://configuration.api.flowcore.io`    |
 | `flowcore-microservices.deployments.serviceDedicatedConfigurator.env.TENANT_DEDICATED_CONFIGURATION_PATH`     | The TENANT_DEDICATED_CONFIGURATION_PATH               | `".config/"`                               |
-| `flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration`                       | The configuration volume                              | `{}`                                       |
-| `flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.secret`                | The configuration secret                              | `{}`                                       |
-| `flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.secret.secret`         | The secret name                                       | `dedicated-configuration`                  |
-| `flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.mountPath`             | The mount path                                        | `/usr/src/app/.config`                     |
-| `flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.subPath`               | The sub path                                          | `github-private-key`                       |
-| `flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.configuration.type`                  | The type                                              | `secret`                                   |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.secret`                              | The configuration secret                              | `{}`                                       |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.secret.secret`                       | The secret name                                       | `dedicated-configuration`                  |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.mountPath`                           | The mount path                                        | `/usr/src/app/.config`                     |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.subPath`                             | The sub path                                          | `github-private-key`                       |
+| `flowcore-microservices.deployments.serviceDedicatedConfigurator.volumes.type`                                | The type                                              | `secret`                                   |
 | `flowcore-microservices.deployments.serviceDedicatedConfigurator.castAiSpot`                                  | The castAiSpot                                        | `preferred`                                |
 
 
