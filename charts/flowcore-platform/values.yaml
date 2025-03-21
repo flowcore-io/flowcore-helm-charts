@@ -1306,8 +1306,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.deployment.image [default: service-dedicated-configurator] The image
         image: service-dedicated-configurator
-        ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.deployment.tag [default: 1.1.10] The image tag
-        tag: 1.1.10
+        ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.deployment.tag [default: 1.1.11] The image tag
+        tag: 1.1.11
         ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.deployment.replicas [default: 1] The number of replicas
         replicas: 1
         ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.deployment.serviceAccount [default: dedicated-configurator-sa] The service account
@@ -1343,6 +1343,9 @@ flowcore-microservices:
             secretKeyRef:
               name: tenant-credentials
               key: tenant-id
+        ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.env.FLOWCORE_DATA_CORE_ID [object, default: ecc024c5-3adf-42a3-aa55-fd3620673192] The FLOWCORE_DATA_CORE_ID
+        FLOWCORE_DATA_CORE_ID:
+          value: ecc024c5-3adf-42a3-aa55-fd3620673192
         ## @param flowcore-microservices.deployments.serviceDedicatedConfigurator.env.TENANT_DEDICATED_DOMAIN [default: example.com] The TENANT_DEDICATED_DOMAIN
         TENANT_DEDICATED_DOMAIN:
           value: example.com
