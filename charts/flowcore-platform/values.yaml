@@ -810,7 +810,7 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.webhookService.deployment.image [default: ingestion-webhook-service] The image
         image: ingestion-webhook-service
         ## @param flowcore-microservices.deployments.webhookService.deployment.tag [default: 1.25.5] The image tag
-        tag: 1.25.5
+        tag: 1.26.0
         ## @param flowcore-microservices.deployments.webhookService.deployment.replicas [default: 2] The number of replicas
         replicas: 2
         ## @param flowcore-microservices.deployments.webhookService.deployment.resources [object] The resources
@@ -832,6 +832,12 @@ flowcore-microservices:
       useTransports:
         - nats
       env:
+        ## @param flowcore-microservices.deployments.webhookService.env.FLOWCORE_DEPLOYMENT_TYPE [object, default: dedicated] The FLOWCORE_DEPLOYMENT_TYPE
+        FLOWCORE_DEPLOYMENT_TYPE:
+          value: "dedicated"
+        ## @param flowcore-microservices.deployments.webhookService.env.FLOWCORE_DEDICATED_FLOWCORE_ORG [object, default: example-org] The FLOWCORE_DEDICATED_FLOWCORE_ORG
+        FLOWCORE_DEDICATED_FLOWCORE_ORG:
+          value: "example-org"
         ## @param flowcore-microservices.deployments.webhookService.env.FLOWCORE_DATA_CORE_ID [object, default: ecc024c5-3adf-42a3-aa55-fd3620673192] The FLOWCORE_DATA_CORE_ID
         FLOWCORE_DATA_CORE_ID:
           value: ecc024c5-3adf-42a3-aa55-fd3620673192

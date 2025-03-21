@@ -400,6 +400,8 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.webhookService.deployment.resources.limits.memory`   | The memory limit                       | `2048Mi`                                                       |
 | `flowcore-microservices.deployments.webhookService.metrics.enabled`                      | Whether to enable the metrics          | `true`                                                         |
 | `flowcore-microservices.deployments.webhookService.useTransports`                        | The useTransports                      | `nats`                                                         |
+| `flowcore-microservices.deployments.webhookService.env.FLOWCORE_DEPLOYMENT_TYPE`         | The FLOWCORE_DEPLOYMENT_TYPE           | `dedicated`                                                    |
+| `flowcore-microservices.deployments.webhookService.env.FLOWCORE_DEDICATED_FLOWCORE_ORG`  | The FLOWCORE_DEDICATED_FLOWCORE_ORG    | `example-org`                                                  |
 | `flowcore-microservices.deployments.webhookService.env.FLOWCORE_DATA_CORE_ID`            | The FLOWCORE_DATA_CORE_ID              | `ecc024c5-3adf-42a3-aa55-fd3620673192`                         |
 | `flowcore-microservices.deployments.webhookService.env.REDIS_MASTER_SET_NAME`            | The REDIS_MASTER_SET_NAME              | `sentinel-primary-set in webhook-ingestion-credentials secret` |
 | `flowcore-microservices.deployments.webhookService.env.REDIS_SENTINELS`                  | The REDIS_SENTINELS                    | `sentinel-hosts in webhook-ingestion-credentials secret`       |
