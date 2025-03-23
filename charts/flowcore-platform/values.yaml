@@ -306,8 +306,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.ingestionChannel.deployment.image [default: service-ingestion] The image
         image: service-ingestion
-        ## @param flowcore-microservices.deployments.ingestionChannel.deployment.tag [default: 1.1.0] The tag
-        tag: 1.2.0
+        ## @param flowcore-microservices.deployments.ingestionChannel.deployment.tag [default: 1.2.1] The tag
+        tag: 1.2.1
         ## @param flowcore-microservices.deployments.ingestionChannel.deployment.replicas [default: 2] The number of replicas
         replicas: 2
       metrics:
