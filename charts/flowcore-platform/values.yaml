@@ -627,9 +627,9 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.eventSourceApi.env.JWKS_URL [object, default: https://auth.flowcore.io/realms/flowcore/protocol/openid-connect/certs] The JWKS URL
         JWKS_URL:
           value: https://auth.flowcore.io/realms/flowcore/protocol/openid-connect/certs
-        ## @param flowcore-microservices.deployments.eventSourceApi.env.API_KEY_URL [object, default: ttps://security-key.api.flowcore.io] The API key URL
+        ## @param flowcore-microservices.deployments.eventSourceApi.env.API_KEY_URL [object, default: https://security-key.api.flowcore.io] The API key URL
         API_KEY_URL:
-          value: ttps://security-key.api.flowcore.io
+          value: https://security-key.api.flowcore.io
         ## @param flowcore-microservices.deployments.eventSourceApi.env.IAM_API_URL [object, default: http://service-iam-api.flowcore-public:3000] The IAM API URL
         IAM_API_URL:
           value: https://iam.api.flowcore.io
