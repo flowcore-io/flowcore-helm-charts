@@ -306,8 +306,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.ingestionChannel.deployment.image [default: service-ingestion] The image
         image: service-ingestion
-        ## @param flowcore-microservices.deployments.ingestionChannel.deployment.tag [default: 1.2.1] The tag
-        tag: 1.2.1
+        ## @param flowcore-microservices.deployments.ingestionChannel.deployment.tag [default: 1.5.5] The tag
+        tag: 1.5.5
         ## @param flowcore-microservices.deployments.ingestionChannel.deployment.replicas [default: 2] The number of replicas
         replicas: 2
       metrics:
@@ -358,24 +358,39 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.ingestionChannel.env.LOG_LEVEL [object, default: info] The log level
         LOG_LEVEL:
           value: info
-        ## @param flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_DEPLOYMENT_TYPE [object] The Flowcore deployment type, supported values: dedicated, cloud
+        ## @param flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_DEPLOYMENT_TYPE [object] The Flowcore deployment type, supported values: cloud, cloud
         FLOWCORE_DEPLOYMENT_TYPE:
-          value: "dedicated"
+          value: "cloud"
+        ## @param flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_API_KEY [object, default: api-key in tenant-credentials secret] The Flowcore API key
+        FLOWCORE_API_KEY:
+          valueFrom:
+            secretKeyRef:
+              name: tenant-credentials
+              key: api-key-value
+        ## @param flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_WEBHOOK_BASE_URL [object, default: https://example.com] The Flowcore webhook base URL
+        FLOWCORE_WEBHOOK_BASE_URL:
+          value: "https://example.com"
+        ## @param flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_WEBHOOK_DATA_CORE [object, default: ecc024c5-3adf-42a3-aa55-fd3620673192] The Flowcore webhook data core
+        FLOWCORE_WEBHOOK_DATA_CORE:
+          value: "ecc024c5-3adf-42a3-aa55-fd3620673192"
+        ## @param flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_WEBHOOK_TENANT [object, default: flowcore] The Flowcore webhook tenant
+        FLOWCORE_WEBHOOK_TENANT:
+          value: "flowcore"
         ## @param flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_TENANT_ID [object, default: tenant-id in tenant-credentials secret] The Flowcore tenant ID
         FLOWCORE_TENANT_ID:
           valueFrom:
             secretKeyRef:
               name: tenant-credentials
               key: tenant-id
-        ## @param flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_TENANT_API_URL [object, default: https://tenant.api.flowcore.io] The Flowcore tenant API URL
-        FLOWCORE_TENANT_API_URL:
-          value: https://tenant.api.flowcore.io
-        ## @param flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_API_KEY [object, default: api-key in tenant-credentials secret] The Flowcore API key
-        FLOWCORE_API_KEY:
+        ## @param flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_LICENSE_KEY [object, default: license-key in tenant-credentials secret] The Flowcore license key
+        FLOWCORE_LICENSE_KEY:
           valueFrom:
             secretKeyRef:
               name: tenant-credentials
-              key: api-key
+              key: license-key
+        ## @param flowcore-microservices.deployments.ingestionChannel.env.FLOWCORE_TENANT_API_URL [object, default: https://tenant.api.flowcore.io] The Flowcore tenant API URL
+        FLOWCORE_TENANT_API_URL:
+          value: https://tenant.api.flowcore.io
 
     ## @section Flowcore Legacy Client Event Source API
     legacyClientEventSourceApi:
@@ -809,8 +824,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.webhookService.deployment.image [default: ingestion-webhook-service] The image
         image: ingestion-webhook-service
-        ## @param flowcore-microservices.deployments.webhookService.deployment.tag [default: 1.26.1] The image tag
-        tag: 1.26.1
+        ## @param flowcore-microservices.deployments.webhookService.deployment.tag [default: 1.26.3] The image tag
+        tag: 1.26.3
         ## @param flowcore-microservices.deployments.webhookService.deployment.replicas [default: 2] The number of replicas
         replicas: 2
         ## @param flowcore-microservices.deployments.webhookService.deployment.resources [object] The resources
@@ -1216,7 +1231,7 @@ flowcore-microservices:
           valueFrom:
             secretKeyRef:
               name: tenant-credentials
-              key: api-key
+              key: api-key-value
         ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.env.SDK_API_KEY_ID [object, default: api-key-id in tenant-credentials] The SDK_API_KEY_ID
         SDK_API_KEY_ID:
           valueFrom:
