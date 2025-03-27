@@ -197,7 +197,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `ensureCredentials.enabled`                   | Whether to install the ensure credentials job | `true`                                        |
 | `ensureCredentials.image`                     | The image                                     | `{}`                                          |
 | `ensureCredentials.image.repository`          | The image repository                          | `flowcoreio/job-create-dedicated-credentials` |
-| `ensureCredentials.image.tag`                 | The image tag                                 | `1.10.0`                                      |
+| `ensureCredentials.image.tag`                 | The image tag                                 | `1.11.1`                                      |
 | `ensureCredentials.resources`                 | The resources for the ensure credentials job  | `{}`                                          |
 | `ensureCredentials.resources.limits.cpu`      | The CPU limit                                 | `100m`                                        |
 | `ensureCredentials.resources.limits.cpu`      | The CPU limit                                 | `100m`                                        |
@@ -325,7 +325,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.eventSourceApi.env.REDIS_URL`                   | The Redis URL                           | `redis-url in service-event-source-api-credentials secret`                                                           |
 | `flowcore-microservices.deployments.eventSourceApi.env.REDIS_KEY_PATTERN`           | The Redis key pattern                   | `event-source-api:event-cache`                                                                                       |
 | `flowcore-microservices.deployments.eventSourceApi.env.JWKS_URL`                    | The JWKS URL                            | `https://auth.flowcore.io/realms/flowcore/protocol/openid-connect/certs`                                             |
-| `flowcore-microservices.deployments.eventSourceApi.env.API_KEY_URL`                 | The API key URL                         | `ttps://security-key.api.flowcore.io`                                                                                |
+| `flowcore-microservices.deployments.eventSourceApi.env.API_KEY_URL`                 | The API key URL                         | `https://security-key.api.flowcore.io`                                                                               |
 | `flowcore-microservices.deployments.eventSourceApi.env.IAM_API_URL`                 | The IAM API URL                         | `http://service-iam-api.flowcore-public:3000`                                                                        |
 | `flowcore-microservices.deployments.eventSourceApi.env.COLD_STORAGE_API_URL`        | The cold storage API URL                | `http://cold-storage-api.flowcore-source:3000`                                                                       |
 | `flowcore-microservices.deployments.eventSourceApi.env.HOT_STORAGE_RETENTION_HOURS` | The hot storage retention hours         | `72`                                                                                                                 |
