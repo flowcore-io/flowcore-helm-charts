@@ -20,10 +20,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    helm:
-      valueFiles:
-        - ./configuration/{{ $controlPlaneEnv }}.yaml
-    path: "."
+    path: "{{ $controlPlaneEnv }}"
     repoURL: {{ $repository }}
   syncPolicy:
     automated:

@@ -2,7 +2,7 @@ apiVersion: v2
 name: flowcore-platform
 description: A helm chart for installing a dedicated instance of the Flowcore Platform
 type: application
-version: 0.18.36
+version: 0.18.37
 appVersion: 0.0.1
 icon: https://avatars.githubusercontent.com/u/114778675?s=200&v=4
 
