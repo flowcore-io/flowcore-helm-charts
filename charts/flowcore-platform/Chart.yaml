@@ -2,7 +2,7 @@ apiVersion: v2
 name: flowcore-platform
 description: A helm chart for installing a dedicated instance of the Flowcore Platform
 type: application
-version: 0.18.37
+version: 0.18.38
 appVersion: 0.0.1
 icon: https://avatars.githubusercontent.com/u/114778675?s=200&v=4
 
@@ -38,6 +38,10 @@ dependencies:
     repository: https://flowcore-io.github.io/flowcore-helm-charts
     version: 2.8.3
     condition: flowcore-microservices.enabled
+  - name: external-secrets
+    version: 0.10.5
+    repository: https://charts.external-secrets.io/
+    condition: external-secrets.enabled
   - name: kube-arangodb
     repository: https://arangodb.github.io/kube-arangodb
     version: 1.2.26

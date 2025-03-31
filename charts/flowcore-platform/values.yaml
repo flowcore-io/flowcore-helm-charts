@@ -259,6 +259,30 @@ arangodb:
   ## @param arangodb.existingSecret [default: platform-source-arangodb-credentials] The name of the existing secret containing the ArangoDB root password
   existingSecret: platform-source-arangodb-credentials
 
+## @section External Secrets Configuration
+external-secrets:
+  ## @param external-secrets.enabled [default: true] Whether to install the External Secrets instance
+  enabled: true
+
+## @section External Secrets Secret Stores Configuration
+secretStores:
+  ## @param secretStores.enabled [default: true] Whether to install the secret stores
+  enabled: true
+  ## @param secretStores.stores [object] The secret stores
+  stores:
+    ## @param secretStores.stores.orgSecret [object] The org secret
+    orgSecret:
+      ## @param secretStores.stores.orgSecret.enabled [default: true] Whether to install the org secret
+      enabled: true
+      ## @param secretStores.stores.orgSecret.type [default: AWS] The type of the secret
+      type: AWS
+      ## @param secretStores.stores.orgSecret.storeType [default: SecretsManager] The store type
+      storeType: SecretsManager
+      ## @param secretStores.stores.orgSecret.region [default: eu-west-1] The region
+      region: eu-west-1
+      ## @param secretStores.stores.orgSecret.authSecretName [default: flowcore-external-secret] The name of the auth secret
+      authSecretName: flowcore-external-secret
+
 ## @section Ensure Credentials
 ensureCredentials:
   ## @param ensureCredentials.enabled [default: true] Whether to install the ensure credentials job

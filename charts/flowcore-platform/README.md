@@ -191,6 +191,25 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `arangodb.replicas`       | The number of replicas                                                | `3`                                    |
 | `arangodb.existingSecret` | The name of the existing secret containing the ArangoDB root password | `platform-source-arangodb-credentials` |
 
+### External Secrets Configuration
+
+| Name                       | Description                                      | Value  |
+| -------------------------- | ------------------------------------------------ | ------ |
+| `external-secrets.enabled` | Whether to install the External Secrets instance | `true` |
+
+### External Secrets Secret Stores Configuration
+
+| Name                                           | Description                          | Value                      |
+| ---------------------------------------------- | ------------------------------------ | -------------------------- |
+| `secretStores.enabled`                         | Whether to install the secret stores | `true`                     |
+| `secretStores.stores`                          | The secret stores                    | `{}`                       |
+| `secretStores.stores.orgSecret`                | The org secret                       | `{}`                       |
+| `secretStores.stores.orgSecret.enabled`        | Whether to install the org secret    | `true`                     |
+| `secretStores.stores.orgSecret.type`           | The type of the secret               | `AWS`                      |
+| `secretStores.stores.orgSecret.storeType`      | The store type                       | `SecretsManager`           |
+| `secretStores.stores.orgSecret.region`         | The region                           | `eu-west-1`                |
+| `secretStores.stores.orgSecret.authSecretName` | The name of the auth secret          | `flowcore-external-secret` |
+
 ### Ensure Credentials
 
 | Name                                          | Description                                   | Value                                         |
