@@ -217,7 +217,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `ensureCredentials.enabled`                   | Whether to install the ensure credentials job | `true`                                        |
 | `ensureCredentials.image`                     | The image                                     | `{}`                                          |
 | `ensureCredentials.image.repository`          | The image repository                          | `flowcoreio/job-create-dedicated-credentials` |
-| `ensureCredentials.image.tag`                 | The image tag                                 | `1.11.2`                                      |
+| `ensureCredentials.image.tag`                 | The image tag                                 | `1.11.6`                                      |
 | `ensureCredentials.env.TENANT_ID`             | The tenant ID                                 | `{}`                                          |
 | `ensureCredentials.env.TENANT_NAME`           | The tenant name                               | `{}`                                          |
 | `ensureCredentials.resources`                 | The resources for the ensure credentials job  | `{}`                                          |
