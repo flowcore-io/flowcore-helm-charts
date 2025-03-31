@@ -1,6 +1,7 @@
 {{- $tenant := .Values.flowcore.tenant -}}
 {{- $repository := .Values.flowcore.configurationRepository -}}
 {{- $namespace := printf "org-%s-config" $tenant -}}
+{{- $controlPlaneEnv := .Values.flowcore.controlPlaneEnv -}}
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -21,7 +22,7 @@ spec:
   source:
     helm:
       valueFiles:
-        - ./configuration/spec.yaml
+        - ./configuration/{{ $controlPlaneEnv }}.yaml
     path: "."
     repoURL: {{ $repository }}
   syncPolicy:

@@ -2,6 +2,8 @@
 flowcore:
   ## @param flowcore.tenant [string] The tenant name (e.g. "my-org")
   tenant: example-org
+  ## @param flowcore.controlPlaneEnv [string] The control plane environment (e.g. "azure-eu")
+  controlPlaneEnv: azure-eu
   ## @param flowcore.configurationRepository [string] The configuration repository (e.g. "https://github.com/example-org/flowcore-configuration")
   configurationRepository: https://github.com/example-org/flowcore-configuration.git
   ## @param flowcore.keyspace [object] The keyspace configuration
@@ -266,7 +268,7 @@ ensureCredentials:
     ## @param ensureCredentials.image.repository [default: flowcoreio/job-create-dedicated-credentials] The image repository
     repository: flowcoreio/job-create-dedicated-credentials
     ## @param ensureCredentials.image.tag [default: 1.11.2] The image tag
-    tag: 1.11.2
+    tag: 1.11.3
   ## @param ensureCredentials.resources [object] The resources for the ensure credentials job
   resources:
     ## @param ensureCredentials.resources.limits.cpu [default: 100m] The CPU limit

@@ -30,6 +30,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | Name                                  | Description                                                                                 | Value         |
 | ------------------------------------- | ------------------------------------------------------------------------------------------- | ------------- |
 | `flowcore.tenant`                     | The tenant name (e.g. "my-org")                                                             | `""`          |
+| `flowcore.controlPlaneEnv`            | The control plane environment (e.g. "azure-eu")                                             | `""`          |
 | `flowcore.configurationRepository`    | The configuration repository (e.g. "https://github.com/example-org/flowcore-configuration") | `""`          |
 | `flowcore.keyspace`                   | The keyspace configuration                                                                  | `{}`          |
 | `flowcore.keyspace.replicationFactor` | The number of replicas                                                                      | `3`           |
