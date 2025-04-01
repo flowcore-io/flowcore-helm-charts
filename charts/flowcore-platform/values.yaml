@@ -733,6 +733,15 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.env.DEFAULT_DATA_PUMP_MAX_REDELIVERY_COUNT [object, default: -1] The DEFAULT_DATA_PUMP_MAX_REDELIVERY_COUNT
         DEFAULT_DATA_PUMP_MAX_REDELIVERY_COUNT:
           value: "-1"
+        ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.env.REDIS_KEY_PATTERN [object, default: event-source-active-data-pump] The REDIS_KEY_PATTERN
+        REDIS_KEY_PATTERN:
+          value: event-source-active-data-pump
+        ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.env.ENDPOINT_HEADER_VALUE [object, default: event-source-active-data-pump] The ENDPOINT_HEADER_VALUE
+        ENDPOINT_HEADER_VALUE:
+          valueFrom:
+            secretKeyRef:
+              name: event-source-api-credentials
+              key: transformer-secret
       volumes:
         ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.volumes.config [object] The configuration
         event-source-active-data-pump-config:
