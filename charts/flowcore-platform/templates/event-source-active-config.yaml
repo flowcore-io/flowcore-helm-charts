@@ -1,0 +1,66 @@
+{{- $microservices := index .Values "flowcore-microservices" "deployments" -}}
+{{- $eventSourceActiveDataPump := index $microservices "eventSourceActiveDataPump" -}}
+{{- if $eventSourceActiveDataPump.enabled }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $eventSourceActiveDataPump.volumes.config.config }}
+data:
+  data-sources.json: |
+    [
+      {
+        "tenant": "flowcore",
+        "dataCore": "flowcore-platform",
+        "flowType": "organization.0",
+        "eventTypes": [
+          "event.organization.created.0",
+          "event.organization.deleted.0"
+        ],
+        "destination": "http://event-source-api:3000/transformers/organization.0"
+      },
+      {
+        "tenant": "flowcore",
+        "dataCore": "flowcore-platform",
+        "flowType": "data-core.1",
+        "eventTypes": [
+          "data-core.created.0",
+          "data-core.updated.0",
+          "data-core.deleted.0"
+        ],
+        "destination": "http://event-source-api:3000/transformers/data-core.1"
+      },
+      {
+        "tenant": "flowcore",
+        "dataCore": "flowcore-platform",
+        "flowType": "flow-type.1",
+        "eventTypes": [
+          "flow-type.created.0",
+          "flow-type.deleted.0"
+        ],
+        "destination": "http://event-source-api:3000/transformers/flow-type.1"
+      },
+      {
+        "tenant": "flowcore",
+        "dataCore": "flowcore-platform",
+        "flowType": "event-type.1",
+        "eventTypes": [
+          "event-type.created.0",
+          "event-type.deleted.0"
+        ],
+        "concurrency": 1,
+        "destination": "http://event-source-api:3000/transformers/event-type.1"
+      },
+      {
+        "tenant": "flowcore",
+        "dataCore": "flowcore-platform",
+        "flowType": "event-type.0",
+        "eventTypes": [
+          "event.event-type.index.created.0",
+          "event.event-type.truncated.0"
+        ],
+        "concurrency": 50,
+        "destination": "http://event-source-api:3000/transformers/event-type.0"
+      }
+    ]
+{{- end }}
