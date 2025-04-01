@@ -735,12 +735,10 @@ flowcore-microservices:
           value: "-1"
       volumes:
         ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.volumes.config [object] The configuration
-        config:
-          ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.volumes.config.config [default: event-source-active-data-pump-config] The config map name
-          config: event-source-active-data-pump-config
-          ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.volumes.mountPath [default: /usr/src/app/.config] The mount path
+        event-source-active-data-pump-config:
+          ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.volumes.event-source-active-data-pump-config.mountPath [default: /usr/src/app/.config] The mount path
           mountPath: /usr/src/app/config/
-          ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.volumes.type [default: configMap] The type
+          ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.volumes.event-source-active-data-pump-config.type [default: configMap] The type
           type: configMap
     ## @section Cold Storage API
     coldStorageApi:

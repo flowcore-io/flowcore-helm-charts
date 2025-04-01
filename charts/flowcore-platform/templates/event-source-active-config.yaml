@@ -5,7 +5,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ $eventSourceActiveDataPump.volumes.config.config }}
+  name: event-source-active-data-pump-config
 data:
   data-sources.json: |
     [
