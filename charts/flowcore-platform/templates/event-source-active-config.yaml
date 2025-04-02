@@ -12,16 +12,6 @@ data:
       {
         "tenant": "341309a4-7cb8-4cb1-83f5-35e6ed2e8fdb",
         "dataCore": "ecc024c5-3adf-42a3-aa55-fd3620673192",
-        "flowType": "2fc4b417-bdcf-4932-8b1e-7e83d3516da9",
-        "eventTypes": [
-          "29356cfb-0045-4a68-aa4b-1215507b3916",
-          "5aff3acf-5fd4-4c1c-86b7-5a623e48b9a2"
-        ],
-        "destination": "http://event-source-api:3000/transformers/organization.0"
-      },
-      {
-        "tenant": "341309a4-7cb8-4cb1-83f5-35e6ed2e8fdb",
-        "dataCore": "ecc024c5-3adf-42a3-aa55-fd3620673192",
         "flowType": "d99ab94e-7548-4bc1-878b-8f5abaa29cb4",
         "eventTypes": [
           "a9e02873-f51f-42d3-8391-17e285bd23d6",

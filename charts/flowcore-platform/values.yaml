@@ -292,7 +292,7 @@ ensureCredentials:
     ## @param ensureCredentials.image.repository [default: flowcoreio/job-create-dedicated-credentials] The image repository
     repository: flowcoreio/job-create-dedicated-credentials
     ## @param ensureCredentials.image.tag [default: 1.11.6] The image tag
-    tag: 1.11.7
+    tag: 1.11.8
   env:
     ## @param ensureCredentials.env.TENANT_ID [object] The tenant ID
     TENANT_ID:
@@ -760,6 +760,12 @@ flowcore-microservices:
             secretKeyRef:
               name: event-source-api-credentials
               key: transformer-secret
+        ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.env.ENDPOINT_OVERRIDE_URL [object, default: http://event-source-api:3000] The ENDPOINT_OVERRIDE_URL
+        ENDPOINT_OVERRIDE_URL:
+          value: http://event-source-api:3000
+        ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.env.NO_TRANSLATION_MODE [object, default: true] The NO_TRANSLATION_MODE
+        NO_TRANSLATION_MODE:
+          value: "true"
       volumes:
         ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.volumes.config [object] The configuration
         event-source-active-data-pump-config:
