@@ -217,7 +217,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `ensureCredentials.enabled`                   | Whether to install the ensure credentials job | `true`                                        |
 | `ensureCredentials.image`                     | The image                                     | `{}`                                          |
 | `ensureCredentials.image.repository`          | The image repository                          | `flowcoreio/job-create-dedicated-credentials` |
-| `ensureCredentials.image.tag`                 | The image tag                                 | `1.11.6`                                      |
+| `ensureCredentials.image.tag`                 | The image tag                                 | `1.12.0`                                      |
 | `ensureCredentials.env.TENANT_ID`             | The tenant ID                                 | `{}`                                          |
 | `ensureCredentials.env.TENANT_NAME`           | The tenant name                               | `{}`                                          |
 | `ensureCredentials.resources`                 | The resources for the ensure credentials job  | `{}`                                          |
@@ -409,6 +409,30 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore-microservices.deployments.coldStorageApi.env.DEPLOYMENT_TYPE`            | The deployment type                     | `dedicated`                                                              |
 | `flowcore-microservices.deployments.coldStorageApi.env.DEDICATED_TENANT_ID`        | The dedicated tenant ID                 | `tenant-id in tenant-credentials secret`                                 |
 | `flowcore-microservices.deployments.coldStorageApi.env.DEDICATED_TENANT_NAME`      | The dedicated tenant name               | `tenant in tenant-credentials secret`                                    |
+
+### Cold Storage Active Data Pump
+
+| Name                                                                                                                  | Description                                          | Value                                                      |
+| --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------------- |
+| `flowcore-microservices.deployments.constStorageActiveDataPump.enabled`                                               | Whether to install the event source active data pump | `true`                                                     |
+| `flowcore-microservices.deployments.constStorageActiveDataPump.deployment.image`                                      | The image                                            | `service-active-data-pump`                                 |
+| `flowcore-microservices.deployments.constStorageActiveDataPump.deployment.tag`                                        | The tag                                              | `1.0.2`                                                    |
+| `flowcore-microservices.deployments.constStorageActiveDataPump.deployment.replicas`                                   | The number of replicas                               | `1`                                                        |
+| `flowcore-microservices.deployments.constStorageActiveDataPump.service.enabled`                                       | Whether to enable the service                        | `true`                                                     |
+| `flowcore-microservices.deployments.constStorageActiveDataPump.metrics.enabled`                                       | Whether to enable the metrics                        | `true`                                                     |
+| `flowcore-microservices.deployments.constStorageActiveDataPump.metrics.port`                                          | The port for the metrics                             | `3000`                                                     |
+| `flowcore-microservices.deployments.constStorageActiveDataPump.useTransports`                                         | The useTransports                                    | `nats`                                                     |
+| `flowcore-microservices.deployments.constStorageActiveDataPump.env.FLOWCORE_API_KEY_ID`                               | The FLOWCORE_API_KEY_ID                              | `api-key-id in tenant-credentials secret`                  |
+| `flowcore-microservices.deployments.constStorageActiveDataPump.env.FLOWCORE_API_KEY`                                  | The FLOWCORE_API_KEY                                 | `api-key-value in tenant-credentials secret`               |
+| `flowcore-microservices.deployments.constStorageActiveDataPump.env.REDIS_URL`                                         | The REDIS_URL                                        | `redis-sentinel-rw in cold-storage-api-credentials secret` |
+| `flowcore-microservices.deployments.constStorageActiveDataPump.env.DEFAULT_DATA_PUMP_MAX_REDELIVERY_COUNT`            | The DEFAULT_DATA_PUMP_MAX_REDELIVERY_COUNT           | `-1`                                                       |
+| `flowcore-microservices.deployments.constStorageActiveDataPump.env.REDIS_KEY_PATTERN`                                 | The REDIS_KEY_PATTERN                                | `cold-storage-api-credentials`                             |
+| `flowcore-microservices.deployments.constStorageActiveDataPump.env.ENDPOINT_HEADER_VALUE`                             | The ENDPOINT_HEADER_VALUE                            | `cold-storage-api-credentials`                             |
+| `flowcore-microservices.deployments.constStorageActiveDataPump.env.ENDPOINT_OVERRIDE_URL`                             | The ENDPOINT_OVERRIDE_URL                            | `http://event-source-api:3000`                             |
+| `flowcore-microservices.deployments.constStorageActiveDataPump.env.NO_TRANSLATION_MODE`                               | The NO_TRANSLATION_MODE                              | `true`                                                     |
+| `flowcore-microservices.deployments.constStorageActiveDataPump.volumes.config`                                        | The configuration                                    | `{}`                                                       |
+| `flowcore-microservices.deployments.constStorageActiveDataPump.volumes.cold-storage-api-credentials-config.mountPath` | The mount path                                       | `/usr/src/app/.config`                                     |
+| `flowcore-microservices.deployments.constStorageActiveDataPump.volumes.cold-storage-api-credentials-config.type`      | The type                                             | `configMap`                                                |
 
 ### Ingestion Validation Adapter
 

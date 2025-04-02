@@ -291,8 +291,8 @@ ensureCredentials:
   image:
     ## @param ensureCredentials.image.repository [default: flowcoreio/job-create-dedicated-credentials] The image repository
     repository: flowcoreio/job-create-dedicated-credentials
-    ## @param ensureCredentials.image.tag [default: 1.11.6] The image tag
-    tag: 1.11.8
+    ## @param ensureCredentials.image.tag [default: 1.12.0] The image tag
+    tag: 1.12.0
   env:
     ## @param ensureCredentials.env.TENANT_ID [object] The tenant ID
     TENANT_ID:
@@ -867,6 +867,72 @@ flowcore-microservices:
             secretKeyRef:
               name: tenant-credentials
               key: tenant
+    ## @section Cold Storage Active Data Pump
+    constStorageActiveDataPump:
+      ## @param flowcore-microservices.deployments.constStorageActiveDataPump.enabled [default: true] Whether to install the event source active data pump
+      enabled: true
+      deployment:
+        ## @param flowcore-microservices.deployments.constStorageActiveDataPump.deployment.image [default: service-active-data-pump] The image
+        image: service-active-data-pump
+        ## @param flowcore-microservices.deployments.constStorageActiveDataPump.deployment.tag [default: 1.0.2] The tag
+        tag: 1.0.2
+        ## @param flowcore-microservices.deployments.constStorageActiveDataPump.deployment.replicas [default: 1] The number of replicas
+        replicas: 1
+      service:
+        ## @param flowcore-microservices.deployments.constStorageActiveDataPump.service.enabled [default: true] Whether to enable the service
+        enabled: true
+      metrics:
+        ## @param flowcore-microservices.deployments.constStorageActiveDataPump.metrics.enabled [default: true] Whether to enable the metrics
+        enabled: true
+        ## @param flowcore-microservices.deployments.constStorageActiveDataPump.metrics.port [default: 3000] The port for the metrics
+        port: 3000
+      ## @param flowcore-microservices.deployments.constStorageActiveDataPump.useTransports [array, default: nats] The useTransports
+      useTransports:
+        - nats
+      env:
+        ## @param flowcore-microservices.deployments.constStorageActiveDataPump.env.FLOWCORE_API_KEY_ID [object, default: api-key-id in tenant-credentials secret] The FLOWCORE_API_KEY_ID
+        FLOWCORE_API_KEY_ID:
+          valueFrom:
+            secretKeyRef:
+              name: tenant-credentials
+              key: api-key-id
+        ## @param flowcore-microservices.deployments.constStorageActiveDataPump.env.FLOWCORE_API_KEY [object, default: api-key-value in tenant-credentials secret] The FLOWCORE_API_KEY
+        FLOWCORE_API_KEY:
+          valueFrom:
+            secretKeyRef:
+              name: tenant-credentials
+              key: api-key-value
+        ## @param flowcore-microservices.deployments.constStorageActiveDataPump.env.REDIS_URL [object, default: redis-sentinel-rw in cold-storage-api-credentials secret] The REDIS_URL
+        REDIS_URL:
+          valueFrom:
+            secretKeyRef:
+              name: cold-storage-api-credentials
+              key: redis-sentinel-rw
+        ## @param flowcore-microservices.deployments.constStorageActiveDataPump.env.DEFAULT_DATA_PUMP_MAX_REDELIVERY_COUNT [object, default: -1] The DEFAULT_DATA_PUMP_MAX_REDELIVERY_COUNT
+        DEFAULT_DATA_PUMP_MAX_REDELIVERY_COUNT:
+          value: "-1"
+        ## @param flowcore-microservices.deployments.constStorageActiveDataPump.env.REDIS_KEY_PATTERN [object, default: cold-storage-api-credentials] The REDIS_KEY_PATTERN
+        REDIS_KEY_PATTERN:
+          value: cold-storage-active-data-pump
+        ## @param flowcore-microservices.deployments.constStorageActiveDataPump.env.ENDPOINT_HEADER_VALUE [object, default: cold-storage-api-credentials] The ENDPOINT_HEADER_VALUE
+        ENDPOINT_HEADER_VALUE:
+          valueFrom:
+            secretKeyRef:
+              name: cold-storage-api-credentials
+              key: transformer-secret
+        ## @param flowcore-microservices.deployments.constStorageActiveDataPump.env.ENDPOINT_OVERRIDE_URL [object, default: http://event-source-api:3000] The ENDPOINT_OVERRIDE_URL
+        ENDPOINT_OVERRIDE_URL:
+          value: http://event-source-api:3000
+        ## @param flowcore-microservices.deployments.constStorageActiveDataPump.env.NO_TRANSLATION_MODE [object, default: true] The NO_TRANSLATION_MODE
+        NO_TRANSLATION_MODE:
+          value: "true"
+      volumes:
+        ## @param flowcore-microservices.deployments.constStorageActiveDataPump.volumes.config [object] The configuration
+        cold-storage-api-credentials-config:
+          ## @param flowcore-microservices.deployments.constStorageActiveDataPump.volumes.cold-storage-api-credentials-config.mountPath [default: /usr/src/app/.config] The mount path
+          mountPath: /usr/src/app/config/
+          ## @param flowcore-microservices.deployments.constStorageActiveDataPump.volumes.cold-storage-api-credentials-config.type [default: configMap] The type
+          type: configMap
     ## @section Ingestion Validation Adapter
     ingestionValidationAdapter:
       ## @param flowcore-microservices.deployments.ingestionValidationAdapter.enabled [default: true] Whether to install the ingestion validation adapter
