@@ -292,7 +292,7 @@ ensureCredentials:
     ## @param ensureCredentials.image.repository [default: flowcoreio/job-create-dedicated-credentials] The image repository
     repository: flowcoreio/job-create-dedicated-credentials
     ## @param ensureCredentials.image.tag [default: 1.11.6] The image tag
-    tag: 1.11.6
+    tag: 1.11.7
   env:
     ## @param ensureCredentials.env.TENANT_ID [object] The tenant ID
     TENANT_ID:
@@ -593,8 +593,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.eventSourceApi.deployment.image [default: source-event-source] The image
         image: service-event-source-api
-        ## @param flowcore-microservices.deployments.eventSourceApi.deployment.tag [default: 1.17.3] The tag
-        tag: 1.17.4
+        ## @param flowcore-microservices.deployments.eventSourceApi.deployment.tag [default: 1.23.1] The tag
+        tag: 1.23.1
         ## @param flowcore-microservices.deployments.eventSourceApi.deployment.replicas [default: 2] The number of replicas
         replicas: 2
       ## @param flowcore-microservices.deployments.eventSourceApi.service [object] The service
@@ -679,6 +679,21 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.eventSourceApi.env.HOT_STORAGE_RETENTION_HOURS [object, default: 72] The hot storage retention hours
         HOT_STORAGE_RETENTION_HOURS:
           value: "72"
+        ## @param flowcore-microservices.deployments.eventSourceApi.env.DEPLOYMENT_TYPE [object, default: dedicated] The deployment type
+        DEPLOYMENT_TYPE:
+          value: "dedicated"
+        ## @param flowcore-microservices.deployments.eventSourceApi.env.DEDICATED_TENANT_ID [object, default: tenant-id in tenant-credentials secret] The dedicated tenant ID
+        DEDICATED_TENANT_ID:
+          valueFrom:
+            secretKeyRef:
+              name: tenant-credentials
+              key: tenant-id
+        ## @param flowcore-microservices.deployments.eventSourceApi.env.DEDICATED_TENANT_NAME [object, default: tenant in tenant-credentials secret] The dedicated tenant name
+        DEDICATED_TENANT_NAME:
+          valueFrom:
+            secretKeyRef:
+              name: tenant-credentials
+              key: tenant
       ## @param flowcore-microservices.deployments.eventSourceApi.castAiSpot [default: preferred] The castAiSpot
       castAiSpot: preferred
       ## @param flowcore-microservices.deployments.eventSourceApi.subdomain [default: event-source] The subdomain
@@ -699,8 +714,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.deployment.image [default: service-active-data-pump] The image
         image: service-active-data-pump
-        ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.deployment.tag [default: 1.0.1] The tag
-        tag: 1.0.1
+        ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.deployment.tag [default: 1.0.2] The tag
+        tag: 1.0.2
         ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.deployment.replicas [default: 1] The number of replicas
         replicas: 1
       service:
@@ -711,6 +726,9 @@ flowcore-microservices:
         enabled: true
         ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.metrics.port [default: 3000] The port for the metrics
         port: 3000
+      ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.useTransports [array, default: nats] The useTransports
+      useTransports:
+        - nats
       env:
         ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.env.FLOWCORE_API_KEY_ID [object, default: api-key-id in tenant-credentials secret] The FLOWCORE_API_KEY_ID
         FLOWCORE_API_KEY_ID:
@@ -756,8 +774,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.coldStorageApi.deployment.image [default: service-cold-storage-api] The image
         image: service-cold-storage-api
-        ## @param flowcore-microservices.deployments.coldStorageApi.deployment.tag [default: 2.10.1] The tag
-        tag: 2.10.1
+        ## @param flowcore-microservices.deployments.coldStorageApi.deployment.tag [default: 2.12.1] The tag
+        tag: 2.12.1
         ## @param flowcore-microservices.deployments.coldStorageApi.deployment.replicas [default: 2] The number of replicas
         replicas: 2
         ## @param flowcore-microservices.deployments.coldStorageApi.deployment.resources [object] The resources
@@ -828,6 +846,21 @@ flowcore-microservices:
             secretKeyRef:
               name: aws-credentials
               key: aws-secret-access-key
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.DEPLOYMENT_TYPE [object, default: dedicated] The deployment type
+        DEPLOYMENT_TYPE:
+          value: "dedicated"
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.DEDICATED_TENANT_ID [object, default: tenant-id in tenant-credentials secret] The dedicated tenant ID
+        DEDICATED_TENANT_ID:
+          valueFrom:
+            secretKeyRef:
+              name: tenant-credentials
+              key: tenant-id
+        ## @param flowcore-microservices.deployments.coldStorageApi.env.DEDICATED_TENANT_NAME [object, default: tenant in tenant-credentials secret] The dedicated tenant name
+        DEDICATED_TENANT_NAME:
+          valueFrom:
+            secretKeyRef:
+              name: tenant-credentials
+              key: tenant
     ## @section Ingestion Validation Adapter
     ingestionValidationAdapter:
       ## @param flowcore-microservices.deployments.ingestionValidationAdapter.enabled [default: true] Whether to install the ingestion validation adapter
@@ -1283,8 +1316,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.deployment.image [default: service-delete-manager-api] The image
         image: service-delete-manager-api
-        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.deployment.tag [default: 1.0.9] The image tag
-        tag: 1.0.9
+        ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.deployment.tag [default: 1.1.1] The image tag
+        tag: 1.1.1
         ## @param flowcore-microservices.deployments.serviceDeleteManagerApi.deployment.replicas [default: 2] The number of replicas
         replicas: 2
       service:

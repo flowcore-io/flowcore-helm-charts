@@ -10,54 +10,54 @@ data:
   data-sources.json: |
     [
       {
-        "tenant": "flowcore",
-        "dataCore": "flowcore-platform",
-        "flowType": "organization.0",
+        "tenant": "341309a4-7cb8-4cb1-83f5-35e6ed2e8fdb",
+        "dataCore": "ecc024c5-3adf-42a3-aa55-fd3620673192",
+        "flowType": "2fc4b417-bdcf-4932-8b1e-7e83d3516da9",
         "eventTypes": [
-          "event.organization.created.0",
-          "event.organization.deleted.0"
+          "29356cfb-0045-4a68-aa4b-1215507b3916",
+          "5aff3acf-5fd4-4c1c-86b7-5a623e48b9a2"
         ],
         "destination": "http://event-source-api:3000/transformers/organization.0"
       },
       {
-        "tenant": "flowcore",
-        "dataCore": "flowcore-platform",
-        "flowType": "data-core.1",
+        "tenant": "341309a4-7cb8-4cb1-83f5-35e6ed2e8fdb",
+        "dataCore": "ecc024c5-3adf-42a3-aa55-fd3620673192",
+        "flowType": "d99ab94e-7548-4bc1-878b-8f5abaa29cb4",
         "eventTypes": [
-          "data-core.created.0",
-          "data-core.updated.0",
-          "data-core.deleted.0"
+          "a9e02873-f51f-42d3-8391-17e285bd23d6",
+          "6151fd21-e12a-4f42-88b7-ae6a007bc13f",
+          "e9b5c630-23e3-493d-a454-15cf19295861"
         ],
         "destination": "http://event-source-api:3000/transformers/data-core.1"
       },
       {
-        "tenant": "flowcore",
-        "dataCore": "flowcore-platform",
-        "flowType": "flow-type.1",
+        "tenant": "341309a4-7cb8-4cb1-83f5-35e6ed2e8fdb",
+        "dataCore": "ecc024c5-3adf-42a3-aa55-fd3620673192",
+        "flowType": "b8eb0d1f-325c-48bf-b66b-cc205f8144f7",
         "eventTypes": [
-          "flow-type.created.0",
-          "flow-type.deleted.0"
+          "cda8ec64-c69a-4039-bf3f-dd81c1f21ffd",
+          "1c9ad593-1177-47ee-b208-83b220675b16"
         ],
         "destination": "http://event-source-api:3000/transformers/flow-type.1"
       },
       {
-        "tenant": "flowcore",
-        "dataCore": "flowcore-platform",
-        "flowType": "event-type.1",
+        "tenant": "341309a4-7cb8-4cb1-83f5-35e6ed2e8fdb",
+        "dataCore": "ecc024c5-3adf-42a3-aa55-fd3620673192",
+        "flowType": "2fc4b417-bdcf-4932-8b1e-7e83d3516da9",
         "eventTypes": [
-          "event-type.created.0",
-          "event-type.deleted.0"
+          "29356cfb-0045-4a68-aa4b-1215507b3916",
+          "74c1722e-2b0d-4675-a1f5-b49663eb47bd"
         ],
         "concurrency": 1,
         "destination": "http://event-source-api:3000/transformers/event-type.1"
       },
       {
-        "tenant": "flowcore",
-        "dataCore": "flowcore-platform",
-        "flowType": "event-type.0",
+        "tenant": "341309a4-7cb8-4cb1-83f5-35e6ed2e8fdb",
+        "dataCore": "ecc024c5-3adf-42a3-aa55-fd3620673192",
+        "flowType": "12da5bd5-6899-4e4b-b2e2-19c228167799",
         "eventTypes": [
-          "event.event-type.index.created.0",
-          "event.event-type.truncated.0"
+          "1fa1d58b-7e76-4b34-9209-c1b1e381ac56",
+          "07ed71ca-ff35-4d46-b7ee-a36fce2c0a2b"
         ],
         "concurrency": 50,
         "destination": "http://event-source-api:3000/transformers/event-type.0"
