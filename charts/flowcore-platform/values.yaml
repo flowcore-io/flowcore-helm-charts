@@ -928,10 +928,10 @@ flowcore-microservices:
           value: "true"
       volumes:
         ## @param flowcore-microservices.deployments.constStorageActiveDataPump.volumes.config [object] The configuration
-        cold-storage-api-credentials-config:
-          ## @param flowcore-microservices.deployments.constStorageActiveDataPump.volumes.cold-storage-api-credentials-config.mountPath [default: /usr/src/app/.config] The mount path
+        cold-storage-active-data-pump-config:
+          ## @param flowcore-microservices.deployments.constStorageActiveDataPump.volumes.cold-storage-active-data-pump-config.mountPath [default: /usr/src/app/.config] The mount path
           mountPath: /usr/src/app/config/
-          ## @param flowcore-microservices.deployments.constStorageActiveDataPump.volumes.cold-storage-api-credentials-config.type [default: configMap] The type
+          ## @param flowcore-microservices.deployments.constStorageActiveDataPump.volumes.cold-storage-active-data-pump-config.type [default: configMap] The type
           type: configMap
     ## @section Ingestion Validation Adapter
     ingestionValidationAdapter:

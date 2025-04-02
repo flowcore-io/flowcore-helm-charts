@@ -5,7 +5,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: cold-storage-active-config
+  name: cold-storage-active-data-pump-config
 data:
   data-sources.json: |
     [
