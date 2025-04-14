@@ -673,9 +673,9 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.eventSourceApi.env.IAM_API_URL [object, default: http://service-iam-api.flowcore-public:3000] The IAM API URL
         IAM_API_URL:
           value: https://iam.api.flowcore.io
-        ## @param flowcore-microservices.deployments.eventSourceApi.env.COLD_STORAGE_API_URL [object, default: http://cold-storage-api.flowcore-source:3000] The cold storage API URL
+        ## @param flowcore-microservices.deployments.eventSourceApi.env.COLD_STORAGE_API_URL [object, default: http://cold-storage-api.flowcore:3000] The cold storage API URL
         COLD_STORAGE_API_URL:
-          value: http://cold-storage-api.flowcore-source:3000
+          value: "http://cold-storage-api.flowcore:3000"
         ## @param flowcore-microservices.deployments.eventSourceApi.env.HOT_STORAGE_RETENTION_HOURS [object, default: 72] The hot storage retention hours
         HOT_STORAGE_RETENTION_HOURS:
           value: "72"
