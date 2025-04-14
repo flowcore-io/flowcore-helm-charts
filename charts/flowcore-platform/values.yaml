@@ -714,8 +714,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.deployment.image [default: service-active-data-pump] The image
         image: service-active-data-pump
-        ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.deployment.tag [default: 1.0.2] The tag
-        tag: 1.0.2
+        ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.deployment.tag [default: 1.2.0] The tag
+        tag: 1.2.0
         ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.deployment.replicas [default: 1] The number of replicas
         replicas: 1
       service:
@@ -766,6 +766,12 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.env.NO_TRANSLATION_MODE [object, default: true] The NO_TRANSLATION_MODE
         NO_TRANSLATION_MODE:
           value: "true"
+        ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.env.USE_SCAN_DATA_SOURCE [object, default: true] The USE_SCAN_DATA_SOURCE
+        USE_SCAN_DATA_SOURCE:
+          value: "true"
+        ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.env.SCAN_DATA_SOURCE_START_DATE [object, default: 2025-03-20T00:00:00.000Z] The SCAN_DATA_SOURCE_START_DATE
+        SCAN_DATA_SOURCE_START_DATE:
+          value: "2025-03-20T00:00:00.000Z"
       volumes:
         ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.volumes.config [object] The configuration
         event-source-active-data-pump-config:
@@ -874,8 +880,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.coldStorageActiveDataPump.deployment.image [default: service-active-data-pump] The image
         image: service-active-data-pump
-        ## @param flowcore-microservices.deployments.coldStorageActiveDataPump.deployment.tag [default: 1.0.2] The tag
-        tag: 1.0.2
+        ## @param flowcore-microservices.deployments.coldStorageActiveDataPump.deployment.tag [default: 1.2.0] The tag
+        tag: 1.2.0
         ## @param flowcore-microservices.deployments.coldStorageActiveDataPump.deployment.replicas [default: 1] The number of replicas
         replicas: 1
       service:
@@ -926,6 +932,12 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.coldStorageActiveDataPump.env.NO_TRANSLATION_MODE [object, default: true] The NO_TRANSLATION_MODE
         NO_TRANSLATION_MODE:
           value: "true"
+        ## @param flowcore-microservices.deployments.coldStorageActiveDataPump.env.USE_SCAN_DATA_SOURCE [object, default: true] The USE_SCAN_DATA_SOURCE
+        USE_SCAN_DATA_SOURCE:
+          value: "true"
+        ## @param flowcore-microservices.deployments.coldStorageActiveDataPump.env.SCAN_DATA_SOURCE_START_DATE [object, default: 2025-03-20T00:00:00.000Z] The SCAN_DATA_SOURCE_START_DATE
+        SCAN_DATA_SOURCE_START_DATE:
+          value: "2025-03-20T00:00:00.000Z"
       volumes:
         ## @param flowcore-microservices.deployments.coldStorageActiveDataPump.volumes.config [object] The configuration
         cold-storage-active-data-pump-config:
