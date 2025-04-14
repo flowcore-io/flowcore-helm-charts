@@ -714,8 +714,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.deployment.image [default: service-active-data-pump] The image
         image: service-active-data-pump
-        ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.deployment.tag [default: 1.2.0] The tag
-        tag: 1.2.0
+        ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.deployment.tag [default: 1.2.1] The tag
+        tag: 1.2.1
         ## @param flowcore-microservices.deployments.eventSourceActiveDataPump.deployment.replicas [default: 1] The number of replicas
         replicas: 1
       service:
@@ -880,8 +880,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.coldStorageActiveDataPump.deployment.image [default: service-active-data-pump] The image
         image: service-active-data-pump
-        ## @param flowcore-microservices.deployments.coldStorageActiveDataPump.deployment.tag [default: 1.2.0] The tag
-        tag: 1.2.0
+        ## @param flowcore-microservices.deployments.coldStorageActiveDataPump.deployment.tag [default: 1.2.1] The tag
+        tag: 1.2.1
         ## @param flowcore-microservices.deployments.coldStorageActiveDataPump.deployment.replicas [default: 1] The number of replicas
         replicas: 1
       service:
