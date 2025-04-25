@@ -346,8 +346,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.ingestionChannel.deployment.image [default: service-ingestion] The image
         image: service-ingestion
-        ## @param flowcore-microservices.deployments.ingestionChannel.deployment.tag [default: 1.5.11] The tag
-        tag: 1.5.11
+        ## @param flowcore-microservices.deployments.ingestionChannel.deployment.tag [default: 1.10.0] The tag
+        tag: 1.10.0
         ## @param flowcore-microservices.deployments.ingestionChannel.deployment.replicas [default: 2] The number of replicas
         replicas: 2
       metrics:
@@ -1038,8 +1038,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.webhookService.deployment.image [default: ingestion-webhook-service] The image
         image: ingestion-webhook-service
-        ## @param flowcore-microservices.deployments.webhookService.deployment.tag [default: 1.26.3] The image tag
-        tag: 1.26.3
+        ## @param flowcore-microservices.deployments.webhookService.deployment.tag [default: 1.31.0] The image tag
+        tag: 1.31.0
         ## @param flowcore-microservices.deployments.webhookService.deployment.replicas [default: 2] The number of replicas
         replicas: 2
         ## @param flowcore-microservices.deployments.webhookService.deployment.resources [object] The resources
@@ -1115,6 +1115,7 @@ flowcore-microservices:
           nginx.ingress.kubernetes.io/server-snippet: |
             gzip on;
             gzip_comp_level 5;
+            client_body_buffer_size 64k;
     ## @section Event Recorder
     eventRecorder:
       ## @param flowcore-microservices.deployments.eventRecorder.enabled [default: true] Whether to install the event recorder

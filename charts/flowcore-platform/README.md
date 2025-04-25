@@ -244,7 +244,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `flowcore-microservices.deployments.ingestionChannel.enabled`                         | Whether to install the Ingestion Channel instance            | `true`                                                       |
 | `flowcore-microservices.deployments.ingestionChannel.deployment.image`                | The image                                                    | `service-ingestion`                                          |
-| `flowcore-microservices.deployments.ingestionChannel.deployment.tag`                  | The tag                                                      | `1.5.11`                                                     |
+| `flowcore-microservices.deployments.ingestionChannel.deployment.tag`                  | The tag                                                      | `1.10.0`                                                     |
 | `flowcore-microservices.deployments.ingestionChannel.deployment.replicas`             | The number of replicas                                       | `2`                                                          |
 | `flowcore-microservices.deployments.ingestionChannel.metrics.enabled`                 | Whether to install the metrics                               | `true`                                                       |
 | `flowcore-microservices.deployments.ingestionChannel.metrics.port`                    | The port                                                     | `3001`                                                       |
@@ -475,7 +475,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | ---------------------------------------------------------------------------------------- | -------------------------------------- | -------------------------------------------------------------- |
 | `flowcore-microservices.deployments.webhookService.enabled`                              | Whether to install the webhook service | `true`                                                         |
 | `flowcore-microservices.deployments.webhookService.deployment.image`                     | The image                              | `ingestion-webhook-service`                                    |
-| `flowcore-microservices.deployments.webhookService.deployment.tag`                       | The image tag                          | `1.26.3`                                                       |
+| `flowcore-microservices.deployments.webhookService.deployment.tag`                       | The image tag                          | `1.31.0`                                                       |
 | `flowcore-microservices.deployments.webhookService.deployment.replicas`                  | The number of replicas                 | `2`                                                            |
 | `flowcore-microservices.deployments.webhookService.deployment.resources`                 | The resources                          | `{}`                                                           |
 | `flowcore-microservices.deployments.webhookService.deployment.resources.requests.cpu`    | The CPU request                        | `328m`                                                         |
