@@ -441,5 +441,34 @@ spec:
   {{- end }}
 {{- end }}
 {{- end }}
+{{- if $spec.hpa }}
+{{- if $spec.hpa.enabled }}
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ $serviceName }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ $serviceName }}
+  minReplicas: {{ $spec.hpa.minReplicas | default 2 }}
+  maxReplicas: {{ $spec.hpa.maxReplicas | default 5 }}
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: {{ $spec.hpa.cpu | default 100 }}
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: AverageValue
+        averageValue: {{ $spec.hpa.memory | default "512Mi" | quote }}
+{{- end }}
+{{- end }}
 {{- end }}
 {{- end }}

@@ -108,4 +108,10 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `deployments.<microservice>.readinessProbe`                                 | Readiness probe configuration for this microservice                                                |       |
 | `deployments.<microservice>.castAiSpot`                                     | Configure service for spot instance prefer or required                                             |       |
 | `deployments.<microservice>.castAiNodeTemplate`                             | Cast AI node template values [string array]                                                        |       |
+| `deployments.<microservice>.hpa`                                            | Horizontal Pod Autoscaler configuration for this microservice                                      |       |
+| `deployments.<microservice>.hpa.enabled`                                    | Whether to deploy a Horizontal Pod Autoscaler for this microservice [boolean]                      |       |
+| `deployments.<microservice>.hpa.minReplicas`                                | The minimum number of replicas to deploy for this microservice [integer]                           |       |
+| `deployments.<microservice>.hpa.maxReplicas`                                | The maximum number of replicas to deploy for this microservice [integer]                           |       |
+| `deployments.<microservice>.hpa.cpu`                                        | The CPU threshold for the Horizontal Pod Autoscaler [integer]                                      |       |
+| `deployments.<microservice>.hpa.memory`                                     | The memory threshold for the Horizontal Pod Autoscaler [integer]                                   |       |
 

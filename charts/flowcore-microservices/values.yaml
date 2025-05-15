@@ -132,3 +132,9 @@ deployments: {}
 ## @extra deployments.<microservice>.readinessProbe Readiness probe configuration for this microservice
 ## @extra deployments.<microservice>.castAiSpot Configure service for spot instance prefer or required
 ## @extra deployments.<microservice>.castAiNodeTemplate Cast AI node template values [string array]
+## @extra deployments.<microservice>.hpa Horizontal Pod Autoscaler configuration for this microservice
+## @extra deployments.<microservice>.hpa.enabled Whether to deploy a Horizontal Pod Autoscaler for this microservice [boolean]
+## @extra deployments.<microservice>.hpa.minReplicas The minimum number of replicas to deploy for this microservice [integer]
+## @extra deployments.<microservice>.hpa.maxReplicas The maximum number of replicas to deploy for this microservice [integer]
+## @extra deployments.<microservice>.hpa.cpu The CPU threshold for the Horizontal Pod Autoscaler [integer]
+## @extra deployments.<microservice>.hpa.memory The memory threshold for the Horizontal Pod Autoscaler [integer]

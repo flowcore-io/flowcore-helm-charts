@@ -159,3 +159,9 @@ deployments:
             - somehost.com
             - www.somehost.com
           tlsSecret: some-tls-secret
+    hpa:
+      enabled: true
+      minReplicas: 3
+      maxReplicas: 12
+      cpu: 120
+      memory: 95
