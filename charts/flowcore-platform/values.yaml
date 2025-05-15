@@ -594,7 +594,7 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.eventSourceApi.deployment.image [default: source-event-source] The image
         image: service-event-source-api
         ## @param flowcore-microservices.deployments.eventSourceApi.deployment.tag [default: 1.23.1] The tag
-        tag: 1.23.1
+        tag: 1.25.1
         ## @param flowcore-microservices.deployments.eventSourceApi.deployment.replicas [default: 2] The number of replicas
         replicas: 2
       ## @param flowcore-microservices.deployments.eventSourceApi.service [object] The service
@@ -676,6 +676,9 @@ flowcore-microservices:
         ## @param flowcore-microservices.deployments.eventSourceApi.env.COLD_STORAGE_API_URL [object, default: http://cold-storage-api.flowcore:3000] The cold storage API URL
         COLD_STORAGE_API_URL:
           value: "http://cold-storage-api.flowcore:3000"
+        ## @param flowcore-microservices.deployments.eventSourceApi.env.COLD_STORAGE_TIMEOUT_MS [object, default: 255000] The cold storage timeout
+        COLD_STORAGE_TIMEOUT_MS:
+          value: "255000"
         ## @param flowcore-microservices.deployments.eventSourceApi.env.HOT_STORAGE_RETENTION_HOURS [object, default: 72] The hot storage retention hours
         HOT_STORAGE_RETENTION_HOURS:
           value: "72"
