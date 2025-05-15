@@ -466,8 +466,8 @@ spec:
     resource:
       name: memory
       target:
-        type: AverageValue
-        averageValue: {{ $spec.hpa.memory | default "512Mi" | quote }}
+        type: Utilization
+        averageUtilization: {{ $spec.hpa.memory | default 95 }}
 {{- end }}
 {{- end }}
 {{- end }}
