@@ -1,0 +1,240 @@
+{{- range $cronjobName, $spec := .Values.cronjobs }}
+{{- if $spec.enabled }}
+{{- $serviceName := cat $cronjobName | kebabcase }}
+{{- $component := "cronjob" }}
+{{- if $spec.component }}
+{{- $component = $spec.component }}
+{{- end }}
+{{- $env := $.Values.environment | default "flowcore" }}
+{{- $platform := $.Values.platform | default "flowcore" }}
+{{- $source := "node" }}
+{{- if $spec.source }}
+{{- $source = $spec.source }}
+{{- end }}
+{{- $repoBase := $.Values.imageRepository -}}
+{{- $schedule := $spec.schedule | default "0 * * * *" }}
+{{- $concurrencyPolicy := $spec.concurrencyPolicy | default "Forbid" }}
+{{- $failedJobsHistoryLimit := $spec.failedJobsHistoryLimit | default 3 }}
+{{- $successfulJobsHistoryLimit := $spec.successfulJobsHistoryLimit | default 3 }}
+{{- $suspend := $spec.suspend | default false }}
+{{- $timeZone := $spec.timeZone | default "Etc/UTC" }}
+{{- $restartPolicy := $spec.restartPolicy | default "OnFailure" }}
+{{- $defaultPullSecrets := $.Values.imagePullSecrets }}
+{{- $castAiSpot := $spec.castAiSpot | default "none" }}
+{{- $nodeTemplate := $spec.castAiNodeTemplate | default "spot-instances" }}
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ $serviceName }}
+  labels: &common_labels
+    app: {{ $serviceName }}
+    app.kubernetes.io/name: {{ $serviceName }}
+    app.kubernetes.io/version: {{ $spec.job.tag | quote }}
+    app.kubernetes.io/component: {{ $component }}
+    app.kubernetes.io/part-of: {{ $platform }}
+  {{- if $.Values.commonAnnotations }}
+  annotations:
+    {{- $.Values.commonAnnotations | toYaml | nindent 4 }}
+  {{- end }}
+spec:
+  schedule: {{ $schedule | quote }}
+  concurrencyPolicy: {{ $concurrencyPolicy }}
+  failedJobsHistoryLimit: {{ $failedJobsHistoryLimit }}
+  successfulJobsHistoryLimit: {{ $successfulJobsHistoryLimit }}
+  suspend: {{ $suspend }}
+  timeZone: {{ $timeZone | quote }}
+  {{- if $spec.startingDeadlineSeconds }}
+  startingDeadlineSeconds: {{ $spec.startingDeadlineSeconds }}
+  {{- end }}
+  jobTemplate:
+    spec:
+      {{- if $spec.job.activeDeadlineSeconds }}
+      activeDeadlineSeconds: {{ $spec.job.activeDeadlineSeconds }}
+      {{- end }}
+      {{- if $spec.job.backoffLimit }}
+      backoffLimit: {{ $spec.job.backoffLimit }}
+      {{- end }}
+      template:
+        metadata:
+          labels: *common_labels
+          {{- if $spec.podAnnotations }}
+          annotations:
+            {{- if $.Values.commonAnnotations }}
+            {{- $.Values.commonAnnotations | toYaml | nindent 12 }}
+            {{- end }}
+            {{- $spec.podAnnotations | toYaml | nindent 12 }}
+          {{- end }}
+        spec:
+          restartPolicy: {{ $restartPolicy }}
+          {{- /* Handle CastAI spot instance configurations */ -}}
+          {{- if eq $castAiSpot "required" }}
+          nodeSelector:
+            scheduling.cast.ai/node-template: {{ $nodeTemplate }}
+          tolerations:
+            - key: "scheduling.cast.ai/node-template"
+              value: {{ $nodeTemplate }}
+              operator: "Equal"
+              effect: "NoSchedule"
+          {{- end }}
+          {{- if or $spec.affinity (eq $castAiSpot "preferred") }}
+          affinity:
+            {{- if and $spec.affinity (ne $castAiSpot "preferred") }}
+            {{- $spec.affinity | toYaml | nindent 12 }}
+            {{- else if and (eq $castAiSpot "preferred") (not $spec.affinity) }}
+            nodeAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 100
+                  preference:
+                    matchExpressions:
+                      - key: scheduling.cast.ai/node-template
+                        operator: In
+                        values:
+                          - {{ $nodeTemplate }}
+            {{- else if and (eq $castAiSpot "preferred") $spec.affinity }}
+            {{- range $k, $v := $spec.affinity }}
+            {{- if eq $k "nodeAffinity" }}
+            nodeAffinity:
+              {{- if $v.preferredDuringSchedulingIgnoredDuringExecution }}
+              preferredDuringSchedulingIgnoredDuringExecution:
+                {{- range $item := $v.preferredDuringSchedulingIgnoredDuringExecution }}
+                - weight: {{ $item.weight }}
+                  preference:
+                    {{- if $item.preference.matchExpressions }}
+                    matchExpressions:
+                      {{- range $expr := $item.preference.matchExpressions }}
+                      - key: {{ $expr.key }}
+                        operator: {{ $expr.operator }}
+                        values:
+                        {{- range $val := $expr.values }}
+                        - {{ $val }}
+                        {{- end }}
+                      {{- end }}
+                    {{- end }}
+                    {{- if $item.preference.matchFields }}
+                    matchFields:
+                      {{- range $field := $item.preference.matchFields }}
+                      - key: {{ $field.key }}
+                        operator: {{ $field.operator }}
+                        values:
+                        {{- range $val := $field.values }}
+                        - {{ $val }}
+                        {{- end }}
+                      {{- end }}
+                    {{- end }}
+                {{- end }}
+                - weight: 100
+                  preference:
+                    matchExpressions:
+                      - key: scheduling.cast.ai/node-template
+                        operator: In
+                        values:
+                          - {{ $nodeTemplate }}
+              {{- else }}
+              preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 100
+                  preference:
+                    matchExpressions:
+                      - key: scheduling.cast.ai/node-template
+                        operator: In
+                        values:
+                          - {{ $nodeTemplate }}
+              {{- end }}
+              {{- range $nk, $nv := $v }}
+              {{- if ne $nk "preferredDuringSchedulingIgnoredDuringExecution" }}
+              {{ $nk }}: {{ $nv | toYaml | nindent 16 }}
+              {{- end }}
+              {{- end }}
+            {{- else }}
+            {{ $k }}: {{ $v | toYaml | nindent 14 }}
+            {{- end }}
+            {{- end }}
+            {{- end }}
+          {{- end }}
+          {{- if eq $castAiSpot "preferred" }}
+          tolerations:
+            - key: "scheduling.cast.ai/node-template"
+              value: {{ $nodeTemplate }}
+              operator: "Equal"
+              effect: "NoSchedule"
+          {{- end }}
+          {{- if or $spec.imagePullSecrets $defaultPullSecrets }}
+          imagePullSecrets:
+            {{- if $spec.imagePullSecrets }}
+              {{- toYaml $spec.imagePullSecrets | nindent 12 }}
+            {{- else }}
+              {{- toYaml $defaultPullSecrets | nindent 12 }}
+            {{- end }}
+          {{- end }}
+          {{- if $spec.job.serviceAccount }}
+          serviceAccountName: {{ $spec.job.serviceAccount }}
+          {{- end }}
+          containers:
+            - name: {{ $serviceName }}
+              image: "{{ $repoBase }}/{{ $spec.job.image }}:{{ $spec.job.tag }}"
+              env:
+                {{- range $index, $transportName := $spec.useTransports }}
+                {{- $transportTarget := "" }}
+                {{- if eq (kindOf $transportName) "string" }}
+                {{- $transportTarget = $transportName }}
+                {{- else }}
+                {{- $transportTarget = $transportName.name }}
+                {{- end }}
+                {{- range $transportKey, $transportValue := index $.Values.transport $transportTarget }}
+                - name: {{ $transportKey }}
+                  {{- if eq (kindOf $transportName) "string" }}
+                  {{- $transportValue | toYaml | nindent 18 }}
+                  {{- else }}
+                  {{- if $transportName.overrides }}
+                  {{- range $overrideKey, $overrideValue := $transportName.overrides }}
+                  {{- if eq $overrideKey $transportKey }}
+                  {{- $overrideValue | toYaml | nindent 18 }}
+                  {{- else }}
+                  {{- $transportValue | toYaml | nindent 18 }}
+                  {{- end }}
+                  {{- end }}
+                  {{- else }}
+                  {{- $transportValue | toYaml | nindent 18 }}
+                  {{- end }}
+                  {{- end }}
+                {{- end }}
+                {{- end }}
+                {{- if $spec.env }}
+                {{- range $key, $val := $spec.env }}
+                - name: {{ $key }}
+                  {{- $val | toYaml | nindent 18 }}
+                {{- end }}
+                {{- end }}
+              {{- if $spec.job.resources }}
+              resources:
+                {{- toYaml $spec.job.resources | nindent 16 }}
+              {{- end }}
+              {{- if $spec.volumes }}
+              volumeMounts:
+                {{- range $index, $volume := $spec.volumes }}
+                {{- if or (not (hasKey $volume "mainMount")) (eq $volume.mainMount "yes") }}
+                - name: {{ $index }}
+                  mountPath: {{ $volume.mountPath }}
+                  {{- if $volume.subPath }}
+                  subPath: {{ $volume.subPath }}
+                  {{- end }}
+                {{- end }}
+                {{- end }}
+              {{- end }}
+          {{- if $spec.volumes }}
+          volumes:
+            {{- range $index, $volume := $spec.volumes }}
+            - name: {{ $index }}
+              {{- if eq $volume.type "configMap" }}
+              configMap:
+                name: {{ $volume.config }}
+              {{- else if eq $volume.type "secret" }}
+              secret:
+                secretName: {{ $volume.secret }}
+              {{- else if eq $volume.type "emptyDir" }}
+              emptyDir: {}
+              {{- end }}
+            {{- end }}
+          {{- end }}
+{{- end }}
+{{- end }} 
