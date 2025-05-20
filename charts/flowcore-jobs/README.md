@@ -17,22 +17,70 @@ The `flowcore-jobs` chart provides a template for deploying different types of j
 helm install my-flowcore-jobs flowcore/flowcore-jobs
 ```
 
-## Configuration
-
-The following table lists the configurable parameters for the flowcore-jobs chart and their default values.
+## Parameters
 
 ### Global
 
-| Name | Description | Value |
-| ---- | ----------- | ----- |
-| environment | Environment name | `flowcore` |
-| platform | Platform that these jobs are part of | `flowcore` |
-| imageRepository | The image repository to use for all jobs in this chart | `305363105399.dkr.ecr.eu-west-1.amazonaws.com` |
-| imagePullSecrets | List of image pull secrets to use for all jobs in this chart | `[]` |
-| transport | Ingress settings for the transport domain | `{}` |
-| commonAnnotations | Annotations to set for all resources in the chart | `{}` |
+| Name               | Description                                                  | Value                                          |
+| ------------------ | ------------------------------------------------------------ | ---------------------------------------------- |
+| `environment`      | Environment name                                             | `flowcore`                                     |
+| `platform`         | Platform that these jobs are part of                         | `flowcore`                                     |
+| `imageRepository`  | The image repository to use for all jobs in this chart       | `305363105399.dkr.ecr.eu-west-1.amazonaws.com` |
+| `imagePullSecrets` | List of image pull secrets to use for all jobs in this chart | `[]`                                           |
+
+### Domain Settings
+
+| Name                | Description                                              | Value |
+| ------------------- | -------------------------------------------------------- | ----- |
+| `transport`         | Ingress settings for the transport domain                | `{}`  |
+| `transport.<n>`     | Environment variables for the transport in object format |       |
+| `commonAnnotations` | Annotations to set for all resources in the chart        | `{}`  |
 
 ### CronJobs
+
+| Name                                                                 | Description                                                                                        | Value |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----- |
+| `cronjobs`                                                           | List of cronjobs to deploy                                                                         | `{}`  |
+| `cronjobs.<cronjobName>`                                             | Configuration entry for a cronjob                                                                  |       |
+| `cronjobs.<cronjobName>.enabled`                                     | Whether to deploy this cronjob [boolean]                                                           |       |
+| `cronjobs.<cronjobName>.podAnnotations`                              | Annotations to set for the pod                                                                     |       |
+| `cronjobs.<cronjobName>.component`                                   | What type of cronjob this is [cleanup, report, maintenance, ...]                                   |       |
+| `cronjobs.<cronjobName>.restartPolicy`                               | The restart policy to use for this cronjob, defaults to OnFailure [Always, OnFailure, Never]       |       |
+| `cronjobs.<cronjobName>.imagePullSecrets`                            | List of image pull secrets to use for this cronjob [array]                                         |       |
+| `cronjobs.<cronjobName>.source`                                      | What type of source this cronjob uses [node, go, rust, ...]                                        |       |
+| `cronjobs.<cronjobName>.schedule`                                    | The cron schedule expression for this cronjob                                                      |       |
+| `cronjobs.<cronjobName>.concurrencyPolicy`                           | How to treat concurrent executions [Allow, Forbid, Replace]                                        |       |
+| `cronjobs.<cronjobName>.failedJobsHistoryLimit`                      | The number of failed job runs to keep                                                              |       |
+| `cronjobs.<cronjobName>.successfulJobsHistoryLimit`                  | The number of successful job runs to keep                                                          |       |
+| `cronjobs.<cronjobName>.suspend`                                     | Whether to suspend the cronjob                                                                     |       |
+| `cronjobs.<cronjobName>.timeZone`                                    | The timezone name for the given schedule, default is UTC                                           |       |
+| `cronjobs.<cronjobName>.startingDeadlineSeconds`                     | Optional deadline in seconds for starting the job if it misses scheduled time                      |       |
+| `cronjobs.<cronjobName>.job`                                         | Configuration for the job                                                                          |       |
+| `cronjobs.<cronjobName>.job.image`                                   | The image name to use for this job, excluding the repository [string]                              |       |
+| `cronjobs.<cronjobName>.job.tag`                                     | The image tag to use for this job [string]                                                         |       |
+| `cronjobs.<cronjobName>.job.resources`                               | Resource configuration for this job                                                                |       |
+| `cronjobs.<cronjobName>.job.serviceAccount`                          | The service account to use for this job [string]                                                   |       |
+| `cronjobs.<cronjobName>.job.activeDeadlineSeconds`                   | Optional deadline in seconds the job may be active before the system tries to terminate it         |       |
+| `cronjobs.<cronjobName>.job.backoffLimit`                            | Specifies the number of retries before marking this job failed                                     |       |
+| `cronjobs.<cronjobName>.env`                                         | Environment variables to set for this cronjob                                                      |       |
+| `cronjobs.<cronjobName>.env.<variable>`                              | Configuration for an environment variable                                                          |       |
+| `cronjobs.<cronjobName>.env.<variable>.value`                        | The value to set for this environment variable, use valueFrom if you want to use a secret [string] |       |
+| `cronjobs.<cronjobName>.useTransport`                                | Array or Object of transport services to use for this cronjob                                      |       |
+| `cronjobs.<cronjobName>.useTransport.<n>`                            | The name of the transport service to use                                                           |       |
+| `cronjobs.<cronjobName>.useTransport.<n>.overrides`                  | Overrides for the transport service                                                                |       |
+| `cronjobs.<cronjobName>.useTransport.<n>.overrides.<variable>`       | Configuration for an environment variable                                                          |       |
+| `cronjobs.<cronjobName>.useTransport.<n>.overrides.<variable>.value` | The value to set for this environment variable, use valueFrom if you want to use a secret [string] |       |
+| `cronjobs.<cronjobName>.volumes`                                     | list of config volumes to deploy                                                                   |       |
+| `cronjobs.<cronjobName>.volumes.<n>`                                 | Configuration for a volume                                                                         |       |
+| `cronjobs.<cronjobName>.volumes.<n>.config`                          | Config Map to use for this volume                                                                  |       |
+| `cronjobs.<cronjobName>.volumes.<n>.secret`                          | Secret to use for this volume                                                                      |       |
+| `cronjobs.<cronjobName>.volumes.<n>.mountPath`                       | The mount path to use for this volume                                                              |       |
+| `cronjobs.<cronjobName>.volumes.<n>.subPath`                         | The sub path to use for this volume, optional                                                      |       |
+| `cronjobs.<cronjobName>.volumes.<n>.mainMount`                       | Whether this volume is mounted to the main container, optional [yes, no] defaults to yes           |       |
+| `cronjobs.<cronjobName>.volumes.<n>.type`                            | The type of volume to use [configMap, secret, emptyDir]                                            |       |
+| `cronjobs.<cronjobName>.affinity`                                    | Affinity configuration for this cronjob                                                            |       |
+| `cronjobs.<cronjobName>.castAiSpot`                                  | Configure cronjob for spot instance prefer or required                                             |       |
+| `cronjobs.<cronjobName>.castAiNodeTemplate`                          | Cast AI node template values [string array]                                                        |       |
 
 The `cronjobs` section allows you to define multiple CronJobs to be deployed. Each CronJob can be configured independently.
 
