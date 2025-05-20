@@ -1,0 +1,52 @@
+environment: flowcore
+platform: flowcore
+imageRepository: 305363105399.dkr.ecr.eu-west-1.amazonaws.com
+imagePullSecrets: []
+
+cronjobs:
+  TestDataCleanup:
+    enabled: true
+    component: cleanup
+    restartPolicy: OnFailure
+    schedule: "0 0 * * *" # Run at midnight every day
+    concurrencyPolicy: Forbid
+    failedJobsHistoryLimit: 3
+    successfulJobsHistoryLimit: 3
+    job:
+      image: "test-data-cleanup"
+      tag: "1.0.0"
+      resources:
+        limits:
+          cpu: 500m
+          memory: 512Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      backoffLimit: 3
+    env:
+      RETENTION_DAYS:
+        value: "30"
+      LOG_LEVEL:
+        value: "info"
+
+  WeeklyReport:
+    enabled: true
+    component: report
+    restartPolicy: OnFailure
+    schedule: "0 8 * * 1" # Run at 8:00am every Monday
+    concurrencyPolicy: Forbid
+    job:
+      image: "weekly-report-generator"
+      tag: "1.0.0"
+      resources:
+        limits:
+          cpu: 1000m
+          memory: 1Gi
+        requests:
+          cpu: 250m
+          memory: 256Mi
+    env:
+      REPORT_TYPE:
+        value: "weekly"
+      EMAIL_RECIPIENTS:
+        value: "team@flowcore.io"
