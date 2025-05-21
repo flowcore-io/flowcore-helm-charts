@@ -291,8 +291,8 @@ ensureCredentials:
   image:
     ## @param ensureCredentials.image.repository [default: flowcoreio/job-create-dedicated-credentials] The image repository
     repository: flowcoreio/job-create-dedicated-credentials
-    ## @param ensureCredentials.image.tag [default: 1.12.0] The image tag
-    tag: 1.12.0
+    ## @param ensureCredentials.image.tag [default: 1.13.0] The image tag
+    tag: 1.13.0
   env:
     ## @param ensureCredentials.env.TENANT_ID [object] The tenant ID
     TENANT_ID:
