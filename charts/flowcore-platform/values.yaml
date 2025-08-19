@@ -1041,8 +1041,8 @@ flowcore-microservices:
       deployment:
         ## @param flowcore-microservices.deployments.webhookService.deployment.image [default: ingestion-webhook-service] The image
         image: ingestion-webhook-service
-        ## @param flowcore-microservices.deployments.webhookService.deployment.tag [default: 1.31.2] The image tag
-        tag: 1.31.2
+        ## @param flowcore-microservices.deployments.webhookService.deployment.tag [default: 1.31.3] The image tag
+        tag: 1.31.3
         ## @param flowcore-microservices.deployments.webhookService.deployment.replicas [default: 2] The number of replicas
         replicas: 2
         ## @param flowcore-microservices.deployments.webhookService.deployment.resources [object] The resources
