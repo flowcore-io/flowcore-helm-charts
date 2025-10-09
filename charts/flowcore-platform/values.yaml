@@ -1,3 +1,8 @@
+global:
+  security:
+    ## @param global.security.allowInsecureImages [default: true] Whether to allow insecure images to support 
+    allowInsecureImages: true
+
 ## @section Flowcore Platform Configuration
 flowcore:
   ## @param flowcore.tenant [string] The tenant name (e.g. "my-org")
@@ -26,6 +31,9 @@ argocd:
 cassandra:
   ## @param cassandra.enabled [default: true] Whether to install the Cassandra instance
   enabled: true
+  image:
+    ## @param cassandra.image.repository [default: bitnamilegacy/cassandra] The image repository
+    repository: bitnamilegacy/cassandra
   ## @param cassandra.dbUser [object] The Cassandra user configuration
   dbUser:
     ## @param cassandra.dbUser.existingSecret [default: platform-source-cassandra-user] The name of the existing secret containing the Cassandra user and password
@@ -79,11 +87,17 @@ valkey-ha:
   fullnameOverride: valkey-ha
   ## @param valkey-ha.architecture [default: replication] The architecture to use
   architecture: replication
+  image:
+    ## @param valkey-ha.image.repository [default: bitnamilegacy/valkey] The image repository
+    repository: bitnamilegacy/valkey
   sentinel:
     ## @param valkey-ha.sentinel.enabled [default: true] Whether to install the Sentinel instance
     enabled: true
     ## @param valkey-ha.sentinel.primarySet [default: fcmprimary] The primary set to use
     primarySet: fcmprimary
+    image:
+      ## @param valkey-ha.sentinel.image.repository [default: bitnamilegacy/valkey] The image repository
+      repository: bitnamilegacy/valkey
     ## @extra valkey-ha.sentinel.resources [object] The resources for the Sentinel instance
   auth:
     ## @param valkey-ha.auth.enabled [default: true] Whether to install the Auth instance
@@ -106,6 +120,9 @@ valkey-ha:
       ## @param valkey-ha.primary.persistence.size [default: 50Gi] The size of the persistent volume
       size: 50Gi
       ## @extra valkey-ha.primary.persistence.storageClass [string] The storage class for the persistent volume
+    image:
+      ## @param valkey-ha.primary.image.repository [default: bitnamilegacy/valkey] The image repository
+      repository: bitnamilegacy/valkey
   replica:
     ## @param valkey-ha.replica.enabled [default: true] Whether to install the replica instance
     enabled: true
@@ -118,6 +135,9 @@ valkey-ha:
       ## @param valkey-ha.replica.persistence.size [default: 50Gi] The size of the persistent volume
       size: 50Gi
       ## @extra valkey-ha.replica.persistence.storageClass [string] The storage class for the persistent volume
+    image:
+      ## @param valkey-ha.replica.image.repository [default: bitnamilegacy/valkey] The image repository
+      repository: bitnamilegacy/valkey
 
 ## @section Valkey Single Configuration
 valkey-single:
@@ -129,6 +149,9 @@ valkey-single:
   fullnameOverride: valkey-single
   ## @param valkey-single.architecture [default: single] The architecture to use
   architecture: standalone
+  image:
+    ## @param valkey-single.image.repository [default: bitnamilegacy/valkey] The image repository
+    repository: bitnamilegacy/valkey
   auth:
     ## @param valkey-single.auth.enabled [default: true] Whether to install the Auth instance
     enabled: true
@@ -148,6 +171,9 @@ valkey-single:
       ## @param valkey-single.primary.persistence.size [default: 50Gi] The size of the persistent volume
       size: 50Gi
       ## @extra valkey-single.primary.persistence.storageClass [string] The storage class for the persistent volume
+    image:
+      ## @param valkey-single.primary.image.repository [default: bitnamilegacy/valkey] The image repository
+      repository: bitnamilegacy/valkey
 
 ## @section Valkey Cache Configuration
 valkey-cache:
@@ -159,6 +185,9 @@ valkey-cache:
   fullnameOverride: valkey-cache
   ## @param valkey-cache.architecture [default: single] The architecture to use
   architecture: standalone
+  image:
+    ## @param valkey-cache.image.repository [default: bitnamilegacy/valkey] The image repository
+    repository: bitnamilegacy/valkey
   auth:
     ## @param valkey-cache.auth.enabled [default: false] Whether to install the Auth instance
     enabled: false
@@ -174,6 +203,9 @@ valkey-cache:
       ## @param valkey-cache.primary.persistence.size [default: 5Gi] The size of the persistent volume
       size: 5Gi
       ## @extra valkey-cache.primary.persistence.storageClass [string] The storage class for the persistent volume
+    image:
+      ## @param valkey-cache.primary.image.repository [default: bitnamilegacy/valkey] The image repository
+      repository: bitnamilegacy/valkey
 
 ## @section NATS Configuration
 nats:

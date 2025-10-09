@@ -49,6 +49,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | Name                                  | Description                                                                | Value                            |
 | ------------------------------------- | -------------------------------------------------------------------------- | -------------------------------- |
 | `cassandra.enabled`                   | Whether to install the Cassandra instance                                  | `true`                           |
+| `cassandra.image.repository`          | The image repository                                                       | `bitnamilegacy/cassandra`        |
 | `cassandra.dbUser`                    | The Cassandra user configuration                                           | `{}`                             |
 | `cassandra.dbUser.existingSecret`     | The name of the existing secret containing the Cassandra user and password | `platform-source-cassandra-user` |
 | `cassandra.cluster`                   | The Cassandra cluster configuration                                        | `{}`                             |
@@ -78,8 +79,10 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `valkey-ha.nameOverride`                     | The name override                                            | `valkey-ha`                 |
 | `valkey-ha.fullnameOverride`                 | The full name override                                       | `valkey-ha`                 |
 | `valkey-ha.architecture`                     | The architecture to use                                      | `replication`               |
+| `valkey-ha.image.repository`                 | The image repository                                         | `bitnamilegacy/valkey`      |
 | `valkey-ha.sentinel.enabled`                 | Whether to install the Sentinel instance                     | `true`                      |
 | `valkey-ha.sentinel.primarySet`              | The primary set to use                                       | `fcmprimary`                |
+| `valkey-ha.sentinel.image.repository`        | The image repository                                         | `bitnamilegacy/valkey`      |
 | `valkey-ha.sentinel.resources`               | The resources for the Sentinel instance                      |                             |
 | `valkey-ha.auth.enabled`                     | Whether to install the Auth instance                         | `true`                      |
 | `valkey-ha.auth.sentinel`                    | Whether to use the Sentinel instance                         | `true`                      |
@@ -91,12 +94,14 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `valkey-ha.primary.persistence.enabled`      | Whether to install the persistence                           | `true`                      |
 | `valkey-ha.primary.persistence.size`         | The size of the persistent volume                            | `50Gi`                      |
 | `valkey-ha.primary.persistence.storageClass` | The storage class for the persistent volume                  |                             |
+| `valkey-ha.primary.image.repository`         | The image repository                                         | `bitnamilegacy/valkey`      |
 | `valkey-ha.replica.enabled`                  | Whether to install the replica instance                      | `true`                      |
 | `valkey-ha.replica.replicaCount`             | The number of replicas                                       | `3`                         |
 | `valkey-ha.replica.resources`                | The resources for the replica instance                       |                             |
 | `valkey-ha.replica.persistence.enabled`      | Whether to install the persistence                           | `true`                      |
 | `valkey-ha.replica.persistence.size`         | The size of the persistent volume                            | `50Gi`                      |
 | `valkey-ha.replica.persistence.storageClass` | The storage class for the persistent volume                  |                             |
+| `valkey-ha.replica.image.repository`         | The image repository                                         | `bitnamilegacy/valkey`      |
 
 ### Valkey Single Configuration
 
@@ -106,6 +111,7 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `valkey-single.nameOverride`                     | The name override                                            | `valkey-single`                 |
 | `valkey-single.fullnameOverride`                 | The full name override                                       | `valkey-single`                 |
 | `valkey-single.architecture`                     | The architecture to use                                      | `single`                        |
+| `valkey-single.image.repository`                 | The image repository                                         | `bitnamilegacy/valkey`          |
 | `valkey-single.auth.enabled`                     | Whether to install the Auth instance                         | `true`                          |
 | `valkey-single.auth.existingSecret`              | The name of the existing secret containing the Auth password | `platform-source-valkey-single` |
 | `valkey-single.auth.existingSecretPasswordKey`   | The key in the existing secret containing the Auth password  | `password`                      |
@@ -115,22 +121,25 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `valkey-single.primary.persistence.enabled`      | Whether to install the persistence                           | `true`                          |
 | `valkey-single.primary.persistence.size`         | The size of the persistent volume                            | `50Gi`                          |
 | `valkey-single.primary.persistence.storageClass` | The storage class for the persistent volume                  |                                 |
+| `valkey-single.primary.image.repository`         | The image repository                                         | `bitnamilegacy/valkey`          |
 
 ### Valkey Cache Configuration
 
-| Name                                            | Description                                  | Value          |
-| ----------------------------------------------- | -------------------------------------------- | -------------- |
-| `valkey-cache.enabled`                          | Whether to install the Valkey cache instance | `false`        |
-| `valkey-cache.nameOverride`                     | The name override                            | `valkey-cache` |
-| `valkey-cache.fullnameOverride`                 | The full name override                       | `valkey-cache` |
-| `valkey-cache.architecture`                     | The architecture to use                      | `single`       |
-| `valkey-cache.auth.enabled`                     | Whether to install the Auth instance         | `false`        |
-| `valkey-cache.primary.enabled`                  | Whether to install the primary instance      | `true`         |
-| `valkey-cache.primary.replicaCount`             | The number of replicas                       | `1`            |
-| `valkey-cache.primary.resources`                | The resources for the primary instance       |                |
-| `valkey-cache.primary.persistence.enabled`      | Whether to install the persistence           | `true`         |
-| `valkey-cache.primary.persistence.size`         | The size of the persistent volume            | `5Gi`          |
-| `valkey-cache.primary.persistence.storageClass` | The storage class for the persistent volume  |                |
+| Name                                            | Description                                  | Value                  |
+| ----------------------------------------------- | -------------------------------------------- | ---------------------- |
+| `valkey-cache.enabled`                          | Whether to install the Valkey cache instance | `false`                |
+| `valkey-cache.nameOverride`                     | The name override                            | `valkey-cache`         |
+| `valkey-cache.fullnameOverride`                 | The full name override                       | `valkey-cache`         |
+| `valkey-cache.architecture`                     | The architecture to use                      | `single`               |
+| `valkey-cache.image.repository`                 | The image repository                         | `bitnamilegacy/valkey` |
+| `valkey-cache.auth.enabled`                     | Whether to install the Auth instance         | `false`                |
+| `valkey-cache.primary.enabled`                  | Whether to install the primary instance      | `true`                 |
+| `valkey-cache.primary.replicaCount`             | The number of replicas                       | `1`                    |
+| `valkey-cache.primary.resources`                | The resources for the primary instance       |                        |
+| `valkey-cache.primary.persistence.enabled`      | Whether to install the persistence           | `true`                 |
+| `valkey-cache.primary.persistence.size`         | The size of the persistent volume            | `5Gi`                  |
+| `valkey-cache.primary.persistence.storageClass` | The storage class for the persistent volume  |                        |
+| `valkey-cache.primary.image.repository`         | The image repository                         | `bitnamilegacy/valkey` |
 
 ### NATS Configuration
 
