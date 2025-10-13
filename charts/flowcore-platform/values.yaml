@@ -1,6 +1,6 @@
 global:
   security:
-    ## @param global.security.allowInsecureImages [default: true] Whether to allow insecure images to support 
+    ## @param global.security.allowInsecureImages [default: true] Whether to allow insecure images to support
     allowInsecureImages: true
 
 ## @section Flowcore Platform Configuration
@@ -71,6 +71,9 @@ cassandra:
   metrics:
     ## @param cassandra.metrics.enabled [default: true] Whether to enable the metrics
     enabled: true
+    image:
+      ## @param cassandra.metrics.image.repository [default: bitnamilegacy/cassandra-exporter] compatibility with bitnami migration
+      repository: bitnamilegacy/cassandra-exporter
   jvm:
     ## @param cassandra.jvm.maxHeapSize [default: 2048m] The maximum heap size (1/4 or 1/2 of the total memory)
     maxHeapSize: 8G
