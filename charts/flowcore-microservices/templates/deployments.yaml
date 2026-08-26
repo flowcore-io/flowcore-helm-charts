@@ -66,7 +66,15 @@ spec:
       app: {{ $serviceName }}
   template:
     metadata:
-      labels: *common_labels
+      labels:
+        app: {{ $serviceName }}
+        app.kubernetes.io/name: {{ $serviceName }}
+        app.kubernetes.io/version: {{ $spec.deployment.tag | quote }}
+        app.kubernetes.io/component: {{ $component }}
+        app.kubernetes.io/part-of: {{ $platform }}
+        {{- if $spec.podLabels }}
+        {{- $spec.podLabels | toYaml | nindent 8 }}
+        {{- end }}
       {{- if $spec.metrics }}
       annotations:
         {{- if $spec.metrics.enabled }}
