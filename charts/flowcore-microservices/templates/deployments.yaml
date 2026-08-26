@@ -31,6 +31,14 @@
 {{- $defaultWebhookBaseUrl := $.Values.webhookBaseURL }}
 {{- $castAiSpot := $spec.castAiSpot | default "none" }}
 {{- $nodeTemplate := $spec.castAiNodeTemplate | default "spot-instances" }}
+{{- $imageReference := printf "%s/%s:%v" $repoBase $spec.deployment.image $spec.deployment.tag }}
+{{- with $spec.deployment.digest }}
+{{- $digest := toString . }}
+{{- if not (regexMatch "^sha256:[0-9a-f]{64}$" $digest) }}
+{{- fail (printf "deployment.digest must match sha256:<64 lowercase hexadecimal characters> for %s" $serviceName) }}
+{{- end }}
+{{- $imageReference = printf "%s/%s@%s" $repoBase $spec.deployment.image $digest }}
+{{- end }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -180,7 +188,7 @@ spec:
       {{- end }}
       containers:
         - name: {{ $serviceName }}
-          image: "{{ $repoBase }}/{{ $spec.deployment.image }}:{{ $spec.deployment.tag }}"
+          image: {{ $imageReference | quote }}
           env:
             {{- range $index, $transportName := $spec.useTransports }}
             {{- $transportTarget := "" }}
