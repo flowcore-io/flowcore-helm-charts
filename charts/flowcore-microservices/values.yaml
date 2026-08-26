@@ -62,6 +62,9 @@ deployments: {}
 #      resources: {}
 ## @extra deployments.<microservice>.deployment.serviceAccount The service account to use for this microservice [string]
 #      serviceAccount: "some-service-account"
+## @extra deployments.<microservice>.podLabels Additional labels applied only to the pod template
+#    podLabels:
+#      azure.workload.identity/use: "true"
 ## @extra deployments.<microservice>.service Service configuration for this microservice if needed
 #    service:
 ## @extra deployments.<microservice>.service.enabled Whether to deploy a service for this microservice [boolean]

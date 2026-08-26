@@ -19,6 +19,8 @@ deployments:
     enabled: true
     podAnnotations:
       hello: world
+    podLabels:
+      azure.workload.identity/use: "true"
     deployment:
       image: some-test-image
       tag: 0.0.1
