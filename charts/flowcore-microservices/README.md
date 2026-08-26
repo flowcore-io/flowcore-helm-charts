@@ -16,6 +16,20 @@ create a `values.yaml` file and fill in the deployments section. then run:
 helm install my-release flowcore/flowcore-microservices -f values.yaml
 ```
 
+## Immutable image references
+
+Set both a short release `tag` and an immutable `sha256` digest for production workloads. The digest selects the runtime image; the tag remains available as the `app.kubernetes.io/version` label. Omitting `digest` preserves the existing repository/image:tag behavior.
+
+```yaml
+deployments:
+  exampleApi:
+    enabled: true
+    deployment:
+      image: example-api
+      tag: 1.2.3
+      digest: sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+```
+
 ## Parameters
 
 ### Global
@@ -58,6 +72,7 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `deployments.<microservice>.deployment.maxUnavailable`                      | The maximum number of pods that can be unavailable during the update process [integer]             |       |
 | `deployments.<microservice>.deployment.image`                               | The image name to use for this microservice, excluding the repository [string]                     |       |
 | `deployments.<microservice>.deployment.tag`                                 | The image tag to use for this microservice [string]                                                |       |
+| `deployments.<microservice>.deployment.digest`                              | Optional immutable sha256 image digest; when set, the runtime image uses the digest while tag remains the version label [string] |       |
 | `deployments.<microservice>.deployment.replicas`                            | The number of replicas to deploy [integer]                                                         |       |
 | `deployments.<microservice>.deployment.resources`                           | Resource configuration for this microservice                                                       |       |
 | `deployments.<microservice>.deployment.serviceAccount`                      | The service account to use for this microservice [string]                                          |       |
@@ -114,4 +129,3 @@ helm install my-release flowcore/flowcore-microservices -f values.yaml
 | `deployments.<microservice>.hpa.maxReplicas`                                | The maximum number of replicas to deploy for this microservice [integer]                           |       |
 | `deployments.<microservice>.hpa.cpu`                                        | The CPU threshold for the Horizontal Pod Autoscaler [integer]                                      |       |
 | `deployments.<microservice>.hpa.memory`                                     | The memory threshold for the Horizontal Pod Autoscaler [integer]                                   |       |
-
