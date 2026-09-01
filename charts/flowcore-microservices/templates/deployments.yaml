@@ -11,7 +11,7 @@
 {{- if $spec.source }}
 {{- $source = $spec.source }}
 {{- end }}
-{{- $repoBase := $.Values.imageRepository -}}
+{{- $repoBase := $spec.deployment.repository | default $.Values.imageRepository -}}
 {{- $replicas := $spec.deployment.replicas | default 1 }}
 {{- $httpPort := 3000 }}
 {{- if $spec.service }}

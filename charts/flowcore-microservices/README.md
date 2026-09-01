@@ -30,6 +30,28 @@ deployments:
       digest: sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
 ```
 
+## Per-deployment image repository
+
+`imageRepository` sets the registry for every microservice in the chart. A single microservice can point at a different registry with `deployment.repository`. Every other microservice keeps the chart-level `imageRepository`.
+
+```yaml
+imageRepository: 305363105399.dkr.ecr.eu-west-1.amazonaws.com
+deployments:
+  exampleApi:
+    enabled: true
+    deployment:
+      image: example-api
+      tag: 1.2.3
+  publicApi:
+    enabled: true
+    deployment:
+      repository: ghcr.io/flowcore-io
+      image: public-api
+      tag: 1.2.3
+```
+
+Sidecars without an explicit `repo` inherit the repository of their deployment.
+
 ## Parameters
 
 ### Global
@@ -70,6 +92,7 @@ deployments:
 | `deployments.<microservice>.deployment`                                     | Configuration for the deployment                                                                   |       |
 | `deployments.<microservice>.deployment.maxSurge`                            | The maximum number of pods that can be scheduled above the desired number of pods [integer]        |       |
 | `deployments.<microservice>.deployment.maxUnavailable`                      | The maximum number of pods that can be unavailable during the update process [integer]             |       |
+| `deployments.<microservice>.deployment.repository`                          | Overrides `imageRepository` for this microservice only, e.g. `ghcr.io/flowcore-io` [string]        |       |
 | `deployments.<microservice>.deployment.image`                               | The image name to use for this microservice, excluding the repository [string]                     |       |
 | `deployments.<microservice>.deployment.tag`                                 | The image tag to use for this microservice [string]                                                |       |
 | `deployments.<microservice>.deployment.digest`                              | Optional immutable sha256 image digest; when set, the runtime image uses the digest while tag remains the version label [string] |       |
