@@ -46,6 +46,8 @@ deployments: {}
 ##     path: /metrics
 ## @extra deployments.<microservice>.deployment Configuration for the deployment
 #    deployment:
+## @extra deployments.<microservice>.deployment.strategy Kubernetes deployment strategy [RollingUpdate, Recreate]
+#      strategy: "RollingUpdate"
 ## @extra deployments.<microservice>.deployment.maxSurge The maximum number of pods that can be scheduled above the desired number of pods [integer]
 #      maxSurge: "25%"
 ## @extra deployments.<microservice>.deployment.maxUnavailable The maximum number of pods that can be unavailable during the update process [integer]

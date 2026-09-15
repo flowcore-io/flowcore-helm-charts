@@ -90,6 +90,7 @@ Sidecars without an explicit `repo` inherit the repository of their deployment.
 | `deployments.<microservice>.metrics.port`                                   | The optional port to expose for metrics [integer]                                                  |       |
 | `deployments.<microservice>.metrics.path`                                   | The optional path to expose for metrics [string]                                                   |       |
 | `deployments.<microservice>.deployment`                                     | Configuration for the deployment                                                                   |       |
+| `deployments.<microservice>.deployment.strategy`                            | Kubernetes deployment strategy [RollingUpdate, Recreate]                                            | `RollingUpdate` |
 | `deployments.<microservice>.deployment.maxSurge`                            | The maximum number of pods that can be scheduled above the desired number of pods [integer]        |       |
 | `deployments.<microservice>.deployment.maxUnavailable`                      | The maximum number of pods that can be unavailable during the update process [integer]             |       |
 | `deployments.<microservice>.deployment.repository`                          | Overrides `imageRepository` for this microservice only, e.g. `ghcr.io/flowcore-io` [string]        |       |
