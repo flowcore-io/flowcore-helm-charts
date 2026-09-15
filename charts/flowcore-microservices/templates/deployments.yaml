@@ -23,9 +23,11 @@
 {{- $sidecarHealthPort := add $httpPort 1 }}
 {{- $maxSurge := "25%" }}
 {{- $maxUnavailable := 0 }}
+{{- $strategyType := "RollingUpdate" }}
 {{- if $spec.deployment }}
 {{- $maxSurge = $spec.deployment.maxSurge }}
 {{- $maxUnavailable = $spec.deployment.maxUnavailable }}
+{{- $strategyType = $spec.deployment.strategy | default "RollingUpdate" }}
 {{- end }}
 {{- $defaultPullSecrets := $.Values.imagePullSecrets }}
 {{- $defaultWebhookBaseUrl := $.Values.webhookBaseURL }}
@@ -57,10 +59,12 @@ metadata:
 spec:
   replicas: {{ $replicas }}
   strategy:
-    type: RollingUpdate
+    type: {{ $strategyType }}
+    {{- if eq $strategyType "RollingUpdate" }}
     rollingUpdate:
       maxSurge: {{ $maxSurge }}
       maxUnavailable: {{ $maxUnavailable }}
+    {{- end }}
   selector:
     matchLabels:
       app: {{ $serviceName }}
