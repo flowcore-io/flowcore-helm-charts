@@ -22,6 +22,14 @@
 {{- $defaultPullSecrets := $.Values.imagePullSecrets }}
 {{- $castAiSpot := $spec.castAiSpot | default "none" }}
 {{- $nodeTemplate := $spec.castAiNodeTemplate | default "spot-instances" }}
+{{- $imageReference := printf "%s/%s:%v" $repoBase $spec.job.image $spec.job.tag }}
+{{- with $spec.job.digest }}
+{{- $digest := toString . }}
+{{- if not (regexMatch "^sha256:[0-9a-f]{64}$" $digest) }}
+{{- fail (printf "job.digest must match sha256:<64 lowercase hexadecimal characters> for %s" $serviceName) }}
+{{- end }}
+{{- $imageReference = printf "%s/%s@%s" $repoBase $spec.job.image $digest }}
+{{- end }}
 ---
 apiVersion: batch/v1
 kind: CronJob
@@ -171,7 +179,7 @@ spec:
           {{- end }}
           containers:
             - name: {{ $serviceName }}
-              image: "{{ $repoBase }}/{{ $spec.job.image }}:{{ $spec.job.tag }}"
+              image: {{ $imageReference | quote }}
               env:
                 {{- range $index, $transportName := $spec.useTransports }}
                 {{- $transportTarget := "" }}
@@ -237,4 +245,4 @@ spec:
             {{- end }}
           {{- end }}
 {{- end }}
-{{- end }} 
+{{- end }}

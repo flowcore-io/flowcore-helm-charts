@@ -2,6 +2,6 @@ apiVersion: v2
 name: flowcore-jobs
 description: A helm chart template for deploying multiple flowcore job types in Kubernetes
 type: application
-version: 1.0.0
+version: 1.0.1
 appVersion: 1.0.0
 icon: https://avatars.githubusercontent.com/u/114778675?s=200&v=4

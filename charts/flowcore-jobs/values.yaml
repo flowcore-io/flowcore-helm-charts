@@ -53,6 +53,8 @@ cronjobs: {}
 #      image: "data-cleanup"
 ## @extra cronjobs.<cronjobName>.job.tag The image tag to use for this job [string]
 #      tag: "latest"
+## @extra cronjobs.<cronjobName>.job.digest Optional sha256 image digest; selects image@digest while preserving job.tag in version labels
+#      digest: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
 ## @extra cronjobs.<cronjobName>.job.resources Resource configuration for this job
 #      resources: {}
 ## @extra cronjobs.<cronjobName>.job.serviceAccount The service account to use for this job [string]

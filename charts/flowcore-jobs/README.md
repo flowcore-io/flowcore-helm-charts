@@ -58,6 +58,7 @@ helm install my-flowcore-jobs flowcore/flowcore-jobs
 | `cronjobs.<cronjobName>.job`                                         | Configuration for the job                                                                          |       |
 | `cronjobs.<cronjobName>.job.image`                                   | The image name to use for this job, excluding the repository [string]                              |       |
 | `cronjobs.<cronjobName>.job.tag`                                     | The image tag to use for this job [string]                                                         |       |
+| `cronjobs.<cronjobName>.job.digest`                                  | Optional `sha256:<64 lowercase hex>`; selects `image@digest` while `job.tag` remains the version label |       |
 | `cronjobs.<cronjobName>.job.resources`                               | Resource configuration for this job                                                                |       |
 | `cronjobs.<cronjobName>.job.serviceAccount`                          | The service account to use for this job [string]                                                   |       |
 | `cronjobs.<cronjobName>.job.activeDeadlineSeconds`                   | Optional deadline in seconds the job may be active before the system tries to terminate it         |       |
@@ -193,4 +194,4 @@ cronjobs:
     env:
       REPORT_TYPE:
         value: "weekly"
-``` 
+```
