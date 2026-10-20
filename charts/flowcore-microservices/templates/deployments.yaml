@@ -33,6 +33,7 @@
 {{- $defaultWebhookBaseUrl := $.Values.webhookBaseURL }}
 {{- $castAiSpot := $spec.castAiSpot | default "none" }}
 {{- $nodeTemplate := $spec.castAiNodeTemplate | default "spot-instances" }}
+{{- $deploymentAnnotations := mergeOverwrite (dict) (deepCopy ($.Values.commonAnnotations | default (dict))) ($spec.deployment.annotations | default (dict)) }}
 {{- $imageReference := printf "%s/%s:%v" $repoBase $spec.deployment.image $spec.deployment.tag }}
 {{- with $spec.deployment.digest }}
 {{- $digest := toString . }}
@@ -52,9 +53,9 @@ metadata:
     app.kubernetes.io/version: {{ $spec.deployment.tag | quote }}
     app.kubernetes.io/component: {{ $component }}
     app.kubernetes.io/part-of: {{ $platform }}
-  {{- if $.Values.commonAnnotations }}
+  {{- if $deploymentAnnotations }}
   annotations:
-    {{- $.Values.commonAnnotations | toYaml | nindent 4 }}
+    {{- $deploymentAnnotations | toYaml | nindent 4 }}
   {{- end }}
 spec:
   replicas: {{ $replicas }}
