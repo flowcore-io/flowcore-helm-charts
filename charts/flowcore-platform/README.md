@@ -35,7 +35,9 @@ helm install my-release flowcore/flowcore-platform -f values.yaml
 | `flowcore.keyspace`                   | The keyspace configuration                                                                  | `{}`          |
 | `flowcore.keyspace.replicationFactor` | The number of replicas                                                                      | `3`           |
 | `flowcore.domain`                     | The domain                                                                                  | `example.com` |
-| `flowcore.tlsSecret`                  | The TLS secret                                                                              | `example-tls` |
+| `flowcore.tlsSecret`                     | The TLS secret                                                                                                      | `example-tls` |
+| `flowcore.ingressClassName`              | Optional `spec.ingressClassName` for platform Ingresses (when empty, uses `kubernetes.io/ingress.class: nginx`)     | `""`          |
+| `flowcore.includeIngressAnnotations`     | Whether to render per-service `ingress.annotations` on platform Ingresses                                           | `true`        |
 
 ### ArgoCD Configuration
 

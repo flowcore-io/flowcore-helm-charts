@@ -19,6 +19,10 @@ flowcore:
   domain: example.com
   ## @param flowcore.tlsSecret [default: example-tls] The TLS secret
   tlsSecret: example-tls
+  ## @param flowcore.ingressClassName [string] Optional spec.ingressClassName for platform Ingresses (when empty, uses legacy kubernetes.io/ingress.class: nginx annotation)
+  ingressClassName: ""
+  ## @param flowcore.includeIngressAnnotations [default: true] Whether to render per-service ingress.annotations on platform Ingresses
+  includeIngressAnnotations: true
 
 ## @section ArgoCD Configuration
 argocd:
