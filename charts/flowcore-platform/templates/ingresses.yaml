@@ -8,26 +8,41 @@ This file contains the ingress resources for the Flowcore Platform.
 {{- $services := list "eventSourceApi" "webhookService" "serviceKubeLogApi" "serviceDeleteManagerApi" -}}
 {{- $domain := .Values.flowcore.domain }}
 {{- $tlsSecret := .Values.flowcore.tlsSecret }}
+{{- $ingressClassName := .Values.flowcore.ingressClassName | default "" }}
+{{- $includeIngressAnnotations := true }}
+{{- if hasKey .Values.flowcore "includeIngressAnnotations" }}
+{{- $includeIngressAnnotations = .Values.flowcore.includeIngressAnnotations }}
+{{- end }}
 
 {{- range $name := $services -}}
 {{- $spec := index $microservices $name -}}
 {{- if and $spec.enabled $spec.enabled -}}
 {{- $serviceName := $name | kebabcase }}
 {{- $routeHost := print $spec.subdomain "." $domain }}
+{{- $hasLegacyClass := not $ingressClassName }}
+{{- $hasServiceAnnotations := and $includeIngressAnnotations $spec.ingress $spec.ingress.annotations }}
+{{- $hasCommonAnnotations := $.Values.commonAnnotations }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ $serviceName }}
+  {{- if or $hasLegacyClass $hasServiceAnnotations $hasCommonAnnotations }}
   annotations:
+    {{- if $hasLegacyClass }}
     kubernetes.io/ingress.class: nginx
-    {{- if $spec.ingress.annotations -}}
+    {{- end }}
+    {{- if $hasServiceAnnotations }}
     {{- $spec.ingress.annotations | toYaml | nindent 4 }}
     {{- end }}
-    {{- if $.Values.commonAnnotations }}
+    {{- if $hasCommonAnnotations }}
     {{- $.Values.commonAnnotations | toYaml | nindent 4 }}
     {{- end }}
+  {{- end }}
 spec:
+  {{- if $ingressClassName }}
+  ingressClassName: {{ $ingressClassName }}
+  {{- end }}
   tls:
     - hosts:
         - {{ $routeHost }}
